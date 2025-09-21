@@ -17,6 +17,10 @@ title: 이해권의 포트폴리오
 email: gwon99065@naver.com
 description: >- 
   현실의 문제를 데이터로 해결하는 AI 엔지니어 이해권입니다.
+
+url: "https://gwon9906.github.io"
+repository: "gwon9906/gwon9906.github.io"
+
 github_username: gwon9906
 minimal_mistakes_skin: default
 search: true  
