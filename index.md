@@ -24,4 +24,4 @@ excerpt: >
 
 # Featured Projects
 
-{% include feature_row id="feature_row_projects" type="left" %}
+{% include feature_row %}
