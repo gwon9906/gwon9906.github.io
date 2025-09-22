@@ -1,4 +1,6 @@
-- id: feature_row_projects
+# Feature row for projects on the main page
+- id: "feature_row_projects" # This ID must match the one in index.md
+  # First project
   - image_path: /assets/images/project1-thumbnail.png # 프로젝트1 썸네일 이미지
     alt: "Project 1 Thumbnail"
     title: "저전력 IoT 통신 효율 14% 개선"
@@ -6,6 +8,7 @@
     url: "/projects/iot-optimization/" # 프로젝트1 상세 페이지 주소
     btn_label: "자세히 보기"
     btn_class: "btn--inverse"
+  # Second project
   - image_path: /assets/images/project2-thumbnail.png # 프로젝트2 썸네일 이미지
     alt: "Project 2 Thumbnail"
     title: "산업 밸브 이상 탐지 모델 성능 98% 개선"
