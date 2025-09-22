@@ -117,3 +117,21 @@ category_archive:
 tag_archive:
   type: liquid
   path: /tags/
+
+
+# Homepage feature row (main page projects)
+feature_rows:
+  - image_path: /assets/images/project1-thumbnail.png
+    alt: "IoT Project Thumbnail"
+    title: "저전력 IoT 통신 효율 14% 개선"
+    excerpt: "BAM 기반 페이로드 압축 모델을 개발하여 Raspberry Pi 환경에서 LoRa 통신의 데이터 손실 문제를 해결했습니다."
+    url: "/projects/iot-optimization/"
+    btn_label: "자세히 보기"
+    btn_class: "btn--primary"
+  - image_path: /assets/images/project2-thumbnail.png
+    alt: "Valve Anomaly Detection Thumbnail"
+    title: "산업 밸브 이상 탐지 모델 성능 98% 개선"
+    excerpt: "Encoder-LSTM 모델을 적용하여 시계열 데이터 예측 정확도를 개선하고 모델의 실용성을 입증했습니다."
+    url: "/projects/valve-anomaly-detection/"
+    btn_label: "자세히 보기"
+    btn_class: "btn--primary"
