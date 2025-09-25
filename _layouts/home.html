@@ -1,0 +1,20 @@
+---
+layout: default
+---
+
+{% if page.author_profile or layout.author_profile or site.author_profile %}
+  {% include author-profile.html %}
+{% endif %}
+
+<div id="main" role="main">
+  {{ content }}
+</div>
+
+{% if site.posts.size > 0 %}
+  <div class="archive">
+    <h2 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h2>
+    {% for post in site.posts limit: 5 %}
+      {% include archive-single.html type="grid" %}
+    {% endfor %}
+  </div>
+{% endif %}
