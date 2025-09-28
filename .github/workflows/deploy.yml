@@ -75,9 +75,9 @@ jobs:
     # available images: https://github.com/actions/runner-images#available-images
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-      pages: write     # GitHub Pages 배포를 위한 표준 권한입니다.
-      id-token: write  # GitHub Pages 배포를 위한 표준 권한입니다.
+      contents: write
+      pages: write # GitHub Pages 배포를 위한 표준 권한입니다.
+      id-token: write # GitHub Pages 배포를 위한 표준 권한입니다.
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
