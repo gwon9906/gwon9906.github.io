@@ -1,110 +1,161 @@
 ---
-layout: home
-title: "Haegwon Lee | AI/ML Engineering"
-permalink: /
+layout: page
+title: Projects
+permalink: /projects/
 ---
 
-<div class="hero-compact">
-  <div class="hero-text">
-    <h1>Haegwon Lee</h1>
-    <p class="tagline">AI/ML Engineering · Edge/Embedded Optimization</p>
-    <div class="hero-cta">
-      <a class="btn primary" href="{{ '/index_ko' | relative_url }}">🇰🇷 한국어</a>
-      <a class="btn" href="{{ '/projects' | relative_url }}">Projects</a>
-      <a class="btn" href="mailto:{{ site.email }}">Email</a>
-    </div>
-  </div>
+<div style="text-align: right; margin-bottom: 20px;">
+  <a href="/projects_ko" style="text-decoration: none; padding: 8px 16px; background-color: #0366d6; color: white; border-radius: 5px;">🇰🇷 한국어</a>
 </div>
 
-# AI/ML Engineering Student
-
-I pursue both efficiency and practicality in AI models.  
-By understanding hardware constraints and analyzing data characteristics,  
-I design and implement optimized AI solutions.
-
-As an undergraduate researcher in Computer Engineering, I focus on building practical AI systems that work in resource-constrained environments. My experience spans from IoT communication optimization to industrial AI applications, with particular expertise in model compression and system-level optimization.
+# Research & Development Projects
 
 ---
-
-## 🎓 Education
-**Dong-eui University** — B.S. in Computer Engineering  
-Expected Graduation: 2026
-
----
-
-## 💼 Skills
-
-### AI/ML
-- **Frameworks**: PyTorch, TensorFlow
-- **Specialization**: Model Optimization, LSTM, Encoder–Decoder Architecture
-- **Focus Areas**: Model Compression, Hardware-Constrained AI, Time-Series Prediction
-
-### Programming & Tools
-- **Languages**: Python, C/C++
-- **IoT/Embedded**: Raspberry Pi, LoRa Communication
-- **Dev Tools**: Git, Jupyter, Linux
-
----
-
-## 🏆 Certifications
-**Engineer Information Processing (정보처리기사)**  
-Acquired: June 13, 2025  
-Issued by: HRD Korea (한국산업인력공단)
-
----
-
-## 🚀 Key Strengths
-- **End-to-End System Design**: Built complete systems considering hardware constraints (Raspberry Pi, LoRa)
-- **Model Optimization**: Proven 62.5% payload reduction & 98% error reduction
-- **Data-Driven Problem Solving**: Strong at reading data characteristics and shaping architectures
-- **Practical Implementation**: Solutions that work in real-world, resource-limited settings
-
----
-
-## 📊 Highlighted Projects
 
 <div class="project-card">
-  <h3>🔬 IoT Communication Efficiency Improvement</h3>
+  <h3>🔬 IoT Communication Efficiency via BAM-based Payload Compression</h3>
   <p class="project-meta">LoRa · Edge AI · Payload Compression</p>
   <ul>
-    <li><b>Result:</b> <b>+14% PDR</b> via BAM-based compression (<b>32B → 20B</b>, 62.5%)</li>
+    <li><b>Result:</b> Payload 32B → 20B (62.5% reduction), PDR +14%</li>
   </ul>
-  <a class="btn" href="{{ '/projects#lora-communication' | relative_url }}">View Details</a>
+
+  <h4 id="lora-communication">📡 Overview</h4>
+  <p><b>Role:</b> Undergraduate Researcher & Team Lead · <b>Period:</b> Mar–Jun 2025 · <b>Status:</b> Completed</p>
+
+  <p><b>Summary</b></p>
+  <ul>
+    <li><b>Problem:</b> Long payloads in low-power, high-loss LoRa networks cause retransmissions and energy waste.</li>
+    <li><b>Approach:</b> Implemented a lightweight <b>BAM</b> model (NumPy) on Raspberry Pi for real-time compression.</li>
+    <li><b>Result:</b> <b>32B → 20B</b> (62.5% reduction), <b>PDR +14%</b>, <b>MSE 0.0036</b>, validated in 2.6 km NLOS tests.</li>
+  </ul>
+
+  <details>
+    <summary><b>Read more</b></summary>
+
+    <h5>🔍 Technical Approach</h5>
+    <ul>
+      <li>Replaced heavy Autoencoder with NumPy-based <b>BAM</b>.</li>
+      <li>Designed end-to-end system architecture for resource-limited Raspberry Pi.</li>
+      <li>Conducted repeated NLOS field tests to ensure statistical reliability.</li>
+    </ul>
+
+    <h5>⚙️ Optimization</h5>
+    <ul>
+      <li>Removed integer part of GPS data → <b>MSE 0.0184 → 0.0036 (80% improvement)</b>.</li>
+      <li>Reduced retransmissions and battery drain under LoRa protocol limits.</li>
+    </ul>
+
+    <h5>🧠 Tech Stack</h5>
+    <p>Python, NumPy · Raspberry Pi, LoRa · Git, Linux</p>
+
+    <h5>🔗 Links</h5>
+    <p>
+      System: <a href="https://github.com/4xvgal/ChirpChirp" target="_blank">ChirpChirp</a><br>
+      Model: <a href="https://github.com/gwon9906/Lightweight-MF-BAM" target="_blank">Lightweight-MF-BAM</a>
+    </p>
+  </details>
 </div>
+
+---
 
 <div class="project-card">
-  <h3>📡 Industrial Valve Flow Prediction</h3>
-  <p class="project-meta">Time-Series · Encoder-LSTM</p>
+  <h3>📡 Industrial Valve Flow Rate Prediction using Encoder-LSTM</h3>
+  <p class="project-meta">Time Series · Encoder-LSTM</p>
   <ul>
-    <li><b>Result:</b> <b>MAPE 10 → 0.188</b> (~98% improvement) via Encoder–LSTM</li>
+    <li><b>Result:</b> MAPE 10 → 0.188 (≈98% improvement)</li>
   </ul>
-  <a class="btn" href="{{ '/projects#valve-prediction' | relative_url }}">View Details</a>
+
+  <p><b>Role:</b> Undergraduate Researcher (Individual) · <b>Period:</b> Jul–Dec 2024 · <b>Status:</b> Completed</p>
+
+  <p><b>Summary</b></p>
+  <ul>
+    <li><b>Problem:</b> Baseline LSTM model had MAPE > 10, unsuitable for industrial use.</li>
+    <li><b>Approach:</b> Designed custom <b>Encoder-LSTM</b> architecture handling zero-opening discontinuities.</li>
+    <li><b>Result:</b> <b>MAPE 10 → 0.188</b>, lower model complexity, stable with <b>Huber Loss</b>.</li>
+  </ul>
+
+  <details>
+    <summary><b>Read more</b></summary>
+
+    <h5>🔍 Technical Approach</h5>
+    <ul>
+      <li>Implemented sequence reinitialization at valve-opening = 0 to fix discontinuity.</li>
+      <li>Inspired by Autoencoder structure → hierarchical Encoder-LSTM design.</li>
+      <li>Removed redundant normalization to match data precision.</li>
+    </ul>
+
+    <h5>🧠 Data Optimization</h5>
+    <ul>
+      <li>Used <b>Huber Loss</b> for outlier robustness and gradient stability.</li>
+      <li>Iteratively refined preprocessing pipeline via statistical analysis.</li>
+    </ul>
+
+    <h5>🧩 Tech Stack</h5>
+    <p>PyTorch · Python, Pandas, NumPy, Jupyter</p>
+  </details>
 </div>
 
 ---
 
-## 💻 Currently Working On
+<div class="project-card">
+  <h3>💻 Ultra-Low SNR Signal Restoration & Classification</h3>
+  <p class="project-meta">MTL · Noise Restoration · Deep Learning</p>
+  <ul>
+    <li><b>Status:</b> 6 models trained · Comparative analysis and paper in progress</li>
+  </ul>
 
-### Ultra-Low SNR Signal Restoration & Classification
-**Period**: March 2025 – Present  
-Comparing cascaded vs. MTL architectures to improve restoration and classification under ultra-low SNR.
+  <p><b>Role:</b> Undergraduate Researcher (Individual) · <b>Period:</b> Mar 2025 – Present · <b>Status:</b> Ongoing</p>
 
-**Tech Stack**: TensorFlow, Custom CNN, BAM, CAE, U-Net  
-🔗 <a class="btn" href="{{ '/projects#ultra-low-snr' | relative_url }}">View Details</a>
-<a class="btn" href="https://github.com/gwon9906/Denoise-and-Classify" target="_blank">GitHub</a>
+  <p><b>Summary</b></p>
+  <ul>
+    <li><b>Problem:</b> Traditional models fail under –30 to –10 dB SNR conditions.</li>
+    <li><b>Approach:</b> Compare <b>Cascaded</b> vs <b>MTL</b> architectures for joint restoration and classification.</li>
+    <li><b>Preliminary Results:</b> MTL better for high SNR classification; U-Net superior for restoration.</li>
+  </ul>
+
+  <details>
+    <summary><b>Read more</b></summary>
+
+    <h5>🔍 Research Focus</h5>
+    <ul>
+      <li>Sequential model: two-stage restoration + classification.</li>
+      <li>MTL model: shared encoder, dual decoder with joint loss.</li>
+      <li>Restoration architectures: BAM, CAE, U-Net.</li>
+    </ul>
+
+    <h5>📈 Experiment Setup</h5>
+    <ul>
+      <li>Dataset: CIFAR-10 (150k augmented images)</li>
+      <li>Noise: Gaussian, Salt & Pepper, Burst</li>
+      <li>SNR Levels: –30 to –10 dB</li>
+      <li>Metrics: MSE, MAE, PSNR, Accuracy, Top-3 Accuracy</li>
+    </ul>
+
+    <h5>🧠 Tech Stack</h5>
+    <p>TensorFlow/Keras · Python, NumPy, Pandas, Jupyter, TensorBoard</p>
+
+    <h5>🔗 Links</h5>
+    <p>
+      Repository: <a href="https://github.com/gwon9906/Denoise-and-Classify" target="_blank">Denoise-and-Classify</a>
+    </p>
+  </details>
+</div>
 
 ---
 
-## 📫 Contact
-
-- **Email**: <a href="mailto:{{ site.email }}">{{ site.email }}</a>
-- **GitHub**: <a href="https://github.com/{{ site.github_username }}" target="_blank">@{{ site.github_username }}</a>
-- **Blog**: <a href="{{ site.blog_url }}" target="_blank">{{ site.blog_url }}</a>
-- **Phone**: +82-10-3414-9906
-  <!-- Consider hiding phone on public pages if privacy is a concern. -->
+<div class="project-card">
+  <h3>💡 Additional Experience</h3>
+  <p>Undergraduate Research Assistant · Dong-eui University Computer Engineering Lab (2022 – Present)</p>
+  <ul>
+    <li>Signal processing and time-series prediction</li>
+    <li>IoT systems and embedded AI</li>
+    <li>Model optimization for resource-constrained devices</li>
+    <li>Practical AI solutions for industrial applications</li>
+  </ul>
+</div>
 
 ---
 
 <div style="text-align: center; margin-top: 40px;">
-  <a href="{{ '/projects' | relative_url }}" class="btn primary" style="font-weight: bold;">View All Projects →</a>
+  <a href="/" class="btn primary" style="font-weight: bold;">← Back to Home</a>
 </div>
