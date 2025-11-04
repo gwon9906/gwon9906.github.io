@@ -12,7 +12,7 @@ permalink: /projects_ko/
 
 ---
 
-## 🌟 <a name="ultra-low-snr"></a>Ultra Low SNR 신호 복원 및 분류
+## 🔬 <a name="lora-communication"></a>BAM 기반 페이로드 압축을 통한 IoT 통신 효율 개선
 
 **역할**: 학부 연구생  
 **기간**: 2025년 3월 - 현재  
@@ -50,7 +50,7 @@ permalink: /projects_ko/
   - 분류: Accuracy, Top-3 Accuracy
 
 ### 기술 스택
-- **프레임워크**: TensorFlow/Keras, PyTorch
+- **프레임워크**: TensorFlow/Keras
 - **모델**: Custom CNN, ResNet, Transformer 기반 아키텍처, BAM, CAE, U-Net
 - **도구**: Python, NumPy, Pandas, Jupyter, TensorBoard
 - **하드웨어**: NVIDIA RTX 3070 Ti 8GB, Intel i7-12700K
@@ -94,14 +94,6 @@ permalink: /projects_ko/
 - **문제**: MTL 모델에서 복원과 분류 손실의 최적 가중치를 찾아 한 작업이 지배하지 않으면서 두 작업 모두 잘 수행되도록 보장
 - **해결**: 다양한 손실 가중치 조합 실험 및 공동 최적화 전략 구현, 복원 품질(PSNR)과 분류 정확도 간의 트레이드오프 분석
 
-### 링크
-🔗 **프로젝트 저장소**: [github.com/gwon9906/Denoise-and-Classify](https://github.com/gwon9906/Denoise-and-Classify)  
-📊 **기술 스택**: TensorFlow, PyTorch, 커스텀 신경망 아키텍처
-
----
-
-<div style="margin-bottom: 60px;"></div>
-
 ## 🔬 <a name="lora-communication"></a>BAM 기반 페이로드 압축을 통한 IoT 통신 효율 개선
 
 **역할**: 학부 연구생 및 팀 리드  
@@ -109,7 +101,7 @@ permalink: /projects_ko/
 **상태**: 완료
 
 ### 프로젝트 개요
-저자원 임베디드 시스템에 최적화된 경량 페이로드 압축 모델을 설계·구현하여 저전력 고손실 IoT 네트워크의 통신 효율을 개선하는 연구 프로젝트를 주도하고 있습니다.
+저자원 임베디드 시스템에 최적화된 경량 페이로드 압축 모델을 설계·구현하여 저전력 고손실 IoT 네트워크의 통신 효율을 개선하는 연구 프로젝트를 주도했습니다.
 
 ### 문제 정의
 저전력 고손실 네트워크 환경에서 빈번한 재전송으로 인한 통신 비효율 및 배터리 소모 문제가 발생했으며, 특히 비가시권(N-LOS) 환경의 장거리 LoRa 네트워크에서 심각했습니다.
@@ -265,6 +257,100 @@ permalink: /projects_ko/
 
 ---
 
+<div style="margin-bottom: 60px;"></div>
+
+## 💻 현재 진행 중
+
+### 🌟 <a name="ultra-low-snr"></a>Ultra Low SNR 신호 복원 및 분류
+
+**역할**: 학부 연구생  
+**기간**: 2025년 3월 - 현재  
+**상태**: 진행 중
+
+### 프로젝트 개요
+극한의 낮은 신호 대 잡음비(Ultra Low SNR) 환경에서 신호 복원 및 분류를 위한 딥러닝 모델 연구. 연쇄 모델(Cascaded Model)과 Multi-Task Learning(MTL) 아키텍처의 비교 분석을 통해 열화된 신호 처리를 위한 최적의 접근 방식을 규명하고자 합니다.
+
+### 문제 정의
+극한 SNR 환경(SNR: -30dB ~ -10dB)에서는 전통적인 신호 처리 방법으로 효과적인 신호 복원 및 분류가 불가능합니다. 본 연구는 딥러닝을 활용하여 이러한 한계를 극복하고 극한 노이즈 환경에서도 신뢰할 수 있는 신호 처리를 가능하게 하는 것을 목표로 합니다.
+
+### 기술적 접근
+
+**연구 중인 모델 아키텍처**
+1. **순차적(Cascaded) 모델**: 복원과 분류를 분리한 2단계 접근
+   - 1단계: BAM/CAE/U-Net을 사용한 복원
+   - 2단계: 학습된 분류기를 사용한 분류
+   
+2. **Multi-Task Learning(MTL) 모델**: End-to-End 공동 최적화
+   - 특징 추출을 위한 공유 인코더
+   - 복원 및 분류를 위한 이중 디코더
+   - 두 작업의 균형을 맞추는 공동 손실 함수
+
+**복원 아키텍처**
+- **BAM (Bidirectional Associative Memory)**: 양방향 연결을 가진 Dense 아키텍처
+- **CAE (Convolutional Autoencoder)**: 공간적 특징 학습을 위한 합성곱 레이어
+- **U-Net**: 세밀한 디테일 보존을 위한 Skip connection
+
+**실험 설계**
+- **데이터셋**: CIFAR-10을 150,000장으로 증강
+- **노이즈 타입**: Gaussian, Salt & Pepper, Burst 노이즈
+- **SNR 레벨**: -30dB, -25dB, -20dB, -15dB, -10dB
+- **평가 지표**: 
+  - 복원: MSE, MAE, PSNR (dB)
+  - 분류: Accuracy, Top-3 Accuracy
+
+### 기술 스택
+- **프레임워크**: TensorFlow/Keras
+- **모델**: Custom CNN, ResNet, Transformer 기반 아키텍처, BAM, CAE, U-Net
+- **도구**: Python, NumPy, Pandas, Jupyter, TensorBoard
+- **하드웨어**: NVIDIA RTX 3070 Ti 8GB, Intel i7-12700K
+
+### 팀 구성 및 나의 역할
+- **팀 규모**: 개인 연구 프로젝트
+- **지도**: 연구 방향에 대한 교수님 지도
+- **나의 역할**:
+  - 전체 모델 아키텍처 설계 및 구현 (6개 모델)
+  - 대규모 데이터 증강 파이프라인 구축 (15만 장)
+  - 포괄적인 실험 프레임워크 개발
+  - 다양한 조건에서의 통계 분석 및 성능 평가
+
+### 현재 진행 상황
+- ✅ 데이터 전처리 및 증강 완료
+- ✅ 6개 모델 구현 및 학습 완료 (Sequential BAM/CAE/U-Net, MTL BAM/CAE/U-Net)
+- ✅ 노이즈 타입 및 SNR 레벨별 포괄적 평가 프레임워크 구축
+- 🔄 최종 비교 분석 및 논문 작성 진행 중
+
+### 예비 결과
+- U-Net이 Skip connection으로 인해 우수한 복원 성능 보임
+- MTL 모델이 End-to-End 분류 성능에서 우수함
+- 노이즈 타입별 성능 차이 큼 (Burst 노이즈가 가장 어려움)
+- 높은 SNR 레벨에서 MTL 접근법의 이점이 더 크게 나타남
+
+### 직면한 문제와 해결 방법
+
+**문제 1: 대규모 실험 관리**
+- **문제**: 여러 아키텍처(Sequential vs MTL)와 노이즈 조건(3가지 타입 × 5가지 SNR 레벨)에 걸쳐 6개 모델을 관리하고 학습하는 데 상당한 계산 자원과 신중한 실험 추적이 필요함
+- **해결**: 각 단계별로 별도의 노트북을 사용한 모듈식 학습 파이프라인 구현, 자동화된 결과 수집 및 분석, 학습 단계 간 체계적인 메모리 관리로 재현성 확보
+
+**문제 2: Ultra-Low SNR을 위한 모델 아키텍처 선택**
+- **문제**: 전통적인 방법이 실패하는 극한 노이즈 조건에서 최적의 아키텍처(BAM vs CAE vs U-Net)와 학습 패러다임(Sequential vs MTL) 결정
+- **해결**: 포괄적인 문헌 조사 및 모든 조합에 걸친 체계적 비교 수행, 노이즈 타입 및 SNR 레벨별로 성능을 분석하는 커스텀 평가 프레임워크 구현으로 아키텍처별 강점 식별
+
+**문제 3: 현실적인 노이즈 시뮬레이션을 위한 데이터 증강**
+- **문제**: 데이터셋 다양성을 유지하면서 Ultra-Low SNR 환경을 정확하게 표현하는 현실적인 노이즈 조건 생성
+- **해결**: CIFAR-10을 150,000장으로 확장하는 정교한 데이터 증강 파이프라인 구현, 여러 노이즈 타입(Gaussian, Salt & Pepper, Burst)과 5가지 레벨(-30dB ~ -10dB)에 걸친 정밀한 SNR 제어
+
+**문제 4: Multi-Task 손실 균형**
+- **문제**: MTL 모델에서 복원과 분류 손실의 최적 가중치를 찾아 한 작업이 지배하지 않으면서 두 작업 모두 잘 수행되도록 보장
+- **해결**: 다양한 손실 가중치 조합 실험 및 공동 최적화 전략 구현, 복원 품질(PSNR)과 분류 정확도 간의 트레이드오프 분석
+
+### 링크
+🔗 **프로젝트 저장소**: [github.com/gwon9906/Denoise-and-Classify](https://github.com/gwon9906/Denoise-and-Classify)  
+📊 **기술 스택**: TensorFlow, 커스텀 신경망 아키텍처
+
+---
+
+<div style="margin-bottom: 60px;"></div>
+
 ## 💡 추가 경험
 
 ### 학부 연구생
@@ -278,6 +364,8 @@ permalink: /projects_ko/
 - 산업 현장의 실용적 문제 해결
 
 ---
+
+<div style="margin-bottom: 30px;"></div>
 
 ## 🎯 기술 역량
 

@@ -12,96 +12,6 @@ permalink: /projects/
 
 ---
 
-## 🌟 <a name="ultra-low-snr"></a>Ultra Low SNR Signal Restoration & Classification
-
-**Role**: Undergraduate Researcher  
-**Period**: March 2025 - Present  
-**Status**: In Progress
-
-### Overview
-Researching deep learning models for signal restoration and classification in extremely low signal-to-noise ratio (Ultra Low SNR) environments. Conducting comparative analysis between cascaded models and Multi-Task Learning (MTL) architectures to identify optimal approaches for handling degraded signals.
-
-### Problem Statement
-In ultra-low SNR environments (SNR: -30dB to -10dB), traditional signal processing methods fail to effectively restore and classify signals. This research aims to leverage deep learning to overcome these limitations and enable reliable signal processing in extreme noise conditions.
-
-### Technical Approach
-
-**Model Architectures Under Investigation**
-1. **Sequential (Cascaded) Models**: Two-stage approach with separate restoration and classification
-   - Stage 1: Restoration using BAM/CAE/U-Net
-   - Stage 2: Classification using trained classifier
-   
-2. **Multi-Task Learning (MTL) Models**: End-to-end joint optimization
-   - Shared encoder for feature extraction
-   - Dual decoders for restoration and classification
-   - Joint loss function balancing both tasks
-
-**Restoration Architectures**
-- **BAM (Bidirectional Associative Memory)**: Dense architecture with bidirectional connections
-- **CAE (Convolutional Autoencoder)**: Convolutional layers for spatial feature learning
-- **U-Net**: Skip connections for preserving fine-grained details
-
-**Experimental Design**
-- **Dataset**: CIFAR-10 augmented to 150,000 images
-- **Noise Types**: Gaussian, Salt & Pepper, Burst noise
-- **SNR Levels**: -30dB, -25dB, -20dB, -15dB, -10dB
-- **Evaluation Metrics**: 
-  - Restoration: MSE, MAE, PSNR (dB)
-  - Classification: Accuracy, Top-3 Accuracy
-
-### Technical Stack
-- **Framework**: TensorFlow/Keras, PyTorch
-- **Models**: Custom CNN, ResNet, Transformer-based architectures, BAM, CAE, U-Net
-- **Tools**: Python, NumPy, Pandas, Jupyter, TensorBoard
-- **Hardware**: NVIDIA RTX 3070 Ti 8GB, Intel i7-12700K
-
-### Team & My Contribution
-- **Team Size**: Individual research project
-- **Supervision**: Professor guidance on research direction
-- **My Role**:
-  - Complete model architecture design and implementation (6 models)
-  - Large-scale data augmentation pipeline (150K images)
-  - Comprehensive experimental framework development
-  - Statistical analysis and performance evaluation across multiple conditions
-
-### Current Progress
-- ✅ Data preprocessing and augmentation completed
-- ✅ 6 models implemented and trained (Sequential BAM/CAE/U-Net, MTL BAM/CAE/U-Net)
-- ✅ Comprehensive evaluation framework with noise-type and SNR-level analysis
-- 🔄 Final comparative analysis and paper writing in progress
-
-### Preliminary Findings
-- U-Net shows superior restoration performance due to skip connections
-- MTL models demonstrate better end-to-end classification performance
-- Performance varies significantly across noise types (Burst noise most challenging)
-- Higher SNR levels show greater benefits from MTL approach
-
-### Challenges & Solutions
-
-**Challenge 1: Large-Scale Experiment Management**
-- **Problem**: Managing and training 6 different models across multiple architectures (Sequential vs MTL) and noise conditions (3 types × 5 SNR levels) required significant computational resources and careful experiment tracking
-- **Solution**: Implemented modular training pipeline with separate notebooks for each phase, automated result collection and analysis, and systematic memory management between training phases to ensure reproducibility
-
-**Challenge 2: Model Architecture Selection for Ultra-Low SNR**
-- **Problem**: Determining optimal architecture (BAM vs CAE vs U-Net) and learning paradigm (Sequential vs MTL) for extreme noise conditions where traditional methods fail
-- **Solution**: Conducted comprehensive literature review and systematic comparison across all combinations, implemented custom evaluation framework that analyzes performance by noise type and SNR level to identify architecture-specific strengths
-
-**Challenge 3: Data Augmentation for Realistic Noise Simulation**
-- **Problem**: Creating realistic noise conditions that accurately represent ultra-low SNR environments while maintaining dataset diversity
-- **Solution**: Implemented sophisticated data augmentation pipeline scaling CIFAR-10 to 150,000 images with multiple noise types (Gaussian, Salt & Pepper, Burst) and precise SNR control across 5 levels (-30dB to -10dB)
-
-**Challenge 4: Multi-Task Loss Balancing**
-- **Problem**: Finding optimal weights for restoration and classification losses in MTL models to ensure both tasks perform well without one dominating
-- **Solution**: Experimented with different loss weight combinations and implemented joint optimization strategies, analyzing trade-offs between restoration quality (PSNR) and classification accuracy
-
-### Links
-🔗 **Project Repository**: [github.com/gwon9906/Denoise-and-Classify](https://github.com/gwon9906/Denoise-and-Classify)  
-📊 **Tech Stack**: TensorFlow, PyTorch, Custom Neural Architectures
-
----
-
-<div style="margin-bottom: 60px;"></div>
-
 ## 🔬 <a name="lora-communication"></a>IoT Communication Efficiency Improvement via BAM-based Payload Compression
 
 **Role**: Undergraduate Researcher & Team Lead  
@@ -265,6 +175,100 @@ Initial baseline LSTM model showed poor practical performance with MAPE (Mean Ab
 
 ---
 
+<div style="margin-bottom: 60px;"></div>
+
+## 💻 Currently Working On
+
+### 🌟 <a name="ultra-low-snr"></a>Ultra Low SNR Signal Restoration & Classification
+
+**Role**: Undergraduate Researcher  
+**Period**: March 2025 - Present  
+**Status**: In Progress
+
+### Overview
+Researching deep learning models for signal restoration and classification in extremely low signal-to-noise ratio (Ultra Low SNR) environments. Conducting comparative analysis between cascaded models and Multi-Task Learning (MTL) architectures to identify optimal approaches for handling degraded signals.
+
+### Problem Statement
+In ultra-low SNR environments (SNR: -30dB to -10dB), traditional signal processing methods fail to effectively restore and classify signals. This research aims to leverage deep learning to overcome these limitations and enable reliable signal processing in extreme noise conditions.
+
+### Technical Approach
+
+**Model Architectures Under Investigation**
+1. **Sequential (Cascaded) Models**: Two-stage approach with separate restoration and classification
+   - Stage 1: Restoration using BAM/CAE/U-Net
+   - Stage 2: Classification using trained classifier
+   
+2. **Multi-Task Learning (MTL) Models**: End-to-end joint optimization
+   - Shared encoder for feature extraction
+   - Dual decoders for restoration and classification
+   - Joint loss function balancing both tasks
+
+**Restoration Architectures**
+- **BAM (Bidirectional Associative Memory)**: Dense architecture with bidirectional connections
+- **CAE (Convolutional Autoencoder)**: Convolutional layers for spatial feature learning
+- **U-Net**: Skip connections for preserving fine-grained details
+
+**Experimental Design**
+- **Dataset**: CIFAR-10 augmented to 150,000 images
+- **Noise Types**: Gaussian, Salt & Pepper, Burst noise
+- **SNR Levels**: -30dB, -25dB, -20dB, -15dB, -10dB
+- **Evaluation Metrics**: 
+  - Restoration: MSE, MAE, PSNR (dB)
+  - Classification: Accuracy, Top-3 Accuracy
+
+### Technical Stack
+- **Framework**: TensorFlow/Keras
+- **Models**: Custom CNN, ResNet, Transformer-based architectures, BAM, CAE, U-Net
+- **Tools**: Python, NumPy, Pandas, Jupyter, TensorBoard
+- **Hardware**: NVIDIA RTX 3070 Ti 8GB, Intel i7-12700K
+
+### Team & My Contribution
+- **Team Size**: Individual research project
+- **Supervision**: Professor guidance on research direction
+- **My Role**:
+  - Complete model architecture design and implementation (6 models)
+  - Large-scale data augmentation pipeline (150K images)
+  - Comprehensive experimental framework development
+  - Statistical analysis and performance evaluation across multiple conditions
+
+### Current Progress
+- ✅ Data preprocessing and augmentation completed
+- ✅ 6 models implemented and trained (Sequential BAM/CAE/U-Net, MTL BAM/CAE/U-Net)
+- ✅ Comprehensive evaluation framework with noise-type and SNR-level analysis
+- 🔄 Final comparative analysis and paper writing in progress
+
+### Preliminary Findings
+- U-Net shows superior restoration performance due to skip connections
+- MTL models demonstrate better end-to-end classification performance
+- Performance varies significantly across noise types (Burst noise most challenging)
+- Higher SNR levels show greater benefits from MTL approach
+
+### Challenges & Solutions
+
+**Challenge 1: Large-Scale Experiment Management**
+- **Problem**: Managing and training 6 different models across multiple architectures (Sequential vs MTL) and noise conditions (3 types × 5 SNR levels) required significant computational resources and careful experiment tracking
+- **Solution**: Implemented modular training pipeline with separate notebooks for each phase, automated result collection and analysis, and systematic memory management between training phases to ensure reproducibility
+
+**Challenge 2: Model Architecture Selection for Ultra-Low SNR**
+- **Problem**: Determining optimal architecture (BAM vs CAE vs U-Net) and learning paradigm (Sequential vs MTL) for extreme noise conditions where traditional methods fail
+- **Solution**: Conducted comprehensive literature review and systematic comparison across all combinations, implemented custom evaluation framework that analyzes performance by noise type and SNR level to identify architecture-specific strengths
+
+**Challenge 3: Data Augmentation for Realistic Noise Simulation**
+- **Problem**: Creating realistic noise conditions that accurately represent ultra-low SNR environments while maintaining dataset diversity
+- **Solution**: Implemented sophisticated data augmentation pipeline scaling CIFAR-10 to 150,000 images with multiple noise types (Gaussian, Salt & Pepper, Burst) and precise SNR control across 5 levels (-30dB to -10dB)
+
+**Challenge 4: Multi-Task Loss Balancing**
+- **Problem**: Finding optimal weights for restoration and classification losses in MTL models to ensure both tasks perform well without one dominating
+- **Solution**: Experimented with different loss weight combinations and implemented joint optimization strategies, analyzing trade-offs between restoration quality (PSNR) and classification accuracy
+
+### Links
+🔗 **Project Repository**: [github.com/gwon9906/Denoise-and-Classify](https://github.com/gwon9906/Denoise-and-Classify)  
+📊 **Tech Stack**: TensorFlow, Custom Neural Architectures
+
+---
+
+<div style="margin-bottom: 60px;"></div>
+
 ## 💡 Additional Experience
 
 ### Undergraduate Research Assistant
@@ -278,6 +282,8 @@ Participated in multiple research projects focusing on:
 - Practical problem-solving in industrial settings
 
 ---
+
+<div style="margin-bottom: 30px;"></div>
 
 ## 🎯 Technical Competencies
 

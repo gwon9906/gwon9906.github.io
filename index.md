@@ -14,7 +14,7 @@ I pursue both efficiency and practicality in AI models.
 By understanding hardware constraints and analyzing data characteristics,  
 I design and implement optimized AI solutions.
 
-As an undergraduate researcher in Computer Engineering, I focus on building practical AI systems that work in resource-constrained environments. My experience spans from IoT communication optimization to industrial AI applications, with a strong emphasis on model compression and system-level optimization.
+As an undergraduate researcher in Computer Engineering, I focus on building practical AI systems that work in resource-constrained environments. My experience spans from IoT communication optimization to industrial AI applications, with particular expertise in model compression and system-level optimization.
 
 ---
 
@@ -49,11 +49,11 @@ Issued by: Human Resources Development Service of Korea
 
 ## 🔬 Research Interests
 
-- **AI Model Optimization**: Model compression, quantization, and efficient inference
-- **Hardware-Aware AI**: Neural network acceleration on NPUs, GPUs, and edge devices
-- **LLM & Generative AI**: Large language model optimization and deployment
-- **Industrial AI**: Predictive maintenance, anomaly detection, and real-world applications
-- **IoT & Embedded AI**: AI systems for resource-constrained environments
+- **Model Optimization & Compression**: Model compression, quantization, and efficient inference for resource-constrained environments
+- **Signal Processing & Restoration**: Signal denoising, restoration, and classification in extreme noise conditions
+- **Time Series Prediction**: Deep learning for time-series analysis and predictive modeling
+- **IoT & Embedded AI**: AI systems for resource-constrained devices and IoT communication optimization
+- **Industrial AI Applications**: Practical AI solutions for real-world industrial problems
 
 ---
 
@@ -66,16 +66,7 @@ Issued by: Human Resources Development Service of Korea
 
 ---
 
-## 💻 Currently Working On
-
-### Ultra Low SNR Signal Restoration & Classification
-**Period**: March 2025 - Present  
-Researching deep learning models for signal restoration and classification in extremely low signal-to-noise ratio environments. Comparing cascaded models vs. Multi-Task Learning (MTL) architectures for optimal performance.
-
-**Tech Stack**: TensorFlow, PyTorch, Custom CNN, BAM, CAE, U-Net  
-🔗 [View Details](/projects#ultra-low-snr) | [GitHub](https://github.com/gwon9906/Denoise-and-Classify)
-
----
+<div style="margin-bottom: 30px;"></div>
 
 ## 📊 Highlighted Projects
 
@@ -88,6 +79,21 @@ Reduced prediction error (MAPE) from **10 to 0.188 (98% improvement)** through E
 → [View Details](/projects#valve-prediction)
 
 ---
+
+<div style="margin-bottom: 30px;"></div>
+
+## 💻 Currently Working On
+
+### Ultra Low SNR Signal Restoration & Classification
+**Period**: March 2025 - Present  
+Researching deep learning models for signal restoration and classification in extremely low signal-to-noise ratio environments. Comparing cascaded models vs. Multi-Task Learning (MTL) architectures for optimal performance.
+
+**Tech Stack**: TensorFlow, Custom CNN, BAM, CAE, U-Net  
+🔗 [View Details](/projects#ultra-low-snr) | [GitHub](https://github.com/gwon9906/Denoise-and-Classify)
+
+---
+
+<div style="margin-bottom: 30px;"></div>
 
 ## 📫 Contact
 
