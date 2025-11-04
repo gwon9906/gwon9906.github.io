@@ -1,4 +1,3 @@
-# Jekyll 설정 파일
 title: Haegwon Lee | AI/ML Engineering Student
 name: Haegwon Lee (이해권)
 email: gwon99065@naver.com
@@ -6,34 +5,30 @@ description: >-
   AI Engineer specializing in Model Optimization and System Design.
   Building practical AI solutions with deep understanding of hardware and data.
 
-# GitHub Pages 설정
 baseurl: "" # GitHub username.github.io/repo-name 이면 "/repo-name"
-url: "https://gwon9906.github.io" # 실제 배포시 업데이트
+url: "https://gwon9906.github.io"
 
-# 테마 설정
 theme: minima
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
 
-# 네비게이션 메뉴
 header_pages:
   - index.md
   - projects.md
   - index_ko.md
   - projects_ko.md
 
-# SNS 링크
 github_username: gwon9906
 blog_url: https://latetime.tistory.com
 
-# 빌드 설정
 markdown: kramdown
 highlighter: rouge
 
-# 제외할 파일
 exclude:
   - Gemfile
   - Gemfile.lock
   - README.md
 
+minima:
+  skin: classic
