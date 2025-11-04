@@ -3,68 +3,64 @@
 
 @import "minima";
 
-/* ===== Base overrides ===== */
+/* ===== Base ===== */
 html, body {
   line-height: 1.65;
   font-family: "Pretendard", "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", "Apple SD Gothic Neo", "Malgun Gothic", "Helvetica Neue", Arial, sans-serif;
 }
 
-/* ===== Hero section ===== */
+/* ===== Hero (top info card) ===== */
 .hero-compact {
-  padding: 2.5rem 1rem;
-  border-radius: 16px;
-  background: #0b1736;
+  padding: 2.75rem 1.25rem;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #0b1220 0%, #132243 60%, #0b1736 100%);
   color: #fff;
   margin: 0 0 2rem 0;
   text-align: center;
+  box-shadow: 0 8px 30px rgba(3, 102, 214, 0.12);
 }
 .hero-compact .tagline {
-  opacity: 0.9;
-  margin: .25rem 0 1rem 0;
-  font-size: 0.95rem;
+  opacity: 0.92;
+  margin: .35rem 0 1.1rem 0;
+  font-size: 0.98rem;
 }
-.hero-cta .btn {
-  display: inline-block;
-  margin-right: .5rem;
-  margin-bottom: .5rem;
-  padding: .6rem 1rem;
-  border-radius: 10px;
-  border: 1px solid rgba(255,255,255,.3);
-  color: #fff;
-  text-decoration: none;
-}
-.hero-cta .btn.primary {
-  background: #0366d6;
-  border-color: #0366d6;
-}
+.hero-cta .btn { margin: 0 .35rem .5rem .35rem; }
 
 /* ===== Buttons (global) ===== */
 .btn {
   display: inline-block;
-  padding: .55rem 1rem;
+  padding: .6rem 1rem;
   border-radius: 10px;
   border: 1px solid #dde3ea;
   text-decoration: none;
   transition: 0.15s ease;
   background-color: #f4f4f4;
   color: #0366d6;
+  font-weight: 500;
 }
 .btn:hover { filter: brightness(1.05); text-decoration: none; }
 .btn.primary { background: #0366d6; border-color: #0366d6; color: #fff; }
 
-/* ===== Project cards ===== */
+/* Hero 전용 버튼(배경 대비 강화) */
+.btn.hero-primary { background: #3b82f6; border-color: #3b82f6; color: #fff; }
+.btn.hero-outline { background: transparent; border-color: rgba(255,255,255,.75); color: #fff; }
+.btn.hero-contrast { background: #f59e0b; border-color: #f59e0b; color: #0b1736; }
+.btn.hero-primary:hover { filter: brightness(1.05); }
+.btn.hero-outline:hover { background: rgba(255,255,255,.08); }
+.btn.hero-contrast:hover { filter: saturate(1.05) brightness(1.02); }
+
+/* ===== Project cards (index 요약용/상세 페이지 공용) ===== */
 .project-card {
   border: 1px solid #e5e5e5;
   border-radius: 12px;
   padding: 1rem 1.25rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
   background-color: #fafafa;
+  box-shadow: 0 2px 10px rgba(0,0,0,.03);
 }
-.project-card h3 { margin-top: .25rem; }
+.project-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,.06); transition: box-shadow .2s ease; }
+.project-card h3 { margin: .25rem 0 .35rem; }
 .project-meta { font-size: 0.92rem; color: #666; }
-
-/* ===== Section headings ===== */
-h2 { margin-top: 2.2rem; }
 
 /* ===== details / summary (toggle) ===== */
 details {
@@ -72,26 +68,19 @@ details {
   border-radius: 10px;
   padding: .75rem 1rem;
   margin: .75rem 0 1rem 0;
-  background: #fafafa;
+  background: #fdfdfd;
 }
-details[open] {
-  background: #f7fbff;
-  border-color: #d7e7ff;
-}
-details > summary {
-  cursor: pointer;
-  font-weight: 600;
-  list-style: none;
-  outline: none;
-}
+details[open] { background: #f7fbff; border-color: #d7e7ff; }
+details > summary { cursor: pointer; font-weight: 600; list-style: none; outline: none; }
 details > summary::-webkit-details-marker { display: none; }
-details > summary::before {
-  content: "▸";
-  display: inline-block;
-  margin-right: .5rem;
-  transition: transform .15s ease;
-  transform: translateY(-1px);
-}
+details > summary::before { content: "▸"; display: inline-block; margin-right: .5rem; transition: transform .15s ease; transform: translateY(-1px); }
 details[open] > summary::before { transform: rotate(90deg) translateX(1px); }
 details > *:not(summary) { margin-top: .6rem; }
 details p:last-child, details ul:last-child, details ol:last-child { margin-bottom: 0; }
+
+/* ===== Print (PDF) 개선: 불필요 UI 숨김 ===== */
+@media print {
+  .btn { display: none !important; }
+  a[href]:after { content: ""; } /* 링크 뒤 URL 자동 출력 방지 */
+  body { font-size: 10.5pt; }
+}

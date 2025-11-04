@@ -41,7 +41,7 @@ permalink: /projects/
 
     <h5>⚙️ Optimization</h5>
     <ul>
-      <li>Removed integer part of GPS data → <b>MSE 0.0184 → 0.0036 (80% improvement)</b>.</li>
+      <li>Removed integer part of GPS data → <b>MSE 0.0184 → 0.0036 (≈80% improvement)</b>.</li>
       <li>Reduced retransmissions and battery drain under LoRa protocol limits.</li>
     </ul>
 
@@ -80,14 +80,14 @@ permalink: /projects/
     <h5>🔍 Technical Approach</h5>
     <ul>
       <li>Implemented sequence reinitialization at valve-opening = 0 to fix discontinuity.</li>
-      <li>Inspired by Autoencoder structure → hierarchical Encoder-LSTM design.</li>
-      <li>Removed redundant normalization to match data precision.</li>
+      <li>Autoencoder-inspired hierarchical <b>Encoder-LSTM</b> design for robust feature extraction.</li>
+      <li>Removed redundant normalization to match low decimal precision of data.</li>
     </ul>
 
     <h5>🧠 Data Optimization</h5>
     <ul>
       <li>Used <b>Huber Loss</b> for outlier robustness and gradient stability.</li>
-      <li>Iteratively refined preprocessing pipeline via statistical analysis.</li>
+      <li>Iteratively refined preprocessing pipeline with statistical checks.</li>
     </ul>
 
     <h5>🧩 Tech Stack</h5>
@@ -104,13 +104,13 @@ permalink: /projects/
     <li><b>Status:</b> 6 models trained · Comparative analysis and paper in progress</li>
   </ul>
 
-  <p><b>Role:</b> Undergraduate Researcher (Individual) · <b>Period:</b> Mar 2025 – Present · <b>Status:</b> Ongoing</p>
+  <p><b>Role:</b> Undergraduate Researcher (Individual) · <b>Period:</b> July 2025 – Present · <b>Status:</b> Ongoing</p>
 
   <p><b>Summary</b></p>
   <ul>
-    <li><b>Problem:</b> Traditional models fail under –30 to –10 dB SNR conditions.</li>
-    <li><b>Approach:</b> Compare <b>Cascaded</b> vs <b>MTL</b> architectures for joint restoration and classification.</li>
-    <li><b>Preliminary Results:</b> MTL better for high SNR classification; U-Net superior for restoration.</li>
+    <li><b>Problem:</b> Traditional methods fail under –30 to –10 dB SNR.</li>
+    <li><b>Approach:</b> Compare <b>Cascaded</b> vs <b>MTL</b> architectures across noise types and SNR levels.</li>
+    <li><b>Preliminary:</b> MTL better for high-SNR classification; U-Net superior for restoration.</li>
   </ul>
 
   <details>
@@ -118,9 +118,8 @@ permalink: /projects/
 
     <h5>🔍 Research Focus</h5>
     <ul>
-      <li>Sequential model: two-stage restoration + classification.</li>
-      <li>MTL model: shared encoder, dual decoder with joint loss.</li>
-      <li>Restoration architectures: BAM, CAE, U-Net.</li>
+      <li>Sequential (two-stage) vs MTL (shared encoder, dual decoders with joint loss).</li>
+      <li>Restoration architectures compared: <b>BAM</b>, <b>CAE</b>, <b>U-Net</b>.</li>
     </ul>
 
     <h5>📈 Experiment Setup</h5>
@@ -145,7 +144,7 @@ permalink: /projects/
 
 <div class="project-card">
   <h3>💡 Additional Experience</h3>
-  <p>Undergraduate Research Assistant · Dong-eui University Computer Engineering Lab (2022 – Present)</p>
+  <p>Undergraduate Research Assistant · Dong-eui University Computer Engineering Lab (2024– Present)</p>
   <ul>
     <li>Signal processing and time-series prediction</li>
     <li>IoT systems and embedded AI</li>
