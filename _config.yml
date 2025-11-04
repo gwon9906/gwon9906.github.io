@@ -14,8 +14,6 @@ plugins:
   - jekyll-seo-tag
 
 header_pages:
-  - index.md
-  - projects.md
   - index_ko.md
   - projects_ko.md
 

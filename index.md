@@ -32,13 +32,18 @@ Expected Graduation: 2026
 
 ---
 
-## 📊 Highlighted Projects (Summary)
+## 📊 Highlighted Projects
 
 <div class="project-card">
   <h3>🔬 IoT Communication Efficiency via BAM-based Compression</h3>
   <p class="project-meta">LoRa · Edge AI · Payload Compression</p>
+  <p>
+    Designed a lightweight BAM compressor tailored to Raspberry Pi and LoRa protocol limits.
+    The model reduces payload length without costly inference, cutting retransmissions in long-range NLOS scenarios.
+    Field-tested ~2.6 km to validate robustness in real conditions.
+  </p>
   <ul>
-    <li><b>Result:</b> 32B → 20B (62.5%), <b>PDR +14%</b>, MSE 0.0036 (N-LOS ~2.6 km)</li>
+    <li><b>Result:</b> 32B → 20B (62.5%), <b>PDR +14%</b>, MSE 0.0036</li>
   </ul>
   <a class="btn primary" href="{{ '/projects#lora-communication' | relative_url }}">View Details</a>
 </div>
@@ -46,6 +51,11 @@ Expected Graduation: 2026
 <div class="project-card">
   <h3>📡 Industrial Valve Flow Prediction</h3>
   <p class="project-meta">Time-Series · Encoder-LSTM · Huber Loss</p>
+  <p>
+    Re-architected a baseline into an Encoder-LSTM to handle zero-opening discontinuities and noisy sensors.
+    Simplified preprocessing (no redundant normalization) matched low-precision floats and improved stability with Huber loss.
+    Built an evaluation pipeline focused on industrial fault-diagnosis readiness.
+  </p>
   <ul>
     <li><b>Result:</b> <b>MAPE 10 → 0.188</b> (~98% improvement)</li>
   </ul>
@@ -55,6 +65,11 @@ Expected Graduation: 2026
 <div class="project-card">
   <h3>💻 Ultra-Low SNR Restoration & Classification</h3>
   <p class="project-meta">MTL vs. Cascaded · CIFAR-10 (150k) · U-Net/BAM/CAE</p>
+  <p>
+    Systematically compare cascaded restoration+classifier vs. MTL with a shared encoder and dual decoders.
+    Experiments span three noise types and five SNR levels to identify when end-to-end learning beats staged pipelines.
+    Early trends: U-Net restores best; MTL improves classification at higher SNRs.
+  </p>
   <ul>
     <li><b>Status:</b> 6 models trained; comparative analysis in progress</li>
   </ul>

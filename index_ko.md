@@ -35,8 +35,13 @@ IoT 통신 최적화부터 산업용 AI까지, 모델 압축과 시스템 최적
 <div class="project-card">
   <h3>🔬 BAM 기반 IoT 통신 효율 개선</h3>
   <p class="project-meta">LoRa · 엣지 AI · 페이로드 압축</p>
+  <p>
+    Raspberry Pi와 LoRa 프로토콜 제약을 고려하여 경량 BAM 압축기를 설계했습니다.
+    복잡한 추론 없이 페이로드 길이를 줄여 장거리 NLOS 환경에서 재전송을 완화합니다.
+    약 2.6 km 필드 테스트로 실환경 강건성을 검증했습니다.
+  </p>
   <ul>
-    <li><b>성과:</b> 32B → 20B (62.5%), <b>PDR +14%</b>, MSE 0.0036 (N-LOS 약 2.6 km)</li>
+    <li><b>성과:</b> 32B → 20B (62.5%), <b>PDR +14%</b>, MSE 0.0036</li>
   </ul>
   <a class="btn primary" href="{{ '/projects_ko#lora-communication' | relative_url }}">자세히 보기</a>
 </div>
@@ -44,6 +49,11 @@ IoT 통신 최적화부터 산업용 AI까지, 모델 압축과 시스템 최적
 <div class="project-card">
   <h3>📡 산업용 밸브 유량 예측</h3>
   <p class="project-meta">시계열 · Encoder-LSTM · Huber Loss</p>
+  <p>
+    개도율 0% 지점의 불연속성과 센서 이상치에 대응하도록 Encoder-LSTM으로 재설계했습니다.
+    소수 정밀도가 낮은 데이터 특성에 맞게 불필요한 정규화를 제거하고 Huber Loss로 안정성을 확보했습니다.
+    산업 현장 고장 진단 관점에서 평가 파이프라인을 구성했습니다.
+  </p>
   <ul>
     <li><b>성과:</b> <b>MAPE 10 → 0.188</b> (약 98% 개선)</li>
   </ul>
@@ -53,6 +63,11 @@ IoT 통신 최적화부터 산업용 AI까지, 모델 압축과 시스템 최적
 <div class="project-card">
   <h3>💻 Ultra-Low SNR 신호 복원·분류</h3>
   <p class="project-meta">MTL vs. 연쇄 · CIFAR-10 (15만) · U-Net/BAM/CAE</p>
+  <p>
+    복원→분류의 연쇄 파이프라인과 공유 인코더+이중 디코더 MTL을 체계적으로 비교합니다.
+    3종 노이즈 × 5단계 SNR로 조건을 확장해, 어떤 상황에서 End-to-End가 유리한지 규명합니다.
+    예비 경향: 복원은 U-Net이 우수, 분류는 고 SNR에서 MTL 이점이 큼.
+  </p>
   <ul>
     <li><b>진행:</b> 6개 모델 학습 완료, 비교 분석 중</li>
   </ul>
