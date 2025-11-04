@@ -4,141 +4,180 @@ title: 프로젝트
 permalink: /projects_ko/
 ---
 
-<div style="text-align: right; margin-bottom: 20px;">
-  <a href="/projects" style="text-decoration: none; padding: 8px 16px; background-color: #0366d6; color: white; border-radius: 5px;">🇺🇸 English</a>
-</div>
+# 🔬 <a name="lora-communication"></a>BAM 기반 페이로드 압축을 통한 IoT 통신 효율 개선
 
-# 연구 및 개발 프로젝트
+**역할**: 학부 연구생 및 팀 리드  
+**기간**: 2025년 3월 - 2025년 6월  
+**상태**: 완료
 
----
+### 프로젝트 개요
+저자원 임베디드 시스템에 최적화된 경량 페이로드 압축 모델을 설계·구현하여 저전력 고손실 IoT 네트워크의 통신 효율을 개선했습니다. **실시간성·메모리 사용량·지연**을 동시에 고려해 Edge 디바이스에서 안정적으로 동작하도록 만들었습니다.
 
-<div class="project-card">
-  <h3>🔬 BAM 기반 페이로드 압축을 통한 IoT 통신 효율 개선</h3>
-  <p class="project-meta">LoRa · Edge AI · Payload Compression</p>
-  <ul>
-    <li><b>성과:</b> 페이로드 32B → 20B (62.5% 감소), PDR 14% 향상</li>
-  </ul>
+### 문제 정의
+저전력 고손실 네트워크에서는 긴 페이로드로 인해 충돌·재전송이 빈번해지고 배터리 소모가 커집니다. 특히 비가시권(N-LOS) 장거리 LoRa 링크에서 심각했습니다.
 
-  <h4 id="lora-communication">📡 프로젝트 개요</h4>
-  <p><b>역할:</b> 학부 연구생 및 팀 리드 · <b>기간:</b> 2025년 3월 – 2025년 6월 · <b>상태:</b> 완료</p>
+### 기술적 접근
 
-  <p><b>요약</b></p>
-  <ul>
-    <li><b>문제:</b> 장거리·고손실 LoRa 환경에서 긴 페이로드로 재전송 및 배터리 소모 증가</li>
-    <li><b>접근:</b> Autoencoder 대신 <b>BAM(NumPy)</b> 기반 경량 모델로 라즈베리파이에 실시간 적용</li>
-    <li><b>결과:</b> <b>32B → 20B</b> (62.5%) 압축, <b>PDR +14%</b>, <b>MSE 0.0036</b>, 약 2.6km NLOS 환경 검증</li>
-  </ul>
+**기술 선택**
+- Autoencoder는 Pi 환경에서 연산 부담이 커 부적합 → 저자원 친화적인 **BAM(Bidirectional Associative Memory)** 선택  
+- 이식성과 최소 오버헤드를 위해 TensorFlow 대신 **NumPy로 직접 구현** (의존성 최소화, 배포 용이)
 
-  <details>
-    <summary><b>자세히 보기</b></summary>
+**시스템 설계 및 구현**
+- Raspberry Pi 제약(CPU-only, 소형 RAM)과 LoRa 프로토콜(ToA, DR 제한) 반영한 End-to-End 아키텍처  
+- 수집→압축→전송→복원→평가 파이프라인/로그 체계화 (재현성: 실험 스크립트 및 폴더 규칙화)
 
-    <h5>🔍 기술적 접근</h5>
-    <ul>
-      <li>Autoencoder의 높은 연산 부하 → NumPy 기반 <b>BAM</b> 직접 구현</li>
-      <li>라즈베리파이 제약과 LoRa 프로토콜 한계를 고려한 End-to-End 설계</li>
-      <li>비가시권(NLOS) 현장 테스트를 반복 수행하여 통계적 신뢰도 확보</li>
-    </ul>
+**현장 테스트 및 검증**
+- 의도적으로 어려운 N-LOS 환경(약 2.6km)에서 한 달간 반복 주행/측정  
+- 외부 변수(날씨·간섭) 평균화를 위한 반복·고정 간격 송신
 
-    <h5>⚙️ 최적화</h5>
-    <ul>
-      <li>GPS 데이터 정수부 제거 등 포맷 정비 → <b>MSE 0.0184 → 0.0036 (약 80% 개선)</b></li>
-      <li>재전송 감소 → 배터리 소모 완화</li>
-    </ul>
+**성능 최적화**
+- GPS 형식 문제(정수부)로 인한 오차 원인 규명 → 전처리 정비  
+- **MSE 0.0184 → 0.0036 (80%+ 개선)**, 재전송 감소로 배터리 소모 완화
 
-    <h5>🧠 기술 스택</h5>
-    <p>Python, NumPy · Raspberry Pi, LoRa · Git, Linux</p>
+### 기술 스택
+- **언어/도구**: Python, NumPy, Git, Linux  
+- **하드웨어/통신**: Raspberry Pi, LoRa 모듈  
+- **ML**: BAM(대응 매핑·타이드 구조), 경량 후처리
 
-    <h5>🔗 링크</h5>
-    <p>
-      시스템 전체: <a href="https://github.com/4xvgal/ChirpChirp" target="_blank">ChirpChirp</a><br>
-      BAM 모델: <a href="https://github.com/gwon9906/Lightweight-MF-BAM" target="_blank">Lightweight-MF-BAM</a>
-    </p>
-  </details>
-</div>
+### 팀 구성 및 나의 역할
+- **팀 규모**: 4명  
+- **역할**: 모델 설계·구현·통합, 현장 테스트베드 구축/로그·분석 자동화, 전처리/포맷 규격 정의  
+- **기여도**: ~40% (모델/필드 검증 리드)
 
----
+### 직면한 문제와 해결 방법
+- **현장 변수**: 장마 등으로 측정 변동 ↑ → 기간 연장·반복 측정으로 통계적 신뢰도 확보  
+- **모델 정확도**: 데이터 포맷 부적합으로 초기 MSE↑ → GPS 정수부 제거 등 정비로 **MSE 대폭 개선**  
+- **자원 제약**: AE 대비 연산 부담↑ → **NumPy BAM**으로 경량화, Pi에서 실시간 달성
 
-<div class="project-card">
-  <h3>📡 Encoder-LSTM 기반 산업용 밸브 유량 예측</h3>
-  <p class="project-meta">Time Series · Encoder-LSTM</p>
-  <ul>
-    <li><b>성과:</b> MAPE 10 → 0.188 (약 98% 개선)</li>
-  </ul>
+### 주요 성과
+- **62.5% 압축(32B→20B)**로 **PDR +14%**  
+- **MSE 0.0036** (정보 손실 최소)  
+- **N-LOS 2.6km 실환경 검증**, Raspberry Pi 배포 완료
 
-  <p><b>역할:</b> 학부 연구생(개인) · <b>기간:</b> 2024년 7월 – 2024년 12월 · <b>상태:</b> 완료</p>
+### 향후 개선
+- 규칙성이 큰 센서(온도/습도 등)로 도메인 특화 압축률 상향  
+- (Furiosa 적합성) **PyTorch 커널/확장 구현 및 양자화 실험**으로 NPU 추론 친화성 검증
 
-  <p><b>요약</b></p>
-  <ul>
-    <li><b>문제:</b> 베이스라인 LSTM의 오차율(MAPE) > 10으로 산업 적용 불가</li>
-    <li><b>접근:</b> 개도율 0% 구간의 불연속을 처리하는 맞춤형 <b>Encoder-LSTM</b> 설계</li>
-    <li><b>결과:</b> <b>MAPE 10 → 0.188</b>, 모델 복잡도 감소, <b>Huber Loss</b>로 이상치에 강건</li>
-  </ul>
-
-  <details>
-    <summary><b>자세히 보기</b></summary>
-
-    <h5>🔍 기술적 접근</h5>
-    <ul>
-      <li>밸브 개도율 0 구간에서 시퀀스 재초기화로 불연속 문제 해결</li>
-      <li>Autoencoder에서 영감을 받은 계층적 <b>Encoder-LSTM</b> 구조</li>
-      <li>소수점 정밀도가 낮은 데이터 특성에 맞춰 불필요한 정규화 제거</li>
-    </ul>
-
-    <h5>🧠 데이터 최적화</h5>
-    <ul>
-      <li><b>Huber Loss</b> 채택으로 이상치에 강건하고 안정적인 그래디언트 확보</li>
-      <li>통계 기반 검증을 통해 전처리 파이프라인 반복 개선</li>
-    </ul>
-
-    <h5>🧩 기술 스택</h5>
-    <p>PyTorch · Python, Pandas, NumPy, Jupyter</p>
-  </details>
-</div>
+### 링크
+- 전체 시스템: <https://github.com/4xvgal/ChirpChirp>  
+- BAM 핵심: <https://github.com/gwon9906/Lightweight-MF-BAM>
 
 ---
 
-<div class="project-card">
-  <h3>💻 Ultra Low SNR 신호 복원 및 분류</h3>
-  <p class="project-meta">MTL · Noise Restoration · Deep Learning</p>
-  <ul>
-    <li><b>진행 상황:</b> 6개 모델 학습 완료 · 비교 분석 및 논문 작성 중</li>
-  </ul>
+<div style="margin-bottom: 60px;"></div>
 
-  <p><b>역할:</b> 학부 연구생(개인) · <b>기간:</b> 2025년 7월 – 현재 · <b>상태:</b> 진행 중</p>
+## 📡 <a name="valve-prediction"></a>Encoder-LSTM 기반 산업용 밸브 유량 예측
 
-  <p><b>요약</b></p>
-  <ul>
-    <li><b>문제:</b> 초저 SNR(–30 ~ –10 dB)에서 전통적 방법의 성능 저하</li>
-    <li><b>접근:</b> <b>Cascaded</b> vs <b>MTL</b> 아키텍처를 노이즈/레벨별로 체계 비교</li>
-    <li><b>예비 결과:</b> 고 SNR에선 MTL 분류 우수, 복원은 U-Net이 우수</li>
-  </ul>
+**역할**: 학부 연구생  
+**기간**: 2024년 7월 - 2024년 12월  
+**상태**: 완료
 
-  <details>
-    <summary><b>자세히 보기</b></summary>
+### 프로젝트 개요
+산업용 밸브 고장 진단을 위한 고정밀 예측 모델을 자체 설계했습니다. **데이터 특성-우선 분석**과 구조적 개선으로 **MAPE 10 → 0.188(약 98% 개선)**을 달성했습니다.
 
-    <h5>🔍 연구 초점</h5>
-    <ul>
-      <li>Sequential(2단계) vs MTL(공유 인코더 + 이중 디코더 + 공동 손실)</li>
-      <li>복원 아키텍처 비교: <b>BAM</b>, <b>CAE</b>, <b>U-Net</b></li>
-    </ul>
+### 문제 정의
+베이스라인 LSTM은 개도율 0 구간에서 시퀀스 불연속성이 발생하고, 센서 이상치에 민감하여 실사용에 부적합했습니다.
 
-    <h5>📈 실험 환경</h5>
-    <ul>
-      <li>데이터셋: CIFAR-10 (총 15만 장 증강)</li>
-      <li>노이즈: Gaussian, Salt & Pepper, Burst</li>
-      <li>SNR: –30, –25, –20, –15, –10 dB</li>
-      <li>지표: MSE, MAE, PSNR, Accuracy, Top-3 Accuracy</li>
-    </ul>
+### 기술적 접근
 
-    <h5>🧠 기술 스택</h5>
-    <p>TensorFlow/Keras · Python, NumPy, Pandas, Jupyter, TensorBoard</p>
+**근본 원인 분석**
+- 개도율 0에서의 불연속 → 학습/추론 오류  
+- 소수 정밀도 낮은 float → 불필요한 정규화가 오히려 잡음
 
-    <h5>🔗 링크</h5>
-    <p>
-      저장소: <a href="https://github.com/gwon9906/Denoise-and-Classify" target="_blank">Denoise-and-Classify</a>
-    </p>
-  </details>
-</div>
+**아키텍처 혁신**
+- **Encoder-LSTM**(계층적 특징 추출)으로 재설계  
+- **시퀀스 재초기화 로직** 도입으로 영점 불연속 제거
+
+**데이터 기반 최적화**
+- 불필요한 정규화 제거(정수형처럼 해석) → 안정성·일관성 ↑  
+- 이상치 강건성 위해 **Huber Loss** 채택(분산↓, 그래디언트 안정)
+
+**실험 방법론**
+- 압력 구간별 층화 분할(누수 방지), LSTM vs Encoder-LSTM, MSE vs Huber **Ablation**  
+- MAPE/MAE + 추론 지연/분산 점검
+
+### 기술 스택
+- **프레임워크**: **PyTorch**  
+- **도구**: Python, Pandas, NumPy, Jupyter
+
+### 팀 구성 및 나의 역할
+- 개인 프로젝트(지도교수 피드백)  
+- 모델·데이터 파이프라인 **E2E 소유** / 실험 설계·오류 분석·리포팅 전담
+
+### 직면한 문제와 해결 방법
+- **불연속 구간**: 재초기화로 문제 제거  
+- **이상치 민감**: Huber Loss로 안정성 확보  
+- **데이터 정밀도**: 정규화 제거로 분산 축소
+
+### 주요 성과
+- **MAPE 10 → 0.188**  
+- Encoder-LSTM 설계/구현, 산업 적용 관점의 **안정성/일관성** 확보
+
+### 핵심 학습
+- 데이터 특성-우선 설계의 중요성  
+- Ablation 기반의 의사결정  
+- 운영 관점(지연/분산/강건성) 고려
+
+### 링크
+- 저장소: Private(산업체 협력)
+
+---
+
+<div style="margin-bottom: 60px;"></div>
+
+## 💻 현재 진행 중
+
+### 🌟 <a name="ultra-low-snr"></a>Ultra Low SNR 신호 복원 및 분류
+
+**역할**: 학부 연구생  
+**기간**: 2025년 3월 - 현재  
+**상태**: 진행 중
+
+### 프로젝트 개요
+**–30dB ~ –10dB Ultra Low SNR** 환경에서 복원과 분류를 동시에 끌어올리기 위해 **연쇄(Cascaded)** vs **MTL(공유 인코더·이중 디코더)**을 **체계 비교**합니다. 노이즈 유형/레벨별로 **언제 E2E가 유리한지** 지도를 그립니다.
+
+### 문제 정의
+전통적 필터링·규칙 기반 분류는 초저 SNR에서 붕괴. 딥러닝 기반 복원·분류의 조합이 필요하나, **최적 파이프라인(연쇄 vs MTL)** 은 명확치 않음.
+
+### 기술적 접근
+
+**아키텍처 범위**
+- 복원 백본: **BAM**, **CAE**, **U-Net**  
+- 파이프라인: **연쇄(복원→분류)** vs **MTL(공유 인코더+이중 디코더, 공동 손실)**
+
+**실험 설계**
+- **데이터셋**: CIFAR-10 증강 150,000장  
+- **노이즈**: Gaussian, Salt & Pepper, Burst  
+- **SNR**: –30, –25, –20, –15, –10 dB  
+- **지표**: 복원(MSE/MAE/PSNR), 분류(Acc/Top-3), **지연/메모리**
+
+### 현재 진행
+- 데이터 전처리·증강/6모델 학습 완료  
+- 노이즈/레벨별 평가 프레임워크 완성 → **최종 비교/논문화 진행 중**
+
+### 예비 결과
+- 복원: **U-Net** 우수(스킵 연결)  
+- 분류: 고 SNR에서 **MTL** 이점  
+- Burst 노이즈가 가장 난이도 높음
+
+### 기술 스택
+- **프레임워크**: TensorFlow/Keras  
+- **도구**: Python, NumPy, Pandas, Jupyter, TensorBoard  
+- **하드웨어**: RTX 3070 Ti 8GB, i7-12700K
+
+### 역할 및 기여
+- 전 모델·파이프라인 설계/구현, 대규모 증강·평가 자동화, 통계 분석
+
+### 직면한 문제와 해결 방법
+- **대규모 조합 폭발**: 단계별 노트북·로그 스키마·자동 집계로 재현성 확보  
+- **손실 균형**: 복원/분류 손실 가중치 grid search와 스케줄링으로 한쪽 지배 방지, **PSNR–Accuracy 트레이드오프** 분석  
+- **현실적 노이즈 합성**: SNR 제어·타입 혼합으로 분포 왜곡 최소화
+
+### 링크
+- 저장소: <https://github.com/gwon9906/Denoise-and-Classify>  
+- 기술 스택: TensorFlow, 커스텀 신경망 아키텍처
+
+---
 
 ---
 
