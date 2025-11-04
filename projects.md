@@ -4,204 +4,146 @@ title: Projects
 permalink: /projects/
 ---
 
-# 🔬 <a name="lora-communication"></a>Improving IoT Communication Efficiency via BAM-based Payload Compression
+# 🔬 IoT Communication Efficiency via BAM-based Payload Compression {#lora-communication}
 
-**Role**: Undergraduate Researcher & Team Lead  
-**Period**: Mar 2025 – Jun 2025  
-**Status**: Completed  
+## 🧩 What — Overview
+Designed a **lightweight BAM-based compression model** for LoRa networks to reduce retransmissions and power drain.  
+Achieved **62.5% compression** and **+14% PDR** under real-world N-LOS (2.6 km) conditions.
 
-### Overview
-Designed and implemented a lightweight payload compression model optimized for low-resource embedded systems to enhance communication efficiency in low-power, high-loss IoT networks. Focused on **real-time performance, low memory usage, and minimal latency** for Edge deployment.
+## 💡 Why — Background
+Low-power, high-loss LoRa links suffer from long payloads → collisions, retransmissions, and battery drain.  
+Traditional Autoencoders are too heavy for Raspberry Pi.
 
-### Problem Definition
-In LPWA networks, long payloads frequently cause retransmissions and packet collisions, leading to severe power loss—especially in **Non-Line-of-Sight (N-LOS)** environments over long LoRa ranges.
+## ⚙️ How — Method & Implementation
+- **Model**: Selected **BAM (Bidirectional Associative Memory)** for low-resource use  
+- **Implementation**: Rewrote in **NumPy** for minimal dependency  
+- **System**: End-to-end pipeline (capture → compress → transmit → restore → evaluate)  
+- **Field Testing**: 1-month N-LOS (2.6 km) campaign, repeated TX at fixed intervals  
+- **Preprocessing**: GPS integer issue fixed → **MSE 0.0184 → 0.0036 (80%+)**
 
-### Technical Approach
+**Stack**: Python, NumPy, Raspberry Pi, LoRa Module, Git, Linux
 
-**Model Selection**
-- Determined **Autoencoder** unsuitable due to heavy computation on Raspberry Pi.  
-- Selected **BAM (Bidirectional Associative Memory)** as a lightweight alternative.  
-- Implemented directly in **NumPy** instead of TensorFlow for portability and minimal dependencies.
+## 🚧 Challenges & Fixes
+| Challenge | Solution |
+|------------|-----------|
+| Field variance | Extended test duration & repeated measures |
+| Format inconsistency (GPS) | Preprocessing fix → **MSE ↓** |
+| Resource overhead | NumPy BAM enables real-time inference |
 
-**System Design & Implementation**
-- Built end-to-end architecture reflecting LoRa protocol constraints (ToA, DR) and Raspberry Pi’s limited hardware (CPU-only, low RAM).  
-- Established full pipeline: data acquisition → compression → transmission → reconstruction → evaluation.  
-- Implemented experiment logging & reproducible scripting for consistent validation.
+## 📈 Result
+- **62.5% compression (32B→20B)** → **+14% PDR**  
+- **MSE 0.0036**, verified in N-LOS 2.6 km  
+- Real-time operation on Raspberry Pi
 
-**Field Testing**
-- Conducted one-month continuous outdoor experiments in 2.6 km **N-LOS** environments.  
-- Repeated fixed-interval transmissions to eliminate weather variance.
+## 🔎 So What — Impact
+- Demonstrated **deployable learned compression** on embedded hardware  
+- Improves LoRa reliability & battery life  
+- Future: PyTorch kernel & quantization for **NPU (Furiosa)** deployment
 
-**Optimization**
-- Identified GPS format issues (integer part redundancy).  
-- Improved preprocessing and achieved **MSE 0.0184 → 0.0036 (80 %+ reduction)**.
-
-### Tech Stack
-- **Languages/Tools**: Python, NumPy, Git, Linux  
-- **Hardware/Comm**: Raspberry Pi, LoRa module  
-- **ML Model**: Bidirectional Associative Memory (tied-weight structure)
-
-### Team & Role
-- **Team Size**: 4  
-- **Responsibilities**:
-  - Led BAM model design, implementation, and integration.  
-  - Built and operated full field testbed.  
-  - Defined preprocessing and logging standards.  
-- **Contribution**: ~40 % (model & validation lead)
-
-### Challenges & Solutions
-- **Field Variability** → Extended test duration and repeated measurement for statistical reliability.  
-- **Model Accuracy** → Optimized data format and preprocessing to reduce MSE by 80 %.  
-- **Hardware Limitation** → Reimplemented in NumPy to ensure real-time operation on Pi.
-
-### Key Results
-- **62.5 % compression (32 B → 20 B)** → **+14 % PDR improvement**  
-- **MSE = 0.0036**, verified over 2.6 km N-LOS  
-- Fully deployed on Raspberry Pi Edge nodes  
-
-### Future Work
-- Apply BAM to periodic sensor data (e.g., temperature, humidity) for higher compression efficiency.  
-- Extend to **PyTorch-based kernel & quantization experiments** for NPU optimization (Furiosa AI compatibility).
-
-### Links
-- System: <https://github.com/4xvgal/ChirpChirp>  
-- Model: <https://github.com/gwon9906/Lightweight-MF-BAM>
+**Links**  
+System: <https://github.com/4xvgal/ChirpChirp>  
+Core Model: <https://github.com/gwon9906/Lightweight-MF-BAM>
 
 ---
 
-<div style="margin-bottom: 60px;"></div>
+# 📡 Industrial Valve Flow Prediction via Encoder-LSTM {#valve-prediction}
 
-## 📡 <a name="valve-prediction"></a>Industrial Valve Flow-Rate Prediction using Encoder-LSTM
+## 🧩 What — Overview
+Developed a **custom Encoder-LSTM** for industrial valve fault diagnosis.  
+Achieved **98% improvement (MAPE 10 → 0.188)** with robust time-series prediction.
 
-**Role**: Undergraduate Researcher  
-**Period**: Jul 2024 – Dec 2024  
-**Status**: Completed  
+## 💡 Why — Background
+Vanilla LSTM failed near zero-opening segments and was unstable against sensor outliers.
 
-### Overview
-Developed a high-precision predictive model for industrial valve fault detection. Through **data-driven analysis** and architectural redesign, achieved **MAPE 10 → 0.188 (≈ 98 % improvement)**.
+## ⚙️ How — Method & Implementation
+- **Architecture**: Designed Encoder-LSTM (hierarchical feature extraction)  
+- **Logic**: Added sequence reinit at valve=0  
+- **Loss**: Switched to **Huber Loss** for outlier robustness  
+- **Data**: Removed unnecessary normalization for low-precision floats
 
-### Problem Definition
-Baseline LSTM models exhibited discontinuity around valve opening = 0 and were sensitive to sensor outliers, making them unsuitable for real-world deployment.
+**Stack**: PyTorch, Python, NumPy, Pandas, Jupyter
 
-### Technical Approach
+## 🚧 Challenges & Fixes
+| Challenge | Solution |
+|------------|-----------|
+| Sequence discontinuity | Sequence reinit logic solved instability |
+| Outlier sensitivity | Adopted Huber Loss |
+| Data precision mismatch | Simplified normalization |
 
-**Root Cause Analysis**
-- Identified sequence discontinuity at valve = 0 → prediction breakdown.  
-- Discovered low decimal precision in float data → excessive normalization noise.
+## 📈 Result
+- **MAPE 0.188**, consistent predictions across sequences  
+- Enhanced stability and industrial deployability
 
-**Architecture Innovation**
-- Introduced a custom **Encoder-LSTM** for hierarchical feature extraction.  
-- Implemented sequence re-initialization logic to handle zero-segments.
-
-**Data Optimization**
-- Removed unnecessary normalization, treating floats as integers → improved stability.  
-- Adopted **Huber Loss** for outlier robustness and smoother gradients.
-
-**Experimental Methodology**
-- Layered train/validation splits to avoid leakage.  
-- Performed **Ablation** on LSTM vs Encoder-LSTM, MSE vs Huber.  
-- Evaluated accuracy, latency, and variance.
-
-### Tech Stack
-- **Framework**: PyTorch  
-- **Tools**: Python, Pandas, NumPy, Jupyter  
-
-### Team & Role
-- Individual research under faculty supervision.  
-- Owned full model & data pipeline, experimentation, and reporting.
-
-### Challenges & Solutions
-- **Discontinuity** → Resolved via sequence re-init logic.  
-- **Outlier Sensitivity** → Adopted Huber Loss.  
-- **Low Precision** → Simplified normalization to reduce variance.
-
-### Key Results
-- **MAPE 10 → 0.188 (≈ 98 % improvement)**  
-- Stable Encoder-LSTM architecture validated for industrial use.
-
-### Key Learnings
-- Importance of data-driven architecture design.  
-- Value of ablation-based iterative improvement.  
-- Need to consider deployment constraints (latency, robustness).
-
-### Link
-- Repository: Private (Industry collaboration)
+## 🔎 So What — Impact
+- Validated **data-first architectural design** for robust time-series models  
+- Applicable to real-world industrial fault detection  
+- Future: domain-specific tuning & real-time inference
 
 ---
 
-<div style="margin-bottom: 60px;"></div>
+# 💻 Ultra-Low SNR Restoration & Classification (Cascaded vs MTL) {#ultra-low-snr}
 
-## 💻 In Progress
+## 🧩 What — Overview
+Compared **Cascaded vs Multi-Task Learning (MTL)** architectures for –30~–10 dB SNR restoration & classification.  
+Implemented 6 models (BAM, CAE, U-Net × Cascaded/MTL).
 
-### 🌟 <a name="ultra-low-snr"></a>Ultra-Low SNR Signal Restoration and Classification
+## 💡 Why — Background
+Traditional filters collapse under ultra-low SNR; the optimal **joint vs sequential** paradigm remains unclear.
 
-**Role**: Undergraduate Researcher  
-**Period**: Mar 2025 – Present  
-**Status**: Ongoing  
-
-### Overview
-Researching deep-learning-based restoration & classification under **Ultra-Low SNR (–30 to –10 dB)** conditions.  
-Comparing **Cascaded (two-stage)** and **Multi-Task Learning (MTL)** architectures to determine optimal strategies for extreme noise.
-
-### Problem Definition
-Traditional filtering or rule-based methods fail in ultra-low-SNR domains. Determining when **E2E (MTL)** outperforms sequential pipelines remains an open question.
-
-### Technical Approach
-
-**Architectures**
-- Restoration backbones: **BAM**, **CAE**, **U-Net**  
-- Pipelines: **Cascaded (Restoration → Classification)** vs **MTL (Shared Encoder + Dual Decoder)**  
-
-**Experimental Design**
-- **Dataset**: 150 K CIFAR-10 images with augmentation  
-- **Noise**: Gaussian, Salt & Pepper, Burst  
+## ⚙️ How — Method & Implementation
+- **Backbones**: BAM / CAE / U-Net  
+- **Pipelines**: Cascaded (Restoration→Classification) vs MTL (Shared Encoder + Dual Decoder)  
+- **Dataset**: CIFAR-10 → 150 K augmented samples  
+- **Noise Types**: Gaussian, Salt & Pepper, Burst  
 - **SNR Levels**: –30, –25, –20, –15, –10 dB  
-- **Metrics**: MSE, MAE, PSNR, Accuracy, Top-3, Latency, Memory usage  
 
-### Current Progress
-- Data augmentation & preprocessing complete  
-- Six models (Sequential + MTL variants) trained  
-- Unified evaluation framework established → final comparison in progress  
+**Stack**: TensorFlow/Keras, Python, NumPy, Pandas, TensorBoard, RTX 3070 Ti
 
-### Preliminary Findings
-- **U-Net** shows best restoration via skip connections  
-- **MTL** models outperform at higher SNRs  
-- **Burst** noise is the most challenging type  
+## 🚧 Challenges & Fixes
+| Challenge | Solution |
+|------------|-----------|
+| Massive experiment combinations | Modular pipeline + automated logging |
+| Loss imbalance | Weight grid + scheduling → stable PSNR–Acc trade-off |
+| Unrealistic noise | Controlled SNR injection & hybrid augmentation |
 
-### Tech Stack
-- **Framework**: TensorFlow / Keras  
-- **Tools**: Python, NumPy, Pandas, Jupyter, TensorBoard  
-- **Hardware**: RTX 3070 Ti (8 GB), Intel i7-12700K  
+## 📈 Result
+- **U-Net** best for restoration (skip connections)  
+- **MTL** better classification at higher SNR  
+- **Burst noise** most challenging  
 
-### Role & Contributions
-- Designed and implemented all six architectures and pipelines  
-- Built automated augmentation and evaluation system  
-- Conducted statistical analysis across noise types and levels  
+## 🔎 So What — Impact
+- Provides a **quantitative basis** for choosing Cascaded vs MTL under extreme noise  
+- Building foundation for low-SNR inference research  
+- Preparing **paper submission & PyTorch port** for real-time inference  
 
-### Challenges & Solutions
-- **Experiment Scalability** → Modular notebooks, structured logs, auto aggregation for reproducibility.  
-- **Loss Balancing** → Tuned loss weights and dynamic scheduling to avoid task dominance, analyzed **PSNR vs Accuracy trade-offs**.  
-- **Realistic Noise Simulation** → Controlled SNR distribution and type mixing to maintain dataset diversity.
-
-### Links
-- Repository: <https://github.com/gwon9906/Denoise-and-Classify>  
-- Tech Stack: TensorFlow, Custom CNN Architectures  
+**Link**  
+<https://github.com/gwon9906/Denoise-and-Classify>
 
 ---
 
-<div class="project-card">
-  <h3>💡 Additional Research Experience</h3>
-  <p>Undergraduate Research Assistant – Dong-Eui University (2024 – Present)</p>
-  <ul>
-    <li>Signal Processing and Time-Series Prediction</li>
-    <li>IoT Systems and Embedded AI</li>
-    <li>Model Optimization for Low-Power Devices</li>
-    <li>Industrial AI and Practical System Design</li>
-  </ul>
-</div>
+# 💻 Ultra-Low SNR Restoration & Classification (Cascaded vs MTL) {#ultra-low-snr}
+... ← (previous content same)
 
 ---
 
-<div style="text-align: center; margin-top: 40px;">
-  <a href="/index" class="btn primary" style="font-weight: bold;">← Back to Home</a>
+# 🧠 Research Experience
+
+**Affiliation**: AI & Embedded Systems Lab, Dong-Eui University (2024 – Present)  
+**Role**: Undergraduate Researcher / AI Model Optimization & IoT Systems Development
+
+### 🔹 Focus Areas
+- **IoT & Embedded AI** – Low-power model optimization for edge devices  
+- **Signal Processing & Time-Series Prediction** – Fault detection and forecasting  
+- **BAM Model Compression Research** – Improving payload efficiency in noisy LoRa links  
+- **Industrial AI Applications** – Deployable real-world AI solutions
+
+### 🔹 Contributions & Achievements
+- Developed LoRa field test automation tools and data loggers  
+- Ported TensorFlow models to NumPy for edge execution  
+- Currently preparing a paper: *“Low-SNR Restoration & MTL Comparative Study”*
+
+---
+
+<div style="text-align:center;margin-top:40px;">
+  <a href="/index" class="btn primary" style="font-weight:bold;">← Back to Home</a>
 </div>
