@@ -12,14 +12,104 @@ permalink: /projects/
 
 ---
 
+## 🌟 <a name="ultra-low-snr"></a>Ultra Low SNR Signal Restoration & Classification
+
+**Role**: Undergraduate Researcher  
+**Period**: March 2025 - Present  
+**Status**: In Progress
+
+### Overview
+Researching deep learning models for signal restoration and classification in extremely low signal-to-noise ratio (Ultra Low SNR) environments. Conducting comparative analysis between cascaded models and Multi-Task Learning (MTL) architectures to identify optimal approaches for handling degraded signals.
+
+### Problem Statement
+In ultra-low SNR environments (SNR: -30dB to -10dB), traditional signal processing methods fail to effectively restore and classify signals. This research aims to leverage deep learning to overcome these limitations and enable reliable signal processing in extreme noise conditions.
+
+### Technical Approach
+
+**Model Architectures Under Investigation**
+1. **Sequential (Cascaded) Models**: Two-stage approach with separate restoration and classification
+   - Stage 1: Restoration using BAM/CAE/U-Net
+   - Stage 2: Classification using trained classifier
+   
+2. **Multi-Task Learning (MTL) Models**: End-to-end joint optimization
+   - Shared encoder for feature extraction
+   - Dual decoders for restoration and classification
+   - Joint loss function balancing both tasks
+
+**Restoration Architectures**
+- **BAM (Bidirectional Associative Memory)**: Dense architecture with bidirectional connections
+- **CAE (Convolutional Autoencoder)**: Convolutional layers for spatial feature learning
+- **U-Net**: Skip connections for preserving fine-grained details
+
+**Experimental Design**
+- **Dataset**: CIFAR-10 augmented to 150,000 images
+- **Noise Types**: Gaussian, Salt & Pepper, Burst noise
+- **SNR Levels**: -30dB, -25dB, -20dB, -15dB, -10dB
+- **Evaluation Metrics**: 
+  - Restoration: MSE, MAE, PSNR (dB)
+  - Classification: Accuracy, Top-3 Accuracy
+
+### Technical Stack
+- **Framework**: TensorFlow/Keras, PyTorch
+- **Models**: Custom CNN, ResNet, Transformer-based architectures, BAM, CAE, U-Net
+- **Tools**: Python, NumPy, Pandas, Jupyter, TensorBoard
+- **Hardware**: NVIDIA RTX 3070 Ti 8GB, Intel i7-12700K
+
+### Team & My Contribution
+- **Team Size**: Individual research project
+- **Supervision**: Professor guidance on research direction
+- **My Role**:
+  - Complete model architecture design and implementation (6 models)
+  - Large-scale data augmentation pipeline (150K images)
+  - Comprehensive experimental framework development
+  - Statistical analysis and performance evaluation across multiple conditions
+
+### Current Progress
+- ✅ Data preprocessing and augmentation completed
+- ✅ 6 models implemented and trained (Sequential BAM/CAE/U-Net, MTL BAM/CAE/U-Net)
+- ✅ Comprehensive evaluation framework with noise-type and SNR-level analysis
+- 🔄 Final comparative analysis and paper writing in progress
+
+### Preliminary Findings
+- U-Net shows superior restoration performance due to skip connections
+- MTL models demonstrate better end-to-end classification performance
+- Performance varies significantly across noise types (Burst noise most challenging)
+- Higher SNR levels show greater benefits from MTL approach
+
+### Challenges & Solutions
+
+**Challenge 1: Large-Scale Experiment Management**
+- **Problem**: Managing and training 6 different models across multiple architectures (Sequential vs MTL) and noise conditions (3 types × 5 SNR levels) required significant computational resources and careful experiment tracking
+- **Solution**: Implemented modular training pipeline with separate notebooks for each phase, automated result collection and analysis, and systematic memory management between training phases to ensure reproducibility
+
+**Challenge 2: Model Architecture Selection for Ultra-Low SNR**
+- **Problem**: Determining optimal architecture (BAM vs CAE vs U-Net) and learning paradigm (Sequential vs MTL) for extreme noise conditions where traditional methods fail
+- **Solution**: Conducted comprehensive literature review and systematic comparison across all combinations, implemented custom evaluation framework that analyzes performance by noise type and SNR level to identify architecture-specific strengths
+
+**Challenge 3: Data Augmentation for Realistic Noise Simulation**
+- **Problem**: Creating realistic noise conditions that accurately represent ultra-low SNR environments while maintaining dataset diversity
+- **Solution**: Implemented sophisticated data augmentation pipeline scaling CIFAR-10 to 150,000 images with multiple noise types (Gaussian, Salt & Pepper, Burst) and precise SNR control across 5 levels (-30dB to -10dB)
+
+**Challenge 4: Multi-Task Loss Balancing**
+- **Problem**: Finding optimal weights for restoration and classification losses in MTL models to ensure both tasks perform well without one dominating
+- **Solution**: Experimented with different loss weight combinations and implemented joint optimization strategies, analyzing trade-offs between restoration quality (PSNR) and classification accuracy
+
+### Links
+🔗 **Project Repository**: [github.com/gwon9906/Denoise-and-Classify](https://github.com/gwon9906/Denoise-and-Classify)  
+📊 **Tech Stack**: TensorFlow, PyTorch, Custom Neural Architectures
+
+---
+
+<div style="margin-bottom: 60px;"></div>
+
 ## 🔬 <a name="lora-communication"></a>IoT Communication Efficiency Improvement via BAM-based Payload Compression
 
 **Role**: Undergraduate Researcher & Team Lead  
-**Period**: 2023 - 2024  
+**Period**: March 2025 - June 2025  
 **Status**: Completed
 
 ### Overview
-Led a research project to improve communication efficiency in low-power, high-loss IoT networks by designing and implementing a lightweight payload compression model optimized for resource-constrained embedded systems.
+Leading a research project to improve communication efficiency in low-power, high-loss IoT networks by designing and implementing a lightweight payload compression model optimized for resource-constrained embedded systems.
 
 ### Problem Statement
 Frequent retransmissions in low-power, high-loss networks caused communication inefficiency and excessive battery consumption, particularly in long-range LoRa networks operating in non-line-of-sight (N-LOS) environments.
@@ -52,6 +142,28 @@ Frequent retransmissions in low-power, high-loss networks caused communication i
 - **ML Model**: Bidirectional Associative Memory (BAM)
 - **Tools**: Git, Linux
 
+### Team & My Contribution
+- **Team Size**: 4 members
+- **My Role**: 
+  - Led BAM model design, implementation, and integration
+  - Conducted entire field testing process (testbed setup, data collection, analysis)
+  - Responsible for all BAM-related technical decisions and optimizations
+- **Contribution**: ~40% (Model development & Field validation lead)
+
+### Challenges & Solutions
+
+**Challenge 1: Environmental Variability in Field Testing**
+- **Problem**: Weather conditions (rainy season) caused inconsistent measurements and data reliability issues
+- **Solution**: Extended testing period from 2 weeks to 1 month and performed repeated measurements to ensure statistical significance and data reliability
+
+**Challenge 2: Model Performance Optimization**
+- **Problem**: Initial model showed poor accuracy (MSE 0.0184) due to suboptimal data format
+- **Solution**: Analyzed data characteristics and optimized preprocessing by removing integer parts of GPS data, achieving 80%+ MSE improvement (0.0184 → 0.0036)
+
+**Challenge 3: Resource Constraints on Embedded Device**
+- **Problem**: Autoencoder was computationally expensive for Raspberry Pi
+- **Solution**: Through literature review and team discussion, selected and implemented lightweight BAM model using NumPy instead of TensorFlow, ensuring real-time operation on resource-constrained hardware
+
 ### Key Achievements
 - ✅ **14% PDR (Packet Delivery Ratio) improvement** through 62.5% payload compression (32 Bytes → 20 Bytes)
 - ✅ **MSE 0.0036** - minimal information loss
@@ -61,12 +173,18 @@ Frequent retransmissions in low-power, high-loss networks caused communication i
 ### Future Improvements
 Identified potential for higher compression efficiency by applying BAM to sensor data with more predictable patterns (e.g., CPU temperature, humidity) compared to dynamic data (GPS/IMU).
 
+### Links
+🔗 **Project Repository**: [github.com/4xvgal/ChirpChirp](https://github.com/4xvgal/ChirpChirp) - Full system implementation  
+🔗 **BAM Model**: [github.com/gwon9906/Lightweight-MF-BAM](https://github.com/gwon9906/Lightweight-MF-BAM) - Core compression model
+
 ---
+
+<div style="margin-bottom: 60px;"></div>
 
 ## 📡 <a name="valve-prediction"></a>Industrial Valve Flow Rate Prediction using Encoder-LSTM
 
 **Role**: Undergraduate Researcher  
-**Period**: 2022 - 2023  
+**Period**: July 2024 - December 2024  
 **Status**: Completed
 
 ### Overview
@@ -104,6 +222,33 @@ Initial baseline LSTM model showed poor practical performance with MAPE (Mean Ab
 - **Loss Function**: Huber Loss
 - **Tools**: Python, Pandas, NumPy, Jupyter
 
+### Team & My Contribution
+- **Team Size**: Individual project under professor's guidance
+- **Supervision**: Received directional feedback and validation from advisor on methodology and results
+- **My Role**: 
+  - Complete ownership of model design and implementation
+  - Data analysis and preprocessing pipeline development
+  - Experimental design and performance optimization
+- **Contribution**: 100% (Independent research with advisory support)
+
+### Challenges & Solutions
+
+**Challenge 1: Sequence Discontinuity at Zero Points**
+- **Problem**: Model showed prediction errors when valve opening rate = 0, causing sequence discontinuities
+- **Solution**: Implemented sequence reinitialization at zero points, achieving first-stage performance improvement
+
+**Challenge 2: Baseline Model Limitations**
+- **Problem**: Vanilla LSTM showed insufficient accuracy (MAPE > 10) for industrial applications
+- **Solution**: Designed custom Encoder-LSTM architecture inspired by Autoencoder structure to better capture time-series features through hierarchical learning
+
+**Challenge 3: Data Characteristics Mismatch**
+- **Problem**: Float-format data had low decimal precision, causing unnecessary model complexity
+- **Solution**: Analyzed data distribution patterns and treated data as integer-like values by removing normalization, reducing model complexity while improving stability
+
+**Challenge 4: Outlier Robustness**
+- **Problem**: MSE loss was sensitive to outliers in industrial sensor data
+- **Solution**: Adopted Huber loss function for better robustness against outliers while maintaining gradient stability
+
 ### Key Achievements
 - ✅ **98%+ improvement in prediction accuracy**: MAPE 10 → 0.188
 - ✅ Designed and implemented custom Encoder-LSTM architecture
@@ -114,6 +259,9 @@ Initial baseline LSTM model showed poor practical performance with MAPE (Mean Ab
 - Importance of understanding data characteristics before modeling
 - Value of systematic experimentation and iterative refinement
 - Ability to design custom architectures based on problem requirements
+
+### Links
+🔗 **Project Repository**: Private (Industrial collaboration)
 
 ---
 
