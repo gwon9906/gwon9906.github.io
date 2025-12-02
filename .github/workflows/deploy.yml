@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - claude/convert-markdown-portfolio-018CXUHiyJ6yk364TcRuTq8w
+      - main
   workflow_dispatch:
 
 permissions:
