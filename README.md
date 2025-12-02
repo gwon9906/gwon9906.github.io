@@ -1,189 +1,50 @@
-# Haegwon Lee | AI Engineer Portfolio
+# Haegwon Lee - AI/ML Engineering Portfolio
 
-Jekyll 기반 개인 이력서 및 포트폴리오 웹사이트  
-🌐 **한글/영문 이중 언어 지원**
+Modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS.
 
----
+## 🚀 Features
 
-## 🚀 빠른 시작
+- **Modern Tech Stack**: React 18 + TypeScript + Vite
+- **Responsive Design**: Mobile-first design that works on all devices
+- **Smooth Animations**: Powered by Framer Motion
+- **Clean UI**: Built with Tailwind CSS
+- **SEO Optimized**: Meta tags and semantic HTML
+- **Fast Performance**: Optimized build with Vite
 
-### 로컬에서 실행하기
+## 🛠️ Tech Stack
 
-#### 필수 요구사항
-- Ruby (2.7 이상)
-- Bundler
+- **Frontend**: React 18, TypeScript
+- **Styling**: Tailwind CSS
+- **Animations**: Framer Motion
+- **Icons**: Lucide React
+- **Build Tool**: Vite
+- **Deployment**: GitHub Pages
 
-#### 설치 및 실행
-
-```bash
-# 의존성 설치
-bundle install
-
-# 로컬 서버 실행
-bundle exec jekyll serve
-
-# 브라우저에서 확인
-# 영문: http://localhost:4000
-# 한글: http://localhost:4000/index_ko
-```
-
----
-
-## 🌐 GitHub Pages 배포 가이드
-
-### Step 1: GitHub 저장소 생성
-
-1. GitHub에 로그인
-2. 새 저장소 생성
-3. 저장소 이름: `gwon9906.github.io` (개인 사이트용)
-   - 또는 다른 이름 (예: `portfolio`, `resume` 등)
-
-### Step 2: 코드 푸시
+## 📦 Installation
 
 ```bash
-# Git 초기화 (처음 한 번만)
-git init
-git add .
-git commit -m "Initial commit: Portfolio website"
-
-# 원격 저장소 연결
-git remote add origin https://github.com/gwon9906/gwon9906.github.io.git
-
-# 푸시
-git branch -M main
-git push -u origin main
+npm install
 ```
 
-### Step 3: GitHub Pages 활성화
+## 🏃 Development
 
-1. GitHub 저장소 페이지로 이동
-2. **Settings** 탭 클릭
-3. 좌측 메뉴에서 **Pages** 선택
-4. **Source** 섹션에서:
-   - Branch: `main` 선택
-   - Folder: `/ (root)` 선택
-5. **Save** 클릭
-
-### Step 4: 배포 확인
-
-- 몇 분 후 `https://gwon9906.github.io` 에서 확인 가능
-- 다른 저장소 이름을 사용한 경우: `https://gwon9906.github.io/저장소이름`
-
----
-
-## 📝 내용 수정하기
-
-### 기본 정보 수정
-`_config.yml` 파일에서 이름, 이메일, SNS 링크 등을 수정하세요.
-
-### 페이지 구조
-
-```
-github-resume/
-├── _config.yml          # Jekyll 설정
-├── Gemfile              # Ruby 의존성
-├── index.md             # 영문 메인 페이지
-├── index_ko.md          # 한글 메인 페이지
-├── projects.md          # 영문 프로젝트 페이지
-├── projects_ko.md       # 한글 프로젝트 페이지
-└── README.md            # 이 파일
-```
-
-### 페이지별 수정 방법
-
-#### 영문 페이지
-- `index.md`: 자기소개, 학력, 기술 스택, 연락처
-- `projects.md`: 프로젝트 상세 정보
-
-#### 한글 페이지
-- `index_ko.md`: 자기소개, 학력, 기술 스택, 연락처
-- `projects_ko.md`: 프로젝트 상세 정보
-
----
-
-## 🎨 커스터마이징
-
-### 테마 변경
-`_config.yml`의 `theme` 항목을 수정하세요.
-
-```yaml
-theme: minima  # 기본 테마
-# 다른 Jekyll 테마로 변경 가능
-```
-
-### 레이아웃 커스터마이징
-더 많은 커스터마이징이 필요하면:
-1. `_layouts` 폴더 생성
-2. `_includes` 폴더 생성
-3. 테마 기본 레이아웃을 오버라이드
-
----
-
-## ✨ 주요 기능
-
-- ✅ **이중 언어 지원**: 한글/영문 페이지 분리
-- ✅ **언어 전환 버튼**: 각 페이지에서 쉽게 언어 전환
-- ✅ **반응형 디자인**: 모바일/태블릿/데스크톱 최적화
-- ✅ **SEO 최적화**: jekyll-seo-tag 플러그인 적용
-- ✅ **깔끔한 디자인**: Minima 테마 기반
-
----
-
-## 🔧 문제 해결
-
-### 1. 빌드 오류 발생시
 ```bash
-# 의존성 재설치
-bundle clean --force
-bundle install
+npm run dev
 ```
 
-### 2. GitHub Pages에서 사이트가 보이지 않을 때
-- Settings > Pages에서 Source가 올바르게 설정되었는지 확인
-- `_config.yml`의 `baseurl`과 `url`이 올바른지 확인
-- Actions 탭에서 빌드 로그 확인
+## 🔨 Build
 
-### 3. 로컬에서 실행이 안 될 때
 ```bash
-# Ruby 버전 확인
-ruby -v  # 2.7 이상 필요
-
-# Bundler 설치
-gem install bundler
-
-# 다시 시도
-bundle install
-bundle exec jekyll serve
+npm run build
 ```
-
----
-
-## 📊 프로젝트 하이라이트
-
-### 주요 성과
-- 🔬 **IoT 통신 효율 개선**: PDR 14% 향상, 페이로드 62.5% 압축
-- 📡 **산업용 밸브 예측**: MAPE 98% 개선 (10 → 0.188)
-
-### 기술 스택
-- **AI/ML**: PyTorch, TensorFlow, LSTM, Model Optimization
-- **Languages**: Python, C/C++
-- **IoT**: Raspberry Pi, LoRa
-- **Tools**: Git, Jupyter, Linux
-
----
-
-## 📞 연락처
-
-- **Email**: gwon99065@naver.com
-- **GitHub**: [@gwon9906](https://github.com/gwon9906)
-- **Blog**: [latetime.tistory.com](https://latetime.tistory.com/)
-
----
 
 ## 📄 License
 
-이 포트폴리오는 자유롭게 수정하여 사용할 수 있습니다.
+© 2025 Haegwon Lee. All rights reserved.
 
 ---
 
-**Made with ❤️ by Haegwon Lee**
+**Portfolio Highlights:**
+- 🔬 BAM-based LoRa Communication Optimization (62.5% compression, +14% PDR)
+- 📡 Industrial Valve Flow Prediction (98% MAPE improvement)
+- 💻 Ultra-Low SNR Signal Restoration & Classification (in progress)
