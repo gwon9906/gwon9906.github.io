@@ -86,11 +86,11 @@ const Contact = () => {
         >
           <div className="glass-card p-8 max-w-3xl mx-auto">
             <h3 className="text-2xl font-bold text-dark-800 mb-4">
-              함께 일하고 싶으신가요?
+              새로운 기술적 도전을 기다립니다
             </h3>
             <p className="text-dark-600 mb-6 leading-relaxed">
               AI/ML 프로젝트, 모델 최적화, 엣지 AI 솔루션 등<br />
-              협업이나 기회에 대해 이야기 나누고 싶습니다.
+              협업 및 성장 기회에 열려있습니다
             </p>
             <a
               href="mailto:gwon99065@naver.com"

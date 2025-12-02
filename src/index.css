@@ -15,7 +15,7 @@
   }
 
   body {
-    @apply m-0 font-sans antialiased;
+    @apply m-0 font-sans antialiased break-keep;
     @apply bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100;
     @apply text-dark-800;
   }
@@ -31,7 +31,7 @@
   }
 
   .glass-card {
-    @apply bg-white/80 backdrop-blur-sm border border-slate-200/50 rounded-2xl shadow-lg;
+    @apply bg-white/70 backdrop-blur-md border border-white/50 rounded-2xl shadow-xl;
   }
 
   .hover-lift {

@@ -32,18 +32,19 @@ const About = () => {
       >
         {/* Section Title */}
         <motion.div variants={item} className="text-center space-y-4">
-          <h2 className="text-4xl sm:text-5xl font-bold gradient-text">About Me</h2>
+          <h2 className="text-4xl sm:text-5xl font-bold gradient-text">About</h2>
           <p className="text-xl text-dark-600 max-w-2xl mx-auto">
-            AI/ML 엔지니어링 학부 연구생
+            AI/ML 학부 연구생, 2024.06 ~
           </p>
         </motion.div>
 
         {/* Main Description */}
         <motion.div variants={item} className="glass-card p-8 lg:p-12 max-w-4xl mx-auto">
           <p className="text-lg leading-relaxed text-dark-700">
-            하드웨어 제약을 이해하고 데이터의 본질을 파악해{' '}
-            <span className="font-bold text-primary-600">효율적이고 실용적인 AI 솔루션</span>을 설계·구현합니다.
-            IoT 통신 최적화부터 산업용 AI까지, 모델 압축과 시스템 최적화에 강점이 있습니다.
+            <span className="font-bold text-primary-600">제약이 있는 환경에서의 최적화</span>에 몰입함.
+            <br />단순한 모델링을 넘어, 실제 산업 현장의 엣지(Edge) 디바이스에서{' '}
+            <span className="font-bold text-dark-900">실시간으로 동작 가능한 경량화 솔루션</span>을 설계함.
+            <br />데이터의 본질적인 흐름을 파악하여 시스템 전체의 효율을 높이는 엔지니어링을 지향함.
           </p>
         </motion.div>
 
@@ -86,28 +87,28 @@ const About = () => {
         <motion.div variants={item} className="max-w-6xl mx-auto">
           <h3 className="text-3xl font-bold text-center mb-8 text-dark-800">
             <Target className="inline-block w-8 h-8 mr-2 text-primary-600" />
-            핵심 강점
+            강점
           </h3>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               {
-                title: 'End-to-End 설계',
-                description: '하드웨어 제약을 고려한 전체 시스템 설계',
+                title: 'End-to-End',
+                description: '데이터 수집부터 배포까지',
                 gradient: 'from-primary-500 to-blue-600'
               },
               {
-                title: '압축·최적화',
-                description: '저자원 환경에서의 모델 압축 전문',
+                title: '압축 & 최적화',
+                description: '저자원에서도 작동하게',
                 gradient: 'from-blue-600 to-indigo-600'
               },
               {
-                title: '데이터 기반 의사결정',
-                description: '구조 및 전처리 전략 설계',
+                title: '데이터 중심',
+                description: '데이터를 보고 구조 결정',
                 gradient: 'from-indigo-600 to-purple-600'
               },
               {
-                title: '실환경 배포',
-                description: '필드 테스트 및 검증 경험',
+                title: '실전 배포',
+                description: '실제 환경에서 검증',
                 gradient: 'from-purple-600 to-pink-600'
               },
             ].map((strength, index) => (
