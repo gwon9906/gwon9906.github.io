@@ -41,10 +41,10 @@ const About = () => {
         {/* Main Description */}
         <motion.div variants={item} className="glass-card p-8 lg:p-12 max-w-4xl mx-auto">
           <p className="text-lg leading-relaxed text-dark-700">
-            클라우드 서버가 아니라{' '}
-            <span className="font-bold text-primary-600">라즈베리파이에서도 돌아가는 AI</span>를 만듭니다.
-            <br/>모델이 아무리 좋아도 실제로 배포할 수 없으면 의미가 없다고 생각해요.
-            <br/>IoT부터 산업 현장까지, 제약이 있는 환경에서의 최적화가 제 강점입니다.
+            <span className="font-bold text-primary-600">제약이 있는 환경에서의 최적화</span>에 몰입함.
+            <br />단순한 모델링을 넘어, 실제 산업 현장의 엣지(Edge) 디바이스에서{' '}
+            <span className="font-bold text-dark-900">실시간으로 동작 가능한 경량화 솔루션</span>을 설계함.
+            <br />데이터의 본질적인 흐름을 파악하여 시스템 전체의 효율을 높이는 엔지니어링을 지향함.
           </p>
         </motion.div>
 

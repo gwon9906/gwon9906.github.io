@@ -61,9 +61,9 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.6 }}
-              className="text-xl sm:text-2xl text-dark-600 max-w-3xl mx-auto"
+              className="text-xl sm:text-2xl text-dark-600 max-w-3xl mx-auto font-medium"
             >
-              AI/ML Engineering · Edge Optimization
+              Data-Centric AI · Edge Optimization
             </motion.p>
 
             <motion.p
@@ -72,8 +72,8 @@ const Hero = () => {
               transition={{ delay: 0.7, duration: 0.6 }}
               className="text-lg text-dark-500 max-w-2xl mx-auto leading-relaxed"
             >
-              라즈베리파이에서도 돌아가는 AI를 만듭니다<br />
-              <span className="font-semibold text-dark-700">32B → 20B 압축, MAPE 98% 개선</span>
+              하드웨어의 제약을 넘어, 데이터의 잠재력을 극대화하는 AI 엔지니어<br />
+              <span className="font-semibold text-dark-700">페이로드 62.5% 압축 · MAPE 98% 개선 · Edge 실시간 구동</span>
             </motion.p>
           </div>
 
