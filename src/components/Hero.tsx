@@ -63,7 +63,7 @@ const Hero = () => {
               transition={{ delay: 0.6, duration: 0.6 }}
               className="text-xl sm:text-2xl text-dark-600 max-w-3xl mx-auto"
             >
-              AI/ML Engineering · Edge & Embedded Optimization
+              AI/ML Engineering · Edge Optimization
             </motion.p>
 
             <motion.p
@@ -72,8 +72,8 @@ const Hero = () => {
               transition={{ delay: 0.7, duration: 0.6 }}
               className="text-lg text-dark-500 max-w-2xl mx-auto leading-relaxed"
             >
-              하드웨어 제약을 이해하고 데이터의 본질을 파악해<br />
-              <span className="font-semibold text-dark-700">효율적이고 실용적인 AI 솔루션</span>을 설계·구현합니다
+              라즈베리파이에서도 돌아가는 AI를 만듭니다<br />
+              <span className="font-semibold text-dark-700">32B → 20B 압축, MAPE 98% 개선</span>
             </motion.p>
           </div>
 
