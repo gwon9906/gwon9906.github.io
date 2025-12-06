@@ -44,3 +44,99 @@
     text-wrap: balance;
   }
 }
+
+/* Print Styles */
+@media print {
+  /* 기본 설정 */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body {
+    @apply bg-white;
+    background: white !important;
+  }
+
+  /* 인쇄 시 숨김 */
+  nav,
+  .floating-toc,
+  button,
+  .hover-lift {
+    display: none !important;
+  }
+
+  /* 섹션 여백 조정 */
+  .section-container {
+    @apply py-4;
+    page-break-inside: avoid;
+  }
+
+  /* 카드 스타일 간소화 */
+  .glass-card {
+    @apply bg-white border border-gray-300 rounded-2xl shadow-none;
+    backdrop-filter: none;
+    page-break-inside: avoid;
+  }
+
+  /* 그라데이션 텍스트를 일반 텍스트로 */
+  .gradient-text {
+    @apply text-primary-700;
+    background: none;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
+  }
+
+  /* 프로젝트 카드 */
+  .project-card {
+    page-break-inside: avoid;
+    margin-bottom: 1rem;
+  }
+
+  /* 링크 스타일 */
+  a {
+    text-decoration: underline;
+    color: #2563eb;
+  }
+
+  /* 링크 URL 표시 */
+  a[href^="http"]:after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #666;
+  }
+
+  /* 애니메이션 비활성화 */
+  * {
+    animation-duration: 0s !important;
+    transition-duration: 0s !important;
+  }
+
+  /* 페이지 여백 */
+  @page {
+    margin: 1.5cm;
+  }
+
+  /* 제목 앞에서 페이지 나누기 방지 */
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* 테이블, 이미지, 코드 블록 페이지 나누기 방지 */
+  table, img, pre, blockquote {
+    page-break-inside: avoid;
+  }
+
+  /* Hero 섹션 조정 */
+  #hero {
+    min-height: auto;
+    padding: 2rem 0;
+  }
+
+  /* 통계 카드 간소화 */
+  .stat-card {
+    border: 1px solid #e5e7eb;
+    background: white;
+  }
+}
