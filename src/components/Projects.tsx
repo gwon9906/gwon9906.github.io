@@ -191,7 +191,7 @@ const Projects = () => {
       ],
       next: 'SNR Range별 최적 학습 구간 선정 후 Huber Loss + Layer Freeze 조합으로 추가 개선 실험 예정. Cloud(C-RAN) 복조 모델과 end-to-end 연동하여 전체 시스템 성능 측정 및 TensorRT/ONNX 경량화를 통한 실제 배포 테스트 진행 계획',
       links: [
-        { github: 'https://github.com/gwon9906/LoRa-Edge-Demod-Compression' },
+        { github: 'https://github.com/gwon9906/LoRa-bam-reconstruction' },
       ],
       techs: ['Python', 'PyTorch', 'NumPy', 'LoRa PHY', 'DSP', 'Edge Computing', 'BAM', 'Raspberry Pi'],
     },

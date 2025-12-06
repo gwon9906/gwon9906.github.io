@@ -23,7 +23,7 @@ const TableOfContents = () => {
   };
 
   return (
-    <>
+    <div className="floating-toc">
       {/* Floating Menu Button */}
       <motion.button
         initial={{ scale: 0 }}
@@ -113,7 +113,7 @@ const TableOfContents = () => {
           />
         )}
       </AnimatePresence>
-    </>
+    </div>
   );
 };
 
