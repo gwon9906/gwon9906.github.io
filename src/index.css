@@ -62,12 +62,7 @@
   nav,
   .floating-toc,
   button,
-  #hero a,
-  #hero button,
-  #contact a.inline-flex,
-  a[class*="bg-gradient"],
-  a[class*="rounded-2xl"],
-  .hover-lift {
+  #hero a {
     display: none !important;
   }
 
