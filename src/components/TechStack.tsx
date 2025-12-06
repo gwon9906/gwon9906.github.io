@@ -105,7 +105,7 @@ const TechStack = () => {
             >
               {/* Category Header */}
               <div className="flex items-center gap-4 mb-6">
-                <div className={`p-3 bg-gradient-to-r ${category.color} rounded-xl`}>
+                <div className={`p-3 bg-gradient-to-r ${category.color} rounded-2xl`}>
                   <category.icon className="w-6 h-6 text-white" />
                 </div>
                 <div className="flex-1">

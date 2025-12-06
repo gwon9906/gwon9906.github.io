@@ -41,10 +41,10 @@ const About = () => {
         {/* Main Description */}
         <motion.div variants={item} className="glass-card p-8 lg:p-12 max-w-4xl mx-auto">
           <p className="text-lg leading-relaxed text-dark-700">
-            <span className="font-bold text-primary-600">제약이 있는 환경에서의 최적화</span>에 몰입함.
+            <span className="font-bold text-primary-600">제약이 있는 환경에서의 최적화</span>에 몰입하는 엔지니어입니다.
             <br />단순한 모델링을 넘어, 실제 산업 현장의 엣지(Edge) 디바이스에서{' '}
-            <span className="font-bold text-dark-900">실시간으로 동작 가능한 경량화 솔루션</span>을 설계함.
-            <br />데이터의 본질적인 흐름을 파악하여 시스템 전체의 효율을 높이는 엔지니어링을 지향함.
+            <span className="font-bold text-dark-900">실시간으로 동작 가능한 경량화 솔루션</span>을 설계합니다.
+            <br />데이터의 본질적인 흐름을 파악하여 시스템 전체의 효율을 높이는 엔지니어링을 지향합니다.
           </p>
         </motion.div>
 
@@ -52,7 +52,7 @@ const About = () => {
         <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
           <motion.div variants={item} className="glass-card p-8 hover-lift">
             <div className="flex items-start gap-4">
-              <div className="p-3 bg-primary-100 rounded-xl">
+              <div className="p-3 bg-primary-100 rounded-2xl">
                 <GraduationCap className="w-8 h-8 text-primary-600" />
               </div>
               <div className="flex-1">
@@ -68,7 +68,7 @@ const About = () => {
 
           <motion.div variants={item} className="glass-card p-8 hover-lift">
             <div className="flex items-start gap-4">
-              <div className="p-3 bg-blue-100 rounded-xl">
+              <div className="p-3 bg-blue-100 rounded-2xl">
                 <Lightbulb className="w-8 h-8 text-blue-600" />
               </div>
               <div className="flex-1">
@@ -116,7 +116,7 @@ const About = () => {
                 key={index}
                 className="glass-card p-6 hover-lift group cursor-pointer"
               >
-                <div className={`w-12 h-12 bg-gradient-to-r ${strength.gradient} rounded-lg mb-4 flex items-center justify-center group-hover:scale-110 transition-transform`}>
+                <div className={`w-12 h-12 bg-gradient-to-r ${strength.gradient} rounded-2xl mb-4 flex items-center justify-center group-hover:scale-110 transition-transform`}>
                   <span className="text-2xl font-bold text-white">{index + 1}</span>
                 </div>
                 <h4 className="text-lg font-bold text-dark-800 mb-2">{strength.title}</h4>
@@ -129,7 +129,7 @@ const About = () => {
         {/* Certification */}
         <motion.div variants={item} className="glass-card p-8 max-w-4xl mx-auto">
           <div className="flex items-start gap-4">
-            <div className="p-3 bg-green-100 rounded-xl">
+            <div className="p-3 bg-green-100 rounded-2xl">
               <Award className="w-8 h-8 text-green-600" />
             </div>
             <div className="flex-1">

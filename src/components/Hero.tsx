@@ -90,7 +90,7 @@ const Hero = () => {
                 e.preventDefault();
                 scrollToProjects();
               }}
-              className="group px-8 py-4 bg-gradient-to-r from-primary-500 to-blue-600 text-white rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+              className="group px-8 py-4 bg-gradient-to-r from-primary-500 to-blue-600 text-white rounded-2xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
             >
               프로젝트 보기
               <ChevronDown className="inline-block ml-2 w-5 h-5 group-hover:translate-y-1 transition-transform" />
@@ -100,7 +100,7 @@ const Hero = () => {
               href="https://github.com/gwon9906"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-4 bg-white/90 backdrop-blur-sm text-dark-700 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-slate-200/50 flex items-center gap-2"
+              className="px-8 py-4 bg-white/90 backdrop-blur-sm text-dark-700 rounded-2xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-slate-200/50 flex items-center gap-2"
             >
               <Github className="w-5 h-5" />
               GitHub
@@ -108,7 +108,7 @@ const Hero = () => {
 
             <a
               href="mailto:gwon99065@naver.com"
-              className="px-8 py-4 bg-white/90 backdrop-blur-sm text-dark-700 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-slate-200/50 flex items-center gap-2"
+              className="px-8 py-4 bg-white/90 backdrop-blur-sm text-dark-700 rounded-2xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-slate-200/50 flex items-center gap-2"
             >
               <Mail className="w-5 h-5" />
               이메일
@@ -118,7 +118,7 @@ const Hero = () => {
               href="https://latetime.tistory.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-4 bg-white/90 backdrop-blur-sm text-dark-700 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-slate-200/50 flex items-center gap-2"
+              className="px-8 py-4 bg-white/90 backdrop-blur-sm text-dark-700 rounded-2xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-slate-200/50 flex items-center gap-2"
             >
               <BookOpen className="w-5 h-5" />
               블로그
