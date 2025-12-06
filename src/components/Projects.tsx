@@ -65,8 +65,8 @@ const Projects = () => {
         { label: 'MSE 오차', value: '0.0036' },
         { label: '환경', value: 'Raspberry Pi' },
       ],
-      overview: '저사양 엣지 디바이스(Raspberry Pi)에서 LoRa 통신의 고질적인 대역폭 문제를 해결하기 위해, 경량 BAM 모델을 활용한 실시간 데이터 압축/복원 시스템을 구축함.',
-      context: 'LoRa 통신은 넓은 커버리지를 갖지만 대역폭이 좁아, 데이터 길이가 길어질수록 패킷 충돌과 전송 실패(Drop)가 빈번함. 특히 N-LOS(비가시권) 환경에서 신뢰성 확보가 필수적이었음.',
+      overview: '저사양 엣지 디바이스(Raspberry Pi)에서 LoRa 통신의 고질적인 대역폭 문제를 해결하기 위해, 경량 BAM 모델을 활용한 실시간 데이터 압축/복원 시스템을 구축했습니다.',
+      context: 'LoRa 통신은 넓은 커버리지를 갖지만 대역폭이 좁아, 데이터 길이가 길어질수록 패킷 충돌과 전송 실패(Drop)가 빈번했습니다. 특히 N-LOS(비가시권) 환경에서 신뢰성 확보가 필수적이었습니다.',
       approach: [
         'Autoencoder 대비 연산량이 40% 적은 BAM 구조 채택하여 엣지 구동 최적화',
         'TensorFlow 의존성을 제거하고 NumPy만으로 순수 구현하여 추론 속도 개선',
@@ -113,8 +113,8 @@ const Projects = () => {
         { label: '안정성', value: 'Huber Loss' },
         { label: '구조', value: 'Encoder-LSTM' },
       ],
-      overview: '불연속적인 산업 데이터의 특성을 고려한 Encoder-LSTM 모델 설계로 기존 대비 예측 오차(MAPE) 98% 개선을 달성함.',
-      context: '기존 LSTM 구조는 개도율 0 지점에서 불연속성이 발생하고, 센서 이상치(Outlier)에 대한 민감도가 높아 실제 산업 환경 적용에 한계가 있었음.',
+      overview: '불연속적인 산업 데이터의 특성을 고려한 Encoder-LSTM 모델 설계로 기존 대비 예측 오차(MAPE) 98% 개선을 달성했습니다.',
+      context: '기존 LSTM 구조는 개도율 0 지점에서 불연속성이 발생하고, 센서 이상치(Outlier)에 대한 민감도가 높아 실제 산업 환경 적용에 한계가 있었습니다.',
       approach: [
         '계층적 특징 추출을 위한 Encoder-LSTM 구조 재설계',
         '개도율 0 구간에서 시퀀스 재초기화(Reset) 로직 추가로 불연속성 제거',
@@ -157,8 +157,8 @@ const Projects = () => {
         { label: '복조율', value: '27.8%' },
         { label: '환경', value: 'Raspberry Pi' },
       ],
-      overview: 'Ultra-Low SNR(–25 ~ –30 dB) 환경에서 복조 실패한 LoRa 신호를 Cloud(C-RAN)로 전송하여 복조하는 시스템을 위해, Edge 단에서 전송 부담을 최소화하면서 LoRa Chirp 구조를 유지하는 초경량 신호 압축 모델을 개발함.',
-      context: 'Ultra-Low SNR 환경에서는 표준 LoRa dechirp+FFT 복조가 실패함. 복조 실패 신호를 Cloud(C-RAN)에 보내 여러 Edge에서 모은 실패 신호를 합쳐 복조하는 방식이 필요하나, IQ 데이터를 원본으로 전송하면 전송 비용이 과도하여 Edge 단에서 압축 + 신호 구조 보존 + 노이즈 억제를 동시에 수행할 필요가 있었음.',
+      overview: 'Ultra-Low SNR(–25 ~ –30 dB) 환경에서 복조 실패한 LoRa 신호를 Cloud(C-RAN)로 전송하여 복조하는 시스템을 위해, Edge 단에서 전송 부담을 최소화하면서 LoRa Chirp 구조를 유지하는 초경량 신호 압축 모델을 개발했습니다.',
+      context: 'Ultra-Low SNR 환경에서는 표준 LoRa dechirp+FFT 복조가 실패합니다. 복조 실패 신호를 Cloud(C-RAN)에 보내 여러 Edge에서 모은 실패 신호를 합쳐 복조하는 방식이 필요하나, IQ 데이터를 원본으로 전송하면 전송 비용이 과도하여 Edge 단에서 압축 + 신호 구조 보존 + 노이즈 억제를 동시에 수행할 필요가 있었습니다.',
       approach: [
         'LoRa PHY Demod Baseline 재구축: Upchirp/Downchirp 생성, Dechirp → FFT 기반 심볼 추출 체인 재현',
         'Spectrogram 기반 압축: IQ → STFT 수행 후 Complex spectrogram (128×31) 생성, Real/Imag 분리하여 7,936차원 입력 구성',
