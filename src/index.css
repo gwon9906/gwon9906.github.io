@@ -93,6 +93,21 @@
     margin-bottom: 1rem;
   }
 
+  /* 프로젝트 상세 내용 모두 표시 */
+  #projects .hidden,
+  #projects [style*="display: none"],
+  #projects [style*="height: 0"] {
+    display: block !important;
+    height: auto !important;
+    opacity: 1 !important;
+    overflow: visible !important;
+  }
+
+  /* 프로젝트 확장 버튼 숨김 */
+  #projects button {
+    display: none !important;
+  }
+
   /* 링크 스타일 */
   a:not([class*="bg-gradient"]):not(#hero a) {
     text-decoration: underline;
@@ -142,13 +157,30 @@
 
   /* Hero 섹션 조정 */
   #hero {
-    min-height: auto;
+    min-height: auto !important;
+    height: auto !important;
     padding: 2rem 0;
+  }
+
+  /* 모든 섹션 높이 자동 */
+  section {
+    min-height: auto !important;
+    height: auto !important;
   }
 
   /* 통계 카드 간소화 */
   .stat-card {
     border: 1px solid #e5e7eb;
     background: white;
+  }
+
+  /* overflow 제한 제거 */
+  * {
+    overflow: visible !important;
+  }
+
+  /* max-height 제한 제거 */
+  *[style*="max-height"] {
+    max-height: none !important;
   }
 }
