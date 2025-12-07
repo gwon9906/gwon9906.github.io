@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef, useState, useEffect } from 'react';
+import { useRef } from 'react'; // PDF 출력용: useState, useEffect 제거
 import {
   Radio,
   TrendingUp,
@@ -11,8 +11,8 @@ import {
   Users,
   CheckCircle2,
   Loader,
-  ChevronDown,
-  ChevronUp,
+  // ChevronDown, // PDF 출력용: 미사용
+  // ChevronUp,   // PDF 출력용: 미사용
 } from 'lucide-react';
 
 interface Project {
@@ -47,40 +47,41 @@ interface Project {
 const Projects = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [expandedProject, setExpandedProject] = useState<string | null>(null);
-  const [isPrinting, setIsPrinting] = useState(false);
+  // PDF 출력용으로 일시적으로 비활성화
+  // const [expandedProject, setExpandedProject] = useState<string | null>(null);
+  // const [isPrinting, setIsPrinting] = useState(false);
 
-  // 인쇄 시 모든 프로젝트 펼치기
-  useEffect(() => {
-    const handleBeforePrint = () => {
-      setIsPrinting(true);
-    };
+  // // 인쇄 시 모든 프로젝트 펼치기
+  // useEffect(() => {
+  //   const handleBeforePrint = () => {
+  //     setIsPrinting(true);
+  //   };
 
-    const handleAfterPrint = () => {
-      setIsPrinting(false);
-    };
+  //   const handleAfterPrint = () => {
+  //     setIsPrinting(false);
+  //   };
 
-    window.addEventListener('beforeprint', handleBeforePrint);
-    window.addEventListener('afterprint', handleAfterPrint);
+  //   window.addEventListener('beforeprint', handleBeforePrint);
+  //   window.addEventListener('afterprint', handleAfterPrint);
 
-    // 미디어 쿼리로도 체크 (일부 브라우저 대응)
-    const printMediaQuery = window.matchMedia('print');
-    const handlePrintChange = (e: MediaQueryListEvent | MediaQueryList) => {
-      setIsPrinting(e.matches);
-    };
+  //   // 미디어 쿼리로도 체크 (일부 브라우저 대응)
+  //   const printMediaQuery = window.matchMedia('print');
+  //   const handlePrintChange = (e: MediaQueryListEvent | MediaQueryList) => {
+  //     setIsPrinting(e.matches);
+  //   };
 
-    if (printMediaQuery.addEventListener) {
-      printMediaQuery.addEventListener('change', handlePrintChange);
-    }
+  //   if (printMediaQuery.addEventListener) {
+  //     printMediaQuery.addEventListener('change', handlePrintChange);
+  //   }
 
-    return () => {
-      window.removeEventListener('beforeprint', handleBeforePrint);
-      window.removeEventListener('afterprint', handleAfterPrint);
-      if (printMediaQuery.removeEventListener) {
-        printMediaQuery.removeEventListener('change', handlePrintChange);
-      }
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener('beforeprint', handleBeforePrint);
+  //     window.removeEventListener('afterprint', handleAfterPrint);
+  //     if (printMediaQuery.removeEventListener) {
+  //       printMediaQuery.removeEventListener('change', handlePrintChange);
+  //     }
+  //   };
+  // }, []);
 
   const projects: Project[] = [
     {
@@ -233,7 +234,7 @@ const Projects = () => {
   const ProjectCard = ({ project, index }: { project: Project; index: number }) => {
     const cardRef = useRef(null);
     const cardInView = useInView(cardRef, { once: true, margin: "-100px" });
-    const isExpanded = isPrinting || expandedProject === project.id;
+    // PDF 출력용: 모든 프로젝트 항상 펼침 상태 (isExpanded 제거)
 
     return (
       <motion.div
@@ -342,9 +343,10 @@ const Projects = () => {
             </ul>
           </div>
 
-          {/* Expandable Section */}
+          {/* Expandable Section - PDF 출력용: 항상 펼침 */}
           {project.challenges && (
             <div>
+              {/* PDF 출력용: 버튼 숨김
               <button
                 onClick={() => setExpandedProject(isExpanded ? null : project.id)}
                 className="w-full flex items-center justify-between p-4 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors"
@@ -356,26 +358,24 @@ const Projects = () => {
                   <ChevronDown className="w-5 h-5 text-dark-600" />
                 )}
               </button>
+              */}
 
-              {isExpanded && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  exit={{ opacity: 0, height: 0 }}
-                  className="mt-4 space-y-4"
-                >
-                  {project.challenges.map((challenge, idx) => (
-                    <div key={idx} className="p-4 bg-slate-50 rounded-xl">
-                      <div className="font-semibold text-dark-800 mb-2">
-                        ⚠️ {challenge.problem}
-                      </div>
-                      <div className="text-dark-700 pl-6">
-                        ✅ {challenge.solution}
-                      </div>
+              <div className="mb-2">
+                <span className="font-bold text-dark-800 text-lg">Challenges & Solutions</span>
+              </div>
+
+              <div className="mt-4 space-y-4">
+                {project.challenges.map((challenge, idx) => (
+                  <div key={idx} className="p-4 bg-slate-50 rounded-xl">
+                    <div className="font-semibold text-dark-800 mb-2">
+                      ⚠️ {challenge.problem}
                     </div>
-                  ))}
-                </motion.div>
-              )}
+                    <div className="text-dark-700 pl-6">
+                      ✅ {challenge.solution}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           )}
 
