@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
+// import { useInView } from 'framer-motion'; // PDF 출력용: 미사용
 import { useRef } from 'react';
 import { Code2, Cpu, Wrench } from 'lucide-react';
 
@@ -11,7 +11,7 @@ interface TechItem {
 
 const TechStack = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  // const isInView = useInView(ref, { once: true, margin: "-100px" }); // PDF 출력용: 미사용
 
   const techStack: TechItem[] = [
     // Expert
@@ -81,7 +81,7 @@ const TechStack = () => {
     <section ref={ref} className="section-container bg-white/30" id="tech-stack">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }} // PDF 출력용: 항상 표시
         transition={{ duration: 0.6 }}
         className="space-y-12"
       >
@@ -99,7 +99,7 @@ const TechStack = () => {
             <motion.div
               key={category.id}
               initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }} // PDF 출력용: 항상 표시
               transition={{ delay: categoryIndex * 0.2, duration: 0.6 }}
               className="glass-card p-6 lg:p-8"
             >
@@ -118,7 +118,7 @@ const TechStack = () => {
               <motion.div
                 variants={container}
                 initial="hidden"
-                animate={isInView ? "show" : "hidden"}
+                animate="show" // PDF 출력용: 항상 표시
                 className="space-y-4"
               >
                 {techStack
@@ -138,7 +138,7 @@ const TechStack = () => {
                       <div className="h-3 bg-slate-200 rounded-full overflow-hidden">
                         <motion.div
                           initial={{ width: 0 }}
-                          animate={isInView ? { width: `${tech.level}%` } : { width: 0 }}
+                          animate={{ width: `${tech.level}%` }} // PDF 출력용: 항상 표시
                           transition={{
                             delay: categoryIndex * 0.2 + techIndex * 0.1,
                             duration: 1,
@@ -157,7 +157,7 @@ const TechStack = () => {
         {/* Additional Info */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }} // PDF 출력용: 항상 표시
           transition={{ delay: 0.8, duration: 0.6 }}
           className="text-center glass-card p-6 max-w-4xl mx-auto"
         >
