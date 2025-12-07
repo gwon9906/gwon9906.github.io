@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import {
   Radio,
   TrendingUp,
@@ -48,6 +48,39 @@ const Projects = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [expandedProject, setExpandedProject] = useState<string | null>(null);
+  const [isPrinting, setIsPrinting] = useState(false);
+
+  // 인쇄 시 모든 프로젝트 펼치기
+  useEffect(() => {
+    const handleBeforePrint = () => {
+      setIsPrinting(true);
+    };
+
+    const handleAfterPrint = () => {
+      setIsPrinting(false);
+    };
+
+    window.addEventListener('beforeprint', handleBeforePrint);
+    window.addEventListener('afterprint', handleAfterPrint);
+
+    // 미디어 쿼리로도 체크 (일부 브라우저 대응)
+    const printMediaQuery = window.matchMedia('print');
+    const handlePrintChange = (e: MediaQueryListEvent | MediaQueryList) => {
+      setIsPrinting(e.matches);
+    };
+
+    if (printMediaQuery.addEventListener) {
+      printMediaQuery.addEventListener('change', handlePrintChange);
+    }
+
+    return () => {
+      window.removeEventListener('beforeprint', handleBeforePrint);
+      window.removeEventListener('afterprint', handleAfterPrint);
+      if (printMediaQuery.removeEventListener) {
+        printMediaQuery.removeEventListener('change', handlePrintChange);
+      }
+    };
+  }, []);
 
   const projects: Project[] = [
     {
@@ -200,7 +233,7 @@ const Projects = () => {
   const ProjectCard = ({ project, index }: { project: Project; index: number }) => {
     const cardRef = useRef(null);
     const cardInView = useInView(cardRef, { once: true, margin: "-100px" });
-    const isExpanded = expandedProject === project.id;
+    const isExpanded = isPrinting || expandedProject === project.id;
 
     return (
       <motion.div
