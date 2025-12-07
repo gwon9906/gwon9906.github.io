@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
+// import { useInView } from 'framer-motion'; // PDF 출력용: 미사용
 import { useRef } from 'react'; // PDF 출력용: useState, useEffect 제거
 import {
   Radio,
@@ -46,7 +46,7 @@ interface Project {
 
 const Projects = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  // const isInView = useInView(ref, { once: true, margin: "-100px" }); // PDF 출력용: 미사용
   // PDF 출력용으로 일시적으로 비활성화
   // const [expandedProject, setExpandedProject] = useState<string | null>(null);
   // const [isPrinting, setIsPrinting] = useState(false);
@@ -233,14 +233,14 @@ const Projects = () => {
 
   const ProjectCard = ({ project, index }: { project: Project; index: number }) => {
     const cardRef = useRef(null);
-    const cardInView = useInView(cardRef, { once: true, margin: "-100px" });
+    // const cardInView = useInView(cardRef, { once: true, margin: "-100px" }); // PDF 출력용: 미사용
     // PDF 출력용: 모든 프로젝트 항상 펼침 상태 (isExpanded 제거)
 
     return (
       <motion.div
         ref={cardRef}
         initial={{ opacity: 0, y: 50 }}
-        animate={cardInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }} // PDF 출력용: 항상 표시
         transition={{ delay: index * 0.2, duration: 0.6 }}
         className="glass-card overflow-hidden hover-lift"
       >
@@ -439,7 +439,7 @@ const Projects = () => {
     <section ref={ref} className="section-container" id="projects">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }} // PDF 출력용: 항상 표시
         transition={{ duration: 0.6 }}
         className="space-y-12"
       >
