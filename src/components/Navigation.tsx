@@ -1,10 +1,12 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Languages } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,10 +18,10 @@ const Navigation = () => {
   }, []);
 
   const navItems = [
-    { label: 'About', href: '#about' },
-    { label: 'Tech Stack', href: '#tech-stack' },
-    { label: 'Projects', href: '#projects' },
-    { label: 'Contact', href: '#contact' },
+    { label: t('소개', 'About'), href: '#about' },
+    { label: t('기술 스택', 'Tech Stack'), href: '#tech-stack' },
+    { label: t('프로젝트', 'Projects'), href: '#projects' },
+    { label: t('연락처', 'Contact'), href: '#contact' },
   ];
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -69,6 +71,16 @@ const Navigation = () => {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-blue-600 group-hover:w-full transition-all duration-300" />
               </a>
             ))}
+
+            {/* Language Toggle Button */}
+            <button
+              onClick={() => setLanguage(language === 'ko' ? 'en' : 'ko')}
+              className="flex items-center gap-2 px-3 py-1.5 text-dark-700 hover:text-primary-600 font-medium transition-colors border border-slate-300 rounded-full hover:border-primary-600"
+              title={language === 'ko' ? 'Switch to English' : '한국어로 전환'}
+            >
+              <Languages className="w-4 h-4" />
+              <span className="text-sm">{language === 'ko' ? 'EN' : 'KO'}</span>
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -98,6 +110,15 @@ const Navigation = () => {
                 {item.label}
               </a>
             ))}
+
+            {/* Mobile Language Toggle */}
+            <button
+              onClick={() => setLanguage(language === 'ko' ? 'en' : 'ko')}
+              className="w-full flex items-center justify-center gap-2 mt-4 px-4 py-2 text-dark-700 hover:text-primary-600 font-medium transition-colors border border-slate-300 rounded-full hover:border-primary-600"
+            >
+              <Languages className="w-4 h-4" />
+              <span className="text-sm">{language === 'ko' ? 'English' : '한국어'}</span>
+            </button>
           </motion.div>
         )}
       </div>

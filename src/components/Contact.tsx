@@ -1,11 +1,13 @@
 import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
+// import { useInView } from 'framer-motion'; // PDF 출력용: 미사용
 import { useRef } from 'react';
 import { Mail, Github, BookOpen, Send } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Contact = () => {
+  const { t } = useLanguage();
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  // const isInView = useInView(ref, { once: true, margin: "-100px" }); // PDF 출력용: 미사용
 
   const contacts = [
     {
@@ -35,7 +37,7 @@ const Contact = () => {
     <section ref={ref} className="section-container bg-white/30" id="contact">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }} // PDF 출력용: 항상 표시
         transition={{ duration: 0.6 }}
         className="space-y-12"
       >
@@ -43,7 +45,7 @@ const Contact = () => {
         <div className="text-center space-y-4">
           <h2 className="text-4xl sm:text-5xl font-bold gradient-text">Contact</h2>
           <p className="text-xl text-dark-600 max-w-2xl mx-auto">
-            언제든지 연락주세요!
+            {t('언제든지 연락주세요!', 'Feel free to reach out anytime!')}
           </p>
         </div>
 
@@ -56,7 +58,7 @@ const Contact = () => {
               target={contact.link.startsWith('http') ? '_blank' : undefined}
               rel={contact.link.startsWith('http') ? 'noopener noreferrer' : undefined}
               initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }} // PDF 출력용: 항상 표시
               transition={{ delay: index * 0.1, duration: 0.6 }}
               className="glass-card p-6 hover-lift group cursor-pointer"
             >
@@ -80,24 +82,31 @@ const Contact = () => {
         {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }} // PDF 출력용: 항상 표시
           transition={{ delay: 0.4, duration: 0.6 }}
           className="text-center"
         >
           <div className="glass-card p-8 max-w-3xl mx-auto">
             <h3 className="text-2xl font-bold text-dark-800 mb-4">
-              새로운 기술적 도전을 기다립니다
+              {t('새로운 기술적 도전을 기다립니다', 'Looking forward to new technical challenges')}
             </h3>
             <p className="text-dark-600 mb-6 leading-relaxed">
-              AI/ML 프로젝트, 모델 최적화, 엣지 AI 솔루션 등<br />
-              협업 및 성장 기회에 열려있습니다
+              {t(
+                'AI/ML 프로젝트, 모델 최적화, 엣지 AI 솔루션 등',
+                'AI/ML projects, model optimization, edge AI solutions, etc.'
+              )}
+              <br />
+              {t(
+                '협업 및 성장 기회에 열려있습니다',
+                'Open to collaboration and growth opportunities'
+              )}
             </p>
             <a
               href="mailto:gwon99065@naver.com"
               className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary-500 to-blue-600 text-white rounded-2xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
             >
               <Send className="w-5 h-5" />
-              이메일 보내기
+              {t('이메일 보내기', 'Send Email')}
             </a>
           </div>
         </motion.div>
@@ -105,7 +114,7 @@ const Contact = () => {
         {/* Footer */}
         <motion.div
           initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          animate={{ opacity: 1 }} // PDF 출력용: 항상 표시
           transition={{ delay: 0.6, duration: 0.6 }}
           className="text-center pt-12 border-t border-slate-200"
         >
