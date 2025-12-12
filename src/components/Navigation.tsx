@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { Menu, X, Languages } from 'lucide-react';
+import { Menu, X, Languages, FileDown } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const Navigation = () => {
@@ -73,6 +73,16 @@ const Navigation = () => {
               </a>
             ))}
 
+            {/* Resume PDF Button */}
+            <a
+              href="#resume"
+              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary-500 to-blue-600 text-white rounded-full font-medium transition-all hover:scale-105 shadow-md hover:shadow-lg"
+              title={t('이력서 PDF', 'Resume PDF')}
+            >
+              <FileDown className="w-4 h-4" />
+              <span className="text-sm">{t('이력서', 'Resume')}</span>
+            </a>
+
             {/* Language Toggle Button */}
             <button
               onClick={() => setLanguage(language === 'ko' ? 'en' : 'ko')}
@@ -111,6 +121,16 @@ const Navigation = () => {
                 {item.label}
               </a>
             ))}
+
+            {/* Mobile Resume PDF Button */}
+            <a
+              href="#resume"
+              className="w-full flex items-center justify-center gap-2 mt-4 px-4 py-3 bg-gradient-to-r from-primary-500 to-blue-600 text-white rounded-full font-medium shadow-md"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <FileDown className="w-4 h-4" />
+              <span>{t('이력서 PDF', 'Resume PDF')}</span>
+            </a>
 
             {/* Mobile Language Toggle */}
             <button
