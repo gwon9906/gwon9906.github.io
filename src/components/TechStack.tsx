@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 // import { useInView } from 'framer-motion'; // PDF 출력용: 미사용
 import { useRef } from 'react';
 import { Code2, Cpu, Wrench } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface TechItem {
   name: string;
@@ -10,6 +11,7 @@ interface TechItem {
 }
 
 const TechStack = () => {
+  const { t } = useLanguage();
   const ref = useRef(null);
   // const isInView = useInView(ref, { once: true, margin: "-100px" }); // PDF 출력용: 미사용
 
@@ -40,7 +42,7 @@ const TechStack = () => {
       color: 'from-primary-500 to-blue-600',
       bgColor: 'bg-primary-50',
       textColor: 'text-primary-700',
-      description: '프로젝트에 실제 사용하고 깊이 이해'
+      description: t('프로젝트에 실제 사용하고 깊이 이해', 'Deep understanding and practical project use')
     },
     {
       id: 'advanced',
@@ -49,7 +51,7 @@ const TechStack = () => {
       color: 'from-blue-600 to-indigo-600',
       bgColor: 'bg-blue-50',
       textColor: 'text-blue-700',
-      description: '실무 프로젝트에 자주 사용'
+      description: t('실무 프로젝트에 자주 사용', 'Frequently used in production projects')
     },
     {
       id: 'intermediate',
@@ -58,7 +60,7 @@ const TechStack = () => {
       color: 'from-indigo-600 to-purple-600',
       bgColor: 'bg-indigo-50',
       textColor: 'text-indigo-700',
-      description: '기본적인 사용 가능'
+      description: t('기본적인 사용 가능', 'Capable of basic usage')
     },
   ];
 
@@ -89,7 +91,7 @@ const TechStack = () => {
         <div className="text-center space-y-4">
           <h2 className="text-4xl sm:text-5xl font-bold gradient-text">Tech Stack</h2>
           <p className="text-xl text-dark-600 max-w-2xl mx-auto">
-            실제 프로젝트에서 사용한 핵심 기술들
+            {t('실제 프로젝트에서 사용한 핵심 기술들', 'Core technologies used in real projects')}
           </p>
         </div>
 
@@ -162,9 +164,18 @@ const TechStack = () => {
           className="text-center glass-card p-6 max-w-4xl mx-auto"
         >
           <p className="text-dark-700 leading-relaxed">
-            <span className="font-bold text-primary-600">Model Optimization</span>과{' '}
-            <span className="font-bold text-blue-600">Embedded AI</span>에 특화된 기술 스택을 보유하고 있으며,
-            실제 프로젝트를 통해 <span className="font-bold text-indigo-600">End-to-End</span> 구현 경험을 쌓아왔습니다.
+            {t(
+              '과',
+              'I have a tech stack specialized in'
+            )}{' '}
+            <span className="font-bold text-primary-600">Model Optimization</span>
+            {t(' ', ' and ')}<span className="font-bold text-blue-600">Embedded AI</span>
+            {t(
+              '에 특화된 기술 스택을 보유하고 있으며, 실제 프로젝트를 통해',
+              ', and have built'
+            )}{' '}
+            <span className="font-bold text-indigo-600">End-to-End</span>{' '}
+            {t('구현 경험을 쌓아왔습니다.', 'implementation experience through real projects.')}
           </p>
         </motion.div>
       </motion.div>

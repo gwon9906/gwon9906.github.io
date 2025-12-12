@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Home, User, Code, Briefcase, Mail } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const TableOfContents = () => {
+  const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
 
   const sections = [
-    { id: 'hero', label: '홈', icon: Home },
-    { id: 'about', label: '소개', icon: User },
-    { id: 'tech-stack', label: '기술 스택', icon: Code },
-    { id: 'projects', label: '프로젝트', icon: Briefcase },
-    { id: 'contact', label: '연락처', icon: Mail },
+    { id: 'hero', label: t('홈', 'Home'), icon: Home },
+    { id: 'about', label: t('소개', 'About'), icon: User },
+    { id: 'tech-stack', label: t('기술 스택', 'Tech Stack'), icon: Code },
+    { id: 'projects', label: t('프로젝트', 'Projects'), icon: Briefcase },
+    { id: 'contact', label: t('연락처', 'Contact'), icon: Mail },
   ];
 
   const scrollToSection = (id: string) => {
@@ -31,7 +33,7 @@ const TableOfContents = () => {
         transition={{ delay: 1, type: 'spring', stiffness: 260, damping: 20 }}
         onClick={() => setIsOpen(!isOpen)}
         className="fixed bottom-8 right-8 z-50 w-16 h-16 bg-gradient-to-br from-primary-500 to-blue-600 text-white rounded-full shadow-2xl hover:shadow-primary-500/50 transition-all duration-300 hover:scale-110 flex items-center justify-center"
-        aria-label="목차 열기"
+        aria-label={t('목차 열기', 'Open table of contents')}
       >
         <AnimatePresence mode="wait">
           {isOpen ? (

@@ -1,7 +1,10 @@
 import { motion } from 'framer-motion';
 import { Github, Mail, BookOpen, ChevronDown } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Hero = () => {
+  const { t } = useLanguage();
+
   const scrollToProjects = () => {
     document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -72,8 +75,17 @@ const Hero = () => {
               transition={{ delay: 0.7, duration: 0.6 }}
               className="text-lg text-dark-500 max-w-2xl mx-auto leading-relaxed"
             >
-              하드웨어의 제약을 넘어, 데이터의 잠재력을 극대화하는 AI 엔지니어<br />
-              <span className="font-semibold text-dark-700">페이로드 62.5% 압축 · MAPE 98% 개선 · Edge 실시간 구동</span>
+              {t(
+                '하드웨어의 제약을 넘어, 데이터의 잠재력을 극대화하는 AI 엔지니어',
+                'AI Engineer maximizing data potential beyond hardware limitations'
+              )}
+              <br />
+              <span className="font-semibold text-dark-700">
+                {t(
+                  '페이로드 62.5% 압축 · MAPE 98% 개선 · Edge 실시간 구동',
+                  '62.5% Payload Compression · 98% MAPE Improvement · Real-time Edge Deployment'
+                )}
+              </span>
             </motion.p>
           </div>
 
@@ -92,7 +104,7 @@ const Hero = () => {
               }}
               className="group px-8 py-4 bg-gradient-to-r from-primary-500 to-blue-600 text-white rounded-2xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
             >
-              프로젝트 보기
+              {t('프로젝트 보기', 'View Projects')}
               <ChevronDown className="inline-block ml-2 w-5 h-5 group-hover:translate-y-1 transition-transform" />
             </a>
 
@@ -111,7 +123,7 @@ const Hero = () => {
               className="px-8 py-4 bg-white/90 backdrop-blur-sm text-dark-700 rounded-2xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-slate-200/50 flex items-center gap-2"
             >
               <Mail className="w-5 h-5" />
-              이메일
+              {t('이메일', 'Email')}
             </a>
 
             <a
@@ -121,7 +133,7 @@ const Hero = () => {
               className="px-8 py-4 bg-white/90 backdrop-blur-sm text-dark-700 rounded-2xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-slate-200/50 flex items-center gap-2"
             >
               <BookOpen className="w-5 h-5" />
-              블로그
+              {t('블로그', 'Blog')}
             </a>
           </motion.div>
 
