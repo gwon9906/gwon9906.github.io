@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Home, User, Code, Briefcase, Mail } from 'lucide-react';
+import { Menu, X, Home, User, Award, Code, Briefcase, Mail } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const TableOfContents = () => {
@@ -10,6 +10,7 @@ const TableOfContents = () => {
   const sections = [
     { id: 'hero', label: t('홈', 'Home'), icon: Home },
     { id: 'about', label: t('소개', 'About'), icon: User },
+    { id: 'experience', label: t('경력', 'Experience'), icon: Award },
     { id: 'tech-stack', label: t('기술 스택', 'Tech Stack'), icon: Code },
     { id: 'projects', label: t('프로젝트', 'Projects'), icon: Briefcase },
     { id: 'contact', label: t('연락처', 'Contact'), icon: Mail },

@@ -66,7 +66,10 @@ const Hero = () => {
               transition={{ delay: 0.6, duration: 0.6 }}
               className="text-xl sm:text-2xl text-dark-600 max-w-3xl mx-auto font-medium"
             >
-              Data-Centric AI · Edge Optimization
+              {t(
+                'AI/ML 엔지니어링 · 엣지/임베디드 최적화 · IoT/통신',
+                'AI/ML Engineering · Edge/Embedded Optimization · IoT/Communication'
+              )}
             </motion.p>
 
             <motion.p

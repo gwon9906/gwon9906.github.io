@@ -19,6 +19,7 @@ const Navigation = () => {
 
   const navItems = [
     { label: t('소개', 'About'), href: '#about' },
+    { label: t('경력', 'Experience'), href: '#experience' },
     { label: t('기술 스택', 'Tech Stack'), href: '#tech-stack' },
     { label: t('프로젝트', 'Projects'), href: '#projects' },
     { label: t('연락처', 'Contact'), href: '#contact' },
