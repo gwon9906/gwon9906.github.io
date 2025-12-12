@@ -1,0 +1,394 @@
+/* Resume Page Styles */
+.resume-container {
+  background: white;
+  color: #1a1a1a;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  line-height: 1.6;
+}
+
+/* Control Buttons - Screen Only */
+.resume-controls {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 12px;
+  z-index: 1000;
+}
+
+.control-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.back-btn {
+  background: white;
+  color: #1e40af;
+  border: 2px solid #1e40af;
+}
+
+.back-btn:hover {
+  background: #1e40af;
+  color: white;
+}
+
+.print-btn {
+  background: linear-gradient(to right, #3b82f6, #2563eb);
+  color: white;
+  border: none;
+}
+
+.print-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+}
+
+/* Page layout - A4 size */
+.resume-page {
+  width: 210mm;
+  min-height: 297mm;
+  padding: 20mm;
+  margin: 0 auto 10mm;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  page-break-after: always;
+}
+
+.resume-page:last-child {
+  page-break-after: auto;
+}
+
+/* Header */
+.resume-header {
+  text-align: center;
+  margin-bottom: 15px;
+  border-bottom: 3px solid #2563eb;
+  padding-bottom: 15px;
+}
+
+.resume-name {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  color: #1e40af;
+}
+
+.resume-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #475569;
+  margin: 0;
+}
+
+/* Contact Info */
+.resume-contact {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-bottom: 15px;
+  font-size: 11px;
+  padding: 12px;
+  background: #f8fafc;
+  border-radius: 6px;
+}
+
+.contact-item {
+  color: #334155;
+}
+
+.contact-item strong {
+  color: #1e293b;
+  margin-right: 6px;
+}
+
+/* Divider */
+.resume-divider {
+  height: 2px;
+  background: linear-gradient(to right, #e2e8f0, #cbd5e1, #e2e8f0);
+  margin: 15px 0;
+}
+
+/* Section */
+.resume-section {
+  margin-bottom: 18px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1e40af;
+  margin: 0 0 10px 0;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #3b82f6;
+}
+
+.section-content {
+  font-size: 11px;
+  margin: 8px 0;
+  color: #334155;
+  text-align: justify;
+}
+
+/* Lists */
+.resume-list {
+  margin: 8px 0;
+  padding-left: 20px;
+  font-size: 11px;
+  color: #334155;
+}
+
+.resume-list li {
+  margin: 4px 0;
+}
+
+/* Strengths */
+.strength-item {
+  margin-bottom: 12px;
+}
+
+.strength-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1e40af;
+  margin: 0 0 5px 0;
+}
+
+/* Tech Stack */
+.tech-category {
+  font-size: 11px;
+  margin: 5px 0;
+  color: #334155;
+}
+
+.tech-category strong {
+  color: #1e293b;
+}
+
+/* Education */
+.education-item {
+  margin-bottom: 10px;
+}
+
+.education-header {
+  font-size: 12px;
+  margin-bottom: 5px;
+  color: #1e293b;
+}
+
+/* Research */
+.research-item {
+  margin-bottom: 10px;
+}
+
+.research-header {
+  font-size: 12px;
+  margin-bottom: 3px;
+  color: #1e293b;
+}
+
+.research-period {
+  font-size: 11px;
+  color: #64748b;
+  margin-bottom: 3px;
+}
+
+.research-topic {
+  font-size: 11px;
+  font-weight: 600;
+  color: #334155;
+  margin: 5px 0 3px 0;
+}
+
+/* Project Sections */
+.project-section {
+  margin-bottom: 15px;
+}
+
+.project-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e40af;
+  margin: 0 0 5px 0;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #3b82f6;
+}
+
+.project-subtitle {
+  font-size: 12px;
+  color: #475569;
+  margin: 0 0 10px 0;
+  font-style: italic;
+}
+
+.project-meta {
+  background: #f8fafc;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  font-size: 10px;
+}
+
+.meta-item {
+  margin: 3px 0;
+  color: #334155;
+}
+
+.meta-item strong {
+  color: #1e293b;
+  margin-right: 4px;
+}
+
+.subsection-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1e40af;
+  margin: 10px 0 6px 0;
+}
+
+.project-content {
+  font-size: 10.5px;
+  margin: 6px 0;
+  color: #334155;
+  text-align: justify;
+  line-height: 1.5;
+}
+
+.project-list {
+  margin: 6px 0;
+  padding-left: 18px;
+  font-size: 10.5px;
+  color: #334155;
+  line-height: 1.5;
+}
+
+.project-list li {
+  margin: 5px 0;
+}
+
+.project-list li strong {
+  color: #1e293b;
+}
+
+.tech-stack-footer {
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px solid #e2e8f0;
+  font-size: 11px;
+  color: #334155;
+}
+
+.tech-stack-footer strong {
+  color: #1e293b;
+}
+
+/* Print Styles */
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .resume-container {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Hide control buttons when printing */
+  .no-print {
+    display: none !important;
+  }
+
+  .resume-page {
+    width: 100%;
+    min-height: 0;
+    margin: 0;
+    padding: 15mm;
+    box-shadow: none;
+    page-break-after: always;
+  }
+
+  .resume-page:last-child {
+    page-break-after: auto;
+  }
+
+  /* Ensure colors print correctly */
+  .resume-header {
+    border-bottom-color: #2563eb !important;
+  }
+
+  .resume-name {
+    color: #1e40af !important;
+  }
+
+  .section-title,
+  .project-title,
+  .subsection-title,
+  .strength-title {
+    color: #1e40af !important;
+  }
+
+  .section-title,
+  .project-title {
+    border-bottom-color: #3b82f6 !important;
+  }
+
+  .resume-contact,
+  .project-meta {
+    background-color: #f8fafc !important;
+  }
+
+  /* Prevent page breaks inside elements */
+  .resume-section,
+  .project-section,
+  .strength-item,
+  .education-item,
+  .research-item {
+    page-break-inside: avoid;
+  }
+
+  h2, h3 {
+    page-break-after: avoid;
+  }
+
+  ul, ol {
+    page-break-inside: avoid;
+  }
+
+  li {
+    page-break-inside: avoid;
+  }
+}
+
+/* Screen-only styles */
+@media screen {
+  .resume-container {
+    padding: 20px;
+    background: #f1f5f9;
+    min-height: 100vh;
+  }
+
+  .resume-page {
+    margin-bottom: 20px;
+  }
+
+  .resume-page:last-child {
+    margin-bottom: 40px;
+  }
+}
