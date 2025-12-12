@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
+// import { useInView } from 'framer-motion'; // PDF 출력용: 미사용
 import { useRef } from 'react';
 import { Mail, Github, BookOpen, Send } from 'lucide-react';
 
 const Contact = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  // const isInView = useInView(ref, { once: true, margin: "-100px" }); // PDF 출력용: 미사용
 
   const contacts = [
     {
@@ -35,7 +35,7 @@ const Contact = () => {
     <section ref={ref} className="section-container bg-white/30" id="contact">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }} // PDF 출력용: 항상 표시
         transition={{ duration: 0.6 }}
         className="space-y-12"
       >
@@ -56,7 +56,7 @@ const Contact = () => {
               target={contact.link.startsWith('http') ? '_blank' : undefined}
               rel={contact.link.startsWith('http') ? 'noopener noreferrer' : undefined}
               initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }} // PDF 출력용: 항상 표시
               transition={{ delay: index * 0.1, duration: 0.6 }}
               className="glass-card p-6 hover-lift group cursor-pointer"
             >
@@ -80,7 +80,7 @@ const Contact = () => {
         {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }} // PDF 출력용: 항상 표시
           transition={{ delay: 0.4, duration: 0.6 }}
           className="text-center"
         >
@@ -105,7 +105,7 @@ const Contact = () => {
         {/* Footer */}
         <motion.div
           initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          animate={{ opacity: 1 }} // PDF 출력용: 항상 표시
           transition={{ delay: 0.6, duration: 0.6 }}
           className="text-center pt-12 border-t border-slate-200"
         >
