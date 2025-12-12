@@ -85,7 +85,7 @@ const Projects = () => {
   //   };
   // }, []);
 
-  const projects: Project[] = [
+  const rawProjects: Project[] = [
     {
       id: 'lora-bam',
       title: t(
@@ -108,8 +108,8 @@ const Projects = () => {
         { label: t('환경', 'Environment'), value: 'Raspberry Pi' },
       ],
       overview: t(
-        '저사양 엣지 디바이스(Raspberry Pi)에서 LoRa 통신의 고질적인 대역폭 문제를 해결하기 위해, 경량 BAM 모델을 활용한 실시간 데이터 압축/복원 시스템을 구축했습니다.',
-        'Built a real-time data compression/decompression system using a lightweight BAM model to solve the chronic bandwidth problem of LoRa communication on low-spec edge devices (Raspberry Pi).'
+        '저사양 엣지 디바이스(Raspberry Pi)에서 LoRa 통신의 고질적인 대역폭 문제를 해결하기 위해, 경량 Bidirectional Associative Memory (BAM) 모델을 활용한 실시간 데이터 압축/복원 시스템을 구축했습니다.',
+        'Built a real-time data compression/decompression system using a lightweight Bidirectional Associative Memory (BAM) model to solve the chronic bandwidth problem of LoRa communication on low-spec edge devices (Raspberry Pi).'
       ),
       context: t(
         'LoRa 통신은 넓은 커버리지를 갖지만 대역폭이 좁아, 데이터 길이가 길어질수록 패킷 충돌과 전송 실패(Drop)가 빈번했습니다. 특히 N-LOS(비가시권) 환경에서 신뢰성 확보가 필수적이었습니다.',
@@ -287,12 +287,12 @@ const Projects = () => {
         'Ultra-Lightweight Signal Compression Model for Edge-Cloud LoRa Demodulation'
       ),
       subtitle: t(
-        'Ultra-Low SNR 복조 보조를 위한 Multi-layer BAM 기반 Edge 압축기',
-        'Multi-layer BAM-based Edge Compressor for Ultra-Low SNR Demodulation Assistance'
+        'Ultra-Low SNR 복조 보조를 위한 Multi-layer Bidirectional Associative Memory (BAM) 기반 Edge 압축기',
+        'Multi-layer Bidirectional Associative Memory (BAM)-based Edge Compressor for Ultra-Low SNR Demodulation Assistance'
       ),
       role: t('개인 연구', 'Individual Research'),
       period: '2025.11 - 12',
-      status: 'completed',
+      status: 'in-progress',
       icon: Signal,
       gradient: 'from-orange-500 to-red-500',
       summary: [
@@ -397,6 +397,11 @@ const Projects = () => {
       techs: ['Python', 'PyTorch', 'NumPy', 'LoRa PHY', 'DSP', 'Edge Computing', 'BAM', 'Raspberry Pi'],
     },
   ];
+
+  // 최신순으로 정렬
+  const projects = [...rawProjects].sort((a, b) => {
+    return b.period.localeCompare(a.period);
+  });
 
   const ProjectCard = ({ project, index }: { project: Project; index: number }) => {
     const cardRef = useRef(null);
