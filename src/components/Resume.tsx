@@ -310,8 +310,8 @@ const Resume = () => {
               <strong>{t('해결', 'Solution')}:</strong> {t('Huber Loss를 제거하고 기존 Update Rule 중심으로 안정적인 학습 구조 유지', 'Removed Huber Loss and maintained stable learning structure centered on existing Update Rule')}
             </li>
             <li>
-              <strong>{t('문제', 'Challenge')}:</strong> {t('3층 구조(Layer 3) 수렴 불안정', '3-layer structure (Layer 3) convergence instability')}<br/>
-              <strong>{t('해결', 'Solution')}:</strong> {t('Layer-wise Freeze(1층→2층→3층 순차 학습) 전략으로 수렴 안정성 확보', 'Secured convergence stability through Layer-wise Freeze (sequential training Layer1→Layer2→Layer3) strategy')}
+              <strong>{t('문제', 'Challenge')}:</strong> {t('LoRa 심볼 분류에서 이론값과 불일치하는 정확도 문제', 'Symbol classification accuracy mismatching theoretical values in LoRa')}<br/>
+              <strong>{t('해결', 'Solution')}:</strong> {t('LoRa upchirp 신호의 대역폭 특성상 음수 주파수 영역의 신호가 FFT 수행 시 음수 인덱스에 정렬되는 점을 고려하여 주파수 축 재정렬 로직 추가, 이론값과 일치하는 정확도 달성', 'Added frequency axis reordering logic considering that negative frequency domain signals in LoRa upchirp align to negative indices during FFT due to bandwidth characteristics, achieved accuracy matching theoretical values')}
             </li>
           </ul>
 
@@ -420,6 +420,105 @@ const Resume = () => {
 
           <div className="tech-stack-footer">
             <strong>{t('사용 기술', 'Technologies Used')}:</strong> Python, NumPy, Raspberry Pi, LoRa, Edge Computing, GitHub
+          </div>
+        </section>
+      </div>
+
+      {/* Page 4 - Project 3 */}
+      <div className="resume-page">
+        <section className="project-section">
+          <h2 className="project-title">
+            [PROJECT 3] {t(
+              '시계열 데이터 기반 산업용 밸브 유량 예측 시스템',
+              'Industrial Valve Flow Prediction System Based on Time Series Data'
+            )}
+          </h2>
+          <div className="project-subtitle">
+            {t(
+              'Encoder-LSTM 설계를 통한 예측 오차(MAPE) 98% 개선',
+              '98% Prediction Error (MAPE) Improvement through Encoder-LSTM Design'
+            )}
+          </div>
+
+          <div className="project-meta">
+            <div className="meta-item"><strong>{t('구분', 'Type')}:</strong> {t('개인 연구', 'Individual Research')}</div>
+            <div className="meta-item"><strong>{t('기간', 'Period')}:</strong> 2024.07 ~ 12 ({t('완료', 'Completed')})</div>
+            <div className="meta-item"><strong>{t('역할', 'Role')}:</strong> {t('모델 설계, 데이터 분석, Loss Function 최적화, 학습 전략 설계', 'Model design, Data analysis, Loss function optimization, Training strategy design')}</div>
+            <div className="meta-item"><strong>{t('성과', 'Results')}:</strong> MAPE 10.0 → 0.188 ({t('약', 'approx.')} 98% {t('개선', 'improvement')})</div>
+            <div className="meta-item"><strong>{t('환경', 'Environment')}:</strong> PyTorch, LSTM, Time Series Analysis</div>
+          </div>
+
+          <h3 className="subsection-title">Overview</h3>
+          <p className="project-content">
+            {t(
+              '불연속적인 산업 데이터의 특성을 고려한 Encoder-LSTM 모델 설계로 기존 대비 예측 오차(MAPE) 98% 개선을 달성했습니다. 개도율 0 지점의 불연속성 및 센서 이상치 문제를 해결하여 실제 산업 환경에 적용 가능한 예측 시스템을 구축했습니다.',
+              'Achieved 98% improvement in prediction error (MAPE) compared to baseline through Encoder-LSTM model design considering the characteristics of discontinuous industrial data. Built a prediction system applicable to real industrial environments by resolving discontinuities at valve opening rate 0 and sensor outlier issues.'
+            )}
+          </p>
+
+          <h3 className="subsection-title">Context</h3>
+          <p className="project-content">
+            {t(
+              '기존 LSTM 구조는 개도율 0 지점에서 불연속성이 발생하고, 센서 이상치(Outlier)에 대한 민감도가 높아 실제 산업 환경 적용에 한계가 있었습니다. 특히 불규칙한 밸브 작동 패턴과 센서 노이즈로 인해 예측 오차가 크고 분산이 높은 문제가 있었습니다.',
+              'Existing LSTM structures had discontinuities at valve opening rate 0 and high sensitivity to sensor outliers, limiting application in real industrial environments. In particular, irregular valve operation patterns and sensor noise caused large prediction errors and high variance.'
+            )}
+          </p>
+
+          <h3 className="subsection-title">Approach</h3>
+          <ul className="project-list">
+            <li>
+              <strong>{t('Encoder-LSTM 구조 재설계', 'Encoder-LSTM Structure Redesign')}:</strong> {t('계층적 특징 추출이 가능하도록 Encoder-LSTM 구조로 재설계하여 시계열 패턴의 장기 의존성(Long-term Dependency) 학습 능력 향상', 'Redesigned to Encoder-LSTM structure for hierarchical feature extraction, improving long-term dependency learning capability of time series patterns')}
+            </li>
+            <li>
+              <strong>{t('시퀀스 재초기화 로직 추가', 'Sequence Reset Logic Addition')}:</strong> {t('개도율 0 구간에서 LSTM Hidden State를 재초기화하는 로직을 추가하여 불연속성 구간에서의 예측 안정성 확보', 'Added logic to reset LSTM Hidden State at valve opening rate 0 to secure prediction stability in discontinuous sections')}
+            </li>
+            <li>
+              <strong>{t('Huber Loss 도입', 'Huber Loss Introduction')}:</strong> {t('이상치에 강건한 Huber Loss를 도입하여 센서 노이즈 및 Outlier에 대한 모델의 견고성(Robustness) 향상', 'Improved model robustness against sensor noise and outliers by introducing outlier-resistant Huber Loss')}
+            </li>
+            <li>
+              <strong>{t('정규화 파이프라인 최적화', 'Normalization Pipeline Optimization')}:</strong> {t('데이터 특성 분석을 통해 불필요한 정규화 단계를 제거하고, 예측 분산을 크게 축소하여 일관된 예측 품질 달성', 'Removed unnecessary normalization steps through data characteristic analysis, significantly reduced prediction variance to achieve consistent prediction quality')}
+            </li>
+          </ul>
+
+          <h3 className="subsection-title">Results</h3>
+          <ul className="project-list">
+            <li>
+              <strong>{t('예측 오차 대폭 개선', 'Significant Prediction Error Improvement')}:</strong> MAPE 10.0 → 0.188 ({t('약', 'approx.')} 98% {t('개선', 'improvement')}), {t('산업 환경에서 실용적인 수준의 정확도 달성', 'achieved practical accuracy level in industrial environments')}
+            </li>
+            <li>
+              <strong>{t('이상치 강건성 확보', 'Outlier Robustness Secured')}:</strong> Huber Loss {t('적용으로 센서 이상치에 대한 모델 안정성 향상, 급격한 예측 오차 발생 빈도 감소', 'improved model stability against sensor outliers by applying, reduced frequency of sudden prediction error occurrences')}
+            </li>
+            <li>
+              <strong>{t('예측 분산 축소', 'Prediction Variance Reduction')}:</strong> {t('정규화 최적화를 통해 예측 일관성 향상, 실제 운용 환경에서의 신뢰성 증대', 'Improved prediction consistency through normalization optimization, increased reliability in actual operating environments')}
+            </li>
+          </ul>
+
+          <h3 className="subsection-title">Challenges & Solutions</h3>
+          <ul className="project-list">
+            <li>
+              <strong>{t('문제', 'Challenge')}:</strong> {t('개도율 0 구간에서 불연속성으로 인한 예측 오차 급증', 'Sudden prediction error increase due to discontinuity at valve opening rate 0')}<br/>
+              <strong>{t('해결', 'Solution')}:</strong> {t('개도율 0 감지 시 LSTM Hidden State를 재초기화하는 시퀀스 리셋 로직을 설계·적용하여 불연속 구간에서의 예측 안정성 확보', 'Designed and applied sequence reset logic that reinitializes LSTM Hidden State when valve opening rate 0 is detected, securing prediction stability in discontinuous sections')}
+            </li>
+            <li>
+              <strong>{t('문제', 'Challenge')}:</strong> {t('센서 이상치에 대한 높은 민감도로 예측 품질 저하', 'Prediction quality degradation due to high sensitivity to sensor outliers')}<br/>
+              <strong>{t('해결', 'Solution')}:</strong> {t('MSE Loss에서 Huber Loss로 전환하여 이상치에 강건한 학습 구조 구축, 예측 안정성 향상', 'Built outlier-resistant learning structure by switching from MSE Loss to Huber Loss, improved prediction stability')}
+            </li>
+            <li>
+              <strong>{t('문제', 'Challenge')}:</strong> {t('데이터 정밀도 불균형으로 인한 예측 분산 증가', 'Increased prediction variance due to data precision imbalance')}<br/>
+              <strong>{t('해결', 'Solution')}:</strong> {t('과도한 정규화가 오히려 분산을 증가시킨다는 점을 발견, 정규화 파이프라인을 단순화하여 예측 일관성 크게 개선', 'Discovered that excessive normalization actually increases variance, significantly improved prediction consistency by simplifying normalization pipeline')}
+            </li>
+          </ul>
+
+          <h3 className="subsection-title">Next Steps</h3>
+          <p className="project-content">
+            {t(
+              '현재 모델을 기반으로 도메인별(제조 공정별) 하이퍼파라미터 최적화 작업 진행 중이며, 실시간 적용 환경으로의 확장을 계획하고 있습니다. 산업체 협력 프로젝트로 저장소는 비공개 상태입니다.',
+              'Currently working on hyperparameter optimization by domain (manufacturing process) based on current model, planning expansion to real-time application environment. Repository is private due to industry collaboration project.'
+            )}
+          </p>
+
+          <div className="tech-stack-footer">
+            <strong>{t('사용 기술', 'Technologies Used')}:</strong> Python, PyTorch, LSTM, Encoder-Decoder, Time Series, Huber Loss
           </div>
         </section>
       </div>

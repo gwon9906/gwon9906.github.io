@@ -368,12 +368,12 @@ const Projects = () => {
         },
         {
           problem: t(
-            'Layer3 수렴 불안정성',
-            'Layer3 convergence instability'
+            'LoRa 심볼 분류에서 이론값과 불일치하는 정확도 문제',
+            'Symbol classification accuracy mismatching theoretical values in LoRa'
           ),
           solution: t(
-            'Layer-wise Freeze 방식(1층→2층→3층 순차 학습) 도입으로 해결',
-            'Resolved by introducing Layer-wise Freeze approach (sequential training Layer1→Layer2→Layer3)'
+            'LoRa upchirp 신호의 대역폭 특성상 음수 주파수 영역의 신호가 FFT 수행 시 음수 인덱스에 정렬되는 점을 고려하여 주파수 축 재정렬 로직 추가, 이론값과 일치하는 정확도 달성',
+            'Added frequency axis reordering logic considering that negative frequency domain signals in LoRa upchirp align to negative indices during FFT due to bandwidth characteristics, achieved accuracy matching theoretical values'
           ),
         },
         {
