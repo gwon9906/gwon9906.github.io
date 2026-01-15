@@ -296,14 +296,14 @@ const Projects = () => {
       icon: Signal,
       gradient: 'from-orange-500 to-red-500',
       summary: [
-        { label: t('SNR -25dB 개선', 'SNR -25dB Improvement'), value: '+11.0%p' },
-        { label: t('차원 압축', 'Dimension Compression'), value: '93.5%' },
-        { label: t('복조율', 'Demodulation Rate'), value: '27.8%' },
+        { label: t('상태', 'Status'), value: t('진행 중', 'In Progress') },
+        { label: t('목표', 'Goal'), value: 'Ultra-Low SNR' },
+        { label: t('압축률', 'Compression'), value: '93.5%' },
         { label: t('환경', 'Environment'), value: 'Raspberry Pi' },
       ],
       overview: t(
-        'Ultra-Low SNR(–25 ~ –30 dB) 환경에서 복조 실패한 LoRa 신호를 Cloud(C-RAN)로 전송하여 복조하는 시스템을 위해, Edge 단에서 전송 부담을 최소화하면서 LoRa Chirp 구조를 유지하는 초경량 신호 압축 모델을 개발했습니다.',
-        'Developed an ultra-lightweight signal compression model that minimizes transmission burden at the Edge while preserving LoRa Chirp structure for a system that sends demodulation-failed LoRa signals to Cloud (C-RAN) for demodulation in Ultra-Low SNR (–25 ~ –30 dB) environments.'
+        'Ultra-Low SNR(–25 ~ –30 dB) 환경에서 복조 실패한 LoRa 신호를 Cloud(C-RAN)로 전송하여 복조하는 시스템을 위해, Edge 단에서 전송 부담을 최소화하면서 LoRa Chirp 구조를 유지하는 초경량 신호 압축 모델을 개발하고 있습니다.',
+        'Developing an ultra-lightweight signal compression model that minimizes transmission burden at the Edge while preserving LoRa Chirp structure for a system that sends demodulation-failed LoRa signals to Cloud (C-RAN) for demodulation in Ultra-Low SNR (–25 ~ –30 dB) environments.'
       ),
       context: t(
         'Ultra-Low SNR 환경에서는 표준 LoRa dechirp+FFT 복조가 실패합니다. 복조 실패 신호를 Cloud(C-RAN)에 보내 여러 Edge에서 모은 실패 신호를 합쳐 복조하는 방식이 필요하나, IQ 데이터를 원본으로 전송하면 전송 비용이 과도하여 Edge 단에서 압축 + 신호 구조 보존 + 노이즈 억제를 동시에 수행할 필요가 있었습니다.',
@@ -329,20 +329,20 @@ const Projects = () => {
       ],
       results: [
         t(
-          'SNR –30 dB: Baseline 2.5% → BAM 5.8% (+3.3%p), SNR –25 dB: Baseline 16.8% → BAM 27.8% (+11.0%p) 달성',
-          'Achieved SNR –30 dB: Baseline 2.5% → BAM 5.8% (+3.3%p), SNR –25 dB: Baseline 16.8% → BAM 27.8% (+11.0%p)'
+          'Complex-valued BAM 기반 스펙트로그램 디노이저 설계: 실수부/허수부를 분리 처리하는 구조 구현',
+          'Complex-valued BAM-based Spectrogram Denoiser Design: Implemented structure for separate processing of real/imaginary parts'
         ),
         t(
-          '입력 7,936차원 → 512차원 (약 93.5% 데이터 절감), 평균 복원 오차 MSE ≈ 0.003 ~ 0.006',
-          'Input 7,936 dimensions → 512 dimensions (approximately 93.5% data reduction), average reconstruction error MSE ≈ 0.003 ~ 0.006'
+          'Lagrange 안정성 조건 적용: 위상 보존 활성화 함수 구현을 통해 학습 안정성 확보',
+          'Applied Lagrange Stability Condition: Secured learning stability through implementation of phase-preserving activation functions'
         ),
         t(
-          '표준 LoRa 복조가 완전히 실패하는 –25 ~ –30 dB에서 실제 개선 효과 확인, Cloud(C-RAN) 복조 성공률 향상',
-          'Confirmed actual improvement at –25 ~ –30 dB where standard LoRa demodulation completely fails, improved Cloud (C-RAN) demodulation success rate'
+          'STFT 기반 전처리 파이프라인 구축: 시간-주파수 변환 및 정규화 로직 완성',
+          'Built STFT-based Preprocessing Pipeline: Completed time-frequency transformation and normalization logic'
         ),
         t(
-          'Raspberry Pi 환경에서 실시간 처리 가능 속도 확보',
-          'Secured real-time processing speed in Raspberry Pi environment'
+          '학습 안정성 및 복원 품질 개선 실험 진행 중: 다양한 SNR 구간에서 성능 검증 중',
+          'Ongoing Experiments for Learning Stability and Restoration Quality: Validating performance across various SNR ranges'
         ),
       ],
       challenges: [
@@ -398,8 +398,12 @@ const Projects = () => {
     },
   ];
 
-  // 최신순으로 정렬
+  // 완료된 프로젝트 최신순, 진행 중인 프로젝트는 마지막
   const projects = [...rawProjects].sort((a, b) => {
+    // status 기준: completed가 in-progress보다 먼저
+    if (a.status === 'completed' && b.status === 'in-progress') return -1;
+    if (a.status === 'in-progress' && b.status === 'completed') return 1;
+    // status가 같으면 period 역순 (최신순)
     return b.period.localeCompare(a.period);
   });
 
