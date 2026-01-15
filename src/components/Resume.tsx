@@ -70,37 +70,8 @@ const Resume = () => {
           </h2>
           <p className="section-content">
             {t(
-              '통신·산업 환경에서 수집된 센서·신호 데이터를 기반으로 모델 설계부터 전처리, 학습, 배포까지 End-to-End로 수행해 온 AI/ML 엔지니어링 지망생입니다.',
-              'Aspiring AI/ML engineer with end-to-end experience from model design to preprocessing, training, and deployment based on sensor and signal data collected in communication and industrial environments.'
-            )}
-          </p>
-          <p className="section-content">
-            {t('특히', 'Particularly strong in')}
-          </p>
-          <ul className="resume-list">
-            <li>
-              {t(
-                '초저 SNR 환경의 LoRa 통신 신호 복원 및 전송 효율 개선',
-                'LoRa communication signal restoration and transmission efficiency improvement in ultra-low SNR environments'
-              )}
-            </li>
-            <li>
-              {t(
-                '산업용 밸브 유량 예측 및 이상 징후 탐지',
-                'Industrial valve flow prediction and anomaly detection'
-              )}
-            </li>
-          </ul>
-          <p className="section-content">
-            {t(
-              '와 같이 \'실제 물리 시스템과 연결된 문제\'를 데이터와 모델 구조를 함께 설계하여 해결하는 데 강점을 가지고 있습니다.',
-              'Excel at solving problems connected to real physical systems by co-designing data and model structures.'
-            )}
-          </p>
-          <p className="section-content">
-            {t(
-              '라즈베리파이 등 저사양 엣지 디바이스에서의 경량화·최적화 경험을 바탕으로, 제한된 자원에서 신뢰도 높은 AI 시스템을 구현하는 것을 목표로 하고 있습니다.',
-              'Aim to implement reliable AI systems with limited resources based on experience in lightweighting and optimization on low-spec edge devices such as Raspberry Pi.'
+              '저사양 Edge 환경에서 하드웨어 제약을 고려한 AI 모델 설계 및 최적화 경험을 보유한 AI/ML 엔지니어링 지망생입니다. LoRa 통신 신호 압축·복원 연구를 통해 물리적 한계를 알고리즘으로 극복하는 문제 해결에 강점을 가지고 있습니다.',
+              'Aspiring AI/ML engineer with experience in AI model design and optimization considering hardware constraints in low-spec Edge environments. Strong problem-solving skills in overcoming physical limitations through algorithms via LoRa communication signal compression and restoration research.'
             )}
           </p>
         </section>
@@ -113,7 +84,7 @@ const Resume = () => {
 
           <div className="strength-item">
             <h3 className="strength-title">
-              {t('Edge AI & 임베디드 최적화', 'Edge AI & Embedded Optimization')}
+              {t('하드웨어 제약 고려 모델 최적화', 'Model Optimization Considering Hardware Constraints')}
             </h3>
             <ul className="resume-list">
               <li>
@@ -133,7 +104,7 @@ const Resume = () => {
 
           <div className="strength-item">
             <h3 className="strength-title">
-              {t('통신·센서 데이터 기반 모델링', 'Communication & Sensor Data Modeling')}
+              {t('신호처리 기반 딥러닝', 'Signal Processing-based Deep Learning')}
             </h3>
             <ul className="resume-list">
               <li>
@@ -153,7 +124,7 @@ const Resume = () => {
 
           <div className="strength-item">
             <h3 className="strength-title">
-              {t('실험 설계 및 문제 정의', 'Experimental Design & Problem Definition')}
+              {t('빠른 프로토타이핑 및 실험 설계', 'Rapid Prototyping & Experimental Design')}
             </h3>
             <ul className="resume-list">
               <li>
@@ -235,101 +206,6 @@ const Resume = () => {
         <section className="project-section">
           <h2 className="project-title">
             [PROJECT 1] {t(
-              'Edge-Cloud LoRa Demodulation을 위한 초경량 신호 압축 모델',
-              'Ultra-Lightweight Signal Compression Model for Edge-Cloud LoRa Demodulation'
-            )}
-          </h2>
-          <div className="project-subtitle">
-            {t(
-              'Ultra-Low SNR 복조 보조를 위한 Multi-layer BAM 기반 Edge 압축기',
-              'Multi-layer BAM-based Edge Compressor for Ultra-Low SNR Demodulation Assistance'
-            )}
-          </div>
-
-          <div className="project-meta">
-            <div className="meta-item"><strong>{t('구분', 'Type')}:</strong> {t('개인 연구', 'Individual Research')}</div>
-            <div className="meta-item"><strong>{t('기간', 'Period')}:</strong> 2025.11 ~ {t('진행 중', 'In Progress')}</div>
-            <div className="meta-item"><strong>{t('역할', 'Role')}:</strong> {t('모델 설계, 실험 설계, Edge 추론 구조 구현', 'Model design, Experiment design, Edge inference implementation')}</div>
-            <div className="meta-item"><strong>{t('성과', 'Results')}:</strong> SNR –25 dB {t('구간 복조율', 'demodulation rate')} +11.0%p {t('개선', 'improvement')}, {t('약', 'approx.')} 93.5% {t('차원 압축', 'dimension compression')}</div>
-            <div className="meta-item"><strong>{t('환경', 'Environment')}:</strong> Raspberry Pi {t('기반 Edge 디바이스', 'based Edge device')}</div>
-          </div>
-
-          <h3 className="subsection-title">Overview</h3>
-          <p className="project-content">
-            {t(
-              'Ultra-Low SNR(–25 ~ –30 dB) 환경에서 복조에 실패한 LoRa 신호를 Cloud(C-RAN)로 전송해 재복조하는 시스템을 목표로, Edge 단에서 전송 부담을 최소화하면서도 LoRa Chirp 구조를 유지하는 초경량 신호 압축 모델을 개발했습니다.',
-              'Developed an ultra-lightweight signal compression model that minimizes transmission burden at the Edge while preserving LoRa Chirp structure for a system that sends demodulation-failed LoRa signals to Cloud (C-RAN) for re-demodulation in Ultra-Low SNR (–25 ~ –30 dB) environments.'
-            )}
-          </p>
-
-          <h3 className="subsection-title">Context</h3>
-          <p className="project-content">
-            {t(
-              '–25 dB 이하 환경에서는 표준 LoRa dechirp+FFT 복조가 거의 실패합니다. 복조 실패 신호를 Cloud(C-RAN)로 보내 여러 Edge에서 모은 신호를 결합해 복조하는 구조가 필요하지만, IQ 데이터를 그대로 전송하면 대역폭·전송 비용이 과도해집니다.',
-              'Standard LoRa dechirp+FFT demodulation almost completely fails in environments below –25 dB. While a structure that sends failed signals to Cloud (C-RAN) and combines signals from multiple Edges for demodulation is needed, transmitting raw IQ data incurs excessive bandwidth and transmission costs.'
-            )}
-          </p>
-
-          <h3 className="subsection-title">Approach</h3>
-          <ul className="project-list">
-            <li>
-              <strong>{t('LoRa PHY Demod Baseline 재구축', 'LoRa PHY Demod Baseline Reconstruction')}:</strong> {t('Upchirp/Downchirp 생성, Dechirp → FFT 기반 심볼 추출 체인을 파이썬으로 재현', 'Reproduced Upchirp/Downchirp generation and Dechirp → FFT-based symbol extraction chain in Python')}
-            </li>
-            <li>
-              <strong>{t('Spectrogram 기반 압축 인코딩', 'Spectrogram-based Compression Encoding')}:</strong> {t('IQ 신호에 STFT 수행 → Complex spectrogram (128×31) 생성, Real/Imag를 분리하여 7,936차원 입력 벡터 구성', 'Performed STFT on IQ signals → Generated Complex spectrogram (128×31), configured 7,936-dimensional input vector by separating Real/Imag')}
-            </li>
-            <li>
-              <strong>{t('Multi-layer BAM Encoder 설계', 'Multi-layer BAM Encoder Design')}:</strong> {t('7,936 → 2,048 → 1,024 → 512 차원으로 단계적 압축, 초경량 구조로 설계하여 Edge 장치에서 실시간 학습/추론 가능하도록 구현', 'Stepwise compression from 7,936 → 2,048 → 1,024 → 512 dimensions, implemented with ultra-lightweight structure for real-time training/inference on Edge devices')}
-            </li>
-            <li>
-              <strong>{t('Ultra-Low SNR 복조 실험', 'Ultra-Low SNR Demodulation Experiments')}:</strong> {t('SNR –30, –25, –20, –15 dB 구간에서 Baseline vs BAM 비교, Symbol Accuracy 및 FFT Peak Ratio 기반 품질 평가 수행', 'Compared Baseline vs BAM at SNR –30, –25, –20, –15 dB, performed quality evaluation based on Symbol Accuracy and FFT Peak Ratio')}
-            </li>
-          </ul>
-
-          <h3 className="subsection-title">Results</h3>
-          <ul className="project-list">
-            <li>
-              <strong>{t('복조율 개선', 'Demodulation Rate Improvement')}:</strong> SNR –30 dB: Baseline 2.5% → BAM 5.8% (+3.3%p) / SNR –25 dB: Baseline 16.8% → BAM 27.8% (+11.0%p)
-            </li>
-            <li>
-              <strong>{t('데이터 압축 효과', 'Data Compression Effect')}:</strong> {t('입력', 'Input')} 7,936{t('차원', 'dim')} → 512{t('차원', 'dim')} ({t('약', 'approx.')} 93.5% {t('차원 축소', 'dimension reduction')}), {t('복원 오차', 'Reconstruction error')} MSE ≈ 0.003 ~ 0.006
-            </li>
-            <li>
-              <strong>{t('시스템 관점 성과', 'System-level Achievement')}:</strong> {t('표준 LoRa 복조가 거의 실패하는 –25 ~ –30 dB 구간에서 유의미한 성능 개선 확인, Raspberry Pi 환경에서도 실시간 처리 가능한 속도 확보', 'Confirmed meaningful performance improvement in –25 ~ –30 dB range where standard LoRa demodulation almost completely fails, secured real-time processing speed even in Raspberry Pi environment')}
-            </li>
-          </ul>
-
-          <h3 className="subsection-title">Challenges & Solutions</h3>
-          <ul className="project-list">
-            <li>
-              <strong>{t('문제', 'Challenge')}:</strong> {t('STFT/ISTFT 과정에서 Chirp 위상 붕괴 문제', 'Chirp phase collapse issue in STFT/ISTFT process')}<br/>
-              <strong>{t('해결', 'Solution')}:</strong> {t('STFT 파라미터 표준화 및 Trim/Padding 방식 도입으로 시간축 정렬 보정', 'Corrected time-axis alignment by standardizing STFT parameters and introducing Trim/Padding approach')}
-            </li>
-            <li>
-              <strong>{t('문제', 'Challenge')}:</strong> {t('Huber Loss 적용 시 학습 collapse 발생', 'Learning collapse when applying Huber Loss')}<br/>
-              <strong>{t('해결', 'Solution')}:</strong> {t('Huber Loss를 제거하고 기존 Update Rule 중심으로 안정적인 학습 구조 유지', 'Removed Huber Loss and maintained stable learning structure centered on existing Update Rule')}
-            </li>
-            <li>
-              <strong>{t('문제', 'Challenge')}:</strong> {t('LoRa 심볼 분류에서 이론값과 불일치하는 정확도 문제', 'Symbol classification accuracy mismatching theoretical values in LoRa')}<br/>
-              <strong>{t('해결', 'Solution')}:</strong> {t('LoRa upchirp 신호의 대역폭 특성상 음수 주파수 영역의 신호가 FFT 수행 시 음수 인덱스에 정렬되는 점을 고려하여 주파수 축 재정렬 로직 추가, 이론값과 일치하는 정확도 달성', 'Added frequency axis reordering logic considering that negative frequency domain signals in LoRa upchirp align to negative indices during FFT due to bandwidth characteristics, achieved accuracy matching theoretical values')}
-            </li>
-          </ul>
-
-          <h3 className="subsection-title">Next Steps</h3>
-          <p className="project-content">
-            {t(
-              'SNR 구간별 최적 학습 범위를 재조정하고, Huber Loss + Layer Freeze 조합으로 추가 개선 실험 진행 예정. Cloud(C-RAN) 복조 모델과 end-to-end로 연동하여 전체 시스템 성능 측정.',
-              'Planning to readjust optimal learning range per SNR segment and conduct additional improvement experiments with Huber Loss + Layer Freeze combination. Measure overall system performance through end-to-end integration with Cloud (C-RAN) demodulation model.'
-            )}
-          </p>
-        </section>
-      </div>
-
-      {/* Page 3 - Project 2 */}
-      <div className="resume-page">
-        <section className="project-section">
-          <h2 className="project-title">
-            [PROJECT 2] {t(
               'Edge-Device 통신 효율 극대화를 위한 경량 AI 압축 모델',
               'Lightweight AI Compression Model for Edge-Device Communication Efficiency'
             )}
@@ -424,11 +300,11 @@ const Resume = () => {
         </section>
       </div>
 
-      {/* Page 4 - Project 3 */}
+      {/* Page 3 - Project 2 */}
       <div className="resume-page">
         <section className="project-section">
           <h2 className="project-title">
-            [PROJECT 3] {t(
+            [PROJECT 2] {t(
               '시계열 데이터 기반 산업용 밸브 유량 예측 시스템',
               'Industrial Valve Flow Prediction System Based on Time Series Data'
             )}
@@ -519,6 +395,108 @@ const Resume = () => {
 
           <div className="tech-stack-footer">
             <strong>{t('사용 기술', 'Technologies Used')}:</strong> Python, PyTorch, LSTM, Encoder-Decoder, Time Series, Huber Loss
+          </div>
+        </section>
+      </div>
+
+      {/* Page 4 - Project 3 */}
+      <div className="resume-page">
+        <section className="project-section">
+          <h2 className="project-title">
+            [PROJECT 3] {t(
+              'Edge-Cloud LoRa Demodulation을 위한 초경량 신호 압축 모델',
+              'Ultra-Lightweight Signal Compression Model for Edge-Cloud LoRa Demodulation'
+            )} ({t('진행 중', 'In Progress')})
+          </h2>
+          <div className="project-subtitle">
+            {t(
+              'Ultra-Low SNR 복조 보조를 위한 Multi-layer BAM 기반 Edge 압축기',
+              'Multi-layer BAM-based Edge Compressor for Ultra-Low SNR Demodulation Assistance'
+            )}
+          </div>
+
+          <div className="project-meta">
+            <div className="meta-item"><strong>{t('구분', 'Type')}:</strong> {t('개인 연구', 'Individual Research')}</div>
+            <div className="meta-item"><strong>{t('상태', 'Status')}:</strong> {t('진행 중', 'In Progress')}</div>
+            <div className="meta-item"><strong>{t('목표', 'Goal')}:</strong> {t('Ultra-Low SNR(–25 ~ –30 dB) 환경에서 LoRa 패킷 복원율 개선', 'Improve LoRa packet restoration rate in Ultra-Low SNR(–25 ~ –30 dB) environments')}</div>
+            <div className="meta-item"><strong>{t('역할', 'Role')}:</strong> {t('모델 설계, 실험 설계, Edge 추론 구조 구현', 'Model design, Experiment design, Edge inference implementation')}</div>
+            <div className="meta-item"><strong>{t('환경', 'Environment')}:</strong> Raspberry Pi {t('기반 Edge 디바이스', 'based Edge device')}</div>
+          </div>
+
+          <h3 className="subsection-title">Overview</h3>
+          <p className="project-content">
+            {t(
+              'Ultra-Low SNR(–25 ~ –30 dB) 환경에서 복조에 실패한 LoRa 신호를 Cloud(C-RAN)로 전송해 재복조하는 시스템을 목표로, Edge 단에서 전송 부담을 최소화하면서도 LoRa Chirp 구조를 유지하는 초경량 신호 압축 모델을 개발하고 있습니다.',
+              'Developing an ultra-lightweight signal compression model that minimizes transmission burden at the Edge while preserving LoRa Chirp structure for a system that sends demodulation-failed LoRa signals to Cloud (C-RAN) for re-demodulation in Ultra-Low SNR (–25 ~ –30 dB) environments.'
+            )}
+          </p>
+
+          <h3 className="subsection-title">Context</h3>
+          <p className="project-content">
+            {t(
+              '–25 dB 이하 환경에서는 표준 LoRa dechirp+FFT 복조가 거의 실패합니다. 복조 실패 신호를 Cloud(C-RAN)로 보내 여러 Edge에서 모은 신호를 결합해 복조하는 구조가 필요하지만, IQ 데이터를 그대로 전송하면 대역폭·전송 비용이 과도해집니다.',
+              'Standard LoRa dechirp+FFT demodulation almost completely fails in environments below –25 dB. While a structure that sends failed signals to Cloud (C-RAN) and combines signals from multiple Edges for demodulation is needed, transmitting raw IQ data incurs excessive bandwidth and transmission costs.'
+            )}
+          </p>
+
+          <h3 className="subsection-title">Approach</h3>
+          <ul className="project-list">
+            <li>
+              <strong>{t('LoRa PHY Demod Baseline 재구축', 'LoRa PHY Demod Baseline Reconstruction')}:</strong> {t('Upchirp/Downchirp 생성, Dechirp → FFT 기반 심볼 추출 체인을 파이썬으로 재현', 'Reproduced Upchirp/Downchirp generation and Dechirp → FFT-based symbol extraction chain in Python')}
+            </li>
+            <li>
+              <strong>{t('Spectrogram 기반 압축 인코딩', 'Spectrogram-based Compression Encoding')}:</strong> {t('IQ 신호에 STFT 수행 → Complex spectrogram (128×31) 생성, Real/Imag를 분리하여 7,936차원 입력 벡터 구성', 'Performed STFT on IQ signals → Generated Complex spectrogram (128×31), configured 7,936-dimensional input vector by separating Real/Imag')}
+            </li>
+            <li>
+              <strong>{t('Multi-layer BAM Encoder 설계', 'Multi-layer BAM Encoder Design')}:</strong> {t('7,936 → 2,048 → 1,024 → 512 차원으로 단계적 압축, 초경량 구조로 설계하여 Edge 장치에서 실시간 학습/추론 가능하도록 구현', 'Stepwise compression from 7,936 → 2,048 → 1,024 → 512 dimensions, implemented with ultra-lightweight structure for real-time training/inference on Edge devices')}
+            </li>
+            <li>
+              <strong>{t('Ultra-Low SNR 복조 실험', 'Ultra-Low SNR Demodulation Experiments')}:</strong> {t('SNR –30, –25, –20, –15 dB 구간에서 Baseline vs BAM 비교, Symbol Accuracy 및 FFT Peak Ratio 기반 품질 평가 수행', 'Compared Baseline vs BAM at SNR –30, –25, –20, –15 dB, performed quality evaluation based on Symbol Accuracy and FFT Peak Ratio')}
+            </li>
+          </ul>
+
+          <h3 className="subsection-title">{t('현재 진행 상황', 'Current Progress')}</h3>
+          <ul className="project-list">
+            <li>
+              <strong>{t('Complex-valued BAM 기반 스펙트로그램 디노이저 설계', 'Complex-valued BAM-based Spectrogram Denoiser Design')}:</strong> {t('실수부/허수부를 분리 처리하는 구조 구현', 'Implemented structure for separate processing of real/imaginary parts')}
+            </li>
+            <li>
+              <strong>{t('Lagrange 안정성 조건 적용', 'Applied Lagrange Stability Condition')}:</strong> {t('위상 보존 활성화 함수 구현을 통해 학습 안정성 확보', 'Secured learning stability through implementation of phase-preserving activation functions')}
+            </li>
+            <li>
+              <strong>{t('STFT 기반 전처리 파이프라인 구축', 'Built STFT-based Preprocessing Pipeline')}:</strong> {t('시간-주파수 변환 및 정규화 로직 완성', 'Completed time-frequency transformation and normalization logic')}
+            </li>
+            <li>
+              <strong>{t('학습 안정성 및 복원 품질 개선 실험 진행 중', 'Ongoing Experiments for Learning Stability and Restoration Quality')}:</strong> {t('다양한 SNR 구간에서 성능 검증 중', 'Validating performance across various SNR ranges')}
+            </li>
+          </ul>
+
+          <h3 className="subsection-title">Challenges & Solutions</h3>
+          <ul className="project-list">
+            <li>
+              <strong>{t('문제', 'Challenge')}:</strong> {t('STFT/ISTFT 과정에서 Chirp 위상 붕괴 문제', 'Chirp phase collapse issue in STFT/ISTFT process')}<br/>
+              <strong>{t('해결', 'Solution')}:</strong> {t('STFT 파라미터 표준화 및 Trim/Padding 방식 도입으로 시간축 정렬 보정', 'Corrected time-axis alignment by standardizing STFT parameters and introducing Trim/Padding approach')}
+            </li>
+            <li>
+              <strong>{t('문제', 'Challenge')}:</strong> {t('Huber Loss 적용 시 학습 collapse 발생', 'Learning collapse when applying Huber Loss')}<br/>
+              <strong>{t('해결', 'Solution')}:</strong> {t('Huber Loss를 제거하고 기존 Update Rule 중심으로 안정적인 학습 구조 유지', 'Removed Huber Loss and maintained stable learning structure centered on existing Update Rule')}
+            </li>
+            <li>
+              <strong>{t('문제', 'Challenge')}:</strong> {t('LoRa 심볼 분류에서 이론값과 불일치하는 정확도 문제', 'Symbol classification accuracy mismatching theoretical values in LoRa')}<br/>
+              <strong>{t('해결', 'Solution')}:</strong> {t('LoRa upchirp 신호의 대역폭 특성상 음수 주파수 영역의 신호가 FFT 수행 시 음수 인덱스에 정렬되는 점을 고려하여 주파수 축 재정렬 로직 추가, 이론값과 일치하는 정확도 달성', 'Added frequency axis reordering logic considering that negative frequency domain signals in LoRa upchirp align to negative indices during FFT due to bandwidth characteristics, achieved accuracy matching theoretical values')}
+            </li>
+          </ul>
+
+          <h3 className="subsection-title">Next Steps</h3>
+          <p className="project-content">
+            {t(
+              'SNR 구간별 최적 학습 범위를 재조정하고, Huber Loss + Layer Freeze 조합으로 추가 개선 실험 진행 예정. Cloud(C-RAN) 복조 모델과 end-to-end로 연동하여 전체 시스템 성능 측정.',
+              'Planning to readjust optimal learning range per SNR segment and conduct additional improvement experiments with Huber Loss + Layer Freeze combination. Measure overall system performance through end-to-end integration with Cloud (C-RAN) demodulation model.'
+            )}
+          </p>
+
+          <div className="tech-stack-footer">
+            <strong>{t('사용 기술', 'Technologies Used')}:</strong> Python, PyTorch, NumPy, LoRa PHY, DSP, Edge Computing, BAM, Raspberry Pi
           </div>
         </section>
       </div>
