@@ -404,30 +404,30 @@ const Resume = () => {
         <section className="project-section">
           <h2 className="project-title">
             [PROJECT 3] {t(
-              'Edge-Cloud LoRa Demodulation을 위한 초경량 신호 압축 모델',
-              'Ultra-Lightweight Signal Compression Model for Edge-Cloud LoRa Demodulation'
+              'Ultra-Low SNR 환경에서 LoRa 패킷 복원을 위한 전초 연구',
+              'Preliminary Study for LoRa Packet Recovery in Ultra-Low SNR Environments'
             )} ({t('진행 중', 'In Progress')})
           </h2>
           <div className="project-subtitle">
             {t(
-              'Ultra-Low SNR 복조 보조를 위한 Multi-layer BAM 기반 Edge 압축기',
-              'Multi-layer BAM-based Edge Compressor for Ultra-Low SNR Demodulation Assistance'
+              'Edge-Cloud 협력 복조를 위한 초경량 신호 압축 모델 개발',
+              'Ultra-Lightweight Signal Compression Model Development for Edge-Cloud Collaborative Demodulation'
             )}
           </div>
 
           <div className="project-meta">
             <div className="meta-item"><strong>{t('구분', 'Type')}:</strong> {t('개인 연구', 'Individual Research')}</div>
             <div className="meta-item"><strong>{t('상태', 'Status')}:</strong> {t('진행 중', 'In Progress')}</div>
-            <div className="meta-item"><strong>{t('목표', 'Goal')}:</strong> {t('Ultra-Low SNR(–25 ~ –30 dB) 환경에서 LoRa 패킷 복원율 개선', 'Improve LoRa packet restoration rate in Ultra-Low SNR(–25 ~ –30 dB) environments')}</div>
-            <div className="meta-item"><strong>{t('역할', 'Role')}:</strong> {t('모델 설계, 실험 설계, Edge 추론 구조 구현', 'Model design, Experiment design, Edge inference implementation')}</div>
-            <div className="meta-item"><strong>{t('환경', 'Environment')}:</strong> Raspberry Pi {t('기반 Edge 디바이스', 'based Edge device')}</div>
+            <div className="meta-item"><strong>{t('최종 목표', 'Final Goal')}:</strong> {t('Ultra-Low SNR 환경에서 패킷 복원 (CRC 통과)', 'Packet recovery with CRC validation in Ultra-Low SNR environments')}</div>
+            <div className="meta-item"><strong>{t('역할', 'Role')}:</strong> {t('모델 설계, 실험 설계, 시뮬레이션 환경 구축', 'Model design, Experiment design, Simulation environment setup')}</div>
+            <div className="meta-item"><strong>{t('환경', 'Environment')}:</strong> {t('시뮬레이션 기반 실험 환경', 'Simulation-based Experimental Environment')}</div>
           </div>
 
           <h3 className="subsection-title">Overview</h3>
           <p className="project-content">
             {t(
-              'Ultra-Low SNR(–25 ~ –30 dB) 환경에서 복조에 실패한 LoRa 신호를 Cloud(C-RAN)로 전송해 재복조하는 시스템을 목표로, Edge 단에서 전송 부담을 최소화하면서도 LoRa Chirp 구조를 유지하는 초경량 신호 압축 모델을 개발하고 있습니다.',
-              'Developing an ultra-lightweight signal compression model that minimizes transmission burden at the Edge while preserving LoRa Chirp structure for a system that sends demodulation-failed LoRa signals to Cloud (C-RAN) for re-demodulation in Ultra-Low SNR (–25 ~ –30 dB) environments.'
+              'Ultra-Low SNR(–25 ~ –30 dB) 환경에서 패킷 복원(CRC 통과)을 최종 목표로, Edge에서 복조 실패한 LoRa 신호를 Cloud(C-RAN)로 전송해 재복조하는 시스템을 연구하고 있습니다. 현재는 전송 부담을 최소화하면서 LoRa Chirp 구조를 유지하는 초경량 신호 압축 모델을 개발하는 전초 단계입니다.',
+              'Researching a system that sends demodulation-failed LoRa signals from Edge to Cloud (C-RAN) for re-demodulation, with the final goal of packet recovery (CRC validation) in Ultra-Low SNR (–25 ~ –30 dB) environments. Currently in the preliminary phase of developing an ultra-lightweight signal compression model that minimizes transmission burden while preserving LoRa Chirp structure.'
             )}
           </p>
 

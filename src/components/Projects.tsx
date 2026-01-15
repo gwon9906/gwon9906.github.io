@@ -283,12 +283,12 @@ const Projects = () => {
     {
       id: 'lora-demod',
       title: t(
-        'Edge-Cloud LoRa Demodulation을 위한 초경량 신호 압축 모델',
-        'Ultra-Lightweight Signal Compression Model for Edge-Cloud LoRa Demodulation'
+        'Ultra-Low SNR 환경에서 LoRa 패킷 복원을 위한 전초 연구',
+        'Preliminary Study for LoRa Packet Recovery in Ultra-Low SNR Environments'
       ),
       subtitle: t(
-        'Ultra-Low SNR 복조 보조를 위한 Multi-layer Bidirectional Associative Memory (BAM) 기반 Edge 압축기',
-        'Multi-layer Bidirectional Associative Memory (BAM)-based Edge Compressor for Ultra-Low SNR Demodulation Assistance'
+        'Edge-Cloud 협력 복조를 위한 초경량 신호 압축 모델 개발',
+        'Ultra-Lightweight Signal Compression Model Development for Edge-Cloud Collaborative Demodulation'
       ),
       role: t('개인 연구', 'Individual Research'),
       period: '2025.11 - 12',
@@ -297,13 +297,13 @@ const Projects = () => {
       gradient: 'from-orange-500 to-red-500',
       summary: [
         { label: t('상태', 'Status'), value: t('진행 중', 'In Progress') },
-        { label: t('목표', 'Goal'), value: 'Ultra-Low SNR' },
-        { label: t('압축률', 'Compression'), value: '93.5%' },
-        { label: t('환경', 'Environment'), value: 'Raspberry Pi' },
+        { label: t('최종 목표', 'Final Goal'), value: t('패킷 복원', 'Packet Recovery') },
+        { label: t('현재 단계', 'Current Phase'), value: t('전초 연구', 'Preliminary') },
+        { label: t('환경', 'Environment'), value: t('시뮬레이션', 'Simulation') },
       ],
       overview: t(
-        'Ultra-Low SNR(–25 ~ –30 dB) 환경에서 복조 실패한 LoRa 신호를 Cloud(C-RAN)로 전송하여 복조하는 시스템을 위해, Edge 단에서 전송 부담을 최소화하면서 LoRa Chirp 구조를 유지하는 초경량 신호 압축 모델을 개발하고 있습니다.',
-        'Developing an ultra-lightweight signal compression model that minimizes transmission burden at the Edge while preserving LoRa Chirp structure for a system that sends demodulation-failed LoRa signals to Cloud (C-RAN) for demodulation in Ultra-Low SNR (–25 ~ –30 dB) environments.'
+        'Ultra-Low SNR(–25 ~ –30 dB) 환경에서 패킷 복원(CRC 통과)을 최종 목표로, Edge에서 복조 실패한 LoRa 신호를 Cloud(C-RAN)로 전송해 재복조하는 시스템을 연구하고 있습니다. 현재는 전송 부담을 최소화하면서 LoRa Chirp 구조를 유지하는 초경량 신호 압축 모델을 개발하는 전초 단계입니다.',
+        'Researching a system that sends demodulation-failed LoRa signals from Edge to Cloud (C-RAN) for re-demodulation, with the final goal of packet recovery (CRC validation) in Ultra-Low SNR (–25 ~ –30 dB) environments. Currently in the preliminary phase of developing an ultra-lightweight signal compression model that minimizes transmission burden while preserving LoRa Chirp structure.'
       ),
       context: t(
         'Ultra-Low SNR 환경에서는 표준 LoRa dechirp+FFT 복조가 실패합니다. 복조 실패 신호를 Cloud(C-RAN)에 보내 여러 Edge에서 모은 실패 신호를 합쳐 복조하는 방식이 필요하나, IQ 데이터를 원본으로 전송하면 전송 비용이 과도하여 Edge 단에서 압축 + 신호 구조 보존 + 노이즈 억제를 동시에 수행할 필요가 있었습니다.',
