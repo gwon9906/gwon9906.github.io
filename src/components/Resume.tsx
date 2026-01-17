@@ -39,8 +39,8 @@ const Resume = () => {
           </h1>
           <div className="resume-title">
             {t(
-              'AI/ML & Edge/Communication Engineering',
-              'AI/ML & Edge/Communication Engineering'
+              'AI/ML Engineer | Hardware-aware & On-device AI',
+              'AI/ML Engineer | Hardware-aware & On-device AI'
             )}
           </div>
         </div>
@@ -70,8 +70,8 @@ const Resume = () => {
           </h2>
           <p className="section-content">
             {t(
-              '하드웨어 제약(전력·연산·노이즈·메모리)을 전제로, 온디바이스 환경에서 AI 알고리즘을 설계·최적화하고 성능 지표로 검증해온 엔지니어입니다.',
-              'Engineer experienced in designing, optimizing, and validating AI algorithms in on-device environments, with a focus on hardware constraints (power, computation, noise, memory).'
+              '하드웨어 제약(전력·연산·메모리·노이즈)을 전제로, 온디바이스 환경에서 AI 모델/알고리즘을 설계·최적화하고 정량 지표로 검증해온 AI/ML 엔지니어입니다. 제약이 큰 환경에서 데이터 표현과 복원 파이프라인을 재설계해 성능–효율 trade-off를 개선하는 문제 해결에 강점을 갖고 있습니다.',
+              'AI/ML Engineer experienced in designing, optimizing, and validating AI models/algorithms in on-device environments, with a focus on hardware constraints (power, computation, memory, noise). Strong in problem-solving that improves performance-efficiency trade-offs by redesigning data representation and restoration pipelines in highly constrained environments.'
             )}
           </p>
         </section>
@@ -88,44 +88,44 @@ const Resume = () => {
             </h3>
             <p className="section-content">
               {t(
-                '하드웨어 비이상성/제약을 포함해 학습·추론 전략 설계',
-                'Design learning and inference strategies considering hardware non-idealities and constraints'
+                '하드웨어 비이상성/제약 조건을 포함해 학습·추론 전략을 설계하고, 성능–효율 trade-off를 기준으로 의사결정',
+                'Design learning and inference strategies considering hardware non-idealities and constraints, making decisions based on performance-efficiency trade-offs'
               )}
             </p>
           </div>
 
           <div className="strength-item">
             <h3 className="strength-title">
-              Model Optimization & Efficiency
+              On-device Model Optimization
             </h3>
             <p className="section-content">
               {t(
-                '경량화, 표현 최적화, 효율-성능 trade-off 개선',
-                'Improve model lightweighting, representation optimization, and efficiency-performance trade-offs'
+                '모델 크기·연산량·메모리 사용량을 분석해 병목을 정의하고, 경량화/추론 효율 개선으로 실시간 구동 가능성을 확보',
+                'Analyze model size, computation, and memory usage to define bottlenecks, securing real-time operation through lightweighting and inference efficiency improvements'
               )}
             </p>
           </div>
 
           <div className="strength-item">
             <h3 className="strength-title">
-              Experimental Validation
+              Noisy & Irregular Data Modeling
             </h3>
             <p className="section-content">
               {t(
-                '실험 설계 → 측정 → 개선 반복, 정량 지표 기반 검증',
-                'Iterative process of experimental design → measurement → improvement, with quantitative metric-based validation'
+                '노이즈가 크고 불규칙한 신호/시계열 데이터를 직접 전처리·모델링. 스펙트로그램(STFT), 시퀀스 리셋, 이상치 대응 등 도메인 특성 기반 파이프라인 설계',
+                'Directly preprocess and model noisy and irregular signal/time-series data. Design domain-specific pipelines including spectrogram (STFT), sequence reset, and outlier handling'
               )}
             </p>
           </div>
 
           <div className="strength-item">
             <h3 className="strength-title">
-              H/W–S/W Co-design Mindset
+              Rapid Experimentation & Validation
             </h3>
             <p className="section-content">
               {t(
-                '시스템/하드웨어 조건을 고려해 알고리즘 요구사항 도출 및 조정',
-                'Derive and adjust algorithm requirements considering system and hardware conditions'
+                '데이터 특성 분석 → 가설 설정 → 실험 설계 → 지표 기반 검증을 빠르게 반복. 기존 방식이 통하지 않을 때 손실 함수/상태 처리/전처리를 재설계해 성능을 개선한 경험',
+                'Rapidly iterate through data characteristic analysis → hypothesis setting → experimental design → metric-based validation. Experience redesigning loss functions, state handling, and preprocessing to improve performance when existing methods fail'
               )}
             </p>
           </div>
@@ -140,10 +140,16 @@ const Resume = () => {
             <strong>Programming:</strong> Python, C/C++
           </div>
           <div className="tech-category">
-            <strong>Deep Learning:</strong> PyTorch / TensorFlow
+            <strong>ML/DL:</strong> PyTorch, TensorFlow
           </div>
           <div className="tech-category">
-            <strong>Focus Areas:</strong> {t('온디바이스 추론, 효율 최적화, 제약 하 강건한 학습', 'On-device inference, efficiency optimization, robust learning under constraints')}
+            <strong>Optimization / On-device:</strong> {t('모델 압축, 추론 최적화, 프로파일링(연산·메모리)', 'Model compression, inference optimization, profiling (computation, memory)')}
+          </div>
+          <div className="tech-category">
+            <strong>Signal / Time-series:</strong> {t('STFT 기반 스펙트로그램 처리, 시계열 예측, 이상치 대응', 'STFT-based spectrogram processing, time-series prediction, outlier handling')}
+          </div>
+          <div className="tech-category">
+            <strong>Collaboration:</strong> Git/GitHub
           </div>
         </section>
 
@@ -158,7 +164,6 @@ const Resume = () => {
             </div>
             <ul className="resume-list">
               <li>{t('재학 중 (졸업 예정: 2026년 2월)', 'Currently enrolled (Expected graduation: Feb 2026)')}</li>
-              <li>{t('관련 수강: 컴퓨터네트워크, 데이터베이스, 인공지능, 통신 관련 과목 등', 'Relevant courses: Computer Networks, Database, Artificial Intelligence, Communication, etc.')}</li>
             </ul>
           </div>
         </section>
@@ -191,96 +196,76 @@ const Resume = () => {
         <section className="project-section">
           <h2 className="project-title">
             [PROJECT 1] {t(
-              'Edge-Device 통신 효율 극대화를 위한 경량 AI 압축 모델',
-              'Lightweight AI Compression Model for Edge-Device Communication Efficiency'
+              '저전력 IoT 환경을 위한 초경량 데이터 압축·복원 (BAM 기반)',
+              'Ultra-Lightweight Data Compression & Restoration for Low-Power IoT Environments (BAM-based)'
             )}
           </h2>
           <div className="project-subtitle">
             {t(
-              'LoRa 페이로드 62.5% 단축 및 통신 성공률 14%p 향상',
-              '62.5% LoRa Payload Reduction & 14%p Communication Success Rate Improvement'
+              '페이로드 37.5% 감소, PDR 14%p 향상, 전송 부담 최소화로 배터리 수명 연장',
+              '37.5% Payload Reduction, 14%p PDR Improvement, Battery Life Extension through Minimized Transmission Burden'
             )}
           </div>
 
           <div className="project-meta">
             <div className="meta-item"><strong>{t('구분', 'Type')}:</strong> {t('팀 프로젝트 (본인 역할: 팀 리드 / 전체 파이프라인 설계)', 'Team Project (Role: Team Lead / Full Pipeline Design)')}</div>
-            <div className="meta-item"><strong>{t('기간', 'Period')}:</strong> 2025.03 ~ 06 ({t('완료', 'Completed')})</div>
+            <div className="meta-item"><strong>{t('기간', 'Period')}:</strong> 2024.03 ~ 06 ({t('완료', 'Completed')})</div>
             <div className="meta-item"><strong>{t('역할', 'Role')}:</strong> {t('시스템 설계, 모델 구조 설계, Edge 구현, 필드 테스트 주도', 'System design, Model architecture design, Edge implementation, Field test leadership')}</div>
-            <div className="meta-item"><strong>{t('성과', 'Results')}:</strong> {t('페이로드', 'Payload')} 62.5% {t('압축', 'compression')}, PDR +14%p {t('개선', 'improvement')}, MSE 0.0036 {t('달성', 'achieved')}</div>
-            <div className="meta-item"><strong>{t('환경', 'Environment')}:</strong> Raspberry Pi {t('기반 LoRa 엣지 장치', 'based LoRa edge device')}</div>
+            <div className="meta-item"><strong>{t('성과', 'Results')}:</strong> {t('페이로드', 'Payload')} 32B → 20B (37.5% {t('감소', 'reduction')}), PDR +14%p, GPS MSE 0.0036</div>
+            <div className="meta-item"><strong>{t('환경', 'Environment')}:</strong> Raspberry Pi, LoRa/LPWAN, {t('실측 기반 필드 테스트 (약 2.6km 구간, 1개월)', 'Field test based on real measurements (approx. 2.6km section, 1 month)')}</div>
           </div>
-
-          <h3 className="subsection-title">Overview</h3>
-          <p className="project-content">
-            {t(
-              '저사양 엣지 디바이스(Raspberry Pi) 환경에서 LoRa 통신의 구조적 대역폭 제약을 완화하기 위해, 경량 Bidirectional Associative Memory(BAM) 모델을 활용한 실시간 데이터 압축/복원 시스템을 설계·구현했습니다.',
-              'Designed and implemented a real-time data compression/decompression system using a lightweight Bidirectional Associative Memory (BAM) model to mitigate structural bandwidth constraints of LoRa communication in low-spec edge device (Raspberry Pi) environments.'
-            )}
-          </p>
 
           <h3 className="subsection-title">Context</h3>
           <p className="project-content">
             {t(
-              'LoRa는 넓은 커버리지를 제공하지만 대역폭이 좁아, 데이터 길이가 길어질수록 패킷 충돌과 전송 실패(Drop)가 급격히 증가합니다. 특히 N-LOS(비가시권) 환경에서는 신뢰성 높은 통신 확보가 핵심 과제였습니다.',
-              'While LoRa provides wide coverage, its narrow bandwidth causes rapid increases in packet collisions and transmission failures as data length increases. Securing reliable communication in N-LOS (Non-Line-Of-Sight) environments was a key challenge.'
+              '대규모 IoT 디바이스는 배터리 기반으로 장기간 운용되며, 패킷 손실이 발생할 경우 재전송으로 에너지 소모가 급증하여 디바이스 수명이 크게 단축될 수 있습니다. LoRa/LPWAN 환경에서는 전송 전력을 높이기보다 전송 데이터량 자체를 줄여 재전송 빈도를 낮추는 접근이 더 효과적입니다. 본 프로젝트에서는 제한된 페이로드 조건에서 전송량을 최소화하면서도 데이터 품질을 유지하여 통신 성공률(PDR)을 개선하는 것을 목표로 하였습니다.',
+              'Large-scale IoT devices operate long-term on batteries, and packet loss can cause energy consumption to surge through retransmissions, significantly shortening device lifespan. In LoRa/LPWAN environments, reducing transmission data volume rather than increasing transmission power is more effective for lowering retransmission frequency. This project aimed to improve Packet Delivery Rate (PDR) by minimizing transmission volume while maintaining data quality under limited payload conditions.'
             )}
           </p>
 
           <h3 className="subsection-title">Approach</h3>
           <ul className="project-list">
             <li>
-              <strong>{t('경량 BAM 구조 채택', 'Lightweight BAM Structure Adoption')}:</strong> {t('Autoencoder 대비 연산량 약 40% 감소가 가능한 BAM 구조를 선택해 엣지 환경에 최적화', 'Selected BAM structure capable of approximately 40% computation reduction compared to Autoencoder, optimized for edge environment')}
+              <strong>{t('경량 압축 구조 설계', 'Lightweight Compression Structure Design')}:</strong> {t('Autoencoder 대비 연산 부담이 낮은 BAM 구조를 적용하여, 저전력·리소스 제약 환경에서의 안정적 구동을 우선 고려', 'Applied BAM structure with lower computational burden compared to Autoencoder, prioritizing stable operation in low-power, resource-constrained environments')}
             </li>
             <li>
-              <strong>{t('TensorFlow → NumPy 순수 구현 전환', 'TensorFlow → NumPy Pure Implementation Transition')}:</strong> {t('TensorFlow 의존성을 제거하고, NumPy만으로 추론 로직을 재구현하여 라이브러리 의존성 축소 + 추론 지연(latency) 감소', 'Removed TensorFlow dependency and reimplemented inference logic using only NumPy, reducing library dependency + inference latency')}
+              <strong>{t('데이터 표현 최적화', 'Data Representation Optimization')}:</strong> {t('GPS/센서 데이터의 특성을 분석하여 정수부·소수부 분리 인코딩을 적용하였고, 압축 과정에서 발생하는 정밀도 손실을 최소화', 'Analyzed GPS/sensor data characteristics to apply integer-decimal separation encoding, minimizing precision loss during compression')}
             </li>
             <li>
-              <strong>{t('실제 N-LOS 환경 필드 테스트 기반 데이터 수집', 'Real N-LOS Environment Field Test-based Data Collection')}:</strong> {t('약 2.6 km 구간을 1개월간 반복 주행하며 N-LOS 환경 데이터 수집, 단순 시뮬레이션이 아닌 실제 운용 환경에서 모델 검증', 'Collected N-LOS environment data through repeated driving over approximately 2.6 km section for 1 month, validated model in actual operating environment rather than simple simulation')}
-            </li>
-            <li>
-              <strong>{t('전처리·포맷 최적화', 'Preprocessing & Format Optimization')}:</strong> {t('GPS / 센서 데이터 포맷을 재설계하고, 부동소수점 변환 과정에서의 정밀도 손실을 줄이기 위해 정수부/소수부 분리 인코딩 파이프라인 도입', 'Redesigned GPS/sensor data format and introduced integer/decimal separation encoding pipeline to reduce precision loss during floating-point conversion')}
+              <strong>{t('실환경 검증 중심 설계', 'Real Environment Validation-Centered Design')}:</strong> {t('시뮬레이션이 아닌 실제 N-LOS 환경(약 2.6km 구간)을 1개월간 반복 주행하며 수집한 데이터를 기반으로 성능을 검증', 'Validated performance based on data collected through repeated driving in real N-LOS environment (approx. 2.6km section) for 1 month, not simulation')}
             </li>
           </ul>
 
           <h3 className="subsection-title">Results</h3>
           <ul className="project-list">
             <li>
-              <strong>{t('전송 데이터 절감', 'Transmission Data Reduction')}:</strong> {t('페이로드', 'Payload')} 32 Bytes → 20 Bytes ({t('약', 'approx.')} 62.5% {t('압축', 'compression')})
+              <strong>{t('전송량 감소', 'Transmission Volume Reduction')}:</strong> Payload 32B → 20B ({t('전송량 약', 'transmission volume approx.')} 37.5% {t('감소', 'reduction')})
             </li>
             <li>
-              <strong>{t('통신 성공률(PDR) 개선', 'Packet Delivery Rate (PDR) Improvement')}:</strong> {t('압축 적용 전 대비 PDR 약 +14%p 향상, 동일 환경에서 더 많은 시도 중 성공 패킷 비율 증가', 'PDR improved by approximately +14%p compared to before compression application, increased successful packet ratio in the same environment')}
+              <strong>{t('통신 신뢰성 개선', 'Communication Reliability Improvement')}:</strong> {t('압축 적용 후 PDR 약 +14%p 향상', 'PDR improved by approximately +14%p after compression application')}
             </li>
             <li>
-              <strong>{t('복원 정확도 향상', 'Restoration Accuracy Improvement')}:</strong> GPS {t('데이터 복원 오차', 'data restoration error')}(MSE): 0.0184 → 0.0036 ({t('약', 'approx.')} 80% {t('감소', 'reduction')}), {t('압축 후에도 실제 서비스 가능한 수준의 위치 정보 품질 유지', 'maintained location information quality at serviceable level even after compression')}
+              <strong>{t('복원 품질 유지', 'Restoration Quality Maintained')}:</strong> GPS {t('복원 오차', 'restoration error')}(MSE) 0.0184 → 0.0036{t('으로, 전송량 감소에도 서비스 가능한 품질을 확보', ', securing serviceable quality despite reduced transmission volume')}
             </li>
           </ul>
 
-          <h3 className="subsection-title">Challenges & Solutions</h3>
-          <ul className="project-list">
-            <li>
-              <strong>{t('문제', 'Challenge')}:</strong> {t('야외 필드 테스트 환경 변수(날씨, 전파 간섭 등) 통제 어려움', 'Difficulty controlling outdoor field test environmental variables (weather, radio interference, etc.)')}<br/>
-              <strong>{t('해결', 'Solution')}:</strong> {t('1개월간 동일 구간을 반복 주행하여 다양한 조건에서 통계적 유의성 확보', 'Secured statistical significance under various conditions through repeated driving over the same section for 1 month')}
-            </li>
-            <li>
-              <strong>{t('문제', 'Challenge')}:</strong> {t('부동소수점 변환 과정에서 정밀도 손실', 'Precision loss during floating-point conversion')}<br/>
-              <strong>{t('해결', 'Solution')}:</strong> {t('데이터 특성 분석 후, 정수부/소수부를 분리 처리하는 전처리 파이프라인 설계로 문제 완화', 'Mitigated problem by designing preprocessing pipeline that separates integer/decimal parts after analyzing data characteristics')}
-            </li>
-            <li>
-              <strong>{t('문제', 'Challenge')}:</strong> {t('Autoencoder 기반 모델의 과도한 연산량', 'Excessive computation of Autoencoder-based model')}<br/>
-              <strong>{t('해결', 'Solution')}:</strong> {t('BAM + NumPy 순수 구현으로 전환하여 연산 부하를 크게 낮추고, 엣지 디바이스에서 안정적인 실시간 구동 확보', 'Significantly reduced computational load by transitioning to BAM + NumPy pure implementation, secured stable real-time operation on edge devices')}
-            </li>
-          </ul>
-
-          <h3 className="subsection-title">Next Steps</h3>
+          <h3 className="subsection-title">Key Insight</h3>
           <p className="project-content">
             {t(
-              '현재는 정형 데이터(센서값, GPS)를 대상으로 압축/복원을 수행 중이며, 추후 비정형 데이터(이미지 등)에 대한 저전력 전송·압축 모델로 확장 연구 예정입니다.',
-              'Currently performing compression/decompression on structured data (sensor values, GPS), planning to expand research to low-power transmission and compression models for unstructured data (images, etc.) in the future.'
+              '패킷 손실이 잦은 환경에서는 모델 성능 자체보다 "한 번에 성공적으로 전달되는 데이터의 양"이 에너지 효율과 시스템 수명을 좌우합니다. 본 프로젝트에서는 전송 전력 증대 대신 데이터 표현과 알고리즘을 재설계하는 방식으로 시스템 효율을 개선하였습니다.',
+              'In environments with frequent packet loss, "the amount of data successfully transmitted at once" determines energy efficiency and system lifespan more than model performance itself. This project improved system efficiency by redesigning data representation and algorithms rather than increasing transmission power.'
             )}
           </p>
 
+          <h3 className="subsection-title">Relevance</h3>
+          <ul className="project-list">
+            <li>{t('Hardware-aware Algorithm Design 경험 확보', 'Gained Hardware-aware Algorithm Design experience')}</li>
+            <li>{t('On-device / Edge AI 최적화 관점에서의 설계·검증 경험 보유', 'Experience in design and validation from On-device / Edge AI optimization perspective')}</li>
+            <li>{t('노이즈·제약 환경에서 실측 기반 성능 개선 수행', 'Performed measurement-based performance improvement in noisy, constrained environments')}</li>
+          </ul>
+
           <div className="tech-stack-footer">
-            <strong>{t('사용 기술', 'Technologies Used')}:</strong> Python, NumPy, Raspberry Pi, LoRa, Edge Computing, GitHub
+            <strong>{t('사용 기술', 'Technologies Used')}:</strong> Python, BAM, NumPy (on-device inference), Raspberry Pi, LoRa, Field Testing
           </div>
         </section>
       </div>
