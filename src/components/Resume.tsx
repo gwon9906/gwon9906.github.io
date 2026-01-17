@@ -70,95 +70,80 @@ const Resume = () => {
           </h2>
           <p className="section-content">
             {t(
-              '저사양 Edge 환경에서 하드웨어 제약을 고려한 AI 모델 설계 및 최적화 경험을 보유한 AI/ML 엔지니어링 지망생입니다. LoRa 통신 신호 압축·복원 연구를 통해 물리적 한계를 알고리즘으로 극복하는 문제 해결에 강점을 가지고 있습니다.',
-              'Aspiring AI/ML engineer with experience in AI model design and optimization considering hardware constraints in low-spec Edge environments. Strong problem-solving skills in overcoming physical limitations through algorithms via LoRa communication signal compression and restoration research.'
+              '하드웨어 제약(전력·연산·노이즈·메모리)을 전제로, 온디바이스 환경에서 AI 알고리즘을 설계·최적화하고 성능 지표로 검증해온 엔지니어입니다.',
+              'Engineer experienced in designing, optimizing, and validating AI algorithms in on-device environments, with a focus on hardware constraints (power, computation, noise, memory).'
             )}
           </p>
         </section>
 
-        {/* Key Strengths */}
+        {/* Core Strengths */}
         <section className="resume-section">
           <h2 className="section-title">
-            {t('핵심 역량', 'Key Strengths')}
+            {t('핵심 역량', 'Core Strengths')}
           </h2>
 
           <div className="strength-item">
             <h3 className="strength-title">
-              {t('하드웨어 제약 고려 모델 최적화', 'Model Optimization Considering Hardware Constraints')}
+              Hardware-aware Algorithm Design
             </h3>
-            <ul className="resume-list">
-              <li>
-                {t(
-                  '라즈베리파이 등 저사양 디바이스에서 실시간 추론을 위해 딥러닝 연산을 NumPy 기반으로 재구현, 프레임워크 의존성 최소화',
-                  'Reimplemented deep learning operations in NumPy for real-time inference on low-spec devices like Raspberry Pi, minimizing framework dependencies'
-                )}
-              </li>
-              <li>
-                {t(
-                  '모델 크기·연산량·메모리 사용량을 분석하며 추론 속도 개선',
-                  'Improved inference speed by analyzing model size, computation, and memory usage'
-                )}
-              </li>
-            </ul>
+            <p className="section-content">
+              {t(
+                '하드웨어 비이상성/제약을 포함해 학습·추론 전략 설계',
+                'Design learning and inference strategies considering hardware non-idealities and constraints'
+              )}
+            </p>
           </div>
 
           <div className="strength-item">
             <h3 className="strength-title">
-              {t('신호처리 기반 딥러닝', 'Signal Processing-based Deep Learning')}
+              Model Optimization & Efficiency
             </h3>
-            <ul className="resume-list">
-              <li>
-                {t(
-                  'LoRa IQ 신호, 산업용 센서 시계열 등 노이즈 많고 불규칙한 데이터를 직접 전처리·모델링',
-                  'Direct preprocessing and modeling of noisy and irregular data such as LoRa IQ signals and industrial sensor time series'
-                )}
-              </li>
-              <li>
-                {t(
-                  'STFT 기반 스펙트로그램, 시퀀스 리셋 로직, 이상치 대응 등 도메인 특성에 맞춘 파이프라인 설계',
-                  'Designed pipelines tailored to domain characteristics including STFT-based spectrograms, sequence reset logic, and outlier handling'
-                )}
-              </li>
-            </ul>
+            <p className="section-content">
+              {t(
+                '경량화, 표현 최적화, 효율-성능 trade-off 개선',
+                'Improve model lightweighting, representation optimization, and efficiency-performance trade-offs'
+              )}
+            </p>
           </div>
 
           <div className="strength-item">
             <h3 className="strength-title">
-              {t('빠른 프로토타이핑 및 실험 설계', 'Rapid Prototyping & Experimental Design')}
+              Experimental Validation
             </h3>
-            <ul className="resume-list">
-              <li>
-                {t(
-                  '하이퍼파라미터 튜닝에 앞서 데이터 구조와 물리/도메인 특성을 먼저 분석',
-                  'Analyzed data structure and physical/domain characteristics before hyperparameter tuning'
-                )}
-              </li>
-              <li>
-                {t(
-                  '기존 방식이 통하지 않을 때 손실 함수·hidden state 처리·전처리 로직을 재설계하여 성능을 끌어올린 경험 다수 보유',
-                  'Extensive experience redesigning loss functions, hidden state handling, and preprocessing logic to improve performance when existing methods fail'
-                )}
-              </li>
-            </ul>
+            <p className="section-content">
+              {t(
+                '실험 설계 → 측정 → 개선 반복, 정량 지표 기반 검증',
+                'Iterative process of experimental design → measurement → improvement, with quantitative metric-based validation'
+              )}
+            </p>
+          </div>
+
+          <div className="strength-item">
+            <h3 className="strength-title">
+              H/W–S/W Co-design Mindset
+            </h3>
+            <p className="section-content">
+              {t(
+                '시스템/하드웨어 조건을 고려해 알고리즘 요구사항 도출 및 조정',
+                'Derive and adjust algorithm requirements considering system and hardware conditions'
+              )}
+            </p>
           </div>
         </section>
 
-        {/* Tech Stack */}
+        {/* Technical Stack */}
         <section className="resume-section">
           <h2 className="section-title">
-            {t('기술 스택', 'Tech Stack')}
+            {t('기술 스택', 'Technical Stack')}
           </h2>
           <div className="tech-category">
-            <strong>Programming:</strong> Python (중점), C/C++(기본), Bash
+            <strong>Programming:</strong> Python, C/C++
           </div>
           <div className="tech-category">
-            <strong>ML/DL:</strong> PyTorch, TensorFlow, NumPy, SciPy, scikit-learn
+            <strong>Deep Learning:</strong> PyTorch / TensorFlow
           </div>
           <div className="tech-category">
-            <strong>Signal & Time-series:</strong> STFT, {t('스펙트로그램 처리', 'Spectrogram processing')}, {t('시계열 예측', 'Time-series prediction')}, {t('이상치 대응', 'Outlier handling')}
-          </div>
-          <div className="tech-category">
-            <strong>{t('기타', 'Others')}:</strong> Git/GitHub, Linux, Jupyter/Colab, matplotlib
+            <strong>Focus Areas:</strong> {t('온디바이스 추론, 효율 최적화, 제약 하 강건한 학습', 'On-device inference, efficiency optimization, robust learning under constraints')}
           </div>
         </section>
 

@@ -67,8 +67,8 @@ const Hero = () => {
               className="text-xl sm:text-2xl text-dark-600 max-w-3xl mx-auto font-medium"
             >
               {t(
-                'AI/ML 엔지니어링 · 엣지/임베디드 최적화 · IoT/통신',
-                'AI/ML Engineering · Edge/Embedded Optimization · IoT/Communication'
+                'AI Algorithm Engineer | Hardware-aware & On-device AI',
+                'AI Algorithm Engineer | Hardware-aware & On-device AI'
               )}
             </motion.p>
 
@@ -79,16 +79,9 @@ const Hero = () => {
               className="text-lg text-dark-500 max-w-2xl mx-auto leading-relaxed"
             >
               {t(
-                '하드웨어의 제약을 넘어, 데이터의 잠재력을 극대화하는 AI 엔지니어',
-                'AI Engineer maximizing data potential beyond hardware limitations'
+                '하드웨어 제약(전력·연산·노이즈·메모리)을 전제로, 온디바이스 환경에서 AI 알고리즘을 설계·최적화하고 성능 지표로 검증해온 엔지니어입니다.',
+                'Engineer experienced in designing, optimizing, and validating AI algorithms in on-device environments, with a focus on hardware constraints (power, computation, noise, memory).'
               )}
-              <br />
-              <span className="font-semibold text-dark-700">
-                {t(
-                  '페이로드 62.5% 압축 · MAPE 98% 개선 · Edge 실시간 구동',
-                  '62.5% Payload Compression · 98% MAPE Improvement · Real-time Edge Deployment'
-                )}
-              </span>
             </motion.p>
           </div>
 
