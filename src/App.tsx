@@ -8,15 +8,20 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import TableOfContents from './components/TableOfContents';
 import Resume from './components/Resume';
+import CoverLetter from './components/CoverLetter';
 import { LanguageProvider } from './contexts/LanguageContext';
 
 function App() {
   const [showResume, setShowResume] = useState(false);
+  const [showCoverLetter, setShowCoverLetter] = useState(false);
 
   useEffect(() => {
-    // Check URL hash for resume page
+    // Check URL hash for resume and cover letter pages
     const handleHashChange = () => {
-      setShowResume(window.location.hash === '#resume');
+      const hash = window.location.hash;
+      setShowResume(hash === '#resume');
+      // Secret URL pattern: #cover-letter-xyz789abc
+      setShowCoverLetter(hash.startsWith('#cover-letter-'));
     };
 
     handleHashChange();
@@ -26,7 +31,11 @@ function App() {
 
   return (
     <LanguageProvider>
-      {showResume ? (
+      {showCoverLetter ? (
+        <div className="min-h-screen">
+          <CoverLetter />
+        </div>
+      ) : showResume ? (
         <div className="min-h-screen">
           <Resume />
         </div>
