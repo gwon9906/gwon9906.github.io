@@ -281,8 +281,8 @@ const Resume = () => {
           </h2>
           <div className="project-subtitle">
             {t(
-              'Encoder-LSTM 설계를 통한 예측 오차(MAPE) 98% 개선',
-              '98% Prediction Error (MAPE) Improvement through Encoder-LSTM Design'
+              'Encoder-LSTM 설계를 통한 예측 오차(MAPE) 83% 개선',
+              '83% Prediction Error (MAPE) Improvement through Encoder-LSTM Design'
             )}
           </div>
 
@@ -290,15 +290,15 @@ const Resume = () => {
             <div className="meta-item"><strong>{t('구분', 'Type')}:</strong> {t('개인 연구', 'Individual Research')}</div>
             <div className="meta-item"><strong>{t('기간', 'Period')}:</strong> 2024.07 ~ 12 ({t('완료', 'Completed')})</div>
             <div className="meta-item"><strong>{t('역할', 'Role')}:</strong> {t('모델 설계, 데이터 분석, Loss Function 최적화, 학습 전략 설계', 'Model design, Data analysis, Loss function optimization, Training strategy design')}</div>
-            <div className="meta-item"><strong>{t('성과', 'Results')}:</strong> MAPE 10.0 → 0.188 ({t('약', 'approx.')} 98% {t('개선', 'improvement')})</div>
+            <div className="meta-item"><strong>{t('성과', 'Results')}:</strong> MAPE 1.13 → 0.188 ({t('약', 'approx.')} 83% {t('개선', 'improvement')})</div>
             <div className="meta-item"><strong>{t('환경', 'Environment')}:</strong> PyTorch, LSTM, Time Series Analysis</div>
           </div>
 
           <h3 className="subsection-title">Overview</h3>
           <p className="project-content">
             {t(
-              '불연속적인 산업 데이터의 특성을 고려한 Encoder-LSTM 모델 설계로 기존 대비 예측 오차(MAPE) 98% 개선을 달성했습니다. 개도율 0 지점의 불연속성 및 센서 이상치 문제를 해결하여 실제 산업 환경에 적용 가능한 예측 시스템을 구축했습니다.',
-              'Achieved 98% improvement in prediction error (MAPE) compared to baseline through Encoder-LSTM model design considering the characteristics of discontinuous industrial data. Built a prediction system applicable to real industrial environments by resolving discontinuities at valve opening rate 0 and sensor outlier issues.'
+              '불연속적인 산업 데이터의 특성을 고려한 Encoder-LSTM 모델 설계로 기존 대비 예측 오차(MAPE) 83% 개선을 달성했습니다. 개도율 0 지점의 불연속성 및 센서 이상치 문제를 해결하여 실제 산업 환경에 적용 가능한 예측 시스템을 구축했습니다.',
+              'Achieved 83% improvement in prediction error (MAPE) compared to baseline through Encoder-LSTM model design considering the characteristics of discontinuous industrial data. Built a prediction system applicable to real industrial environments by resolving discontinuities at valve opening rate 0 and sensor outlier issues.'
             )}
           </p>
 
@@ -329,7 +329,7 @@ const Resume = () => {
           <h3 className="subsection-title">Results</h3>
           <ul className="project-list">
             <li>
-              <strong>{t('예측 오차 대폭 개선', 'Significant Prediction Error Improvement')}:</strong> MAPE 10.0 → 0.188 ({t('약', 'approx.')} 98% {t('개선', 'improvement')}), {t('산업 환경에서 실용적인 수준의 정확도 달성', 'achieved practical accuracy level in industrial environments')}
+              <strong>{t('예측 오차 대폭 개선', 'Significant Prediction Error Improvement')}:</strong> MAPE 1.13 → 0.188 ({t('약', 'approx.')} 83% {t('개선', 'improvement')}), {t('산업 환경에서 실용적인 수준의 정확도 달성', 'achieved practical accuracy level in industrial environments')}
             </li>
             <li>
               <strong>{t('이상치 강건성 확보', 'Outlier Robustness Secured')}:</strong> Huber Loss {t('적용으로 센서 이상치에 대한 모델 안정성 향상, 급격한 예측 오차 발생 빈도 감소', 'improved model stability against sensor outliers by applying, reduced frequency of sudden prediction error occurrences')}
