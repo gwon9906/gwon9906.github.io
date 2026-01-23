@@ -63,33 +63,8 @@ const CoverLetter = () => {
 
         <div className="resume-divider"></div>
 
-        {/* Date */}
-        <div style={{ textAlign: 'right', marginBottom: '2rem', color: '#64748b' }}>
-          {t('2025년 1월 22일', 'January 22, 2025')}
-        </div>
-
-        {/* Recipient */}
-        <div style={{ marginBottom: '2rem' }}>
-          <div style={{ fontWeight: 'bold', marginBottom: '0.5rem' }}>
-            {t('채용 담당자님께', 'To the Hiring Manager')}
-          </div>
-          <div style={{ color: '#64748b' }}>
-            {t('아날로그아이(AnalogAI) 귀중', 'AnalogAI Inc.')}
-          </div>
-        </div>
-
-        {/* Subject */}
-        <div style={{ marginBottom: '2rem' }}>
-          <h2 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#1e293b' }}>
-            {t(
-              '제목: 물리적 제약을 "데이터와 실험"으로 돌파하는 최적화 엔지니어',
-              'Subject: Optimization Engineer Breaking Through Physical Constraints with Data and Experiments'
-            )}
-          </h2>
-        </div>
-
         {/* Opening */}
-        <div style={{ marginBottom: '1.5rem' }}>
+        <div style={{ marginBottom: '1.5rem', marginTop: '1.5rem' }}>
           <p className="section-content" style={{ lineHeight: '1.8' }}>
             {t(
               '저는 모델 자체의 화려함보다 전력·메모리·노이즈 같은 제약 조건 아래에서 동작하는 성능을 만드는 것에 집중해 온 AI/ML 엔지니어 이해권입니다. 초저전력 온디바이스 AI를 지향하는 AnalogAI가 풀고자 하는 문제(제약 환경에서의 실험–검증–개선)가 제가 프로젝트에서 반복적으로 다뤄온 방식과 맞닿아 있어 지원합니다.',
