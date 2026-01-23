@@ -322,6 +322,7 @@
     padding: 15mm;
     box-shadow: none;
     page-break-after: always;
+    page-break-inside: auto;
   }
 
   .resume-page:last-child {
@@ -354,25 +355,93 @@
     background-color: #f8fafc !important;
   }
 
-  /* Prevent page breaks inside elements */
+  /* Prevent page breaks inside critical elements */
   .resume-section,
-  .project-section,
   .strength-item,
   .education-item,
-  .research-item {
+  .research-item,
+  .resume-contact,
+  .project-meta {
     page-break-inside: avoid;
+    break-inside: avoid;
   }
 
+  /* Project sections can break, but subsections should stay together */
+  .project-section {
+    page-break-inside: auto;
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* Keep subsections together */
+  .subsection-title {
+    page-break-after: avoid;
+    break-after: avoid;
+    orphans: 2;
+  }
+
+  /* Keep content with its header */
+  .project-content {
+    page-break-before: avoid;
+    break-before: avoid;
+    orphans: 2;
+    widows: 2;
+  }
+
+  /* Keep lists together with their headers */
+  .project-list {
+    page-break-before: avoid;
+    break-before: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .resume-list {
+    page-break-before: avoid;
+    break-before: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* Headers should never be alone at the bottom */
   h2, h3 {
     page-break-after: avoid;
+    break-after: avoid;
+    orphans: 2;
   }
 
+  h2 {
+    page-break-before: auto;
+  }
+
+  /* List items should stay together */
   ul, ol {
     page-break-inside: avoid;
+    break-inside: avoid;
   }
 
   li {
     page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* Approach/Results sections */
+  .project-list li {
+    orphans: 2;
+    widows: 2;
+  }
+
+  /* Tech stack footer should stay with content */
+  .tech-stack-footer {
+    page-break-before: avoid;
+    break-before: avoid;
+    orphans: 2;
+  }
+
+  /* Divider shouldn't be orphaned */
+  .resume-divider {
+    page-break-after: avoid;
+    break-after: avoid;
   }
 }
 
