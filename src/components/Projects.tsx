@@ -163,8 +163,8 @@ const Projects = () => {
         'Industrial Valve Flow Prediction System Based on Time Series Data'
       ),
       subtitle: t(
-        'Encoder-LSTM 설계를 통한 예측 오차(MAPE) 98% 개선',
-        '98% Prediction Error (MAPE) Improvement through Encoder-LSTM Design'
+        'Encoder-LSTM 설계를 통한 예측 오차(MAPE) 83% 개선',
+        '83% Prediction Error (MAPE) Improvement through Encoder-LSTM Design'
       ),
       role: t('개인 연구', 'Individual Research'),
       period: '2024.07 - 12',
@@ -172,14 +172,14 @@ const Projects = () => {
       icon: TrendingUp,
       gradient: 'from-purple-500 to-pink-500',
       summary: [
-        { label: t('MAPE 개선', 'MAPE Improvement'), value: '98%' },
+        { label: t('MAPE 개선', 'MAPE Improvement'), value: '83%' },
         { label: t('최종 MAPE', 'Final MAPE'), value: '0.188' },
         { label: t('안정성', 'Stability'), value: 'Huber Loss' },
         { label: t('구조', 'Architecture'), value: 'Encoder-LSTM' },
       ],
       overview: t(
-        '불연속적인 산업 데이터의 특성을 고려한 Encoder-LSTM 모델 설계로 기존 대비 예측 오차(MAPE) 98% 개선을 달성했습니다.',
-        'Achieved 98% improvement in prediction error (MAPE) compared to baseline through Encoder-LSTM model design considering the characteristics of discontinuous industrial data.'
+        '불연속적인 산업 데이터의 특성을 고려한 Encoder-LSTM 모델 설계로 기존 대비 예측 오차(MAPE) 83% 개선을 달성했습니다.',
+        'Achieved 83% improvement in prediction error (MAPE) compared to baseline through Encoder-LSTM model design considering the characteristics of discontinuous industrial data.'
       ),
       context: t(
         '기존 LSTM 구조는 개도율 0 지점에서 불연속성이 발생하고, 센서 이상치(Outlier)에 대한 민감도가 높아 실제 산업 환경 적용에 한계가 있었습니다.',
@@ -205,8 +205,8 @@ const Projects = () => {
       ],
       results: [
         t(
-          'MAPE 10.0 → 0.188 달성 (약 98% 개선)',
-          'Achieved MAPE 10.0 → 0.188 (approximately 98% improvement)'
+          'MAPE 1.13 → 0.188 달성 (약 83% 개선)',
+          'Achieved MAPE 1.13 → 0.188 (approximately 83% improvement)'
         ),
         t(
           '이상치·분산 완화를 통해 실제 산업 환경에서의 예측 신뢰성 확보',

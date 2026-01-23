@@ -82,25 +82,38 @@ const CoverLetter = () => {
         <div style={{ marginBottom: '2rem' }}>
           <h2 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#1e293b' }}>
             {t(
-              '제목: AI Algorithm Engineer 지원',
-              'Subject: Application for AI Algorithm Engineer Position'
+              '제목: 물리적 제약을 "데이터와 실험"으로 돌파하는 최적화 엔지니어',
+              'Subject: Optimization Engineer Breaking Through Physical Constraints with Data and Experiments'
             )}
           </h2>
         </div>
 
-        {/* Greeting */}
-        <div style={{ marginBottom: '1.5rem' }}>
-          <p className="section-content">
-            {t('안녕하십니까,', 'Dear Hiring Manager,')}
-          </p>
-        </div>
-
-        {/* Body Paragraphs */}
+        {/* Opening */}
         <div style={{ marginBottom: '1.5rem' }}>
           <p className="section-content" style={{ lineHeight: '1.8' }}>
             {t(
-              '아날로그아이가 추구하는 "초저전력 온디바이스 AI"는 제가 프로젝트를 통해 일관되게 해결해온 핵심 문제와 정확히 일치합니다. 하드웨어 제약(전력·연산·메모리·노이즈)을 전제로 AI 모델/알고리즘을 설계·최적화하고 정량 지표로 검증해온 AI/ML 엔지니어 이해권입니다. GPU 대비 1,000배 에너지 효율을 목표로 하는 아날로그 인메모리 컴퓨팅 기반 AI 가속기 개발이라는 기술적 도전에 깊은 열망을 느껴 지원하게 되었습니다.',
-              'AnalogAI\'s pursuit of "ultra-low-power on-device AI" precisely matches the core problem I have consistently tackled through my projects. I am Haegwon Lee, an AI/ML Engineer with experience in designing, optimizing, and validating AI models/algorithms based on hardware constraints (power, computation, memory, noise) with quantitative metrics. I am deeply inspired by the technical challenge of developing analog in-memory computing-based AI accelerators targeting 1,000x energy efficiency compared to GPUs, which motivates my application.'
+              '저는 모델 자체의 화려함보다 전력·메모리·노이즈 같은 제약 조건 아래에서 동작하는 성능을 만드는 것에 집중해 온 AI/ML 엔지니어 이해권입니다. 초저전력 온디바이스 AI를 지향하는 AnalogAI가 풀고자 하는 문제(제약 환경에서의 실험–검증–개선)가 제가 프로젝트에서 반복적으로 다뤄온 방식과 맞닿아 있어 지원합니다.',
+              'I am Haegwon Lee, an AI/ML Engineer who has focused on creating performance under constraints like power, memory, and noise rather than model sophistication itself. I am applying because AnalogAI\'s pursuit of ultra-low-power on-device AI (experimentation–validation–improvement in constrained environments) aligns with the approach I have repeatedly employed in my projects.'
+            )}
+          </p>
+        </div>
+
+        {/* Section 1 Header */}
+        <div style={{ marginBottom: '1rem', marginTop: '2rem' }}>
+          <h3 style={{ fontSize: '1.1rem', fontWeight: 'bold', color: '#1e293b' }}>
+            {t(
+              '1. 제약 조건을 "데이터"로 검증하고 극복해왔습니다.',
+              '1. I have validated and overcome constraints through "data".'
+            )}
+          </h3>
+        </div>
+
+        {/* LoRa Project */}
+        <div style={{ marginBottom: '1rem' }}>
+          <p className="section-content" style={{ fontWeight: 'bold' }}>
+            {t(
+              '[LoRa: 복원 기반(BAM) 접근을 전제로 한 데이터 경량화 실험]',
+              '[LoRa: Data Lightweighting Experiment Based on Restoration (BAM) Approach]'
             )}
           </p>
         </div>
@@ -108,8 +121,8 @@ const CoverLetter = () => {
         <div style={{ marginBottom: '1.5rem' }}>
           <p className="section-content" style={{ lineHeight: '1.8' }}>
             {t(
-              '학부 연구생으로서 저전력 IoT 환경에서 초경량 데이터 압축·복원 시스템을 설계하며, 배터리 수명 연장을 위해 전송 데이터량을 37.5% 감소시키고 통신 성공률(PDR)을 14%p 향상시킨 경험이 있습니다. 핵심은 Autoencoder 대비 연산 부담이 낮은 BAM 구조를 선택하고, TensorFlow 의존성을 제거한 NumPy 기반 온디바이스 추론으로 전환하여 Raspberry Pi에서 안정적인 실시간 구동을 확보한 것입니다. 실제 N-LOS 필드 테스트(2.6km, 1개월)를 통해 "전송 전력 증대 대신 데이터 표현과 알고리즘 재설계"로 시스템 에너지 효율을 개선하는 접근을 검증했습니다. 이는 아날로그아이가 지향하는 "하드웨어의 물리적 한계를 알고리즘으로 극복"하는 설계 철학과 정확히 일치합니다.',
-              'As an undergraduate researcher, I designed an ultra-lightweight data compression/restoration system for low-power IoT environments, reducing transmission data volume by 37.5% and improving Packet Delivery Rate (PDR) by 14%p to extend battery life. The key was selecting a BAM structure with lower computational burden than Autoencoder, transitioning to NumPy-based on-device inference removing TensorFlow dependency, and securing stable real-time operation on Raspberry Pi. Through real N-LOS field tests (2.6km, 1 month), I validated the approach of improving system energy efficiency by "redesigning data representation and algorithms instead of increasing transmission power." This precisely aligns with AnalogAI\'s design philosophy of "overcoming hardware\'s physical limitations through algorithms."'
+              'LoRa 통신 환경에서 배터리 효율을 높이는 핵심은 재전송을 줄이기 위한 전송 데이터 최소화라고 판단했습니다. 이를 위해 수신 측에서 일부 손실을 알고리즘으로 보완할 수 있도록 BAM(Bidirectional Associative Memory) 기반 복원 구조를 전제로 실험을 설계했고, Payload를 32B에서 20B로(37.5%) 줄였을 때 PDR(Packet Delivery Ratio)이 14%p 개선되는 결과를 확인했습니다.',
+              'I determined that the key to improving battery efficiency in LoRa communication environments is minimizing transmission data to reduce retransmissions. To achieve this, I designed experiments based on a BAM (Bidirectional Associative Memory) restoration structure that can algorithmically compensate for some losses on the receiving end, and confirmed that reducing Payload from 32B to 20B (37.5%) improved PDR (Packet Delivery Ratio) by 14%p.'
             )}
           </p>
         </div>
@@ -117,8 +130,18 @@ const CoverLetter = () => {
         <div style={{ marginBottom: '1.5rem' }}>
           <p className="section-content" style={{ lineHeight: '1.8' }}>
             {t(
-              '또한 산업용 밸브 유량 예측 시스템 개발에서 불연속적인 데이터 특성을 깊이 분석하고 Encoder-LSTM 구조를 재설계하여 MAPE를 98% 개선(10.0→0.188)한 경험이 있습니다. 기존 LSTM이 실패한 이유(개도율 0 지점 불연속성, 센서 이상치 민감도)를 규명하고, 시퀀스 재초기화 로직과 Huber Loss 도입으로 문제를 해결했습니다. 단순히 하이퍼파라미터를 튜닝하는 것이 아니라, 데이터 특성과 하드웨어 조건을 먼저 분석한 뒤 손실 함수·상태 처리·전처리를 근본적으로 재설계하는 접근이 실제 환경 적용의 핵심임을 체득했습니다.',
-              'Additionally, in developing an industrial valve flow prediction system, I deeply analyzed discontinuous data characteristics and redesigned the Encoder-LSTM structure to improve MAPE by 98% (10.0→0.188). I identified why existing LSTM failed (discontinuity at valve opening rate 0, sensitivity to sensor outliers) and solved it by introducing sequence reset logic and Huber Loss. Rather than simply tuning hyperparameters, I learned that the key to real-world application is fundamentally redesigning loss functions, state handling, and preprocessing after first analyzing data characteristics and hardware conditions.'
+              '이 과정에서 Log-distance Path Loss 같은 이론 모델이 실제 전파 환경을 완전히 설명하지 못한다는 점을 체감했습니다. 실제 필드에서는 장애물/회절뿐 아니라, 같은 위치에서도 시간대에 따라 결과가 달라지는 변동성이 나타났습니다. 저는 0.1–4km 구간에서 반복 측정을 수행하며, 시뮬레이션 예측과 실측 결과의 편차를 확인했고, 현실 환경에서 성능이 유지되는 조건을 데이터로 정리하는 경험을 쌓았습니다.',
+              'During this process, I realized that theoretical models like Log-distance Path Loss cannot fully explain real radio propagation environments. In actual fields, variability appeared where results differed depending on time of day even at the same location, beyond just obstacles and diffraction. I performed repeated measurements in 0.1–4km sections, confirmed discrepancies between simulation predictions and measured results, and gained experience organizing conditions where performance is maintained in real environments through data.'
+            )}
+          </p>
+        </div>
+
+        {/* Industrial Time Series Project */}
+        <div style={{ marginBottom: '1rem', marginTop: '1.5rem' }}>
+          <p className="section-content" style={{ fontWeight: 'bold' }}>
+            {t(
+              '[산업 시계열: 튜닝보다 원인 분석 중심의 개선]',
+              '[Industrial Time Series: Improvement Centered on Root Cause Analysis Rather Than Tuning]'
             )}
           </p>
         </div>
@@ -126,27 +149,49 @@ const CoverLetter = () => {
         <div style={{ marginBottom: '1.5rem' }}>
           <p className="section-content" style={{ lineHeight: '1.8' }}>
             {t(
-              '아날로그아이가 추구하는 H/W-S/W Co-design은 제가 프로젝트마다 적용해온 설계 사고방식입니다. 하드웨어 비이상성과 제약 조건(연산량, 메모리 대역폭, 전력 소모, 비트 정밀도 손실)을 학습·추론 알고리즘 설계 단계부터 포함하고, 병목을 정의하여 모델 아키텍처와 데이터 표현을 동시에 최적화하는 경험을 쌓아왔습니다. 특히 아날로그 인메모리 컴퓨팅에서 발생하는 노이즈와 비선형성 문제는, 제가 Ultra-Low SNR 환경에서 LoRa 신호 복원 연구를 통해 다룬 "노이즈 환경에서의 강건한 학습 전략"과 본질적으로 동일한 도전이라고 생각합니다.',
-              'AnalogAI\'s pursuit of H/W-S/W Co-design is the design mindset I have applied in every project. I have gained experience including hardware non-idealities and constraints (computation, memory bandwidth, power consumption, bit precision loss) from the learning and inference algorithm design phase, defining bottlenecks, and simultaneously optimizing model architecture and data representation. In particular, I believe the noise and nonlinearity issues in analog in-memory computing are essentially the same challenge as the "robust learning strategy in noisy environments" I addressed through LoRa signal restoration research in Ultra-Low SNR environments.'
+              '산업용 밸브 유량 예측 프로젝트에서는 단순 튜닝보다 오차가 커지는 구간(불연속 지점, 이상치)의 데이터 특성을 먼저 분석했습니다. 이후 Encoder-LSTM 구조 재설계와 Huber Loss 도입 등 문제 상황에 맞는 해결책을 적용했고, MAPE를 1.13에서 0.188 수준으로 낮추는 방향의 개선을 만들었습니다. 이 경험을 통해 복잡한 모델보다 데이터의 병목(분포, 노이즈, 불연속)을 정의하고 대응하는 과정이 실무적으로 더 중요하다는 점을 확인했습니다.',
+              'In the industrial valve flow prediction project, I first analyzed the data characteristics of sections where errors increased (discontinuous points, outliers) rather than simple tuning. I then applied solutions tailored to the problem situation, such as Encoder-LSTM structure redesign and Huber Loss introduction, and achieved improvements reducing MAPE from 1.13 to 0.188 level. Through this experience, I confirmed that defining and addressing data bottlenecks (distribution, noise, discontinuity) is more practically important than complex models.'
             )}
           </p>
+        </div>
+
+        {/* Section 2 Header */}
+        <div style={{ marginBottom: '1rem', marginTop: '2rem' }}>
+          <h3 style={{ fontSize: '1.1rem', fontWeight: 'bold', color: '#1e293b' }}>
+            {t(
+              '2. AnalogAI에서 "이론을 현실로 구현하는" 엔지니어가 되겠습니다.',
+              '2. I will be an engineer who "implements theory into reality" at AnalogAI.'
+            )}
+          </h3>
         </div>
 
         <div style={{ marginBottom: '1.5rem' }}>
           <p className="section-content" style={{ lineHeight: '1.8' }}>
             {t(
-              'LLM 경량화 및 Transformer 아키텍처 최적화는 현재 제가 가장 깊이 학습하고 싶은 분야입니다. PyTorch와 TensorFlow를 활용한 모델 구현 경험을 바탕으로, 최신 논문(Quantization-Aware Training, Knowledge Distillation, Sparse Attention 등)을 빠르게 탐독하고 코드로 검증하는 방식으로 아날로그 하드웨어 가속기에 특화된 학습 알고리즘 연구에 즉시 기여할 수 있습니다. 배터리 기반 AR·VR 글래스나 휴머노이드 로봇에서 LLM급 고성능 AI를 직접 구동한다는 기술적 비전에 큰 열정을 느낍니다.',
-              'LLM lightweighting and Transformer architecture optimization are areas I am most eager to deeply learn. Based on my experience implementing models with PyTorch and TensorFlow, I can immediately contribute to research on learning algorithms specialized for analog hardware accelerators by rapidly exploring the latest papers (Quantization-Aware Training, Knowledge Distillation, Sparse Attention, etc.) and validating them through code. I am deeply passionate about the technical vision of directly running LLM-level high-performance AI on battery-powered AR/VR glasses or humanoid robots.'
+              'AnalogAI가 지향하는 초저전력 AI 반도체 환경에서는, 이상적인 가정에서 나온 수식/알고리즘이 실제 하드웨어의 노이즈·비선형성·정밀도 제약 위에서 어떤 방식으로 성능이 변하는지 검증하는 과정이 중요하다고 생각합니다. 저는 다음 방식으로 기여하겠습니다.',
+              'In the ultra-low-power AI semiconductor environment that AnalogAI pursues, I believe the process of verifying how formulas/algorithms derived from ideal assumptions change in performance on actual hardware with noise, nonlinearity, and precision constraints is crucial. I will contribute in the following ways.'
             )}
+          </p>
+        </div>
+
+        <div style={{ marginBottom: '1rem', paddingLeft: '1rem' }}>
+          <p className="section-content" style={{ lineHeight: '1.8' }}>
+            <strong>• {t('강건성(Robustness) 관점의 검증', 'Validation from Robustness Perspective')}:</strong> {t('이상적인 조건에서만 성능이 나오는 해법보다, 노이즈/정밀도 저하가 존재할 때도 성능이 급격히 무너지지 않는 조건을 실험으로 확인하고, 성능이 무너지는 경계 조건을 정리해 알고리즘의 현실적인 완성도를 높이겠습니다.', 'Rather than solutions that only perform under ideal conditions, I will experimentally verify conditions where performance does not collapse sharply even when noise/precision degradation exists, organize boundary conditions where performance breaks down, and enhance the practical completeness of algorithms.')}
+          </p>
+        </div>
+
+        <div style={{ marginBottom: '1.5rem', paddingLeft: '1rem' }}>
+          <p className="section-content" style={{ lineHeight: '1.8' }}>
+            <strong>• {t('리소스 관점의 최적화', 'Optimization from Resource Perspective')}:</strong> {t('Transformer/LLM 계열 모델을 포함해 낯선 아키텍처라도, 우선 실행 환경을 구축하고 메모리·연산 병목과 지연을 측정한 뒤, 타깃 제약(전력/지연/정밀도)에 맞춰 경량화·최적화 방향을 설정하겠습니다.', 'Even with unfamiliar architectures including Transformer/LLM models, I will first build execution environments, measure memory and computation bottlenecks and latency, then set lightweighting and optimization directions aligned with target constraints (power/latency/precision).')}
           </p>
         </div>
 
         {/* Closing */}
-        <div style={{ marginBottom: '1.5rem' }}>
+        <div style={{ marginBottom: '1.5rem', marginTop: '1.5rem' }}>
           <p className="section-content" style={{ lineHeight: '1.8' }}>
             {t(
-              '"단순히 모델을 돌리는 것을 넘어, 하드웨어의 물리적 한계를 알고리즘으로 극복하는 과정에 즐거움을 느끼는 분"이라는 채용 공고의 문구가 제 연구 경험과 설계 철학을 정확히 표현하고 있어 큰 공감을 느꼈습니다. 아날로그아이의 글로벌 AI 반도체 기술 혁신에 기여하고, 혁신적인 학습 알고리즘 연구를 통해 함께 성장하고 싶습니다. 면접 기회를 주시면 더 구체적으로 말씀드리겠습니다.',
-              'The phrase in the job posting, "someone who finds joy in overcoming hardware\'s physical limitations through algorithms beyond simply running models," precisely captures my research experience and design philosophy, deeply resonating with me. I want to contribute to AnalogAI\'s global AI semiconductor technology innovation and grow together through innovative learning algorithm research. I would appreciate the opportunity to discuss this more specifically in an interview.'
+              '저는 과장된 목표보다 제약을 인정한 상태에서 실험을 설계하고, 재현 가능한 결과로 개선을 증명하는 방식을 선호합니다. 불완전한 환경에서 빠르게 가설을 세우고 검증하며 전진하는 AnalogAI의 개발 방식에 저의 실행력을 더하고 싶습니다.',
+              'I prefer designing experiments acknowledging constraints rather than exaggerated goals, and proving improvements through reproducible results. I want to add my execution capability to AnalogAI\'s development approach of rapidly forming hypotheses, validating, and advancing in imperfect environments.'
             )}
           </p>
         </div>
