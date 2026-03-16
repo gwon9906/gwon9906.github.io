@@ -32,7 +32,7 @@ const Hero = () => {
             transition={{ delay: 0.2, duration: 0.6 }}
             className="relative inline-block"
           >
-            <div className="w-40 h-40 mx-auto bg-gradient-to-br from-primary-500 to-indigo-600 rounded-full flex items-center justify-center shadow-2xl ring-4 ring-white/50">
+            <div className="w-40 h-40 mx-auto bg-primary-600 rounded-full flex items-center justify-center shadow-2xl ring-4 ring-white/50">
               <span className="text-6xl font-bold text-white">이</span>
             </div>
             <div className="absolute -bottom-2 -right-2 w-12 h-12 bg-green-500 rounded-full border-4 border-white flex items-center justify-center shadow-lg">
@@ -48,7 +48,7 @@ const Hero = () => {
               transition={{ delay: 0.4, duration: 0.6 }}
               className="text-5xl sm:text-6xl lg:text-7xl font-bold"
             >
-              <span className="gradient-text">이해권</span>
+              <span className="text-primary-600">이해권</span>
             </motion.h1>
 
             <motion.h2
@@ -67,8 +67,8 @@ const Hero = () => {
               className="text-xl sm:text-2xl text-dark-600 max-w-3xl mx-auto font-medium"
             >
               {t(
-                'AI/ML Engineer | Hardware-aware & On-device AI',
-                'AI/ML Engineer | Hardware-aware & On-device AI'
+                'AI/ML Engineer | End-to-End ML & Robust Validation',
+                'AI/ML Engineer | End-to-End ML & Robust Validation'
               )}
             </motion.p>
 
@@ -79,8 +79,8 @@ const Hero = () => {
               className="text-lg text-dark-500 max-w-2xl mx-auto leading-relaxed"
             >
               {t(
-                '하드웨어 제약(전력·연산·메모리·노이즈)을 전제로, 온디바이스 환경에서 AI 모델/알고리즘을 설계·최적화하고 정량 지표로 검증해온 AI/ML 엔지니어입니다. 제약이 큰 환경에서 데이터 표현과 복원 파이프라인을 재설계해 성능–효율 trade-off를 개선하는 문제 해결에 강점을 갖고 있습니다.',
-                'AI/ML Engineer experienced in designing, optimizing, and validating AI models/algorithms in on-device environments, with a focus on hardware constraints (power, computation, memory, noise). Strong in problem-solving that improves performance-efficiency trade-offs by redesigning data representation and restoration pipelines in highly constrained environments.'
+                '제약 조건이 있는 실제 환경에서 데이터 처리–모델링–검증 루프를 설계하고, 지표 기반으로 성능을 개선해온 AI/ML 엔지니어입니다. 노이즈·불규칙 데이터에서 강건성과 재현성을 높이는 실험 설계에 강점을 가지고 있습니다.',
+                'AI/ML engineer focused on building end-to-end data processing-modeling-validation loops in constrained real-world settings and improving outcomes through metric-driven iteration. Strong in experiment design for robustness and reproducibility on noisy, irregular data.'
               )}
             </motion.p>
           </div>
@@ -98,7 +98,7 @@ const Hero = () => {
                 e.preventDefault();
                 scrollToProjects();
               }}
-              className="group px-8 py-4 bg-gradient-to-r from-primary-500 to-blue-600 text-white rounded-2xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+              className="group px-8 py-4 bg-primary-600 text-white rounded-2xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
             >
               {t('프로젝트 보기', 'View Projects')}
               <ChevronDown className="inline-block ml-2 w-5 h-5 group-hover:translate-y-1 transition-transform" />
@@ -150,7 +150,7 @@ const Hero = () => {
                 key={index}
                 className="glass-card p-6 hover-lift"
               >
-                <div className="text-3xl font-bold gradient-text">{stat.value}</div>
+                <div className="text-3xl font-bold text-primary-600">{stat.value}</div>
                 <div className="text-sm text-dark-600 mt-1">{stat.label}</div>
               </div>
             ))}

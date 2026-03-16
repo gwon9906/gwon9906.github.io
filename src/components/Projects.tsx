@@ -11,6 +11,7 @@ import {
   Users,
   CheckCircle2,
   Loader,
+  type LucideIcon,
   // ChevronDown, // PDF 출력용: 미사용
   // ChevronUp,   // PDF 출력용: 미사용
 } from 'lucide-react';
@@ -23,7 +24,7 @@ interface Project {
   role: string;
   period: string;
   status: 'completed' | 'in-progress';
-  icon: any;
+  icon: LucideIcon;
   gradient: string;
   summary: {
     label: string;
@@ -89,74 +90,6 @@ const Projects = () => {
 
   const rawProjects: Project[] = [
     {
-      id: 'lora-bam',
-      title: t(
-        '저전력 IoT 환경을 위한 초경량 데이터 압축·복원 (BAM 기반)',
-        'Ultra-Lightweight Data Compression & Restoration for Low-Power IoT Environments (BAM-based)'
-      ),
-      subtitle: t(
-        '페이로드 37.5% 감소, PDR 14%p 향상, 전송 부담 최소화로 배터리 수명 연장',
-        '37.5% Payload Reduction, 14%p PDR Improvement, Battery Life Extension through Minimized Transmission Burden'
-      ),
-      role: t('팀 리드 (전체 파이프라인 설계)', 'Team Lead (Full Pipeline Design)'),
-      period: '2024.03 - 06',
-      status: 'completed',
-      icon: Radio,
-      gradient: 'from-blue-500 to-cyan-500',
-      summary: [
-        { label: t('전송량 감소', 'Transmission Reduction'), value: '37.5%' },
-        { label: t('PDR 개선', 'PDR Improvement'), value: '+14%p' },
-        { label: t('GPS MSE', 'GPS MSE'), value: '0.0036' },
-        { label: t('환경', 'Environment'), value: t('필드 테스트', 'Field Test') },
-      ],
-      context: t(
-        '대규모 IoT 디바이스는 배터리 기반으로 장기간 운용되며, 패킷 손실이 발생할 경우 재전송으로 에너지 소모가 급증하여 디바이스 수명이 크게 단축될 수 있습니다. LoRa/LPWAN 환경에서는 전송 전력을 높이기보다 전송 데이터량 자체를 줄여 재전송 빈도를 낮추는 접근이 더 효과적입니다. 본 프로젝트에서는 제한된 페이로드 조건에서 전송량을 최소화하면서도 데이터 품질을 유지하여 통신 성공률(PDR)을 개선하는 것을 목표로 하였습니다.',
-        'Large-scale IoT devices operate long-term on batteries, and packet loss can cause energy consumption to surge through retransmissions, significantly shortening device lifespan. In LoRa/LPWAN environments, reducing transmission data volume rather than increasing transmission power is more effective for lowering retransmission frequency. This project aimed to improve Packet Delivery Rate (PDR) by minimizing transmission volume while maintaining data quality under limited payload conditions.'
-      ),
-      approach: [
-        t(
-          '경량 압축 구조 설계: Autoencoder 대비 연산 부담이 낮은 BAM 구조를 적용하여, 저전력·리소스 제약 환경에서의 안정적 구동을 우선 고려',
-          'Lightweight Compression Structure Design: Applied BAM structure with lower computational burden compared to Autoencoder, prioritizing stable operation in low-power, resource-constrained environments'
-        ),
-        t(
-          '데이터 표현 최적화: GPS/센서 데이터의 특성을 분석하여 정수부·소수부 분리 인코딩을 적용하였고, 압축 과정에서 발생하는 정밀도 손실을 최소화',
-          'Data Representation Optimization: Analyzed GPS/sensor data characteristics to apply integer-decimal separation encoding, minimizing precision loss during compression'
-        ),
-        t(
-          '실환경 검증 중심 설계: 시뮬레이션이 아닌 실제 N-LOS 환경(약 2.6km 구간)을 1개월간 반복 주행하며 수집한 데이터를 기반으로 성능을 검증',
-          'Real Environment Validation-Centered Design: Validated performance based on data collected through repeated driving in real N-LOS environment (approx. 2.6km section) for 1 month, not simulation'
-        ),
-      ],
-      results: [
-        t(
-          '전송량 감소: Payload 32B → 20B (전송량 약 37.5% 감소)',
-          'Transmission Volume Reduction: Payload 32B → 20B (transmission volume approx. 37.5% reduction)'
-        ),
-        t(
-          '통신 신뢰성 개선: 압축 적용 후 PDR 약 +14%p 향상',
-          'Communication Reliability Improvement: PDR improved by approximately +14%p after compression application'
-        ),
-        t(
-          '복원 품질 유지: GPS 복원 오차(MSE) 0.0184 → 0.0036으로, 전송량 감소에도 서비스 가능한 품질을 확보',
-          'Restoration Quality Maintained: GPS restoration error (MSE) 0.0184 → 0.0036, securing serviceable quality despite reduced transmission volume'
-        ),
-      ],
-      keyInsight: t(
-        '패킷 손실이 잦은 환경에서는 모델 성능 자체보다 "한 번에 성공적으로 전달되는 데이터의 양"이 에너지 효율과 시스템 수명을 좌우합니다. 본 프로젝트에서는 전송 전력 증대 대신 데이터 표현과 알고리즘을 재설계하는 방식으로 시스템 효율을 개선하였습니다.',
-        'In environments with frequent packet loss, "the amount of data successfully transmitted at once" determines energy efficiency and system lifespan more than model performance itself. This project improved system efficiency by redesigning data representation and algorithms rather than increasing transmission power.'
-      ),
-      relevance: [
-        t('Hardware-aware Algorithm Design 경험 확보', 'Gained Hardware-aware Algorithm Design experience'),
-        t('On-device / Edge AI 최적화 관점에서의 설계·검증 경험 보유', 'Experience in design and validation from On-device / Edge AI optimization perspective'),
-        t('노이즈·제약 환경에서 실측 기반 성능 개선 수행', 'Performed measurement-based performance improvement in noisy, constrained environments'),
-      ],
-      links: [
-        { github: 'https://github.com/4xvgal/ChirpChirp' },
-        { github: 'https://github.com/gwon9906/Lightweight-MF-BAM' },
-      ],
-      techs: ['Python', 'BAM', 'NumPy', 'Raspberry Pi', 'LoRa', 'Field Testing'],
-    },
-    {
       id: 'valve-prediction',
       title: t(
         '시계열 데이터 기반 산업용 밸브 유량 예측 시스템',
@@ -170,7 +103,7 @@ const Projects = () => {
       period: '2024.07 - 12',
       status: 'completed',
       icon: TrendingUp,
-      gradient: 'from-purple-500 to-pink-500',
+      gradient: 'from-slate-500 to-slate-600',
       summary: [
         { label: t('MAPE 개선', 'MAPE Improvement'), value: '83%' },
         { label: t('최종 MAPE', 'Final MAPE'), value: '0.188' },
@@ -186,6 +119,18 @@ const Projects = () => {
         'Existing LSTM structures had discontinuities at valve opening rate 0 and high sensitivity to sensor outliers, limiting application in real industrial environments.'
       ),
       approach: [
+        t(
+          'Baselines: Persistence(직전 시점 유지) + 기본 LSTM을 기준선으로 두고 개선 효과를 비교',
+          'Baselines: Compared improvements against a persistence baseline (carry-forward) and a vanilla LSTM'
+        ),
+        t(
+          'Validation: 시간 순서 기반 split과 누수(leakage) 방지 규칙을 적용해 검증',
+          'Validation: Used time-ordered split with explicit leakage prevention rules'
+        ),
+        t(
+          'My role: 데이터 분석, 시퀀스 reset/손실 함수 설계, Encoder-LSTM 구현 및 실험 주도',
+          'My role: Led data analysis, sequence reset/loss design, Encoder-LSTM implementation, and experiments'
+        ),
         t(
           '계층적 특징 추출을 위한 Encoder-LSTM 구조 재설계',
           'Redesigned Encoder-LSTM architecture for hierarchical feature extraction'
@@ -252,6 +197,86 @@ const Projects = () => {
       techs: ['Python', 'PyTorch', 'LSTM', 'Encoder-Decoder', 'Time Series'],
     },
     {
+      id: 'lora-bam',
+      title: t(
+        '저전력 IoT 환경을 위한 초경량 데이터 압축·복원 (BAM 기반)',
+        'Ultra-Lightweight Data Compression & Restoration for Low-Power IoT Environments (BAM-based)'
+      ),
+      subtitle: t(
+        '페이로드 37.5% 감소, PDR 14%p 향상, 전송 부담 최소화로 배터리 수명 연장',
+        '37.5% Payload Reduction, 14%p PDR Improvement, Battery Life Extension through Minimized Transmission Burden'
+      ),
+      role: t('팀 리드 (전체 파이프라인 설계)', 'Team Lead (Full Pipeline Design)'),
+      period: '2024.03 - 06',
+      status: 'completed',
+      icon: Radio,
+      gradient: 'from-sky-500 to-slate-500',
+      summary: [
+        { label: t('전송량 감소', 'Transmission Reduction'), value: '37.5%' },
+        { label: t('PDR 개선', 'PDR Improvement'), value: '+14%p' },
+        { label: t('GPS MSE', 'GPS MSE'), value: '0.0036' },
+        { label: t('환경', 'Environment'), value: t('필드 테스트', 'Field Test') },
+      ],
+      context: t(
+        '대규모 IoT 디바이스는 배터리 기반으로 장기간 운용되며, 패킷 손실이 발생할 경우 재전송으로 에너지 소모가 급증하여 디바이스 수명이 크게 단축될 수 있습니다. LoRa/LPWAN 환경에서는 전송 전력을 높이기보다 전송 데이터량 자체를 줄여 재전송 빈도를 낮추는 접근이 더 효과적입니다. 본 프로젝트에서는 제한된 페이로드 조건에서 전송량을 최소화하면서도 데이터 품질을 유지하여 통신 성공률(PDR)을 개선하는 것을 목표로 하였습니다.',
+        'Large-scale IoT devices operate long-term on batteries, and packet loss can cause energy consumption to surge through retransmissions, significantly shortening device lifespan. In LoRa/LPWAN environments, reducing transmission data volume rather than increasing transmission power is more effective for lowering retransmission frequency. This project aimed to improve Packet Delivery Rate (PDR) by minimizing transmission volume while maintaining data quality under limited payload conditions.'
+      ),
+      approach: [
+        t(
+          'Baselines: 단순 압축 규칙 기반 baseline과 AutoEncoder baseline을 재현해 비교하고, 선행 연구의 효율 지표를 함께 검토한 뒤 BAM을 선택',
+          'Baselines: Reproduced and compared a simple rule-based compression baseline and an AutoEncoder baseline, then chose BAM after reviewing efficiency trade-offs with prior work'
+        ),
+        t(
+          'Validation: 동일 데이터·동일 통신 조건(N-LOS 2.6km, 동일 주행/기간)에서 same-condition 비교로 검증',
+          'Validation: Verified by same-condition comparison using identical data and communication settings (N-LOS 2.6km, same route/period)'
+        ),
+        t(
+          'My role: 전처리 규격, BAM 압축/복원 파이프라인, 필드 실험 설계와 지표 분석을 직접 설계·구현',
+          'My role: Designed and implemented preprocessing specs, BAM compression/restoration pipeline, field experiment setup, and metric analysis'
+        ),
+        t(
+          '경량 압축 구조 설계: AutoEncoder 대비 연산 부담이 낮은 BAM 구조를 적용하여, 저전력·리소스 제약 환경에서의 안정적 구동을 우선 고려',
+          'Lightweight Compression Structure Design: Applied BAM structure with lower computational burden compared to AutoEncoder, prioritizing stable operation in low-power, resource-constrained environments'
+        ),
+        t(
+          '데이터 표현 최적화: GPS/센서 데이터의 특성을 분석하여 정수부·소수부 분리 인코딩을 적용하였고, 압축 과정에서 발생하는 정밀도 손실을 최소화',
+          'Data Representation Optimization: Analyzed GPS/sensor data characteristics to apply integer-decimal separation encoding, minimizing precision loss during compression'
+        ),
+        t(
+          '실환경 검증 중심 설계: 시뮬레이션이 아닌 실제 N-LOS 환경(약 2.6km 구간)을 1개월간 반복 주행하며 수집한 데이터를 기반으로 성능을 검증',
+          'Real Environment Validation-Centered Design: Validated performance based on data collected through repeated driving in real N-LOS environment (approx. 2.6km section) for 1 month, not simulation'
+        ),
+      ],
+      results: [
+        t(
+          '전송량 감소: Payload 32B → 20B (전송량 약 37.5% 감소)',
+          'Transmission Volume Reduction: Payload 32B → 20B (transmission volume approx. 37.5% reduction)'
+        ),
+        t(
+          '통신 신뢰성 개선: 압축 적용 후 PDR 약 +14%p 향상',
+          'Communication Reliability Improvement: PDR improved by approximately +14%p after compression application'
+        ),
+        t(
+          '복원 품질 유지: GPS 복원 오차(MSE) 0.0184 → 0.0036으로, 전송량 감소에도 서비스 가능한 품질을 확보',
+          'Restoration Quality Maintained: GPS restoration error (MSE) 0.0184 → 0.0036, securing serviceable quality despite reduced transmission volume'
+        ),
+      ],
+      keyInsight: t(
+        '패킷 손실이 잦은 환경에서는 모델 성능 자체보다 "한 번에 성공적으로 전달되는 데이터의 양"이 에너지 효율과 시스템 수명을 좌우합니다. 본 프로젝트에서는 전송 전력 증대 대신 데이터 표현과 알고리즘을 재설계하는 방식으로 시스템 효율을 개선하였습니다.',
+        'In environments with frequent packet loss, "the amount of data successfully transmitted at once" determines energy efficiency and system lifespan more than model performance itself. This project improved system efficiency by redesigning data representation and algorithms rather than increasing transmission power.'
+      ),
+      relevance: [
+        t('Hardware-aware Algorithm Design 경험 확보', 'Gained Hardware-aware Algorithm Design experience'),
+        t('On-device / Edge AI 최적화 관점에서의 설계·검증 경험 보유', 'Experience in design and validation from On-device / Edge AI optimization perspective'),
+        t('노이즈·제약 환경에서 실측 기반 성능 개선 수행', 'Performed measurement-based performance improvement in noisy, constrained environments'),
+      ],
+      links: [
+        { github: 'https://github.com/4xvgal/ChirpChirp' },
+        { github: 'https://github.com/gwon9906/Lightweight-MF-BAM' },
+      ],
+      techs: ['Python', 'BAM', 'NumPy', 'Raspberry Pi', 'LoRa', 'Field Testing'],
+    },
+    {
       id: 'lora-demod',
       title: t(
         'Ultra-Low SNR 환경에서 LoRa 패킷 복원을 위한 전초 연구',
@@ -262,25 +287,37 @@ const Projects = () => {
         'Ultra-Lightweight Signal Compression Model Development for Edge-Cloud Collaborative Demodulation'
       ),
       role: t('개인 연구', 'Individual Research'),
-      period: '2025.11 - 12',
-      status: 'in-progress',
+      period: '2025.11 - 2026.02',
+      status: 'completed',
       icon: Signal,
-      gradient: 'from-orange-500 to-red-500',
+      gradient: 'from-amber-500 to-slate-500',
       summary: [
-        { label: t('상태', 'Status'), value: t('진행 중', 'In Progress') },
+        { label: t('상태', 'Status'), value: t('연구 중단 (목표 미달성)', 'Discontinued (Goal Not Met)') },
         { label: t('최종 목표', 'Final Goal'), value: t('패킷 복원', 'Packet Recovery') },
-        { label: t('현재 단계', 'Current Phase'), value: t('전초 연구', 'Preliminary') },
+        { label: t('최종 단계', 'Final Phase'), value: t('전초 연구 완료', 'Preliminary Study Completed') },
         { label: t('환경', 'Environment'), value: t('시뮬레이션', 'Simulation') },
       ],
       overview: t(
-        'Ultra-Low SNR(–25 ~ –30 dB) 환경에서 패킷 복원(CRC 통과)을 최종 목표로, Edge에서 복조 실패한 LoRa 신호를 Cloud(C-RAN)로 전송해 재복조하는 시스템을 연구하고 있습니다. 현재는 전송 부담을 최소화하면서 LoRa Chirp 구조를 유지하는 초경량 신호 압축 모델을 개발하는 전초 단계입니다.',
-        'Researching a system that sends demodulation-failed LoRa signals from Edge to Cloud (C-RAN) for re-demodulation, with the final goal of packet recovery (CRC validation) in Ultra-Low SNR (–25 ~ –30 dB) environments. Currently in the preliminary phase of developing an ultra-lightweight signal compression model that minimizes transmission burden while preserving LoRa Chirp structure.'
+        'Ultra-Low SNR(–25 ~ –30 dB) 환경에서 패킷 복원(CRC 통과)을 목표로, Edge 복조 실패 신호를 Cloud(C-RAN)로 전송해 재복조하는 구조를 전초 연구로 수행했습니다. 전송 부담을 최소화하면서 LoRa Chirp 구조를 유지하는 초경량 신호 압축 모델을 구현·검증했습니다.',
+        'As a preliminary study, I explored a system that sends demodulation-failed LoRa signals from Edge to Cloud (C-RAN) for re-demodulation, targeting packet recovery (CRC validation) in Ultra-Low SNR (–25 ~ –30 dB). I implemented and validated an ultra-lightweight signal compression model that minimizes transmission burden while preserving LoRa chirp structure.'
       ),
       context: t(
         'Ultra-Low SNR 환경에서는 표준 LoRa dechirp+FFT 복조가 실패합니다. 복조 실패 신호를 Cloud(C-RAN)에 보내 여러 Edge에서 모은 실패 신호를 합쳐 복조하는 방식이 필요하나, IQ 데이터를 원본으로 전송하면 전송 비용이 과도하여 Edge 단에서 압축 + 신호 구조 보존 + 노이즈 억제를 동시에 수행할 필요가 있었습니다.',
         'Standard LoRa dechirp+FFT demodulation fails in Ultra-Low SNR environments. While a method to send failed signals to Cloud (C-RAN) and combine signals from multiple Edges for demodulation is needed, transmitting raw IQ data incurs excessive transmission costs, requiring simultaneous compression + signal structure preservation + noise suppression at the Edge.'
       ),
       approach: [
+        t(
+          'Baselines: 표준 LoRa dechirp+FFT baseline과 단순 스펙트로그램 디노이징 baseline을 함께 재현해 비교',
+          'Baselines: Reproduced and compared a standard LoRa dechirp+FFT baseline and a simple spectrogram denoising baseline'
+        ),
+        t(
+          'Validation: 동일 SNR/동일 입력 세트에서 same-condition 비교(–30, –25, –20, –15 dB)로 평가',
+          'Validation: Evaluated with same-condition comparisons at identical SNR/input sets (–30, –25, –20, –15 dB)'
+        ),
+        t(
+          'My role: PHY baseline 재구축, STFT 파이프라인/압축 모델 설계, 실험 자동화 및 지표 해석 담당',
+          'My role: Rebuilt PHY baseline, designed STFT pipeline/compression model, and led experiment automation and metric interpretation'
+        ),
         t(
           'LoRa PHY Demod Baseline 재구축: Upchirp/Downchirp 생성, Dechirp → FFT 기반 심볼 추출 체인 재현',
           'LoRa PHY Demod Baseline Reconstruction: Reproduced Upchirp/Downchirp generation, Dechirp → FFT-based symbol extraction chain'
@@ -312,8 +349,8 @@ const Projects = () => {
           'Built STFT-based Preprocessing Pipeline: Completed time-frequency transformation and normalization logic'
         ),
         t(
-          '학습 안정성 및 복원 품질 개선 실험 진행 중: 다양한 SNR 구간에서 성능 검증 중',
-          'Ongoing Experiments for Learning Stability and Restoration Quality: Validating performance across various SNR ranges'
+          '학습 안정성 및 복원 품질 검증을 완료하고 결과를 정리',
+          'Completed learning stability and restoration quality validation and consolidated results'
         ),
       ],
       challenges: [
@@ -359,8 +396,8 @@ const Projects = () => {
         },
       ],
       next: t(
-        'SNR Range별 최적 학습 구간 선정 후 Huber Loss + Layer Freeze 조합으로 추가 개선 실험 예정. Cloud(C-RAN) 복조 모델과 end-to-end 연동하여 전체 시스템 성능 측정 및 TensorRT/ONNX 경량화를 통한 실제 배포 테스트 진행 계획',
-        'Planning additional improvement experiments with Huber Loss + Layer Freeze combination after selecting optimal training ranges per SNR Range. Planning to measure overall system performance through end-to-end integration with Cloud (C-RAN) demodulation model and conduct actual deployment tests through TensorRT/ONNX lightweighting'
+        '목표 성능에 도달하지 못해 본 전초 연구는 중단했습니다. 실패 원인(저SNR 구간 일반화 한계, 복조 안정성)을 문서화했으며, 후속 시도 시 데이터셋 확장과 Cloud(C-RAN) end-to-end 검증이 필요합니다.',
+        'This preliminary study was discontinued because target performance was not achieved. I documented failure causes (low-SNR generalization limits and demodulation stability), and any follow-up should include dataset expansion and end-to-end validation with Cloud (C-RAN) integration.'
       ),
       links: [
         { github: 'https://github.com/gwon9906/LoRa-bam-reconstruction' },
@@ -369,14 +406,7 @@ const Projects = () => {
     },
   ];
 
-  // 완료된 프로젝트 최신순, 진행 중인 프로젝트는 마지막
-  const projects = [...rawProjects].sort((a, b) => {
-    // status 기준: completed가 in-progress보다 먼저
-    if (a.status === 'completed' && b.status === 'in-progress') return -1;
-    if (a.status === 'in-progress' && b.status === 'completed') return 1;
-    // status가 같으면 period 역순 (최신순)
-    return b.period.localeCompare(a.period);
-  });
+  const projects = rawProjects;
 
   const ProjectCard = ({ project, index }: { project: Project; index: number }) => {
     const cardRef = useRef(null);
@@ -392,7 +422,7 @@ const Projects = () => {
         className="glass-card overflow-hidden hover-lift"
       >
         {/* Card Header */}
-        <div className={`p-6 bg-gradient-to-r ${project.gradient} text-white`}>
+        <div className={`p-6 bg-primary-600 text-white`}>
           <div className="flex items-start justify-between">
             <div className="flex items-start gap-4">
               <div className="p-3 bg-white/20 backdrop-blur-sm rounded-xl">
@@ -432,7 +462,7 @@ const Projects = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-6 bg-slate-50">
           {project.summary.map((stat, idx) => (
             <div key={idx} className="text-center">
-              <div className="text-2xl font-bold gradient-text">{stat.value}</div>
+              <div className="text-2xl font-bold text-primary-600">{stat.value}</div>
               <div className="text-sm text-dark-600 mt-1">{stat.label}</div>
             </div>
           ))}
@@ -443,7 +473,7 @@ const Projects = () => {
           {/* Overview */}
           <div>
             <h4 className="text-lg font-bold text-dark-800 mb-2 flex items-center gap-2">
-              <span className={`w-1 h-6 bg-gradient-to-b ${project.gradient} rounded-full`} />
+              <span className={`w-1 h-6 bg-primary-600 rounded-full`} />
               Overview
             </h4>
             <p className="text-dark-700 leading-relaxed">{project.overview}</p>
@@ -452,7 +482,7 @@ const Projects = () => {
           {/* Context */}
           <div>
             <h4 className="text-lg font-bold text-dark-800 mb-2 flex items-center gap-2">
-              <span className={`w-1 h-6 bg-gradient-to-b ${project.gradient} rounded-full`} />
+              <span className={`w-1 h-6 bg-primary-600 rounded-full`} />
               Context
             </h4>
             <p className="text-dark-700 leading-relaxed">{project.context}</p>
@@ -461,13 +491,13 @@ const Projects = () => {
           {/* Approach */}
           <div>
             <h4 className="text-lg font-bold text-dark-800 mb-2 flex items-center gap-2">
-              <span className={`w-1 h-6 bg-gradient-to-b ${project.gradient} rounded-full`} />
+              <span className={`w-1 h-6 bg-primary-600 rounded-full`} />
               Approach
             </h4>
             <ul className="space-y-2">
               {project.approach.map((item, idx) => (
                 <li key={idx} className="flex items-start gap-2 text-dark-700">
-                  <span className={`mt-1.5 w-1.5 h-1.5 bg-gradient-to-r ${project.gradient} rounded-full flex-shrink-0`} />
+                  <span className={`mt-1.5 w-1.5 h-1.5 bg-primary-600 rounded-full flex-shrink-0`} />
                   <span>{item}</span>
                 </li>
               ))}
@@ -477,13 +507,13 @@ const Projects = () => {
           {/* Results */}
           <div>
             <h4 className="text-lg font-bold text-dark-800 mb-2 flex items-center gap-2">
-              <span className={`w-1 h-6 bg-gradient-to-b ${project.gradient} rounded-full`} />
+              <span className={`w-1 h-6 bg-primary-600 rounded-full`} />
               Results
             </h4>
             <ul className="space-y-2">
               {project.results.map((item, idx) => (
                 <li key={idx} className="flex items-start gap-2 text-dark-700">
-                  <CheckCircle2 className={`mt-0.5 w-5 h-5 flex-shrink-0 bg-gradient-to-r ${project.gradient} bg-clip-text text-transparent`} />
+                  <CheckCircle2 className={`mt-0.5 w-5 h-5 flex-shrink-0 bg-primary-600 text-primary-600`} />
                   <span>{item}</span>
                 </li>
               ))}
@@ -579,7 +609,7 @@ const Projects = () => {
                       href={link.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r ${project.gradient} text-white rounded-lg font-semibold hover:scale-105 transition-transform`}
+                      className={`inline-flex items-center gap-2 px-4 py-2 bg-primary-600 text-white rounded-lg font-semibold hover:scale-105 transition-transform`}
                     >
                       <Github className="w-5 h-5" />
                       GitHub
@@ -590,7 +620,7 @@ const Projects = () => {
                       href={link.demo}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r ${project.gradient} text-white rounded-lg font-semibold hover:scale-105 transition-transform`}
+                      className={`inline-flex items-center gap-2 px-4 py-2 bg-primary-600 text-white rounded-lg font-semibold hover:scale-105 transition-transform`}
                     >
                       <ExternalLink className="w-5 h-5" />
                       Demo
@@ -615,7 +645,7 @@ const Projects = () => {
       >
         {/* Section Title */}
         <div className="text-center space-y-4">
-          <h2 className="text-4xl sm:text-5xl font-bold gradient-text">Projects</h2>
+          <h2 className="text-4xl sm:text-5xl font-bold text-primary-600">Projects</h2>
           <p className="text-xl text-dark-600 max-w-2xl mx-auto">
             {t('실제 문제를 해결한 프로젝트들', 'Projects solving real-world problems')}
           </p>
