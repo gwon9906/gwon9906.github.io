@@ -39,8 +39,8 @@ const Resume = () => {
           </h1>
           <div className="resume-title">
             {t(
-              'AI/ML Engineer | Hardware-aware & On-device AI',
-              'AI/ML Engineer | Hardware-aware & On-device AI'
+              'AI/ML Engineer | End-to-End ML & Robust Validation',
+              'AI/ML Engineer | End-to-End ML & Robust Validation'
             )}
           </div>
         </div>
@@ -70,8 +70,8 @@ const Resume = () => {
           </h2>
           <p className="section-content">
             {t(
-              '하드웨어 제약(전력·연산·메모리·노이즈)을 전제로, 온디바이스 환경에서 AI 모델/알고리즘을 설계·최적화하고 정량 지표로 검증해온 AI/ML 엔지니어입니다. 제약이 큰 환경에서 데이터 표현과 복원 파이프라인을 재설계해 성능–효율 trade-off를 개선하는 문제 해결에 강점을 갖고 있습니다.',
-              'AI/ML Engineer experienced in designing, optimizing, and validating AI models/algorithms in on-device environments, with a focus on hardware constraints (power, computation, memory, noise). Strong in problem-solving that improves performance-efficiency trade-offs by redesigning data representation and restoration pipelines in highly constrained environments.'
+              '제약 조건이 있는 실제 환경에서 데이터 처리–모델링–검증 루프를 설계하고, 지표 기반으로 성능을 개선해온 AI/ML 엔지니어입니다. 노이즈·불규칙 데이터(신호/시계열)에서 전처리, 손실/상태 처리, 실험 설계를 통해 모델의 강건성과 재현성을 높였고, 성능–효율 트레이드오프를 정량적으로 최적화한 경험이 있습니다. 도메인보다 문제 유형(제약 환경 최적화, 분포 변화 대응, 엔드투엔드 검증)에 초점을 두고 해결합니다.',
+              'AI/ML engineer experienced in designing end-to-end data processing-modeling-validation loops under real-world constraints and improving performance through metric-driven iteration. I build robustness and reproducibility for noisy, irregular signal/time-series data through preprocessing, loss/state handling, and experiment design, while quantitatively optimizing performance-efficiency trade-offs. I focus on problem types over domains.'
             )}
           </p>
         </section>
@@ -163,7 +163,7 @@ const Resume = () => {
               <strong>{t('동의대학교 컴퓨터공학과 (학부)', 'Dong-eui University, B.S. in Computer Engineering')}</strong>
             </div>
             <ul className="resume-list">
-              <li>{t('재학 중 (졸업 예정: 2026년 2월)', 'Currently enrolled (Expected graduation: Feb 2026)')}</li>
+              <li>{t('2026년 2월 졸업', 'Graduated in Feb 2026')}</li>
             </ul>
           </div>
         </section>
@@ -178,7 +178,7 @@ const Resume = () => {
               <strong>{t('학부 연구생, AI/ML 연구실 (동의대학교)', 'Undergraduate Researcher, AI/ML Lab (Dong-eui University)')}</strong>
             </div>
             <div className="research-period">
-              {t('기간: 2024.06 ~ 현재', 'Period: Jun 2024 ~ Present')}
+              {t('기간: 2024.06 ~ 2026.02 (졸업)', 'Period: Jun 2024 ~ Feb 2026 (Graduated)')}
             </div>
             <div className="research-topic">
               {t('주제:', 'Topics:')}
@@ -195,7 +195,7 @@ const Resume = () => {
       <div className="resume-page">
         <section className="project-section">
           <h2 className="project-title">
-            [PROJECT 1] {t(
+            [PROJECT 2] {t(
               '저전력 IoT 환경을 위한 초경량 데이터 압축·복원 (BAM 기반)',
               'Ultra-Lightweight Data Compression & Restoration for Low-Power IoT Environments (BAM-based)'
             )}
@@ -274,7 +274,7 @@ const Resume = () => {
       <div className="resume-page">
         <section className="project-section">
           <h2 className="project-title">
-            [PROJECT 2] {t(
+            [PROJECT 1] {t(
               '시계열 데이터 기반 산업용 밸브 유량 예측 시스템',
               'Industrial Valve Flow Prediction System Based on Time Series Data'
             )}
@@ -355,7 +355,7 @@ const Resume = () => {
             </li>
           </ul>
 
-          <h3 className="subsection-title">Next Steps</h3>
+          <h3 className="subsection-title">Closure & Follow-up</h3>
           <p className="project-content">
             {t(
               '현재 모델을 기반으로 도메인별(제조 공정별) 하이퍼파라미터 최적화 작업 진행 중이며, 실시간 적용 환경으로의 확장을 계획하고 있습니다. 산업체 협력 프로젝트로 저장소는 비공개 상태입니다.',
@@ -376,7 +376,7 @@ const Resume = () => {
             [PROJECT 3] {t(
               'Ultra-Low SNR 환경에서 LoRa 패킷 복원을 위한 전초 연구',
               'Preliminary Study for LoRa Packet Recovery in Ultra-Low SNR Environments'
-            )} ({t('진행 중', 'In Progress')})
+            )} ({t('완료', 'Completed')})
           </h2>
           <div className="project-subtitle">
             {t(
@@ -387,7 +387,7 @@ const Resume = () => {
 
           <div className="project-meta">
             <div className="meta-item"><strong>{t('구분', 'Type')}:</strong> {t('개인 연구', 'Individual Research')}</div>
-            <div className="meta-item"><strong>{t('상태', 'Status')}:</strong> {t('진행 중', 'In Progress')}</div>
+            <div className="meta-item"><strong>{t('상태', 'Status')}:</strong> {t('연구 중단 (목표 미달성)', 'Discontinued (Goal Not Met)')}</div>
             <div className="meta-item"><strong>{t('최종 목표', 'Final Goal')}:</strong> {t('Ultra-Low SNR 환경에서 패킷 복원 (CRC 통과)', 'Packet recovery with CRC validation in Ultra-Low SNR environments')}</div>
             <div className="meta-item"><strong>{t('역할', 'Role')}:</strong> {t('모델 설계, 실험 설계, 시뮬레이션 환경 구축', 'Model design, Experiment design, Simulation environment setup')}</div>
             <div className="meta-item"><strong>{t('환경', 'Environment')}:</strong> {t('시뮬레이션 기반 실험 환경', 'Simulation-based Experimental Environment')}</div>
@@ -396,8 +396,8 @@ const Resume = () => {
           <h3 className="subsection-title">Overview</h3>
           <p className="project-content">
             {t(
-              'Ultra-Low SNR(–25 ~ –30 dB) 환경에서 패킷 복원(CRC 통과)을 최종 목표로, Edge에서 복조 실패한 LoRa 신호를 Cloud(C-RAN)로 전송해 재복조하는 시스템을 연구하고 있습니다. 현재는 전송 부담을 최소화하면서 LoRa Chirp 구조를 유지하는 초경량 신호 압축 모델을 개발하는 전초 단계입니다.',
-              'Researching a system that sends demodulation-failed LoRa signals from Edge to Cloud (C-RAN) for re-demodulation, with the final goal of packet recovery (CRC validation) in Ultra-Low SNR (–25 ~ –30 dB) environments. Currently in the preliminary phase of developing an ultra-lightweight signal compression model that minimizes transmission burden while preserving LoRa Chirp structure.'
+              'Ultra-Low SNR(–25 ~ –30 dB) 환경에서 패킷 복원(CRC 통과)을 목표로, Edge 복조 실패 신호를 Cloud(C-RAN)로 전송해 재복조하는 구조를 전초 연구로 수행했습니다. 전송 부담을 최소화하면서 LoRa Chirp 구조를 유지하는 초경량 신호 압축 모델을 구현·검증했습니다.',
+              'As a preliminary study, I explored a system that sends demodulation-failed LoRa signals from Edge to Cloud (C-RAN) for re-demodulation, targeting packet recovery (CRC validation) in Ultra-Low SNR (–25 ~ –30 dB). I implemented and validated an ultra-lightweight signal compression model that minimizes transmission burden while preserving LoRa chirp structure.'
             )}
           </p>
 
@@ -425,7 +425,7 @@ const Resume = () => {
             </li>
           </ul>
 
-          <h3 className="subsection-title">{t('현재 진행 상황', 'Current Progress')}</h3>
+          <h3 className="subsection-title">{t('최종 결과 정리', 'Final Progress Summary')}</h3>
           <ul className="project-list">
             <li>
               <strong>{t('Complex-valued BAM 기반 스펙트로그램 디노이저 설계', 'Complex-valued BAM-based Spectrogram Denoiser Design')}:</strong> {t('실수부/허수부를 분리 처리하는 구조 구현', 'Implemented structure for separate processing of real/imaginary parts')}
@@ -437,7 +437,7 @@ const Resume = () => {
               <strong>{t('STFT 기반 전처리 파이프라인 구축', 'Built STFT-based Preprocessing Pipeline')}:</strong> {t('시간-주파수 변환 및 정규화 로직 완성', 'Completed time-frequency transformation and normalization logic')}
             </li>
             <li>
-              <strong>{t('학습 안정성 및 복원 품질 개선 실험 진행 중', 'Ongoing Experiments for Learning Stability and Restoration Quality')}:</strong> {t('다양한 SNR 구간에서 성능 검증 중', 'Validating performance across various SNR ranges')}
+              <strong>{t('학습 안정성 및 복원 품질 검증 완료', 'Completed Learning Stability and Restoration Quality Validation')}:</strong> {t('다양한 SNR 구간 성능을 검증하고 결과를 정리', 'Validated performance across SNR ranges and consolidated findings')}
             </li>
           </ul>
 
@@ -457,11 +457,11 @@ const Resume = () => {
             </li>
           </ul>
 
-          <h3 className="subsection-title">Next Steps</h3>
+          <h3 className="subsection-title">Closure & Follow-up</h3>
           <p className="project-content">
             {t(
-              'SNR 구간별 최적 학습 범위를 재조정하고, Huber Loss + Layer Freeze 조합으로 추가 개선 실험 진행 예정. Cloud(C-RAN) 복조 모델과 end-to-end로 연동하여 전체 시스템 성능 측정.',
-              'Planning to readjust optimal learning range per SNR segment and conduct additional improvement experiments with Huber Loss + Layer Freeze combination. Measure overall system performance through end-to-end integration with Cloud (C-RAN) demodulation model.'
+              '목표 성능 미달로 본 전초 연구는 중단되었습니다. 실패 원인을 정리해두었고, 후속 과제는 데이터셋 확장과 Cloud(C-RAN) end-to-end 검증이 필요합니다.',
+              'This preliminary study was discontinued because target performance was not met. Failure causes were documented, and follow-up requires dataset expansion and end-to-end validation with Cloud (C-RAN) integration.'
             )}
           </p>
 

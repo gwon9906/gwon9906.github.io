@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Home, User, Award, Code, Briefcase, Mail } from 'lucide-react';
+import { Menu, X, Home, User, Award, Code, Briefcase, Mail, GraduationCap } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const TableOfContents = () => {
@@ -10,9 +10,10 @@ const TableOfContents = () => {
   const sections = [
     { id: 'hero', label: t('홈', 'Home'), icon: Home },
     { id: 'about', label: t('소개', 'About'), icon: User },
-    { id: 'experience', label: t('경력', 'Experience'), icon: Award },
-    { id: 'tech-stack', label: t('기술 스택', 'Tech Stack'), icon: Code },
     { id: 'projects', label: t('프로젝트', 'Projects'), icon: Briefcase },
+    { id: 'education', label: t('학력', 'Education'), icon: GraduationCap },
+    { id: 'tech-stack', label: t('기술', 'Skills'), icon: Code },
+    { id: 'experience', label: t('경력', 'Experience'), icon: Award },
     { id: 'contact', label: t('연락처', 'Contact'), icon: Mail },
   ];
 
@@ -33,7 +34,7 @@ const TableOfContents = () => {
         animate={{ scale: 1 }}
         transition={{ delay: 1, type: 'spring', stiffness: 260, damping: 20 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-8 right-8 z-50 w-16 h-16 bg-gradient-to-br from-primary-500 to-blue-600 text-white rounded-full shadow-2xl hover:shadow-primary-500/50 transition-all duration-300 hover:scale-110 flex items-center justify-center"
+        className="fixed bottom-8 right-8 z-50 w-16 h-16 bg-primary-600 text-white rounded-full shadow-2xl hover:shadow-primary-500/50 transition-all duration-300 hover:scale-110 flex items-center justify-center"
         aria-label={t('목차 열기', 'Open table of contents')}
       >
         <AnimatePresence mode="wait">
@@ -90,7 +91,7 @@ const TableOfContents = () => {
                       transition: { delay: (sections.length - index) * 0.03 }
                     }}
                     onClick={() => scrollToSection(section.id)}
-                    className="group flex items-center gap-3 px-5 py-3 bg-white/95 backdrop-blur-md rounded-full shadow-lg hover:shadow-xl border border-slate-200/50 transition-all duration-300 hover:scale-105 hover:bg-gradient-to-r hover:from-primary-50 hover:to-blue-50"
+                    className="group flex items-center gap-3 px-5 py-3 bg-white/95 backdrop-blur-md rounded-full shadow-lg hover:shadow-xl border border-slate-200/50 transition-all duration-300 hover:scale-105 hover:bg-primary-50"
                   >
                     <Icon className="w-5 h-5 text-primary-600 group-hover:text-primary-700 transition-colors" />
                     <span className="text-sm font-semibold text-dark-700 whitespace-nowrap">

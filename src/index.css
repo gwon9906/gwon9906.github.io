@@ -16,7 +16,7 @@
 
   body {
     @apply m-0 font-sans antialiased break-keep;
-    @apply bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100;
+    @apply bg-slate-100;
     @apply text-dark-800;
   }
 }
@@ -27,7 +27,7 @@
   }
 
   .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-600 via-blue-600 to-indigo-600;
+    @apply text-primary-600;
   }
 
   .glass-card {

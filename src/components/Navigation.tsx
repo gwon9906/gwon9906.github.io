@@ -19,9 +19,10 @@ const Navigation = () => {
 
   const navItems = [
     { label: t('소개', 'About'), href: '#about' },
-    { label: t('경력', 'Experience'), href: '#experience' },
-    { label: t('기술 스택', 'Tech Stack'), href: '#tech-stack' },
     { label: t('프로젝트', 'Projects'), href: '#projects' },
+    { label: t('학력', 'Education'), href: '#education' },
+    { label: t('기술', 'Skills'), href: '#tech-stack' },
+    { label: t('경력', 'Experience'), href: '#experience' },
     { label: t('연락처', 'Contact'), href: '#contact' },
   ];
 
@@ -54,7 +55,7 @@ const Navigation = () => {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-            className="text-2xl font-bold gradient-text cursor-pointer"
+            className="text-2xl font-bold text-primary-600 cursor-pointer"
           >
             Haegwon Lee
           </a>
@@ -69,14 +70,14 @@ const Navigation = () => {
                 className="text-dark-700 hover:text-primary-600 font-medium transition-colors relative group"
               >
                 {item.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-blue-600 group-hover:w-full transition-all duration-300" />
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 group-hover:w-full transition-all duration-300" />
               </a>
             ))}
 
             {/* Resume PDF Button */}
             <a
               href="#resume"
-              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary-500 to-blue-600 text-white rounded-full font-medium transition-all hover:scale-105 shadow-md hover:shadow-lg"
+              className="flex items-center gap-2 px-4 py-2 bg-primary-600 text-white rounded-full font-medium transition-all hover:scale-105 shadow-md hover:shadow-lg"
               title={t('이력서 PDF', 'Resume PDF')}
             >
               <FileDown className="w-4 h-4" />
@@ -125,7 +126,7 @@ const Navigation = () => {
             {/* Mobile Resume PDF Button */}
             <a
               href="#resume"
-              className="w-full flex items-center justify-center gap-2 mt-4 px-4 py-3 bg-gradient-to-r from-primary-500 to-blue-600 text-white rounded-full font-medium shadow-md"
+              className="w-full flex items-center justify-center gap-2 mt-4 px-4 py-3 bg-primary-600 text-white rounded-full font-medium shadow-md"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               <FileDown className="w-4 h-4" />
