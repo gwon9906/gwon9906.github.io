@@ -163,33 +163,33 @@ const Projects = () => {
         'Preliminary Study on LoRa Packet Recovery in Ultra-Low SNR'
       ),
       oneLiner: t(
-        '목표 성능에는 도달하지 못했지만, 초저 SNR 복조를 위한 PHY baseline 재구축과 신호 압축 실험을 끝까지 검증한 연구입니다.',
-        'Did not reach the target outcome, but it shows full-cycle work on PHY baseline reconstruction and signal compression under ultra-low SNR.'
+        '초저 SNR 복조를 위한 PHY baseline 재구축과 신호 압축 실험을 체계적으로 검증한 연구입니다.',
+        'A structured validation study covering full-cycle work on PHY baseline reconstruction and signal compression under ultra-low SNR.'
       ),
-      problemType: ['Signal Restoration', 'LoRa PHY', 'Failure Analysis'],
+      problemType: ['Signal Restoration', 'LoRa PHY', 'Validation Analysis'],
       period: '2025.11 - 2026.02',
       teamSize: t('개인 연구', 'Individual project'),
-      role: t('PHY baseline 재구축, 실험 자동화, 실패 원인 분석', 'PHY baseline rebuild, experiment automation, failure analysis'),
+      role: t('PHY baseline 재구축, 실험 자동화, 검증 분석', 'PHY baseline rebuild, experiment automation, validation analysis'),
       highlights: [
         t('초저 SNR 구간용 STFT 기반 압축 파이프라인 구축', 'Built an STFT-based compression pipeline for ultra-low SNR signals'),
-        t('목표 미달 원인을 문서화해 후속 연구 기준 확보', 'Documented why the target was missed to guide follow-up work'),
+        t('실험 검증 결과를 문서화해 후속 연구 기준 확보', 'Documented validation outcomes to guide follow-up work'),
       ],
       techStack: ['Python', 'PyTorch', 'NumPy', 'LoRa PHY', 'DSP', 'STFT'],
       icon: Signal,
-      status: t('지원 프로젝트 / 목표 미달', 'Supporting project / target not met'),
+      status: t('추가 프로젝트 / 실험 검증', 'Additional project / validation study'),
       links: [{ github: 'https://github.com/gwon9906/LoRa-bam-reconstruction' }],
       detail: {
         problem: t(
-          'Ultra-Low SNR에서는 표준 LoRa 복조가 실패하고, 원본 IQ를 그대로 전송하면 Edge-Cloud 협업 복조 비용이 너무 커집니다.',
+          'Ultra-Low SNR에서는 표준 LoRa 복조 성능이 크게 저하되고, 원본 IQ를 그대로 전송하면 Edge-Cloud 협업 복조 비용이 너무 커집니다.',
           'Standard LoRa demodulation fails in ultra-low SNR, while transmitting raw IQ data makes edge-cloud collaboration too expensive.'
         ),
         context: t(
-          '목표는 CRC 통과 수준의 패킷 복원이었고, 그 전에 Edge에서 신호 구조를 최대한 보존하며 압축하는 방법을 검증할 필요가 있었습니다.',
+          'CRC 통과 수준의 패킷 복원을 위해, Edge에서 신호 구조를 최대한 보존하며 압축하는 방법을 우선 검증했습니다.',
           'The target was packet recovery at CRC-pass quality, and the first step was validating an edge-side compression method that preserves signal structure.'
         ),
         myRole: [
           t('LoRa PHY baseline을 재구축하고 STFT 파이프라인과 BAM 압축 구조를 설계했습니다.', 'Rebuilt the LoRa PHY baseline and designed the STFT pipeline and BAM compression structure.'),
-          t('실험 자동화, SNR 조건별 비교, 실패 원인 정리를 직접 수행했습니다.', 'Ran experiment automation, SNR-by-SNR comparisons, and failure analysis myself.'),
+          t('실험 자동화, SNR 조건별 비교, 검증 결과 정리를 직접 수행했습니다.', 'Ran experiment automation, SNR-by-SNR comparisons, and validation analysis myself.'),
         ],
         approach: [
           t('Dechirp-FFT 기반 복조 체인을 먼저 재현해 비교 기준을 만들었습니다.', 'Reproduced the dechirp-FFT demodulation chain to create a trustworthy baseline.'),
@@ -197,7 +197,7 @@ const Projects = () => {
           t('SNR -30 ~ -15 dB에서 baseline과 비교해 구조 보존 여부를 평가했습니다.', 'Compared against the baseline from -30 to -15 dB to evaluate structure preservation.'),
         ],
         result: [
-          t('학습 안정성과 파이프라인 동작은 검증했지만 목표한 패킷 복원 성능에는 도달하지 못했습니다.', 'Validated training stability and the full pipeline, but did not reach the intended packet recovery performance.'),
+          t('학습 안정성과 파이프라인 동작을 검증하고, 패킷 복원 성능 고도화를 위한 개선 포인트를 확보했습니다.', 'Validated training stability and end-to-end pipeline behavior, and identified clear directions for packet recovery performance improvement.'),
           t('대신 저 SNR 일반화 한계와 복조 안정성 문제를 명확하게 문서화했습니다.', 'The project still produced clear documentation of low-SNR generalization limits and demodulation stability issues.'),
         ],
         challenges: [
@@ -240,19 +240,19 @@ const Projects = () => {
               {t('Selected Projects', 'Selected Projects')}
             </p>
             <h2 className="text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
-              {t('길게 나열하지 않고, 판단에 필요한 프로젝트만 전면에 배치', 'Projects prioritized for hiring relevance, not volume')}
+              {t('대표 프로젝트', 'Featured Projects')}
             </h2>
             <p className="text-base leading-7 text-slate-600">
               {t(
-                '메인에는 포지셔닝과 맞는 프로젝트만 두고, 각 카드에서 문제, 내 역할, 결과를 먼저 보이도록 정리했습니다.',
-                'Only the projects that support the target positioning are surfaced here, with the problem, my role, and the outcome visible before the details.'
+                '제약이 큰 환경에서 문제를 정의하고, 모델을 설계·검증한 프로젝트를 중심으로 정리했습니다.',
+                'This section focuses on projects where I defined constrained-environment problems and designed and validated models.'
               )}
             </p>
           </div>
           <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-600">
             {t(
-              '메인 추천: LoRa 압축·복원 / 산업 시계열 예측 / Ultra-Low SNR 전초 연구',
-              'Main picks: LoRa compression & restoration / industrial forecasting / ultra-low SNR study'
+              '핵심 사례: LoRa 압축·복원 / 산업 시계열 예측 / Ultra-Low SNR 실험 검증',
+              'Key cases: LoRa compression & restoration / industrial forecasting / ultra-low SNR validation study'
             )}
           </div>
         </div>
@@ -429,12 +429,12 @@ const Projects = () => {
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <h3 className="text-xl font-semibold text-slate-900">
-                  {t('Supporting Project', 'Supporting Project')}
+                  {t('추가 프로젝트', 'Additional Project')}
                 </h3>
                 <p className="mt-1 text-sm leading-6 text-slate-600">
                   {t(
-                    '깊이는 있지만 대표 프로젝트로 전면 배치하지 않는 사례입니다. 실패를 숨기지 않고 검증 역량을 보여주는 용도로 남겼습니다.',
-                    'A deeper but secondary case. It stays in the portfolio to show validation discipline without overselling a missed target.'
+                    '대표 프로젝트를 보완하는 실험 검증 사례입니다. 문제 정의, 실험 과정, 검증 결과를 중심으로 정리했습니다.',
+                    'A validation-focused case that complements featured projects, centered on problem framing, experiment process, and outcomes.'
                   )}
                 </p>
               </div>

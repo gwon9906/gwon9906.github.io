@@ -387,7 +387,7 @@ const Resume = () => {
 
           <div className="project-meta">
             <div className="meta-item"><strong>{t('구분', 'Type')}:</strong> {t('개인 연구', 'Individual Research')}</div>
-            <div className="meta-item"><strong>{t('상태', 'Status')}:</strong> {t('연구 중단 (목표 미달성)', 'Discontinued (Goal Not Met)')}</div>
+            <div className="meta-item"><strong>{t('상태', 'Status')}:</strong> {t('실험 검증 완료', 'Validation Study Completed')}</div>
             <div className="meta-item"><strong>{t('최종 목표', 'Final Goal')}:</strong> {t('Ultra-Low SNR 환경에서 패킷 복원 (CRC 통과)', 'Packet recovery with CRC validation in Ultra-Low SNR environments')}</div>
             <div className="meta-item"><strong>{t('역할', 'Role')}:</strong> {t('모델 설계, 실험 설계, 시뮬레이션 환경 구축', 'Model design, Experiment design, Simulation environment setup')}</div>
             <div className="meta-item"><strong>{t('환경', 'Environment')}:</strong> {t('시뮬레이션 기반 실험 환경', 'Simulation-based Experimental Environment')}</div>

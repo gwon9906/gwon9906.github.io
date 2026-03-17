@@ -6,31 +6,31 @@ const About = () => {
 
   const blocks = [
     {
-      title: t('문제 유형', 'Problem Types'),
+      title: t('다루는 문제', 'Problem Focus'),
       description: t(
-        '저전력 통신, 노이즈가 큰 센서 데이터, 불연속 산업 시계열처럼 제약이 많은 데이터를 다뤄왔습니다.',
-        'I have worked on constrained data problems such as low-power communication, noisy sensor streams, and discontinuous industrial time series.'
+        '저전력 통신, 잡음이 큰 센서 데이터, 불연속 산업 시계열처럼 제약이 큰 데이터를 대상으로 문제를 정의하고 해결해왔습니다.',
+        'I define and solve problems on constrained data, including low-power communication, noisy sensor streams, and discontinuous industrial time series.'
       ),
     },
     {
-      title: t('작업 방식', 'How I Work'),
+      title: t('접근 방식', 'Approach'),
       description: t(
-        '모델 하나만 보는 대신 데이터 구조, baseline, 실험 조건, 실패 원인을 함께 정리해 의사결정 가능한 결과를 남깁니다.',
-        'I do not stop at model training. I organize data structure, baselines, experiment conditions, and failure cases so the result is actionable.'
+        '모델 성능만 보지 않고 데이터 구조, baseline, 실험 조건, 검증 과정까지 함께 검토해 재현 가능한 결과를 만드는 데 집중합니다.',
+        'Beyond model scores, I review data structure, baselines, experiment conditions, and failure causes to produce reproducible results.'
       ),
     },
     {
       title: t('강점', 'Strengths'),
       description: t(
-        '모델 설계와 검증을 구현까지 연결하는 편입니다. 성능과 효율의 trade-off를 실험으로 확인하고 시스템 제약까지 함께 봅니다.',
-        'My strength is carrying model design and validation into implementation, checking performance-efficiency trade-offs against system constraints.'
+        '모델 설계에 그치지 않고 전처리, 지표 해석, 실험 비교, 시스템 제약까지 연결해 현실적인 trade-off를 판단합니다.',
+        'I connect model design with preprocessing, metric interpretation, experiment comparison, and system constraints to make realistic trade-off decisions.'
       ),
     },
     {
-      title: t('포지셔닝', 'Positioning'),
+      title: t('적합한 역할', 'Best-fit Role'),
       description: t(
-        'LLM 중심 엔지니어보다 신호·센서·시계열 중심 Applied ML Engineer에 가깝고, 순수 연구보다 구현과 검증에 더 무게를 둡니다.',
-        'I am closer to an applied ML engineer for signal, sensor, and time-series systems than an LLM-focused engineer, with more weight on implementation than pure research.'
+        '신호·센서·시계열 데이터 기반의 Applied ML Engineer 역할에 가장 가깝고, 순수 연구보다 구현과 검증에 무게를 둡니다.',
+        'I am best aligned with Applied ML Engineer roles focused on signal, sensor, and time-series data, with stronger emphasis on implementation and validation.'
       ),
     },
   ];
