@@ -24,10 +24,10 @@ const Hero = () => {
     },
     {
       label: t('실험 검증', 'Validation'),
-      value: t('필드 테스트 / 실패 기록', 'Field Tests / Failure Logs'),
+      value: t('필드 테스트 / 검증 기록', 'Field Tests / Validation Logs'),
       detail: t(
-        '성공 사례뿐 아니라 목표 미달 프로젝트의 한계도 문서화해 판단 근거를 남겼습니다.',
-        'Documented not only wins but also failed attempts and their limits to make decisions traceable.'
+        '실험 조건과 검증 과정을 체계적으로 기록해 결과를 다시 확인할 수 있도록 정리했습니다.',
+        'Systematically documented experiment conditions and validation steps so outcomes can be revisited and verified.'
       ),
     },
   ];
