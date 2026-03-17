@@ -52,12 +52,12 @@ const TechStack = () => {
             {t('Skills', 'Skills')}
           </p>
           <h2 className="text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
-            {t('실제로 사용한 기술과 도구', 'Technologies and tools used in practice')}
+            {t('사용 기술', 'Skills Used')}
           </h2>
           <p className="text-base leading-7 text-slate-600">
             {t(
-              '프로젝트에서 반복적으로 사용한 기술을 중심으로 정리했습니다. 보조적으로 사용한 도구와 개념은 구분해 표시했습니다.',
-              'This list focuses on technologies used repeatedly across projects. Supporting tools and concepts are marked separately.'
+              '프로젝트에서 반복적으로 활용한 기술을 중심으로 정리했습니다.',
+              'Focused on technologies repeatedly used across projects.'
             )}
           </p>
         </div>

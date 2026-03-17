@@ -140,7 +140,13 @@ const Hero = () => {
                   {t('핵심 근거', 'Evidence')}
                 </p>
                 <p className="mt-1 text-lg font-semibold text-slate-900">
-                  {t('채용 관점에서 바로 보이는 강점', 'Signals recruiters can scan quickly')}
+                  {t('핵심 역량', 'Core Capabilities')}
+                </p>
+                <p className="mt-2 text-sm leading-6 text-slate-600">
+                  {t(
+                    '제약이 큰 데이터 환경에서 어떤 문제를 다뤄왔고, 어떤 방식으로 해결했는지 요약했습니다.',
+                    'Summarized the constrained-data problems I addressed and how I solved them.'
+                  )}
                 </p>
               </div>
               <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600">

@@ -33,7 +33,7 @@ const Experience = () => {
             {t('Experience', 'Experience')}
           </p>
           <h2 className="text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
-            {t('프로젝트를 뒷받침하는 연구 경험', 'Research experience behind the projects')}
+            {t('연구 경험', 'Research Experience')}
           </h2>
         </div>
 
