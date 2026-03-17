@@ -14,27 +14,27 @@ const TechStack = () => {
 
   const groups: SkillGroup[] = [
     {
-      title: t('Modeling', 'Modeling'),
+      title: t('모델링 도구', 'Modeling Tools'),
       icon: Brain,
-      strong: ['Python', 'PyTorch', 'NumPy', 'scikit-learn', 'LSTM / Encoder-LSTM'],
+      strong: ['Python', 'PyTorch', 'NumPy', 'scikit-learn'],
       familiar: ['TensorFlow'],
     },
     {
-      title: t('Data Processing', 'Data Processing'),
+      title: t('데이터·실험', 'Data & Experiment'),
       icon: Database,
-      strong: ['Pandas', 'Time-Series Preprocessing', 'Experiment Design', 'Metric Analysis'],
+      strong: ['Pandas', 'Time-Series Preprocessing', 'Experiment Design', 'Metric Analysis', 'Baseline Reproduction'],
     },
     {
-      title: t('Signal / Analysis', 'Signal / Analysis'),
+      title: t('신호·시계열 기법', 'Signal & Time-Series Techniques'),
       icon: Radio,
       strong: ['Signal Processing', 'Denoising', 'Reconstruction', 'Forecasting', 'LoRa PHY'],
-      familiar: ['STFT', 'DSP'],
+      familiar: ['STFT', 'DSP', 'Encoder-LSTM'],
     },
     {
-      title: t('System / Tools', 'System / Tools'),
+      title: t('도메인·시스템', 'Domain & Systems'),
       icon: Wrench,
-      strong: ['Git', 'Linux', 'Docker', 'Raspberry Pi', 'LoRa'],
-      familiar: ['C/C++'],
+      strong: ['LoRa', 'Edge ML', 'Industrial Sensor Data', 'Raspberry Pi'],
+      familiar: ['Git', 'Linux', 'Docker', 'C/C++'],
     },
   ];
 
@@ -52,12 +52,12 @@ const TechStack = () => {
             {t('Skills', 'Skills')}
           </p>
           <h2 className="text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
-            {t('많이 써본 것과 익숙한 것을 구분해 정리', 'Grouped by real usage, with clear separation of depth')}
+            {t('사용 기술', 'Skills Used')}
           </h2>
           <p className="text-base leading-7 text-slate-600">
             {t(
-              '기술 이름을 많이 늘어놓기보다, 실제로 반복 사용한 것과 보조적으로 다뤄본 것을 나눴습니다.',
-              'Rather than listing everything, I separated tools used repeatedly from those used in a supporting role.'
+              '프로젝트에서 반복적으로 활용한 기술을 중심으로 정리했습니다.',
+              'Focused on technologies repeatedly used across projects.'
             )}
           </p>
         </div>

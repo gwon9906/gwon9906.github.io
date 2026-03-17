@@ -24,10 +24,10 @@ const Hero = () => {
     },
     {
       label: t('실험 검증', 'Validation'),
-      value: t('필드 테스트 / 실패 기록', 'Field Tests / Failure Logs'),
+      value: t('필드 테스트 / 검증 기록', 'Field Tests / Validation Logs'),
       detail: t(
-        '성공 사례뿐 아니라 목표 미달 프로젝트의 한계도 문서화해 판단 근거를 남겼습니다.',
-        'Documented not only wins but also failed attempts and their limits to make decisions traceable.'
+        '실험 조건과 검증 과정을 체계적으로 기록해 결과를 다시 확인할 수 있도록 정리했습니다.',
+        'Systematically documented experiment conditions and validation steps so outcomes can be revisited and verified.'
       ),
     },
   ];
@@ -140,7 +140,13 @@ const Hero = () => {
                   {t('핵심 근거', 'Evidence')}
                 </p>
                 <p className="mt-1 text-lg font-semibold text-slate-900">
-                  {t('채용 관점에서 바로 보이는 강점', 'Signals recruiters can scan quickly')}
+                  {t('핵심 역량', 'Core Capabilities')}
+                </p>
+                <p className="mt-2 text-sm leading-6 text-slate-600">
+                  {t(
+                    '제약이 큰 데이터 환경에서 어떤 문제를 다뤄왔고, 어떤 방식으로 해결했는지 요약했습니다.',
+                    'Summarized the constrained-data problems I addressed and how I solved them.'
+                  )}
                 </p>
               </div>
               <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600">

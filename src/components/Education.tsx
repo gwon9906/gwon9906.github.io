@@ -19,7 +19,7 @@ const Education = () => {
             {t('Education', 'Education')}
           </p>
           <h2 className="text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
-            {t('학력은 확인용 정보 수준으로 간결하게', 'Education kept concise as supporting information')}
+            {t('학력', 'Education')}
           </h2>
         </div>
 

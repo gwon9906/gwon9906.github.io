@@ -19,11 +19,16 @@ const Contact = () => {
       icon: Github,
     },
     {
+      label: 'Blog',
+      value: 'latetime.tistory.com',
+      href: 'https://latetime.tistory.com/',
+      icon: ArrowUpRight,
+    },
+    {
       label: 'LinkedIn',
-      value: t('추가 가능', 'Add if available'),
-      href: '#',
+      value: 'linkedin.com/in/해권-이-63915a370',
+      href: 'https://www.linkedin.com/in/%ED%95%B4%EA%B6%8C-%EC%9D%B4-63915a370/',
       icon: Linkedin,
-      disabled: true,
     },
   ];
 
@@ -42,43 +47,26 @@ const Contact = () => {
               {t('Contact', 'Contact')}
             </p>
             <h2 className="text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
-              {t('연락처는 짧고 명확하게', 'Contact kept short and direct')}
+              {t('연락처', 'Contact')}
             </h2>
-            <p className="text-base leading-7 text-slate-600">
-              {t(
-                '채용이나 협업 관련 문의는 이메일이 가장 빠릅니다. 프로젝트 근거는 GitHub에서 바로 확인할 수 있습니다.',
-                'Email is the fastest way to reach me for hiring or collaboration. GitHub is the best place to verify implementation details.'
-              )}
-            </p>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {contacts.map((contact) => (
-              contact.disabled ? (
-                <div
-                  key={contact.label}
-                  className="rounded-3xl border border-dashed border-slate-300 bg-white p-5 text-slate-500"
-                >
-                  <contact.icon className="h-5 w-5" />
-                  <p className="mt-4 text-sm font-semibold text-slate-700">{contact.label}</p>
-                  <p className="mt-2 text-sm">{contact.value}</p>
+              <a
+                key={contact.label}
+                href={contact.href}
+                target={contact.href.startsWith('http') ? '_blank' : undefined}
+                rel={contact.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition-transform hover:-translate-y-0.5"
+              >
+                <contact.icon className="h-5 w-5 text-slate-900" />
+                <p className="mt-4 text-sm font-semibold text-slate-700">{contact.label}</p>
+                <div className="mt-2 flex items-center justify-between gap-4">
+                  <p className="text-sm text-slate-600">{contact.value}</p>
+                  <ArrowUpRight className="h-4 w-4 text-slate-400" />
                 </div>
-              ) : (
-                <a
-                  key={contact.label}
-                  href={contact.href}
-                  target={contact.href.startsWith('http') ? '_blank' : undefined}
-                  rel={contact.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition-transform hover:-translate-y-0.5"
-                >
-                  <contact.icon className="h-5 w-5 text-slate-900" />
-                  <p className="mt-4 text-sm font-semibold text-slate-700">{contact.label}</p>
-                  <div className="mt-2 flex items-center justify-between gap-4">
-                    <p className="text-sm text-slate-600">{contact.value}</p>
-                    <ArrowUpRight className="h-4 w-4 text-slate-400" />
-                  </div>
-                </a>
-              )
+              </a>
             ))}
           </div>
 
