@@ -1,89 +1,113 @@
 import { motion } from 'framer-motion';
-import { useRef } from 'react';
-import { Brain, Radio, Wrench, type LucideIcon } from 'lucide-react';
-import { useLanguage } from '../contexts/LanguageContext';
+import { Brain, Database, Radio, Wrench, type LucideIcon } from 'lucide-react';
+import { useLanguage } from '../contexts/useLanguage';
 
-interface TechGroup {
-  id: string;
+interface SkillGroup {
   title: string;
   icon: LucideIcon;
-  description: string;
-  items: string[];
+  strong: string[];
+  familiar?: string[];
 }
 
 const TechStack = () => {
   const { t } = useLanguage();
-  const ref = useRef(null);
 
-  const groups: TechGroup[] = [
+  const groups: SkillGroup[] = [
     {
-      id: 'ml',
-      title: t('ML 모델링', 'ML Modeling'),
+      title: t('Modeling', 'Modeling'),
       icon: Brain,
-      description: t('모델 설계·학습·검증에 사용하는 기술', 'Technologies used for model design, training, and validation'),
-      items: ['Python', 'PyTorch', 'TensorFlow', 'LSTM / Encoder-Decoder', 'Model Compression (BAM)'],
+      strong: ['Python', 'PyTorch', 'NumPy', 'scikit-learn', 'LSTM / Encoder-LSTM'],
+      familiar: ['TensorFlow'],
     },
     {
-      id: 'signal-edge',
-      title: t('신호·엣지 시스템', 'Signal & Edge Systems'),
+      title: t('Data Processing', 'Data Processing'),
+      icon: Database,
+      strong: ['Pandas', 'Time-Series Preprocessing', 'Experiment Design', 'Metric Analysis'],
+    },
+    {
+      title: t('Signal / Analysis', 'Signal / Analysis'),
       icon: Radio,
-      description: t('신호 처리 및 제약 환경 구현 관련 기술', 'Technologies for signal processing and constrained-environment implementation'),
-      items: ['LoRa Communication', 'Raspberry Pi', 'Embedded Systems', 'C/C++', 'STFT / DSP'],
+      strong: ['Signal Processing', 'Denoising', 'Reconstruction', 'Forecasting', 'LoRa PHY'],
+      familiar: ['STFT', 'DSP'],
     },
     {
-      id: 'dev',
-      title: t('개발·협업 도구', 'Development & Collaboration'),
+      title: t('System / Tools', 'System / Tools'),
       icon: Wrench,
-      description: t('실험 관리와 개발 운영에 사용하는 도구', 'Tools used for experiment management and development operations'),
-      items: ['Git', 'Linux', 'GitHub'],
+      strong: ['Git', 'Linux', 'Docker', 'Raspberry Pi', 'LoRa'],
+      familiar: ['C/C++'],
     },
   ];
 
   return (
-    <section ref={ref} className="section-container bg-white/30" id="tech-stack">
+    <section id="tech-stack" className="section-container py-12 lg:py-16">
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="space-y-12"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-80px' }}
+        transition={{ duration: 0.45 }}
+        className="space-y-8"
       >
-        <div className="text-center space-y-4">
-          <h2 className="text-4xl sm:text-5xl font-bold text-primary-600">Tech Stack</h2>
-          <p className="text-xl text-dark-600 max-w-2xl mx-auto">
-            {t('숙련도 점수 없이, 큰 기술 부류 중심으로 정리했습니다.', 'Organized by major technology groups without proficiency scores.')}
+        <div className="max-w-3xl space-y-3">
+          <p className="text-sm font-semibold uppercase tracking-[0.24em] text-slate-500">
+            {t('Skills', 'Skills')}
+          </p>
+          <h2 className="text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+            {t('많이 써본 것과 익숙한 것을 구분해 정리', 'Grouped by real usage, with clear separation of depth')}
+          </h2>
+          <p className="text-base leading-7 text-slate-600">
+            {t(
+              '기술 이름을 많이 늘어놓기보다, 실제로 반복 사용한 것과 보조적으로 다뤄본 것을 나눴습니다.',
+              'Rather than listing everything, I separated tools used repeatedly from those used in a supporting role.'
+            )}
           </p>
         </div>
 
-        <div className="space-y-6 max-w-6xl mx-auto">
-          {groups.map((group, index) => (
-            <motion.div
-              key={group.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.15, duration: 0.5 }}
-              className="glass-card p-6 lg:p-8"
-            >
-              <div className="flex items-center gap-4 mb-4">
-                <div className="p-3 bg-primary-100 rounded-2xl">
-                  <group.icon className="w-6 h-6 text-primary-600" />
+        <div className="grid gap-4 lg:grid-cols-2">
+          {groups.map((group) => (
+            <div key={group.title} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+              <div className="flex items-center gap-4">
+                <div className="rounded-2xl bg-slate-100 p-3">
+                  <group.icon className="h-5 w-5 text-slate-800" />
                 </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-dark-800">{group.title}</h3>
-                  <p className="text-sm text-dark-600">{group.description}</p>
-                </div>
+                <h3 className="text-xl font-semibold text-slate-950">{group.title}</h3>
               </div>
 
-              <div className="flex flex-wrap gap-2">
-                {group.items.map((item) => (
-                  <span
-                    key={item}
-                    className="px-3 py-1.5 rounded-full bg-primary-50 text-primary-700 text-sm font-medium"
-                  >
-                    {item}
-                  </span>
-                ))}
+              <div className="mt-5 space-y-4">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                    {t('많이 사용', 'Used Often')}
+                  </p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {group.strong.map((item) => (
+                      <span
+                        key={item}
+                        className="rounded-full bg-slate-950 px-3 py-1.5 text-xs font-medium text-white"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {group.familiar && (
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                      {t('보조적으로 사용', 'Used Occasionally')}
+                    </p>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {group.familiar.map((item) => (
+                        <span
+                          key={item}
+                          className="rounded-full border border-slate-200 px-3 py-1.5 text-xs font-medium text-slate-600"
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </motion.div>

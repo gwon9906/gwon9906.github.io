@@ -1,662 +1,562 @@
-import { motion } from 'framer-motion';
-// import { useInView } from 'framer-motion'; // PDF 출력용: 미사용
-import { useRef } from 'react'; // PDF 출력용: useState, useEffect 제거
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Radio,
-  TrendingUp,
-  Signal,
-  Github,
-  ExternalLink,
+  ArrowUpRight,
   Calendar,
+  ChevronDown,
+  ChevronUp,
+  Github,
+  Radio,
+  Signal,
+  TrendingUp,
   Users,
-  CheckCircle2,
-  Loader,
   type LucideIcon,
-  // ChevronDown, // PDF 출력용: 미사용
-  // ChevronUp,   // PDF 출력용: 미사용
 } from 'lucide-react';
-import { useLanguage } from '../contexts/LanguageContext';
+import { useLanguage } from '../contexts/useLanguage';
 
 interface Project {
   id: string;
+  tier: 'featured' | 'supporting';
   title: string;
-  subtitle: string;
-  role: string;
+  oneLiner: string;
+  problemType: string[];
   period: string;
-  status: 'completed' | 'in-progress';
-  icon: LucideIcon;
-  gradient: string;
-  summary: {
-    label: string;
-    value: string;
-  }[];
-  overview?: string;
-  context: string;
-  approach: string[];
-  results: string[];
-  challenges?: {
-    problem: string;
-    solution: string;
-  }[];
-  next?: string;
-  keyInsight?: string;
-  relevance?: string[];
+  teamSize: string;
+  role: string;
+  highlights: string[];
+  techStack: string[];
+  status?: string;
   links?: {
     github?: string;
     demo?: string;
   }[];
-  techs: string[];
+  icon: LucideIcon;
+  detail: {
+    problem: string;
+    context: string;
+    myRole: string[];
+    approach: string[];
+    result: string[];
+    challenges: string[];
+    limitations: string[];
+  };
 }
 
 const Projects = () => {
   const { t } = useLanguage();
-  const ref = useRef(null);
-  // const isInView = useInView(ref, { once: true, margin: "-100px" }); // PDF 출력용: 미사용
-  // PDF 출력용으로 일시적으로 비활성화
-  // const [expandedProject, setExpandedProject] = useState<string | null>(null);
-  // const [isPrinting, setIsPrinting] = useState(false);
+  const [expandedProject, setExpandedProject] = useState<string>('lora-bam');
 
-  // // 인쇄 시 모든 프로젝트 펼치기
-  // useEffect(() => {
-  //   const handleBeforePrint = () => {
-  //     setIsPrinting(true);
-  //   };
-
-  //   const handleAfterPrint = () => {
-  //     setIsPrinting(false);
-  //   };
-
-  //   window.addEventListener('beforeprint', handleBeforePrint);
-  //   window.addEventListener('afterprint', handleAfterPrint);
-
-  //   // 미디어 쿼리로도 체크 (일부 브라우저 대응)
-  //   const printMediaQuery = window.matchMedia('print');
-  //   const handlePrintChange = (e: MediaQueryListEvent | MediaQueryList) => {
-  //     setIsPrinting(e.matches);
-  //   };
-
-  //   if (printMediaQuery.addEventListener) {
-  //     printMediaQuery.addEventListener('change', handlePrintChange);
-  //   }
-
-  //   return () => {
-  //     window.removeEventListener('beforeprint', handleBeforePrint);
-  //     window.removeEventListener('afterprint', handleAfterPrint);
-  //     if (printMediaQuery.removeEventListener) {
-  //       printMediaQuery.removeEventListener('change', handlePrintChange);
-  //     }
-  //   };
-  // }, []);
-
-  const rawProjects: Project[] = [
-    {
-      id: 'valve-prediction',
-      title: t(
-        '시계열 데이터 기반 산업용 밸브 유량 예측 시스템',
-        'Industrial Valve Flow Prediction System Based on Time Series Data'
-      ),
-      subtitle: t(
-        'Encoder-LSTM 설계를 통한 예측 오차(MAPE) 83% 개선',
-        '83% Prediction Error (MAPE) Improvement through Encoder-LSTM Design'
-      ),
-      role: t('개인 연구', 'Individual Research'),
-      period: '2024.07 - 12',
-      status: 'completed',
-      icon: TrendingUp,
-      gradient: 'from-slate-500 to-slate-600',
-      summary: [
-        { label: t('MAPE 개선', 'MAPE Improvement'), value: '83%' },
-        { label: t('최종 MAPE', 'Final MAPE'), value: '0.188' },
-        { label: t('안정성', 'Stability'), value: 'Huber Loss' },
-        { label: t('구조', 'Architecture'), value: 'Encoder-LSTM' },
-      ],
-      overview: t(
-        '불연속적인 산업 데이터의 특성을 고려한 Encoder-LSTM 모델 설계로 기존 대비 예측 오차(MAPE) 83% 개선을 달성했습니다.',
-        'Achieved 83% improvement in prediction error (MAPE) compared to baseline through Encoder-LSTM model design considering the characteristics of discontinuous industrial data.'
-      ),
-      context: t(
-        '기존 LSTM 구조는 개도율 0 지점에서 불연속성이 발생하고, 센서 이상치(Outlier)에 대한 민감도가 높아 실제 산업 환경 적용에 한계가 있었습니다.',
-        'Existing LSTM structures had discontinuities at valve opening rate 0 and high sensitivity to sensor outliers, limiting application in real industrial environments.'
-      ),
-      approach: [
-        t(
-          'Baselines: Persistence(직전 시점 유지) + 기본 LSTM을 기준선으로 두고 개선 효과를 비교',
-          'Baselines: Compared improvements against a persistence baseline (carry-forward) and a vanilla LSTM'
-        ),
-        t(
-          'Validation: 시간 순서 기반 split과 누수(leakage) 방지 규칙을 적용해 검증',
-          'Validation: Used time-ordered split with explicit leakage prevention rules'
-        ),
-        t(
-          'My role: 데이터 분석, 시퀀스 reset/손실 함수 설계, Encoder-LSTM 구현 및 실험 주도',
-          'My role: Led data analysis, sequence reset/loss design, Encoder-LSTM implementation, and experiments'
-        ),
-        t(
-          '계층적 특징 추출을 위한 Encoder-LSTM 구조 재설계',
-          'Redesigned Encoder-LSTM architecture for hierarchical feature extraction'
-        ),
-        t(
-          '개도율 0 구간에서 시퀀스 재초기화(Reset) 로직 추가로 불연속성 제거',
-          'Eliminated discontinuities by adding sequence reset logic at valve opening rate 0'
-        ),
-        t(
-          'Huber Loss 도입으로 이상치에 대한 강건성(Robustness) 확보',
-          'Secured robustness against outliers by introducing Huber Loss'
-        ),
-        t(
-          '데이터 특성 분석을 통한 불필요한 정규화 제거로 안정성 및 일관성 향상',
-          'Improved stability and consistency by removing unnecessary normalization through data characteristic analysis'
-        ),
-      ],
-      results: [
-        t(
-          'MAPE 1.13 → 0.188 달성 (약 83% 개선)',
-          'Achieved MAPE 1.13 → 0.188 (approximately 83% improvement)'
-        ),
-        t(
-          '이상치·분산 완화를 통해 실제 산업 환경에서의 예측 신뢰성 확보',
-          'Secured prediction reliability in real industrial environments through outlier and variance mitigation'
-        ),
-      ],
-      challenges: [
-        {
-          problem: t(
-            '개도율 0 구간에서의 불연속성 발생',
-            'Discontinuity occurrence at valve opening rate 0'
-          ),
-          solution: t(
-            '시퀀스 재초기화 로직 설계 및 적용',
-            'Designed and applied sequence reset logic'
-          ),
-        },
-        {
-          problem: t(
-            '센서 이상치에 대한 높은 민감도',
-            'High sensitivity to sensor outliers'
-          ),
-          solution: t(
-            'Huber Loss 적용으로 Outlier에 강건한 학습 구조 구축',
-            'Built robust learning structure against outliers by applying Huber Loss'
-          ),
-        },
-        {
-          problem: t(
-            '데이터 정밀도 불균형으로 인한 분산 증가',
-            'Increased variance due to data precision imbalance'
-          ),
-          solution: t(
-            '정규화 파이프라인 단순화를 통한 분산 축소',
-            'Reduced variance through normalization pipeline simplification'
-          ),
-        },
-      ],
-      next: t(
-        '도메인별 하이퍼파라미터 최적화 및 실시간 적용 환경으로 확장 예정 (산업체 협력으로 저장소 비공개)',
-        'Planning to optimize hyperparameters by domain and expand to real-time application environment (repository private due to industry collaboration)'
-      ),
-      techs: ['Python', 'PyTorch', 'LSTM', 'Encoder-Decoder', 'Time Series'],
-    },
+  const projects: Project[] = [
     {
       id: 'lora-bam',
+      tier: 'featured',
       title: t(
-        '저전력 IoT 환경을 위한 초경량 데이터 압축·복원 (BAM 기반)',
-        'Ultra-Lightweight Data Compression & Restoration for Low-Power IoT Environments (BAM-based)'
+        '저전력 IoT 환경용 초경량 데이터 압축·복원',
+        'Ultra-Lightweight Data Compression & Restoration for Low-Power IoT'
       ),
-      subtitle: t(
-        '페이로드 37.5% 감소, PDR 14%p 향상, 전송 부담 최소화로 배터리 수명 연장',
-        '37.5% Payload Reduction, 14%p PDR Improvement, Battery Life Extension through Minimized Transmission Burden'
+      oneLiner: t(
+        'LoRa 환경에서 전송량을 줄이면서 복원 품질과 통신 성공률을 함께 개선한 프로젝트입니다.',
+        'Reduced LoRa payload while improving restoration quality and communication success in a resource-constrained setting.'
       ),
-      role: t('팀 리드 (전체 파이프라인 설계)', 'Team Lead (Full Pipeline Design)'),
-      period: '2024.03 - 06',
-      status: 'completed',
+      problemType: ['Signal Restoration', 'Edge ML', 'LoRa', 'Experimental Validation'],
+      period: '2024.03 - 2024.06',
+      teamSize: t('3인 팀', 'Team of 3'),
+      role: t('팀 리드, 파이프라인 설계/실험 검증 주도', 'Team lead, pipeline design and validation lead'),
+      highlights: [
+        t('Payload 32B → 20B, 전송량 37.5% 감소', 'Payload 32B → 20B, 37.5% transmission reduction'),
+        t('실환경 필드 테스트에서 PDR +14%p', '+14%p PDR in real-world field tests'),
+      ],
+      techStack: ['Python', 'NumPy', 'BAM', 'LoRa', 'Raspberry Pi', 'Field Testing'],
       icon: Radio,
-      gradient: 'from-sky-500 to-slate-500',
-      summary: [
-        { label: t('전송량 감소', 'Transmission Reduction'), value: '37.5%' },
-        { label: t('PDR 개선', 'PDR Improvement'), value: '+14%p' },
-        { label: t('GPS MSE', 'GPS MSE'), value: '0.0036' },
-        { label: t('환경', 'Environment'), value: t('필드 테스트', 'Field Test') },
-      ],
-      context: t(
-        '대규모 IoT 디바이스는 배터리 기반으로 장기간 운용되며, 패킷 손실이 발생할 경우 재전송으로 에너지 소모가 급증하여 디바이스 수명이 크게 단축될 수 있습니다. LoRa/LPWAN 환경에서는 전송 전력을 높이기보다 전송 데이터량 자체를 줄여 재전송 빈도를 낮추는 접근이 더 효과적입니다. 본 프로젝트에서는 제한된 페이로드 조건에서 전송량을 최소화하면서도 데이터 품질을 유지하여 통신 성공률(PDR)을 개선하는 것을 목표로 하였습니다.',
-        'Large-scale IoT devices operate long-term on batteries, and packet loss can cause energy consumption to surge through retransmissions, significantly shortening device lifespan. In LoRa/LPWAN environments, reducing transmission data volume rather than increasing transmission power is more effective for lowering retransmission frequency. This project aimed to improve Packet Delivery Rate (PDR) by minimizing transmission volume while maintaining data quality under limited payload conditions.'
-      ),
-      approach: [
-        t(
-          'Baselines: 단순 압축 규칙 기반 baseline과 AutoEncoder baseline을 재현해 비교하고, 선행 연구의 효율 지표를 함께 검토한 뒤 BAM을 선택',
-          'Baselines: Reproduced and compared a simple rule-based compression baseline and an AutoEncoder baseline, then chose BAM after reviewing efficiency trade-offs with prior work'
-        ),
-        t(
-          'Validation: 동일 데이터·동일 통신 조건(N-LOS 2.6km, 동일 주행/기간)에서 same-condition 비교로 검증',
-          'Validation: Verified by same-condition comparison using identical data and communication settings (N-LOS 2.6km, same route/period)'
-        ),
-        t(
-          'My role: 전처리 규격, BAM 압축/복원 파이프라인, 필드 실험 설계와 지표 분석을 직접 설계·구현',
-          'My role: Designed and implemented preprocessing specs, BAM compression/restoration pipeline, field experiment setup, and metric analysis'
-        ),
-        t(
-          '경량 압축 구조 설계: AutoEncoder 대비 연산 부담이 낮은 BAM 구조를 적용하여, 저전력·리소스 제약 환경에서의 안정적 구동을 우선 고려',
-          'Lightweight Compression Structure Design: Applied BAM structure with lower computational burden compared to AutoEncoder, prioritizing stable operation in low-power, resource-constrained environments'
-        ),
-        t(
-          '데이터 표현 최적화: GPS/센서 데이터의 특성을 분석하여 정수부·소수부 분리 인코딩을 적용하였고, 압축 과정에서 발생하는 정밀도 손실을 최소화',
-          'Data Representation Optimization: Analyzed GPS/sensor data characteristics to apply integer-decimal separation encoding, minimizing precision loss during compression'
-        ),
-        t(
-          '실환경 검증 중심 설계: 시뮬레이션이 아닌 실제 N-LOS 환경(약 2.6km 구간)을 1개월간 반복 주행하며 수집한 데이터를 기반으로 성능을 검증',
-          'Real Environment Validation-Centered Design: Validated performance based on data collected through repeated driving in real N-LOS environment (approx. 2.6km section) for 1 month, not simulation'
-        ),
-      ],
-      results: [
-        t(
-          '전송량 감소: Payload 32B → 20B (전송량 약 37.5% 감소)',
-          'Transmission Volume Reduction: Payload 32B → 20B (transmission volume approx. 37.5% reduction)'
-        ),
-        t(
-          '통신 신뢰성 개선: 압축 적용 후 PDR 약 +14%p 향상',
-          'Communication Reliability Improvement: PDR improved by approximately +14%p after compression application'
-        ),
-        t(
-          '복원 품질 유지: GPS 복원 오차(MSE) 0.0184 → 0.0036으로, 전송량 감소에도 서비스 가능한 품질을 확보',
-          'Restoration Quality Maintained: GPS restoration error (MSE) 0.0184 → 0.0036, securing serviceable quality despite reduced transmission volume'
-        ),
-      ],
-      keyInsight: t(
-        '패킷 손실이 잦은 환경에서는 모델 성능 자체보다 "한 번에 성공적으로 전달되는 데이터의 양"이 에너지 효율과 시스템 수명을 좌우합니다. 본 프로젝트에서는 전송 전력 증대 대신 데이터 표현과 알고리즘을 재설계하는 방식으로 시스템 효율을 개선하였습니다.',
-        'In environments with frequent packet loss, "the amount of data successfully transmitted at once" determines energy efficiency and system lifespan more than model performance itself. This project improved system efficiency by redesigning data representation and algorithms rather than increasing transmission power.'
-      ),
-      relevance: [
-        t('Hardware-aware Algorithm Design 경험 확보', 'Gained Hardware-aware Algorithm Design experience'),
-        t('On-device / Edge AI 최적화 관점에서의 설계·검증 경험 보유', 'Experience in design and validation from On-device / Edge AI optimization perspective'),
-        t('노이즈·제약 환경에서 실측 기반 성능 개선 수행', 'Performed measurement-based performance improvement in noisy, constrained environments'),
-      ],
       links: [
         { github: 'https://github.com/4xvgal/ChirpChirp' },
         { github: 'https://github.com/gwon9906/Lightweight-MF-BAM' },
       ],
-      techs: ['Python', 'BAM', 'NumPy', 'Raspberry Pi', 'LoRa', 'Field Testing'],
+      detail: {
+        problem: t(
+          '배터리 기반 LoRa 디바이스에서는 패킷 손실이 잦을수록 재전송으로 에너지 소모가 커집니다. 전송 전력을 높이기보다 전송량 자체를 줄여 성공 확률을 높일 필요가 있었습니다.',
+          'Battery-powered LoRa devices lose lifetime quickly when packet loss triggers retransmission. We needed to reduce transmitted data itself instead of simply increasing transmission power.'
+        ),
+        context: t(
+          '제한된 페이로드 안에서 GPS/센서 데이터를 보내야 했고, 품질이 너무 낮아지면 복원 데이터가 쓸모없어지는 상황이었습니다. 시뮬레이션이 아니라 N-LOS 약 2.6km 구간의 실제 주행 데이터를 기준으로 검증했습니다.',
+          'GPS and sensor data had to fit into a limited payload budget, but too much compression would make the restored data unusable. Validation was done on repeated real N-LOS driving data over roughly 2.6 km rather than simulation only.'
+        ),
+        myRole: [
+          t('전처리 규격과 BAM 기반 압축·복원 파이프라인 설계', 'Designed preprocessing specs and the BAM-based compression/restoration pipeline'),
+          t('실험 조건 통제와 필드 테스트 지표 분석 수행', 'Controlled evaluation conditions and analyzed field-test metrics'),
+        ],
+        approach: [
+          t('규칙 기반 압축과 AutoEncoder baseline을 재현해 비교 기준을 먼저 만들었습니다.', 'Reproduced rule-based compression and AutoEncoder baselines before choosing the final direction.'),
+          t('GPS/센서 데이터 특성에 맞춰 정수부/소수부 분리 인코딩으로 정밀도 손실을 줄였습니다.', 'Used integer-decimal split encoding to limit precision loss based on the structure of GPS and sensor data.'),
+          t('연산량이 낮은 BAM 구조를 선택해 저전력 장치에서의 실행 가능성을 우선했습니다.', 'Selected BAM for lower computational burden so the method remains feasible on low-power hardware.'),
+        ],
+        result: [
+          t('전송량 감소와 함께 통신 성공률을 높여 시스템 효율 개선 근거를 만들었습니다.', 'Created evidence that system efficiency can improve by lowering payload while increasing communication success.'),
+          t('GPS 복원 오차 MSE를 0.0184 → 0.0036으로 낮춰 서비스 가능한 품질을 유지했습니다.', 'Reduced GPS restoration MSE from 0.0184 to 0.0036 while keeping the compressed setup usable.'),
+        ],
+        challenges: [
+          t('압축률을 높이면 복원 품질이 무너질 수 있어 통신 성능과 데이터 품질의 균형이 중요했습니다.', 'Pushing compression too far risked breaking restoration quality, so the trade-off between transmission efficiency and data quality mattered.'),
+          t('필드 테스트 기반 비교를 위해 동일 경로·동일 조건에서 실험을 반복해 변수 통제를 맞췄습니다.', 'To keep the field-test comparison credible, I repeated experiments under the same route and operating conditions.'),
+        ],
+        limitations: [
+          t('산업 배포 수준의 장기 운영 검증까지는 아직 진행하지 않았습니다.', 'This has not yet been validated in a long-term production deployment.'),
+        ],
+      },
+    },
+    {
+      id: 'valve-prediction',
+      tier: 'featured',
+      title: t(
+        '산업용 밸브 유량 시계열 예측',
+        'Industrial Valve Flow Forecasting'
+      ),
+      oneLiner: t(
+        '불연속성과 이상치가 있는 산업 데이터를 대상으로 Encoder-LSTM 구조와 손실 설계를 조정해 예측 오차를 개선했습니다.',
+        'Improved forecasting error on industrial time-series data with discontinuities and outliers by redesigning the Encoder-LSTM setup and loss.'
+      ),
+      problemType: ['Time-Series Forecasting', 'Lightweight Modeling', 'Experimental Validation'],
+      period: '2024.07 - 2024.12',
+      teamSize: t('개인 연구', 'Individual project'),
+      role: t('데이터 분석, 구조 설계, 실험 주도', 'Data analysis, architecture design, experiment lead'),
+      highlights: [
+        t('MAPE 1.13 → 0.188, 약 83% 개선', 'MAPE 1.13 → 0.188, about 83% improvement'),
+        t('불연속 구간 reset + Huber Loss로 강건성 확보', 'Sequence reset + Huber Loss for robustness'),
+      ],
+      techStack: ['Python', 'PyTorch', 'LSTM', 'Encoder-LSTM', 'Time Series'],
+      icon: TrendingUp,
+      detail: {
+        problem: t(
+          '기존 LSTM은 개도율 0 지점의 불연속성과 센서 이상치 때문에 실제 산업 데이터에서 오차가 크게 흔들렸습니다.',
+          'The baseline LSTM broke down on real industrial data because discontinuities around valve opening 0 and sensor outliers destabilized predictions.'
+        ),
+        context: t(
+          '정확도만이 아니라 실제 적용 가능한 안정성이 중요했고, 시간 순서를 보존한 검증과 누수 방지가 필수였습니다.',
+          'Application stability mattered as much as raw accuracy, and the evaluation had to preserve time order and avoid leakage.'
+        ),
+        myRole: [
+          t('데이터 특성 분석 후 정규화와 시퀀스 처리 방식을 다시 정의했습니다.', 'Redefined normalization and sequence handling after analyzing the data characteristics.'),
+          t('Encoder-LSTM 구조, reset logic, 손실 함수를 직접 설계하고 실험했습니다.', 'Designed and tested the Encoder-LSTM architecture, reset logic, and loss function directly.'),
+        ],
+        approach: [
+          t('Persistence와 vanilla LSTM을 baseline으로 두고 개선 폭을 비교했습니다.', 'Compared against persistence and vanilla LSTM baselines.'),
+          t('개도율 0 구간에서 시퀀스를 재초기화해 불연속 구간 누적 오차를 줄였습니다.', 'Reset sequences around valve opening 0 to reduce accumulated errors from discontinuities.'),
+          t('Huber Loss를 적용해 이상치에 덜 민감한 학습 구조를 만들었습니다.', 'Used Huber Loss to reduce sensitivity to outliers.'),
+        ],
+        result: [
+          t('예측 오차를 큰 폭으로 줄였고, 산업 환경 적용 가능성을 더 설득력 있게 만들었습니다.', 'Substantially reduced forecasting error and improved the case for real industrial use.'),
+          t('정규화 단순화와 데이터 처리 기준 정비로 실험 일관성도 함께 개선했습니다.', 'Improved experiment consistency by simplifying normalization and tightening preprocessing rules.'),
+        ],
+        challenges: [
+          t('좋은 성능보다 재현 가능한 검증 설계가 더 중요해 데이터 누수 방지와 split 기준을 엄격하게 잡았습니다.', 'Reliable validation mattered more than headline metrics, so I enforced strict split and leakage rules.'),
+          t('산업 데이터의 정밀도 불균형이 분산을 키워 전처리 기준을 여러 번 조정했습니다.', 'Precision imbalance in the industrial data increased variance and required repeated preprocessing adjustments.'),
+        ],
+        limitations: [
+          t('산업체 협력 데이터라 공개 저장소와 재현 코드를 모두 제공하지는 못합니다.', 'Because this used industry collaboration data, I cannot publish the full repository or dataset.'),
+        ],
+      },
     },
     {
       id: 'lora-demod',
+      tier: 'supporting',
       title: t(
-        'Ultra-Low SNR 환경에서 LoRa 패킷 복원을 위한 전초 연구',
-        'Preliminary Study for LoRa Packet Recovery in Ultra-Low SNR Environments'
+        'Ultra-Low SNR LoRa 패킷 복원 전초 연구',
+        'Preliminary Study on LoRa Packet Recovery in Ultra-Low SNR'
       ),
-      subtitle: t(
-        'Edge-Cloud 협력 복조를 위한 초경량 신호 압축 모델 개발',
-        'Ultra-Lightweight Signal Compression Model Development for Edge-Cloud Collaborative Demodulation'
+      oneLiner: t(
+        '목표 성능에는 도달하지 못했지만, 초저 SNR 복조를 위한 PHY baseline 재구축과 신호 압축 실험을 끝까지 검증한 연구입니다.',
+        'Did not reach the target outcome, but it shows full-cycle work on PHY baseline reconstruction and signal compression under ultra-low SNR.'
       ),
-      role: t('개인 연구', 'Individual Research'),
+      problemType: ['Signal Restoration', 'LoRa PHY', 'Failure Analysis'],
       period: '2025.11 - 2026.02',
-      status: 'completed',
+      teamSize: t('개인 연구', 'Individual project'),
+      role: t('PHY baseline 재구축, 실험 자동화, 실패 원인 분석', 'PHY baseline rebuild, experiment automation, failure analysis'),
+      highlights: [
+        t('초저 SNR 구간용 STFT 기반 압축 파이프라인 구축', 'Built an STFT-based compression pipeline for ultra-low SNR signals'),
+        t('목표 미달 원인을 문서화해 후속 연구 기준 확보', 'Documented why the target was missed to guide follow-up work'),
+      ],
+      techStack: ['Python', 'PyTorch', 'NumPy', 'LoRa PHY', 'DSP', 'STFT'],
       icon: Signal,
-      gradient: 'from-amber-500 to-slate-500',
-      summary: [
-        { label: t('상태', 'Status'), value: t('연구 중단 (목표 미달성)', 'Discontinued (Goal Not Met)') },
-        { label: t('최종 목표', 'Final Goal'), value: t('패킷 복원', 'Packet Recovery') },
-        { label: t('최종 단계', 'Final Phase'), value: t('전초 연구 완료', 'Preliminary Study Completed') },
-        { label: t('환경', 'Environment'), value: t('시뮬레이션', 'Simulation') },
-      ],
-      overview: t(
-        'Ultra-Low SNR(–25 ~ –30 dB) 환경에서 패킷 복원(CRC 통과)을 목표로, Edge 복조 실패 신호를 Cloud(C-RAN)로 전송해 재복조하는 구조를 전초 연구로 수행했습니다. 전송 부담을 최소화하면서 LoRa Chirp 구조를 유지하는 초경량 신호 압축 모델을 구현·검증했습니다.',
-        'As a preliminary study, I explored a system that sends demodulation-failed LoRa signals from Edge to Cloud (C-RAN) for re-demodulation, targeting packet recovery (CRC validation) in Ultra-Low SNR (–25 ~ –30 dB). I implemented and validated an ultra-lightweight signal compression model that minimizes transmission burden while preserving LoRa chirp structure.'
-      ),
-      context: t(
-        'Ultra-Low SNR 환경에서는 표준 LoRa dechirp+FFT 복조가 실패합니다. 복조 실패 신호를 Cloud(C-RAN)에 보내 여러 Edge에서 모은 실패 신호를 합쳐 복조하는 방식이 필요하나, IQ 데이터를 원본으로 전송하면 전송 비용이 과도하여 Edge 단에서 압축 + 신호 구조 보존 + 노이즈 억제를 동시에 수행할 필요가 있었습니다.',
-        'Standard LoRa dechirp+FFT demodulation fails in Ultra-Low SNR environments. While a method to send failed signals to Cloud (C-RAN) and combine signals from multiple Edges for demodulation is needed, transmitting raw IQ data incurs excessive transmission costs, requiring simultaneous compression + signal structure preservation + noise suppression at the Edge.'
-      ),
-      approach: [
-        t(
-          'Baselines: 표준 LoRa dechirp+FFT baseline과 단순 스펙트로그램 디노이징 baseline을 함께 재현해 비교',
-          'Baselines: Reproduced and compared a standard LoRa dechirp+FFT baseline and a simple spectrogram denoising baseline'
+      status: t('지원 프로젝트 / 목표 미달', 'Supporting project / target not met'),
+      links: [{ github: 'https://github.com/gwon9906/LoRa-bam-reconstruction' }],
+      detail: {
+        problem: t(
+          'Ultra-Low SNR에서는 표준 LoRa 복조가 실패하고, 원본 IQ를 그대로 전송하면 Edge-Cloud 협업 복조 비용이 너무 커집니다.',
+          'Standard LoRa demodulation fails in ultra-low SNR, while transmitting raw IQ data makes edge-cloud collaboration too expensive.'
         ),
-        t(
-          'Validation: 동일 SNR/동일 입력 세트에서 same-condition 비교(–30, –25, –20, –15 dB)로 평가',
-          'Validation: Evaluated with same-condition comparisons at identical SNR/input sets (–30, –25, –20, –15 dB)'
+        context: t(
+          '목표는 CRC 통과 수준의 패킷 복원이었고, 그 전에 Edge에서 신호 구조를 최대한 보존하며 압축하는 방법을 검증할 필요가 있었습니다.',
+          'The target was packet recovery at CRC-pass quality, and the first step was validating an edge-side compression method that preserves signal structure.'
         ),
-        t(
-          'My role: PHY baseline 재구축, STFT 파이프라인/압축 모델 설계, 실험 자동화 및 지표 해석 담당',
-          'My role: Rebuilt PHY baseline, designed STFT pipeline/compression model, and led experiment automation and metric interpretation'
-        ),
-        t(
-          'LoRa PHY Demod Baseline 재구축: Upchirp/Downchirp 생성, Dechirp → FFT 기반 심볼 추출 체인 재현',
-          'LoRa PHY Demod Baseline Reconstruction: Reproduced Upchirp/Downchirp generation, Dechirp → FFT-based symbol extraction chain'
-        ),
-        t(
-          'Spectrogram 기반 압축: IQ → STFT 수행 후 Complex spectrogram (128×31) 생성, Real/Imag 분리하여 7,936차원 입력 구성',
-          'Spectrogram-based Compression: Generated Complex spectrogram (128×31) after IQ → STFT, configured 7,936-dimensional input by separating Real/Imag'
-        ),
-        t(
-          'Multi-layer BAM Encoder 설계: 7,936 → 2,048 → 1,024 → 512차원으로 압축, Edge 장치에서 실시간 학습/추론 가능하도록 경량화',
-          'Multi-layer BAM Encoder Design: Compressed from 7,936 → 2,048 → 1,024 → 512 dimensions, lightweighted for real-time training/inference on Edge devices'
-        ),
-        t(
-          'Ultra-Low SNR 복조 실험: –30, –25, –20, –15 dB에서 Baseline vs BAM 성능 비교, Symbol Accuracy 및 Peak Ratio 기반 품질 평가 수행',
-          'Ultra-Low SNR Demodulation Experiments: Baseline vs BAM performance comparison at –30, –25, –20, –15 dB, quality evaluation based on Symbol Accuracy and Peak Ratio'
-        ),
-      ],
-      results: [
-        t(
-          'Complex-valued BAM 기반 스펙트로그램 디노이저 설계: 실수부/허수부를 분리 처리하는 구조 구현',
-          'Complex-valued BAM-based Spectrogram Denoiser Design: Implemented structure for separate processing of real/imaginary parts'
-        ),
-        t(
-          'Lagrange 안정성 조건 적용: 위상 보존 활성화 함수 구현을 통해 학습 안정성 확보',
-          'Applied Lagrange Stability Condition: Secured learning stability through implementation of phase-preserving activation functions'
-        ),
-        t(
-          'STFT 기반 전처리 파이프라인 구축: 시간-주파수 변환 및 정규화 로직 완성',
-          'Built STFT-based Preprocessing Pipeline: Completed time-frequency transformation and normalization logic'
-        ),
-        t(
-          '학습 안정성 및 복원 품질 검증을 완료하고 결과를 정리',
-          'Completed learning stability and restoration quality validation and consolidated results'
-        ),
-      ],
-      challenges: [
-        {
-          problem: t(
-            'STFT/ISTFT에서 Chirp 위상 붕괴 문제 발생',
-            'Chirp phase collapse issue in STFT/ISTFT'
-          ),
-          solution: t(
-            '파라미터 표준화 + Trim/Padding 방식 도입으로 시간축 보정',
-            'Time-axis correction through parameter standardization + Trim/Padding approach'
-          ),
-        },
-        {
-          problem: t(
-            'Huber Loss 적용 시 collapse 발생',
-            'Collapse occurrence when applying Huber Loss'
-          ),
-          solution: t(
-            'Update Rule을 Baseline 방식으로 유지하여 안정성 확보',
-            'Secured stability by maintaining Update Rule in Baseline manner'
-          ),
-        },
-        {
-          problem: t(
-            'LoRa 심볼 분류에서 이론값과 불일치하는 정확도 문제',
-            'Symbol classification accuracy mismatching theoretical values in LoRa'
-          ),
-          solution: t(
-            'LoRa upchirp 신호의 대역폭 특성상 음수 주파수 영역의 신호가 FFT 수행 시 음수 인덱스에 정렬되는 점을 고려하여 주파수 축 재정렬 로직 추가, 이론값과 일치하는 정확도 달성',
-            'Added frequency axis reordering logic considering that negative frequency domain signals in LoRa upchirp align to negative indices during FFT due to bandwidth characteristics, achieved accuracy matching theoretical values'
-          ),
-        },
-        {
-          problem: t(
-            'Low-SNR 복원에서 FFT peak migration 문제',
-            'FFT peak migration issue in Low-SNR reconstruction'
-          ),
-          solution: t(
-            'FFT Peak Ratio 기반 정규화 추가로 peak 위치 보존',
-            'Preserved peak location by adding FFT Peak Ratio-based normalization'
-          ),
-        },
-      ],
-      next: t(
-        '목표 성능에 도달하지 못해 본 전초 연구는 중단했습니다. 실패 원인(저SNR 구간 일반화 한계, 복조 안정성)을 문서화했으며, 후속 시도 시 데이터셋 확장과 Cloud(C-RAN) end-to-end 검증이 필요합니다.',
-        'This preliminary study was discontinued because target performance was not achieved. I documented failure causes (low-SNR generalization limits and demodulation stability), and any follow-up should include dataset expansion and end-to-end validation with Cloud (C-RAN) integration.'
-      ),
-      links: [
-        { github: 'https://github.com/gwon9906/LoRa-bam-reconstruction' },
-      ],
-      techs: ['Python', 'PyTorch', 'NumPy', 'LoRa PHY', 'DSP', 'Edge Computing', 'BAM', 'Raspberry Pi'],
+        myRole: [
+          t('LoRa PHY baseline을 재구축하고 STFT 파이프라인과 BAM 압축 구조를 설계했습니다.', 'Rebuilt the LoRa PHY baseline and designed the STFT pipeline and BAM compression structure.'),
+          t('실험 자동화, SNR 조건별 비교, 실패 원인 정리를 직접 수행했습니다.', 'Ran experiment automation, SNR-by-SNR comparisons, and failure analysis myself.'),
+        ],
+        approach: [
+          t('Dechirp-FFT 기반 복조 체인을 먼저 재현해 비교 기준을 만들었습니다.', 'Reproduced the dechirp-FFT demodulation chain to create a trustworthy baseline.'),
+          t('IQ를 complex spectrogram으로 변환한 뒤 다층 BAM으로 압축했습니다.', 'Converted IQ into complex spectrograms and compressed them with a multi-layer BAM model.'),
+          t('SNR -30 ~ -15 dB에서 baseline과 비교해 구조 보존 여부를 평가했습니다.', 'Compared against the baseline from -30 to -15 dB to evaluate structure preservation.'),
+        ],
+        result: [
+          t('학습 안정성과 파이프라인 동작은 검증했지만 목표한 패킷 복원 성능에는 도달하지 못했습니다.', 'Validated training stability and the full pipeline, but did not reach the intended packet recovery performance.'),
+          t('대신 저 SNR 일반화 한계와 복조 안정성 문제를 명확하게 문서화했습니다.', 'The project still produced clear documentation of low-SNR generalization limits and demodulation stability issues.'),
+        ],
+        challenges: [
+          t('STFT/ISTFT 과정에서 chirp 위상이 무너지는 문제가 있어 주파수축 정렬과 보정 로직을 추가했습니다.', 'Chirp phase collapse in STFT/ISTFT required extra frequency-axis alignment and correction logic.'),
+          t('일부 손실 함수는 바로 collapse를 유발해 업데이트 규칙을 보수적으로 다시 설계했습니다.', 'Some loss-function choices immediately caused collapse, so the update rule had to be redesigned more conservatively.'),
+        ],
+        limitations: [
+          t('대표 프로젝트로 전면 배치할 정도의 결과는 아니므로 supporting case로만 두는 것이 적절합니다.', 'The result is not strong enough to lead the portfolio and is best presented as a supporting case.'),
+        ],
+      },
     },
   ];
 
-  const projects = rawProjects;
+  const featuredProjects = projects.filter((project) => project.tier === 'featured');
+  const supportingProjects = projects.filter((project) => project.tier === 'supporting');
 
-  const ProjectCard = ({ project, index }: { project: Project; index: number }) => {
-    const cardRef = useRef(null);
-    // const cardInView = useInView(cardRef, { once: true, margin: "-100px" }); // PDF 출력용: 미사용
-    // PDF 출력용: 모든 프로젝트 항상 펼침 상태 (isExpanded 제거)
-
-    return (
-      <motion.div
-        ref={cardRef}
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }} // PDF 출력용: 항상 표시
-        transition={{ delay: index * 0.2, duration: 0.6 }}
-        className="glass-card overflow-hidden hover-lift"
-      >
-        {/* Card Header */}
-        <div className={`p-6 bg-primary-600 text-white`}>
-          <div className="flex items-start justify-between">
-            <div className="flex items-start gap-4">
-              <div className="p-3 bg-white/20 backdrop-blur-sm rounded-xl">
-                <project.icon className="w-8 h-8" />
-              </div>
-              <div className="flex-1">
-                <h3 className="text-2xl font-bold mb-1">{project.title}</h3>
-                <p className="text-white/90 text-lg mb-3">{project.subtitle}</p>
-                <div className="flex flex-wrap gap-3 text-sm">
-                  <span className="flex items-center gap-1 bg-white/20 px-3 py-1 rounded-full">
-                    <Users className="w-4 h-4" />
-                    {project.role}
-                  </span>
-                  <span className="flex items-center gap-1 bg-white/20 px-3 py-1 rounded-full">
-                    <Calendar className="w-4 h-4" />
-                    {project.period}
-                  </span>
-                  <span className={`flex items-center gap-1 px-3 py-1 rounded-full ${
-                    project.status === 'completed'
-                      ? 'bg-green-500/90'
-                      : 'bg-yellow-500/90'
-                  }`}>
-                    {project.status === 'completed' ? (
-                      <CheckCircle2 className="w-4 h-4" />
-                    ) : (
-                      <Loader className="w-4 h-4 animate-spin" />
-                    )}
-                    {project.status === 'completed' ? t('완료', 'Completed') : t('진행중', 'In Progress')}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Summary Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-6 bg-slate-50">
-          {project.summary.map((stat, idx) => (
-            <div key={idx} className="text-center">
-              <div className="text-2xl font-bold text-primary-600">{stat.value}</div>
-              <div className="text-sm text-dark-600 mt-1">{stat.label}</div>
-            </div>
-          ))}
-        </div>
-
-        {/* Main Content */}
-        <div className="p-6 space-y-6">
-          {/* Overview */}
-          <div>
-            <h4 className="text-lg font-bold text-dark-800 mb-2 flex items-center gap-2">
-              <span className={`w-1 h-6 bg-primary-600 rounded-full`} />
-              Overview
-            </h4>
-            <p className="text-dark-700 leading-relaxed">{project.overview}</p>
-          </div>
-
-          {/* Context */}
-          <div>
-            <h4 className="text-lg font-bold text-dark-800 mb-2 flex items-center gap-2">
-              <span className={`w-1 h-6 bg-primary-600 rounded-full`} />
-              Context
-            </h4>
-            <p className="text-dark-700 leading-relaxed">{project.context}</p>
-          </div>
-
-          {/* Approach */}
-          <div>
-            <h4 className="text-lg font-bold text-dark-800 mb-2 flex items-center gap-2">
-              <span className={`w-1 h-6 bg-primary-600 rounded-full`} />
-              Approach
-            </h4>
-            <ul className="space-y-2">
-              {project.approach.map((item, idx) => (
-                <li key={idx} className="flex items-start gap-2 text-dark-700">
-                  <span className={`mt-1.5 w-1.5 h-1.5 bg-primary-600 rounded-full flex-shrink-0`} />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Results */}
-          <div>
-            <h4 className="text-lg font-bold text-dark-800 mb-2 flex items-center gap-2">
-              <span className={`w-1 h-6 bg-primary-600 rounded-full`} />
-              Results
-            </h4>
-            <ul className="space-y-2">
-              {project.results.map((item, idx) => (
-                <li key={idx} className="flex items-start gap-2 text-dark-700">
-                  <CheckCircle2 className={`mt-0.5 w-5 h-5 flex-shrink-0 bg-primary-600 text-primary-600`} />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Expandable Section - PDF 출력용: 항상 펼침 */}
-          {project.challenges && (
-            <div>
-              {/* PDF 출력용: 버튼 숨김
-              <button
-                onClick={() => setExpandedProject(isExpanded ? null : project.id)}
-                className="w-full flex items-center justify-between p-4 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors"
-              >
-                <span className="font-bold text-dark-800">Challenges & Solutions</span>
-                {isExpanded ? (
-                  <ChevronUp className="w-5 h-5 text-dark-600" />
-                ) : (
-                  <ChevronDown className="w-5 h-5 text-dark-600" />
-                )}
-              </button>
-              */}
-
-              <div className="mb-2">
-                <span className="font-bold text-dark-800 text-lg">Challenges & Solutions</span>
-              </div>
-
-              <div className="mt-4 space-y-4">
-                {project.challenges.map((challenge, idx) => (
-                  <div key={idx} className="p-4 bg-slate-50 rounded-xl">
-                    <div className="font-semibold text-dark-800 mb-2">
-                      ⚠️ {challenge.problem}
-                    </div>
-                    <div className="text-dark-700 pl-6">
-                      ✅ {challenge.solution}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Key Insight */}
-          {project.keyInsight && (
-            <div className="p-4 bg-amber-50 rounded-xl">
-              <h4 className="font-bold text-dark-800 mb-2">💡 Key Insight</h4>
-              <p className="text-dark-700 leading-relaxed">{project.keyInsight}</p>
-            </div>
-          )}
-
-          {/* Relevance */}
-          {project.relevance && (
-            <div className="p-4 bg-green-50 rounded-xl">
-              <h4 className="font-bold text-dark-800 mb-2">🎯 Relevance</h4>
-              <ul className="space-y-2">
-                {project.relevance.map((item, idx) => (
-                  <li key={idx} className="text-dark-700 leading-relaxed flex items-start">
-                    <span className="mr-2">•</span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {/* Next Steps */}
-          {project.next && (
-            <div className="p-4 bg-blue-50 rounded-xl">
-              <h4 className="font-bold text-dark-800 mb-2">🔮 Next Steps</h4>
-              <p className="text-dark-700 leading-relaxed">{project.next}</p>
-            </div>
-          )}
-
-          {/* Tech Tags */}
-          <div className="flex flex-wrap gap-2">
-            {project.techs.map((tech, idx) => (
-              <span
-                key={idx}
-                className="px-3 py-1 bg-slate-100 text-dark-700 rounded-full text-sm font-medium"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-
-          {/* Links */}
-          {project.links && project.links.length > 0 && (
-            <div className="flex gap-3 pt-4 border-t border-slate-200">
-              {project.links.map((link, idx) => (
-                <div key={idx}>
-                  {link.github && (
-                    <a
-                      href={link.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`inline-flex items-center gap-2 px-4 py-2 bg-primary-600 text-white rounded-lg font-semibold hover:scale-105 transition-transform`}
-                    >
-                      <Github className="w-5 h-5" />
-                      GitHub
-                    </a>
-                  )}
-                  {link.demo && (
-                    <a
-                      href={link.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`inline-flex items-center gap-2 px-4 py-2 bg-primary-600 text-white rounded-lg font-semibold hover:scale-105 transition-transform`}
-                    >
-                      <ExternalLink className="w-5 h-5" />
-                      Demo
-                    </a>
-                  )}
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      </motion.div>
-    );
-  };
+  const renderDetailList = (items: string[]) => (
+    <ul className="space-y-2">
+      {items.map((item) => (
+        <li key={item} className="flex items-start gap-3 text-sm leading-6 text-slate-600">
+          <span className="mt-2 h-1.5 w-1.5 rounded-full bg-slate-400" />
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  );
 
   return (
-    <section ref={ref} className="section-container" id="projects">
+    <section id="projects" className="section-container py-12 lg:py-16">
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }} // PDF 출력용: 항상 표시
-        transition={{ duration: 0.6 }}
-        className="space-y-12"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-80px' }}
+        transition={{ duration: 0.45 }}
+        className="space-y-10"
       >
-        {/* Section Title */}
-        <div className="text-center space-y-4">
-          <h2 className="text-4xl sm:text-5xl font-bold text-primary-600">Projects</h2>
-          <p className="text-xl text-dark-600 max-w-2xl mx-auto">
-            {t('실제 문제를 해결한 프로젝트들', 'Projects solving real-world problems')}
-          </p>
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-3xl space-y-3">
+            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-slate-500">
+              {t('Selected Projects', 'Selected Projects')}
+            </p>
+            <h2 className="text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+              {t('길게 나열하지 않고, 판단에 필요한 프로젝트만 전면에 배치', 'Projects prioritized for hiring relevance, not volume')}
+            </h2>
+            <p className="text-base leading-7 text-slate-600">
+              {t(
+                '메인에는 포지셔닝과 맞는 프로젝트만 두고, 각 카드에서 문제, 내 역할, 결과를 먼저 보이도록 정리했습니다.',
+                'Only the projects that support the target positioning are surfaced here, with the problem, my role, and the outcome visible before the details.'
+              )}
+            </p>
+          </div>
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-600">
+            {t(
+              '메인 추천: LoRa 압축·복원 / 산업 시계열 예측 / Ultra-Low SNR 전초 연구',
+              'Main picks: LoRa compression & restoration / industrial forecasting / ultra-low SNR study'
+            )}
+          </div>
         </div>
 
-        {/* Project Cards */}
-        <div className="space-y-8 max-w-6xl mx-auto">
-          {projects.map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index} />
-          ))}
+        <div className="space-y-6">
+          {featuredProjects.map((project) => {
+            const isOpen = expandedProject === project.id;
+            return (
+              <article
+                key={project.id}
+                className="rounded-[30px] border border-slate-200 bg-white shadow-[0_24px_70px_-44px_rgba(15,23,42,0.35)]"
+              >
+                <div className="grid gap-6 border-b border-slate-200 p-6 lg:grid-cols-[minmax(0,1.4fr)_minmax(280px,0.8fr)] lg:p-8">
+                  <div className="space-y-5">
+                    <div className="flex flex-wrap items-center gap-3">
+                      <div className="rounded-2xl bg-slate-950 p-3 text-white">
+                        <project.icon className="h-5 w-5" />
+                      </div>
+                      <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-slate-600">
+                        {t('대표 프로젝트', 'Featured')}
+                      </span>
+                    </div>
+
+                    <div className="space-y-3">
+                      <h3 className="text-2xl font-semibold text-slate-950 sm:text-[1.7rem]">{project.title}</h3>
+                      <p className="max-w-3xl text-base leading-7 text-slate-600">{project.oneLiner}</p>
+                    </div>
+
+                    <div className="flex flex-wrap gap-2">
+                      {project.problemType.map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-full border border-slate-200 px-3 py-1 text-xs font-medium text-slate-600"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className="grid gap-3 sm:grid-cols-2">
+                      <div className="rounded-2xl bg-slate-50 px-4 py-3">
+                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                          {t('내 역할', 'My Role')}
+                        </p>
+                        <p className="mt-2 text-sm leading-6 text-slate-700">{project.role}</p>
+                      </div>
+                      <div className="rounded-2xl bg-slate-50 px-4 py-3">
+                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                          {t('핵심 성과', 'Key Results')}
+                        </p>
+                        <ul className="mt-2 space-y-1.5">
+                          {project.highlights.map((highlight) => (
+                            <li key={highlight} className="text-sm leading-6 text-slate-700">
+                              {highlight}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4 rounded-3xl border border-slate-200 bg-slate-50 p-5">
+                    <div className="flex items-center gap-2 text-sm text-slate-600">
+                      <Calendar className="h-4 w-4" />
+                      <span>{project.period}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-slate-600">
+                      <Users className="h-4 w-4" />
+                      <span>{project.teamSize}</span>
+                    </div>
+
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                        {t('사용 기술', 'Tech Stack')}
+                      </p>
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {project.techStack.map((tech) => (
+                          <span
+                            key={tech}
+                            className="rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-700"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="flex flex-wrap gap-3 pt-2">
+                      <button
+                        type="button"
+                        onClick={() => setExpandedProject(isOpen ? '' : project.id)}
+                        className="inline-flex items-center gap-2 rounded-xl bg-slate-950 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
+                      >
+                        {t('상세 보기', 'View Details')}
+                        {isOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+                      </button>
+                      {project.links?.[0]?.github && (
+                        <a
+                          href={project.links[0].github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 transition-colors hover:bg-slate-100"
+                        >
+                          <Github className="h-4 w-4" />
+                          GitHub
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.28 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="grid gap-6 p-6 lg:grid-cols-2 lg:p-8">
+                        <div className="space-y-5">
+                          <div>
+                            <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">Problem</h4>
+                            <p className="mt-2 text-sm leading-7 text-slate-700">{project.detail.problem}</p>
+                          </div>
+                          <div>
+                            <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">Context</h4>
+                            <p className="mt-2 text-sm leading-7 text-slate-700">{project.detail.context}</p>
+                          </div>
+                          <div>
+                            <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">My Role</h4>
+                            <div className="mt-2">{renderDetailList(project.detail.myRole)}</div>
+                          </div>
+                          <div>
+                            <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">Approach</h4>
+                            <div className="mt-2">{renderDetailList(project.detail.approach)}</div>
+                          </div>
+                        </div>
+
+                        <div className="space-y-5">
+                          <div>
+                            <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">Result</h4>
+                            <div className="mt-2">{renderDetailList(project.detail.result)}</div>
+                          </div>
+                          <div>
+                            <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+                              {t('Challenges', 'Challenges')}
+                            </h4>
+                            <div className="mt-2">{renderDetailList(project.detail.challenges)}</div>
+                          </div>
+                          <div>
+                            <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+                              {t('Limitations', 'Limitations')}
+                            </h4>
+                            <div className="mt-2">{renderDetailList(project.detail.limitations)}</div>
+                          </div>
+                          <div>
+                            <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">Tech Stack</h4>
+                            <p className="mt-2 text-sm leading-7 text-slate-700">{project.techStack.join(', ')}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </article>
+            );
+          })}
         </div>
+
+        {supportingProjects.length > 0 && (
+          <div className="space-y-4 rounded-[28px] border border-dashed border-slate-300 bg-slate-50/80 p-6">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <h3 className="text-xl font-semibold text-slate-900">
+                  {t('Supporting Project', 'Supporting Project')}
+                </h3>
+                <p className="mt-1 text-sm leading-6 text-slate-600">
+                  {t(
+                    '깊이는 있지만 대표 프로젝트로 전면 배치하지 않는 사례입니다. 실패를 숨기지 않고 검증 역량을 보여주는 용도로 남겼습니다.',
+                    'A deeper but secondary case. It stays in the portfolio to show validation discipline without overselling a missed target.'
+                  )}
+                </p>
+              </div>
+            </div>
+
+            <div className="grid gap-4">
+              {supportingProjects.map((project) => {
+                const isOpen = expandedProject === project.id;
+                return (
+                  <div key={project.id} className="rounded-3xl border border-slate-200 bg-white p-5">
+                    <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+                      <div className="space-y-3">
+                        <div className="flex flex-wrap items-center gap-3">
+                          <div className="rounded-2xl bg-slate-900 p-3 text-white">
+                            <project.icon className="h-5 w-5" />
+                          </div>
+                          {project.status && (
+                            <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-800">
+                              {project.status}
+                            </span>
+                          )}
+                        </div>
+                        <div>
+                          <h4 className="text-xl font-semibold text-slate-950">{project.title}</h4>
+                          <p className="mt-2 max-w-3xl text-sm leading-7 text-slate-600">{project.oneLiner}</p>
+                        </div>
+                        <div className="flex flex-wrap gap-2">
+                          {project.problemType.map((tag) => (
+                            <span
+                              key={tag}
+                              className="rounded-full border border-slate-200 px-3 py-1 text-xs font-medium text-slate-600"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                        <div className="grid gap-2 text-sm text-slate-600 sm:grid-cols-2">
+                          <p>{project.period}</p>
+                          <p>{project.role}</p>
+                        </div>
+                        <ul className="space-y-1 text-sm leading-6 text-slate-700">
+                          {project.highlights.map((highlight) => (
+                            <li key={highlight}>{highlight}</li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div className="flex flex-wrap gap-3">
+                        <button
+                          type="button"
+                          onClick={() => setExpandedProject(isOpen ? '' : project.id)}
+                          className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 transition-colors hover:bg-slate-100"
+                        >
+                          {t('상세 보기', 'View Details')}
+                          {isOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+                        </button>
+                        {project.links?.[0]?.github && (
+                          <a
+                            href={project.links[0].github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 transition-colors hover:bg-slate-100"
+                          >
+                            <ArrowUpRight className="h-4 w-4" />
+                            GitHub
+                          </a>
+                        )}
+                      </div>
+                    </div>
+
+                    <AnimatePresence initial={false}>
+                      {isOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.24 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="mt-5 grid gap-5 border-t border-slate-200 pt-5 lg:grid-cols-2">
+                            <div className="space-y-4">
+                              <div>
+                                <h5 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">Problem</h5>
+                                <p className="mt-2 text-sm leading-7 text-slate-700">{project.detail.problem}</p>
+                              </div>
+                              <div>
+                                <h5 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">My Role</h5>
+                                <div className="mt-2">{renderDetailList(project.detail.myRole)}</div>
+                              </div>
+                              <div>
+                                <h5 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">Approach</h5>
+                                <div className="mt-2">{renderDetailList(project.detail.approach)}</div>
+                              </div>
+                            </div>
+                            <div className="space-y-4">
+                              <div>
+                                <h5 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">Result</h5>
+                                <div className="mt-2">{renderDetailList(project.detail.result)}</div>
+                              </div>
+                              <div>
+                                <h5 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
+                                  {t('Challenges / Limitations', 'Challenges / Limitations')}
+                                </h5>
+                                <div className="mt-2">
+                                  {renderDetailList([...project.detail.challenges, ...project.detail.limitations])}
+                                </div>
+                              </div>
+                              <div>
+                                <h5 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">Tech Stack</h5>
+                                <p className="mt-2 text-sm leading-7 text-slate-700">{project.techStack.join(', ')}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </motion.div>
     </section>
   );

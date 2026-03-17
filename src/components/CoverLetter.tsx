@@ -1,4 +1,4 @@
-import { useLanguage } from '../contexts/LanguageContext';
+import { useLanguage } from '../contexts/useLanguage';
 import { ArrowLeft, Download } from 'lucide-react';
 import './Resume.css'; // Resume와 동일한 스타일 사용
 

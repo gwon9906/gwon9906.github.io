@@ -46,9 +46,9 @@ function App() {
           <Hero />
           <About />
           <Projects />
+          <Experience />
           <Education />
           <TechStack />
-          <Experience />
           <Contact />
           <TableOfContents />
         </div>

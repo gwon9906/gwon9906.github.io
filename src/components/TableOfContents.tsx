@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Home, User, Award, Code, Briefcase, Mail, GraduationCap } from 'lucide-react';
-import { useLanguage } from '../contexts/LanguageContext';
+import { Menu, X, Home, User, Briefcase, Mail, GraduationCap, Wrench, Award } from 'lucide-react';
+import { useLanguage } from '../contexts/useLanguage';
 
 const TableOfContents = () => {
   const { t } = useLanguage();
@@ -9,11 +9,11 @@ const TableOfContents = () => {
 
   const sections = [
     { id: 'hero', label: t('홈', 'Home'), icon: Home },
-    { id: 'about', label: t('소개', 'About'), icon: User },
+    { id: 'about', label: t('요약', 'Summary'), icon: User },
     { id: 'projects', label: t('프로젝트', 'Projects'), icon: Briefcase },
+    { id: 'experience', label: t('경험', 'Experience'), icon: Award },
     { id: 'education', label: t('학력', 'Education'), icon: GraduationCap },
-    { id: 'tech-stack', label: t('기술', 'Skills'), icon: Code },
-    { id: 'experience', label: t('경력', 'Experience'), icon: Award },
+    { id: 'tech-stack', label: t('기술', 'Skills'), icon: Wrench },
     { id: 'contact', label: t('연락처', 'Contact'), icon: Mail },
   ];
 
@@ -28,13 +28,12 @@ const TableOfContents = () => {
 
   return (
     <div className="floating-toc">
-      {/* Floating Menu Button */}
       <motion.button
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
-        transition={{ delay: 1, type: 'spring', stiffness: 260, damping: 20 }}
-        onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-8 right-8 z-50 w-16 h-16 bg-primary-600 text-white rounded-full shadow-2xl hover:shadow-primary-500/50 transition-all duration-300 hover:scale-110 flex items-center justify-center"
+        transition={{ delay: 0.6, type: 'spring', stiffness: 260, damping: 20 }}
+        onClick={() => setIsOpen((open) => !open)}
+        className="fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-900 shadow-lg transition-transform hover:scale-105"
         aria-label={t('목차 열기', 'Open table of contents')}
       >
         <AnimatePresence mode="wait">
@@ -44,9 +43,9 @@ const TableOfContents = () => {
               initial={{ rotate: -90, opacity: 0 }}
               animate={{ rotate: 0, opacity: 1 }}
               exit={{ rotate: 90, opacity: 0 }}
-              transition={{ duration: 0.2 }}
+              transition={{ duration: 0.18 }}
             >
-              <X className="w-7 h-7" />
+              <X className="h-5 w-5" />
             </motion.div>
           ) : (
             <motion.div
@@ -54,67 +53,38 @@ const TableOfContents = () => {
               initial={{ rotate: 90, opacity: 0 }}
               animate={{ rotate: 0, opacity: 1 }}
               exit={{ rotate: -90, opacity: 0 }}
-              transition={{ duration: 0.2 }}
+              transition={{ duration: 0.18 }}
             >
-              <Menu className="w-7 h-7" />
+              <Menu className="h-5 w-5" />
             </motion.div>
           )}
         </AnimatePresence>
       </motion.button>
 
-      {/* Menu Items */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed bottom-28 right-8 z-40"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 16 }}
+            className="fixed bottom-20 right-6 z-40 w-[220px] rounded-3xl border border-slate-200 bg-white p-3 shadow-2xl"
           >
-            <div className="flex flex-col gap-3">
-              {sections.map((section, index) => {
+            <div className="space-y-1">
+              {sections.map((section) => {
                 const Icon = section.icon;
                 return (
-                  <motion.button
+                  <button
                     key={section.id}
-                    initial={{ opacity: 0, x: 50, scale: 0.8 }}
-                    animate={{
-                      opacity: 1,
-                      x: 0,
-                      scale: 1,
-                      transition: { delay: index * 0.05 }
-                    }}
-                    exit={{
-                      opacity: 0,
-                      x: 50,
-                      scale: 0.8,
-                      transition: { delay: (sections.length - index) * 0.03 }
-                    }}
                     onClick={() => scrollToSection(section.id)}
-                    className="group flex items-center gap-3 px-5 py-3 bg-white/95 backdrop-blur-md rounded-full shadow-lg hover:shadow-xl border border-slate-200/50 transition-all duration-300 hover:scale-105 hover:bg-primary-50"
+                    className="flex w-full items-center gap-3 rounded-2xl px-3 py-2.5 text-left text-sm font-medium text-slate-700 transition-colors hover:bg-slate-100"
                   >
-                    <Icon className="w-5 h-5 text-primary-600 group-hover:text-primary-700 transition-colors" />
-                    <span className="text-sm font-semibold text-dark-700 whitespace-nowrap">
-                      {section.label}
-                    </span>
-                  </motion.button>
+                    <Icon className="h-4 w-4 text-slate-500" />
+                    <span>{section.label}</span>
+                  </button>
                 );
               })}
             </div>
           </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Backdrop */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setIsOpen(false)}
-            className="fixed inset-0 bg-black/20 backdrop-blur-sm z-30"
-          />
         )}
       </AnimatePresence>
     </div>

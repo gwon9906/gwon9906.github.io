@@ -1,116 +1,77 @@
 import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { useRef } from 'react';
 import { Briefcase, Calendar, MapPin } from 'lucide-react';
-import { useLanguage } from '../contexts/LanguageContext';
+import { useLanguage } from '../contexts/useLanguage';
 
 const Experience = () => {
   const { t } = useLanguage();
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0 }
-  };
 
   const experiences = [
     {
       role: t('학부 연구생', 'Undergraduate Researcher'),
-      organization: t('동의대학교 Wireless AIoT System LAB', 'Wireless AIoT System LAB, Dong-eui University'),
-      period: t('2024.06 – 2026.02', 'Jun 2024 – Feb 2026'),
+      organization: t('Wireless AIoT System Lab, 동의대학교', 'Wireless AIoT System Lab, Dong-eui University'),
+      period: t('2024.06 - 2026.02', 'Jun 2024 - Feb 2026'),
       location: t('부산, 대한민국', 'Busan, South Korea'),
-      description: [
-        t(
-          'LoRa 통신 최적화 연구',
-          'LoRa communication optimization research'
-        ),
-        t(
-          '초저 SNR 신호 복원 연구 (연구실 과정 종료)',
-          'Ultra-low SNR signal restoration study (completed with lab graduation)'
-        ),
-        t(
-          '산업용 시계열 예측 프로젝트 수행',
-          'Industrial time-series prediction project execution'
-        ),
+      bullets: [
+        t('LoRa 통신 최적화, 저전력 전송, 신호 복원 관련 프로젝트 수행', 'Worked on LoRa optimization, low-power transmission, and signal restoration projects'),
+        t('산업 시계열 예측과 초저 SNR 복조 문제를 연구·구현·검증까지 직접 연결', 'Connected research, implementation, and validation for industrial forecasting and ultra-low-SNR demodulation'),
+        t('실험 기준선 재현, 실패 원인 분석, 결과 문서화까지 포함한 엔지니어링 방식으로 작업', 'Worked with an engineering mindset that includes reproducing baselines, analyzing failure causes, and documenting outcomes'),
       ],
-      gradient: 'bg-primary-600',
     },
   ];
 
   return (
-    <section ref={ref} className="section-container bg-white/30" id="experience">
+    <section id="experience" className="section-container py-12 lg:py-16">
       <motion.div
-        variants={container}
-        initial="hidden"
-        animate={isInView ? "show" : "hidden"}
-        className="space-y-12"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-80px' }}
+        transition={{ duration: 0.45 }}
+        className="space-y-8"
       >
-        {/* Section Title */}
-        <motion.div variants={item} className="text-center space-y-4">
-          <h2 className="text-4xl sm:text-5xl font-bold text-primary-600">Experience</h2>
-          <p className="text-xl text-dark-600 max-w-2xl mx-auto">
-            {t('연구 및 실무 경험', 'Research and Professional Experience')}
+        <div className="max-w-3xl space-y-3">
+          <p className="text-sm font-semibold uppercase tracking-[0.24em] text-slate-500">
+            {t('Experience', 'Experience')}
           </p>
-        </motion.div>
+          <h2 className="text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+            {t('프로젝트를 뒷받침하는 연구 경험', 'Research experience behind the projects')}
+          </h2>
+        </div>
 
-        {/* Experience Cards */}
-        <div className="max-w-4xl mx-auto space-y-6">
-          {experiences.map((exp, index) => (
-            <motion.div
-              key={index}
-              variants={item}
-              className="glass-card p-8 hover-lift"
-            >
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
-                <div className="flex-1">
-                  <div className="flex items-start gap-3 mb-2">
-                    <div className={`p-2 ${exp.gradient} rounded-lg mt-1`}>
-                      <Briefcase className="w-5 h-5 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold text-dark-800">
-                        {exp.role}
-                      </h3>
-                      <p className="text-lg text-dark-700 font-medium">
-                        {exp.organization}
-                      </p>
-                    </div>
+        <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm lg:p-8">
+          {experiences.map((experience) => (
+            <div key={experience.role} className="space-y-5">
+              <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+                <div className="flex items-start gap-4">
+                  <div className="rounded-2xl bg-slate-950 p-3 text-white">
+                    <Briefcase className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-semibold text-slate-950">{experience.role}</h3>
+                    <p className="mt-1 text-base text-slate-700">{experience.organization}</p>
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-2 md:text-right">
-                  <div className="flex items-center gap-2 text-dark-600 md:justify-end">
-                    <Calendar className="w-4 h-4" />
-                    <span className="text-sm font-medium">{exp.period}</span>
+                <div className="space-y-2 text-sm text-slate-600">
+                  <div className="flex items-center gap-2 lg:justify-end">
+                    <Calendar className="h-4 w-4" />
+                    <span>{experience.period}</span>
                   </div>
-                  <div className="flex items-center gap-2 text-dark-600 md:justify-end">
-                    <MapPin className="w-4 h-4" />
-                    <span className="text-sm">{exp.location}</span>
+                  <div className="flex items-center gap-2 lg:justify-end">
+                    <MapPin className="h-4 w-4" />
+                    <span>{experience.location}</span>
                   </div>
                 </div>
               </div>
 
-              {/* Description */}
-              <ul className="space-y-3">
-                {exp.description.map((desc, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-dark-700">
-                    <span className={`mt-1.5 w-1.5 h-1.5 ${exp.gradient} rounded-full flex-shrink-0`} />
-                    <span>{desc}</span>
+              <ul className="space-y-2">
+                {experience.bullets.map((bullet) => (
+                  <li key={bullet} className="flex items-start gap-3 text-sm leading-7 text-slate-600 sm:text-base">
+                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-slate-400" />
+                    <span>{bullet}</span>
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </div>
           ))}
         </div>
       </motion.div>

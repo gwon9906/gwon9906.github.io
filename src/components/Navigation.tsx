@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { Menu, X, Languages, FileDown } from 'lucide-react';
-import { useLanguage } from '../contexts/LanguageContext';
+import { useLanguage } from '../contexts/useLanguage';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -10,7 +10,7 @@ const Navigation = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -18,11 +18,11 @@ const Navigation = () => {
   }, []);
 
   const navItems = [
-    { label: t('소개', 'About'), href: '#about' },
+    { label: t('요약', 'Summary'), href: '#about' },
     { label: t('프로젝트', 'Projects'), href: '#projects' },
+    { label: t('경험', 'Experience'), href: '#experience' },
     { label: t('학력', 'Education'), href: '#education' },
     { label: t('기술', 'Skills'), href: '#tech-stack' },
-    { label: t('경력', 'Experience'), href: '#experience' },
     { label: t('연락처', 'Contact'), href: '#contact' },
   ];
 
@@ -37,113 +37,107 @@ const Navigation = () => {
 
   return (
     <motion.nav
-      initial={{ y: -100 }}
+      initial={{ y: -60 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.6 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      transition={{ duration: 0.45 }}
+      className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-200 ${
         isScrolled
-          ? 'bg-white/90 backdrop-blur-md shadow-lg'
-          : 'bg-transparent'
+          ? 'border-slate-200 bg-white/94 backdrop-blur-md'
+          : 'border-transparent bg-white/70 backdrop-blur-sm'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 lg:h-20">
-          {/* Logo */}
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:h-[72px] lg:px-8">
+        <a
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+          className="text-lg font-semibold tracking-tight text-slate-950 sm:text-xl"
+        >
+          Haegwon Lee
+        </a>
+
+        <div className="hidden items-center gap-6 md:flex">
+          {navItems.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              onClick={(e) => scrollToSection(e, item.href)}
+              className="text-sm font-medium text-slate-600 transition-colors hover:text-slate-950"
+            >
+              {item.label}
+            </a>
+          ))}
+
           <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-            className="text-2xl font-bold text-primary-600 cursor-pointer"
+            href="#resume"
+            className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-sm font-semibold text-slate-900 transition-colors hover:bg-slate-100"
+            title={t('이력서 PDF', 'Resume PDF')}
           >
-            Haegwon Lee
+            <FileDown className="h-4 w-4" />
+            <span>{t('Resume', 'Resume')}</span>
           </a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={(e) => scrollToSection(e, item.href)}
-                className="text-dark-700 hover:text-primary-600 font-medium transition-colors relative group"
-              >
-                {item.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 group-hover:w-full transition-all duration-300" />
-              </a>
-            ))}
-
-            {/* Resume PDF Button */}
-            <a
-              href="#resume"
-              className="flex items-center gap-2 px-4 py-2 bg-primary-600 text-white rounded-full font-medium transition-all hover:scale-105 shadow-md hover:shadow-lg"
-              title={t('이력서 PDF', 'Resume PDF')}
-            >
-              <FileDown className="w-4 h-4" />
-              <span className="text-sm">{t('이력서', 'Resume')}</span>
-            </a>
-
-            {/* Language Toggle Button */}
-            <button
-              onClick={() => setLanguage(language === 'ko' ? 'en' : 'ko')}
-              className="flex items-center gap-2 px-3 py-1.5 text-dark-700 hover:text-primary-600 font-medium transition-colors border border-slate-300 rounded-full hover:border-primary-600"
-              title={language === 'ko' ? 'Switch to English' : '한국어로 전환'}
-            >
-              <Languages className="w-4 h-4" />
-              <span className="text-sm">{language === 'ko' ? 'EN' : 'KO'}</span>
-            </button>
-          </div>
-
-          {/* Mobile Menu Button */}
           <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-dark-700 hover:text-primary-600 transition-colors"
+            onClick={() => setLanguage(language === 'ko' ? 'en' : 'ko')}
+            className="inline-flex items-center gap-2 rounded-xl border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-100"
+            title={language === 'ko' ? 'Switch to English' : '한국어로 전환'}
           >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            <Languages className="h-4 w-4" />
+            <span>{language === 'ko' ? 'EN' : 'KO'}</span>
           </button>
         </div>
 
-        {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden py-4 border-t border-slate-200"
-          >
+        <button
+          type="button"
+          onClick={() => setIsMobileMenuOpen((open) => !open)}
+          className="rounded-lg p-2 text-slate-700 transition-colors hover:bg-slate-100 md:hidden"
+          aria-label={t('메뉴 열기', 'Open menu')}
+        >
+          {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
+      </div>
+
+      {isMobileMenuOpen && (
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: 'auto' }}
+          exit={{ opacity: 0, height: 0 }}
+          className="border-t border-slate-200 bg-white px-4 py-4 md:hidden"
+        >
+          <div className="flex flex-col gap-3">
             {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
                 onClick={(e) => scrollToSection(e, item.href)}
-                className="block py-3 text-dark-700 hover:text-primary-600 font-medium transition-colors"
+                className="rounded-lg px-2 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-100"
               >
                 {item.label}
               </a>
             ))}
 
-            {/* Mobile Resume PDF Button */}
             <a
               href="#resume"
-              className="w-full flex items-center justify-center gap-2 mt-4 px-4 py-3 bg-primary-600 text-white rounded-full font-medium shadow-md"
               onClick={() => setIsMobileMenuOpen(false)}
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-900"
             >
-              <FileDown className="w-4 h-4" />
-              <span>{t('이력서 PDF', 'Resume PDF')}</span>
+              <FileDown className="h-4 w-4" />
+              <span>{t('Resume', 'Resume')}</span>
             </a>
 
-            {/* Mobile Language Toggle */}
             <button
+              type="button"
               onClick={() => setLanguage(language === 'ko' ? 'en' : 'ko')}
-              className="w-full flex items-center justify-center gap-2 mt-4 px-4 py-2 text-dark-700 hover:text-primary-600 font-medium transition-colors border border-slate-300 rounded-full hover:border-primary-600"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 px-4 py-3 text-sm font-medium text-slate-700"
             >
-              <Languages className="w-4 h-4" />
-              <span className="text-sm">{language === 'ko' ? 'English' : '한국어'}</span>
+              <Languages className="h-4 w-4" />
+              <span>{language === 'ko' ? 'English' : '한국어'}</span>
             </button>
-          </motion.div>
-        )}
-      </div>
+          </div>
+        </motion.div>
+      )}
     </motion.nav>
   );
 };

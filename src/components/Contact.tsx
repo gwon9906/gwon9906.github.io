@@ -1,131 +1,92 @@
 import { motion } from 'framer-motion';
-// import { useInView } from 'framer-motion'; // PDF 출력용: 미사용
-import { useRef } from 'react';
-import { Mail, Github, BookOpen, Send } from 'lucide-react';
-import { useLanguage } from '../contexts/LanguageContext';
+import { ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react';
+import { useLanguage } from '../contexts/useLanguage';
 
 const Contact = () => {
   const { t } = useLanguage();
-  const ref = useRef(null);
-  // const isInView = useInView(ref, { once: true, margin: "-100px" }); // PDF 출력용: 미사용
 
   const contacts = [
     {
-      icon: Mail,
       label: 'Email',
       value: 'gwon99065@naver.com',
-      link: 'mailto:gwon99065@naver.com',
-      gradient: 'from-red-500 to-orange-500',
+      href: 'mailto:gwon99065@naver.com',
+      icon: Mail,
     },
     {
-      icon: Github,
       label: 'GitHub',
-      value: '@gwon9906',
-      link: 'https://github.com/gwon9906',
-      gradient: 'from-gray-700 to-gray-900',
+      value: 'github.com/gwon9906',
+      href: 'https://github.com/gwon9906',
+      icon: Github,
     },
     {
-      icon: BookOpen,
-      label: 'Blog',
-      value: 'latetime.tistory.com',
-      link: 'https://latetime.tistory.com/',
-      gradient: 'from-blue-500 to-cyan-500',
+      label: 'LinkedIn',
+      value: t('추가 가능', 'Add if available'),
+      href: '#',
+      icon: Linkedin,
+      disabled: true,
     },
   ];
 
   return (
-    <section ref={ref} className="section-container bg-white/30" id="contact">
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }} // PDF 출력용: 항상 표시
-        transition={{ duration: 0.6 }}
-        className="space-y-12"
-      >
-        {/* Section Title */}
-        <div className="text-center space-y-4">
-          <h2 className="text-4xl sm:text-5xl font-bold gradient-text">Contact</h2>
-          <p className="text-xl text-dark-600 max-w-2xl mx-auto">
-            {t('언제든지 연락주세요!', 'Feel free to reach out anytime!')}
-          </p>
-        </div>
-
-        {/* Contact Cards */}
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {contacts.map((contact, index) => (
-            <motion.a
-              key={contact.label}
-              href={contact.link}
-              target={contact.link.startsWith('http') ? '_blank' : undefined}
-              rel={contact.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }} // PDF 출력용: 항상 표시
-              transition={{ delay: index * 0.1, duration: 0.6 }}
-              className="glass-card p-6 hover-lift group cursor-pointer"
-            >
-              <div className="flex flex-col items-center text-center space-y-4">
-                <div className={`p-4 bg-gradient-to-r ${contact.gradient} rounded-2xl group-hover:scale-110 transition-transform`}>
-                  <contact.icon className="w-8 h-8 text-white" />
-                </div>
-                <div>
-                  <div className="text-sm font-semibold text-dark-600 mb-1">
-                    {contact.label}
-                  </div>
-                  <div className={`font-bold text-lg bg-gradient-to-r ${contact.gradient} bg-clip-text text-transparent`}>
-                    {contact.value}
-                  </div>
-                </div>
-              </div>
-            </motion.a>
-          ))}
-        </div>
-
-        {/* CTA */}
+    <section id="contact" className="border-t border-slate-200 bg-slate-50/70">
+      <div className="section-container py-12 lg:py-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }} // PDF 출력용: 항상 표시
-          transition={{ delay: 0.4, duration: 0.6 }}
-          className="text-center"
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.45 }}
+          className="space-y-8"
         >
-          <div className="glass-card p-8 max-w-3xl mx-auto">
-            <h3 className="text-2xl font-bold text-dark-800 mb-4">
-              {t('새로운 기술적 도전을 기다립니다', 'Looking forward to new technical challenges')}
-            </h3>
-            <p className="text-dark-600 mb-6 leading-relaxed">
+          <div className="max-w-3xl space-y-3">
+            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-slate-500">
+              {t('Contact', 'Contact')}
+            </p>
+            <h2 className="text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+              {t('연락처는 짧고 명확하게', 'Contact kept short and direct')}
+            </h2>
+            <p className="text-base leading-7 text-slate-600">
               {t(
-                'AI/ML 프로젝트, 모델 최적화, 엣지 AI 솔루션 등',
-                'AI/ML projects, model optimization, edge AI solutions, etc.'
-              )}
-              <br />
-              {t(
-                '협업 및 성장 기회에 열려있습니다',
-                'Open to collaboration and growth opportunities'
+                '채용이나 협업 관련 문의는 이메일이 가장 빠릅니다. 프로젝트 근거는 GitHub에서 바로 확인할 수 있습니다.',
+                'Email is the fastest way to reach me for hiring or collaboration. GitHub is the best place to verify implementation details.'
               )}
             </p>
-            <a
-              href="mailto:gwon99065@naver.com"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary-500 to-blue-600 text-white rounded-2xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-            >
-              <Send className="w-5 h-5" />
-              {t('이메일 보내기', 'Send Email')}
-            </a>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-3">
+            {contacts.map((contact) => (
+              contact.disabled ? (
+                <div
+                  key={contact.label}
+                  className="rounded-3xl border border-dashed border-slate-300 bg-white p-5 text-slate-500"
+                >
+                  <contact.icon className="h-5 w-5" />
+                  <p className="mt-4 text-sm font-semibold text-slate-700">{contact.label}</p>
+                  <p className="mt-2 text-sm">{contact.value}</p>
+                </div>
+              ) : (
+                <a
+                  key={contact.label}
+                  href={contact.href}
+                  target={contact.href.startsWith('http') ? '_blank' : undefined}
+                  rel={contact.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition-transform hover:-translate-y-0.5"
+                >
+                  <contact.icon className="h-5 w-5 text-slate-900" />
+                  <p className="mt-4 text-sm font-semibold text-slate-700">{contact.label}</p>
+                  <div className="mt-2 flex items-center justify-between gap-4">
+                    <p className="text-sm text-slate-600">{contact.value}</p>
+                    <ArrowUpRight className="h-4 w-4 text-slate-400" />
+                  </div>
+                </a>
+              )
+            ))}
+          </div>
+
+          <div className="border-t border-slate-200 pt-6 text-sm text-slate-500">
+            © 2026 Haegwon Lee. Built with React, TypeScript, and Tailwind CSS.
           </div>
         </motion.div>
-
-        {/* Footer */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }} // PDF 출력용: 항상 표시
-          transition={{ delay: 0.6, duration: 0.6 }}
-          className="text-center pt-12 border-t border-slate-200"
-        >
-          <p className="text-dark-600">
-            © 2025 Haegwon Lee. Built with React + TypeScript + Tailwind CSS
-          </p>
-          <p className="text-dark-500 text-sm mt-2">
-            Designed for showcasing AI/ML Engineering expertise
-          </p>
-        </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 };
