@@ -67,9 +67,9 @@
   }
 
   /* 섹션 여백 조정 */
-  .section-container {
-    @apply py-4;
-    page-break-inside: avoid;
+    @apply text-[0.96rem] text-slate-600 sm:text-base;
+    line-height: 1.7;
+    @apply text-[0.95rem] font-medium leading-6;
   }
 
   /* 카드 스타일 간소화 */
