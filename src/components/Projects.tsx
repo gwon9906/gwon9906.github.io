@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowUpRight,
   Calendar,
@@ -11,12 +11,12 @@ import {
   TrendingUp,
   Users,
   type LucideIcon,
-} from 'lucide-react';
-import { useLanguage } from '../contexts/useLanguage';
+} from "lucide-react";
+import { useLanguage } from "../contexts/useLanguage";
 
 interface Project {
   id: string;
-  tier: 'featured' | 'supporting';
+  tier: "featured" | "supporting";
   title: string;
   oneLiner: string;
   problemType: string[];
@@ -44,175 +44,317 @@ interface Project {
 
 const Projects = () => {
   const { t } = useLanguage();
-  const [expandedProject, setExpandedProject] = useState<string>('lora-bam');
+  const [expandedProject, setExpandedProject] = useState<string>("lora-bam");
 
   const projects: Project[] = [
     {
-      id: 'lora-bam',
-      tier: 'featured',
+      id: "lora-bam",
+      tier: "featured",
       title: t(
-        '저전력 IoT 환경용 초경량 데이터 압축·복원',
-        'Ultra-Lightweight Data Compression & Restoration for Low-Power IoT'
+        "저전력 IoT 환경용 초경량 데이터 압축·복원",
+        "Ultra-Lightweight Data Compression & Restoration for Low-Power IoT",
       ),
       oneLiner: t(
-        'LoRa 환경에서 전송량을 줄이면서 복원 품질과 통신 성공률을 함께 개선한 프로젝트입니다.',
-        'Reduced LoRa payload while improving restoration quality and communication success in a resource-constrained setting.'
+        "LoRa 환경에서 전송량을 줄이면서 복원 품질과 통신 성공률을 함께 개선한 프로젝트입니다.",
+        "Reduced LoRa payload while improving restoration quality and communication success in a resource-constrained setting.",
       ),
-      problemType: ['Signal Restoration', 'Edge ML', 'LoRa', 'Experimental Validation'],
-      period: '2024.03 - 2024.06',
-      teamSize: t('3인 팀', 'Team of 3'),
-      role: t('팀 리드, 파이프라인 설계/실험 검증 주도', 'Team lead, pipeline design and validation lead'),
-      highlights: [
-        t('Payload 32B → 20B, 전송량 37.5% 감소', 'Payload 32B → 20B, 37.5% transmission reduction'),
-        t('실환경 필드 테스트에서 PDR +14%p', '+14%p PDR in real-world field tests'),
+      problemType: [
+        "Signal Restoration",
+        "Edge ML",
+        "LoRa",
+        "Experimental Validation",
       ],
-      techStack: ['Python', 'NumPy', 'BAM', 'LoRa', 'Raspberry Pi', 'Field Testing'],
+      period: "2024.03 - 2024.06",
+      teamSize: t("3인 팀", "Team of 3"),
+      role: t(
+        "팀 리드, 파이프라인 설계/실험 검증 주도",
+        "Team lead, pipeline design and validation lead",
+      ),
+      highlights: [
+        t(
+          "Payload 32B → 20B, 전송량 37.5% 감소",
+          "Payload 32B → 20B, 37.5% transmission reduction",
+        ),
+        t(
+          "실환경 필드 테스트에서 PDR +14%p",
+          "+14%p PDR in real-world field tests",
+        ),
+      ],
+      techStack: [
+        "Python",
+        "NumPy",
+        "BAM",
+        "LoRa",
+        "Raspberry Pi",
+        "Field Testing",
+      ],
       icon: Radio,
       links: [
-        { github: 'https://github.com/4xvgal/ChirpChirp' },
-        { github: 'https://github.com/gwon9906/Lightweight-MF-BAM' },
+        { github: "https://github.com/4xvgal/ChirpChirp" },
+        { github: "https://github.com/gwon9906/Lightweight-MF-BAM" },
       ],
       detail: {
         problem: t(
-          '배터리 기반 LoRa 디바이스에서는 패킷 손실이 잦을수록 재전송으로 에너지 소모가 커집니다. 전송 전력을 높이기보다 전송량 자체를 줄여 성공 확률을 높일 필요가 있었습니다.',
-          'Battery-powered LoRa devices lose lifetime quickly when packet loss triggers retransmission. We needed to reduce transmitted data itself instead of simply increasing transmission power.'
+          "배터리 기반 LoRa 디바이스에서는 패킷 손실이 잦을수록 재전송으로 에너지 소모가 커집니다. 전송 전력을 높이기보다 전송량 자체를 줄여 성공 확률을 높일 필요가 있었습니다.",
+          "Battery-powered LoRa devices lose lifetime quickly when packet loss triggers retransmission. We needed to reduce transmitted data itself instead of simply increasing transmission power.",
         ),
         context: t(
-          '제한된 페이로드 안에서 GPS/센서 데이터를 보내야 했고, 품질이 너무 낮아지면 복원 데이터가 쓸모없어지는 상황이었습니다. 시뮬레이션이 아니라 N-LOS 약 2.6km 구간의 실제 주행 데이터를 기준으로 검증했습니다.',
-          'GPS and sensor data had to fit into a limited payload budget, but too much compression would make the restored data unusable. Validation was done on repeated real N-LOS driving data over roughly 2.6 km rather than simulation only.'
+          "제한된 페이로드 안에서 GPS/센서 데이터를 보내야 했고, 품질이 너무 낮아지면 복원 데이터가 쓸모없어지는 상황이었습니다. 시뮬레이션이 아니라 N-LOS 약 2.6km 구간의 실제 주행 데이터를 기준으로 검증했습니다.",
+          "GPS and sensor data had to fit into a limited payload budget, but too much compression would make the restored data unusable. Validation was done on repeated real N-LOS driving data over roughly 2.6 km rather than simulation only.",
         ),
         myRole: [
-          t('전처리 규격과 BAM 기반 압축·복원 파이프라인 설계', 'Designed preprocessing specs and the BAM-based compression/restoration pipeline'),
-          t('실험 조건 통제와 필드 테스트 지표 분석 수행', 'Controlled evaluation conditions and analyzed field-test metrics'),
+          t(
+            "전처리 규격과 BAM 기반 압축·복원 파이프라인 설계",
+            "Designed preprocessing specs and the BAM-based compression/restoration pipeline",
+          ),
+          t(
+            "실험 조건 통제와 필드 테스트 지표 분석 수행",
+            "Controlled evaluation conditions and analyzed field-test metrics",
+          ),
         ],
         approach: [
-          t('규칙 기반 압축과 AutoEncoder baseline을 재현해 비교 기준을 먼저 만들었습니다.', 'Reproduced rule-based compression and AutoEncoder baselines before choosing the final direction.'),
-          t('GPS/센서 데이터 특성에 맞춰 정수부/소수부 분리 인코딩으로 정밀도 손실을 줄였습니다.', 'Used integer-decimal split encoding to limit precision loss based on the structure of GPS and sensor data.'),
-          t('연산량이 낮은 BAM 구조를 선택해 저전력 장치에서의 실행 가능성을 우선했습니다.', 'Selected BAM for lower computational burden so the method remains feasible on low-power hardware.'),
+          t(
+            "규칙 기반 압축과 AutoEncoder baseline을 재현해 비교 기준을 먼저 만들었습니다.",
+            "Reproduced rule-based compression and AutoEncoder baselines before choosing the final direction.",
+          ),
+          t(
+            "GPS/센서 데이터 특성에 맞춰 정수부/소수부 분리 인코딩으로 정밀도 손실을 줄였습니다.",
+            "Used integer-decimal split encoding to limit precision loss based on the structure of GPS and sensor data.",
+          ),
+          t(
+            "연산량이 낮은 BAM 구조를 선택해 저전력 장치에서의 실행 가능성을 우선했습니다.",
+            "Selected BAM for lower computational burden so the method remains feasible on low-power hardware.",
+          ),
         ],
         result: [
-          t('전송량 감소와 함께 통신 성공률을 높여 시스템 효율 개선 근거를 만들었습니다.', 'Created evidence that system efficiency can improve by lowering payload while increasing communication success.'),
-          t('GPS 복원 오차 MSE를 0.0184 → 0.0036으로 낮춰 서비스 가능한 품질을 유지했습니다.', 'Reduced GPS restoration MSE from 0.0184 to 0.0036 while keeping the compressed setup usable.'),
+          t(
+            "전송량 감소와 함께 통신 성공률을 높여 시스템 효율 개선 근거를 만들었습니다.",
+            "Created evidence that system efficiency can improve by lowering payload while increasing communication success.",
+          ),
+          t(
+            "GPS 복원 오차 MSE를 0.0184 → 0.0036으로 낮춰 서비스 가능한 품질을 유지했습니다.",
+            "Reduced GPS restoration MSE from 0.0184 to 0.0036 while keeping the compressed setup usable.",
+          ),
         ],
         challenges: [
-          t('압축률을 높이면 복원 품질이 무너질 수 있어 통신 성능과 데이터 품질의 균형이 중요했습니다.', 'Pushing compression too far risked breaking restoration quality, so the trade-off between transmission efficiency and data quality mattered.'),
-          t('필드 테스트 기반 비교를 위해 동일 경로·동일 조건에서 실험을 반복해 변수 통제를 맞췄습니다.', 'To keep the field-test comparison credible, I repeated experiments under the same route and operating conditions.'),
+          t(
+            "압축률을 높이면 복원 품질이 무너질 수 있어 통신 성능과 데이터 품질의 균형이 중요했습니다.",
+            "Pushing compression too far risked breaking restoration quality, so the trade-off between transmission efficiency and data quality mattered.",
+          ),
+          t(
+            "필드 테스트 기반 비교를 위해 동일 경로·동일 조건에서 실험을 반복해 변수 통제를 맞췄습니다.",
+            "To keep the field-test comparison credible, I repeated experiments under the same route and operating conditions.",
+          ),
         ],
         limitations: [
-          t('산업 배포 수준의 장기 운영 검증까지는 아직 진행하지 않았습니다.', 'This has not yet been validated in a long-term production deployment.'),
+          t(
+            "산업 배포 수준의 장기 운영 검증까지는 아직 진행하지 않았습니다.",
+            "This has not yet been validated in a long-term production deployment.",
+          ),
         ],
       },
     },
     {
-      id: 'valve-prediction',
-      tier: 'featured',
+      id: "valve-prediction",
+      tier: "featured",
       title: t(
-        '산업용 밸브 유량 시계열 예측',
-        'Industrial Valve Flow Forecasting'
+        "산업용 밸브 유량 시계열 예측",
+        "Industrial Valve Flow Forecasting",
       ),
       oneLiner: t(
-        '불연속성과 이상치가 있는 산업 데이터를 대상으로 Encoder-LSTM 구조와 손실 설계를 조정해 예측 오차를 개선했습니다.',
-        'Improved forecasting error on industrial time-series data with discontinuities and outliers by redesigning the Encoder-LSTM setup and loss.'
+        "불연속성과 이상치가 있는 산업 데이터를 대상으로 Encoder-LSTM 구조와 손실 설계를 조정해 예측 오차를 개선했습니다.",
+        "Improved forecasting error on industrial time-series data with discontinuities and outliers by redesigning the Encoder-LSTM setup and loss.",
       ),
-      problemType: ['Time-Series Forecasting', 'Lightweight Modeling', 'Experimental Validation'],
-      period: '2024.07 - 2024.12',
-      teamSize: t('개인 연구', 'Individual project'),
-      role: t('데이터 분석, 구조 설계, 실험 주도', 'Data analysis, architecture design, experiment lead'),
-      highlights: [
-        t('MAPE 1.13 → 0.188, 약 83% 개선', 'MAPE 1.13 → 0.188, about 83% improvement'),
-        t('불연속 구간 reset + Huber Loss로 강건성 확보', 'Sequence reset + Huber Loss for robustness'),
+      problemType: [
+        "Time-Series Forecasting",
+        "Lightweight Modeling",
+        "Experimental Validation",
       ],
-      techStack: ['Python', 'PyTorch', 'LSTM', 'Encoder-LSTM', 'Time Series'],
+      period: "2024.07 - 2024.12",
+      teamSize: t("개인 연구", "Individual project"),
+      role: t(
+        "데이터 분석, 구조 설계, 실험 주도",
+        "Data analysis, architecture design, experiment lead",
+      ),
+      highlights: [
+        t(
+          "MAPE 1.13 → 0.188, 약 83% 개선",
+          "MAPE 1.13 → 0.188, about 83% improvement",
+        ),
+        t(
+          "불연속 구간 reset + Huber Loss로 강건성 확보",
+          "Sequence reset + Huber Loss for robustness",
+        ),
+      ],
+      techStack: ["Python", "PyTorch", "LSTM", "Encoder-LSTM", "Time Series"],
       icon: TrendingUp,
       detail: {
         problem: t(
-          '기존 LSTM은 개도율 0 지점의 불연속성과 센서 이상치 때문에 실제 산업 데이터에서 오차가 크게 흔들렸습니다.',
-          'The baseline LSTM broke down on real industrial data because discontinuities around valve opening 0 and sensor outliers destabilized predictions.'
+          "기존 LSTM은 개도율 0 지점의 불연속성과 센서 이상치 때문에 실제 산업 데이터에서 오차가 크게 흔들렸습니다.",
+          "The baseline LSTM broke down on real industrial data because discontinuities around valve opening 0 and sensor outliers destabilized predictions.",
         ),
         context: t(
-          '정확도만이 아니라 실제 적용 가능한 안정성이 중요했고, 시간 순서를 보존한 검증과 누수 방지가 필수였습니다.',
-          'Application stability mattered as much as raw accuracy, and the evaluation had to preserve time order and avoid leakage.'
+          "정확도만이 아니라 실제 적용 가능한 안정성이 중요했고, 시간 순서를 보존한 검증과 누수 방지가 필수였습니다.",
+          "Application stability mattered as much as raw accuracy, and the evaluation had to preserve time order and avoid leakage.",
         ),
         myRole: [
-          t('데이터 특성 분석 후 정규화와 시퀀스 처리 방식을 다시 정의했습니다.', 'Redefined normalization and sequence handling after analyzing the data characteristics.'),
-          t('Encoder-LSTM 구조, reset logic, 손실 함수를 직접 설계하고 실험했습니다.', 'Designed and tested the Encoder-LSTM architecture, reset logic, and loss function directly.'),
+          t(
+            "데이터 특성 분석 후 정규화와 시퀀스 처리 방식을 다시 정의했습니다.",
+            "Redefined normalization and sequence handling after analyzing the data characteristics.",
+          ),
+          t(
+            "Encoder-LSTM 구조, reset logic, 손실 함수를 직접 설계하고 실험했습니다.",
+            "Designed and tested the Encoder-LSTM architecture, reset logic, and loss function directly.",
+          ),
         ],
         approach: [
-          t('Persistence와 vanilla LSTM을 baseline으로 두고 개선 폭을 비교했습니다.', 'Compared against persistence and vanilla LSTM baselines.'),
-          t('개도율 0 구간에서 시퀀스를 재초기화해 불연속 구간 누적 오차를 줄였습니다.', 'Reset sequences around valve opening 0 to reduce accumulated errors from discontinuities.'),
-          t('Huber Loss를 적용해 이상치에 덜 민감한 학습 구조를 만들었습니다.', 'Used Huber Loss to reduce sensitivity to outliers.'),
+          t(
+            "Persistence와 vanilla LSTM을 baseline으로 두고 개선 폭을 비교했습니다.",
+            "Compared against persistence and vanilla LSTM baselines.",
+          ),
+          t(
+            "개도율 0 구간에서 시퀀스를 재초기화해 불연속 구간 누적 오차를 줄였습니다.",
+            "Reset sequences around valve opening 0 to reduce accumulated errors from discontinuities.",
+          ),
+          t(
+            "Huber Loss를 적용해 이상치에 덜 민감한 학습 구조를 만들었습니다.",
+            "Used Huber Loss to reduce sensitivity to outliers.",
+          ),
         ],
         result: [
-          t('예측 오차를 큰 폭으로 줄였고, 산업 환경 적용 가능성을 더 설득력 있게 만들었습니다.', 'Substantially reduced forecasting error and improved the case for real industrial use.'),
-          t('정규화 단순화와 데이터 처리 기준 정비로 실험 일관성도 함께 개선했습니다.', 'Improved experiment consistency by simplifying normalization and tightening preprocessing rules.'),
+          t(
+            "예측 오차를 큰 폭으로 줄였고, 산업 환경 적용 가능성을 더 설득력 있게 만들었습니다.",
+            "Substantially reduced forecasting error and improved the case for real industrial use.",
+          ),
+          t(
+            "정규화 단순화와 데이터 처리 기준 정비로 실험 일관성도 함께 개선했습니다.",
+            "Improved experiment consistency by simplifying normalization and tightening preprocessing rules.",
+          ),
         ],
         challenges: [
-          t('좋은 성능보다 재현 가능한 검증 설계가 더 중요해 데이터 누수 방지와 split 기준을 엄격하게 잡았습니다.', 'Reliable validation mattered more than headline metrics, so I enforced strict split and leakage rules.'),
-          t('산업 데이터의 정밀도 불균형이 분산을 키워 전처리 기준을 여러 번 조정했습니다.', 'Precision imbalance in the industrial data increased variance and required repeated preprocessing adjustments.'),
+          t(
+            "좋은 성능보다 재현 가능한 검증 설계가 더 중요해 데이터 누수 방지와 split 기준을 엄격하게 잡았습니다.",
+            "Reliable validation mattered more than headline metrics, so I enforced strict split and leakage rules.",
+          ),
+          t(
+            "산업 데이터의 정밀도 불균형이 분산을 키워 전처리 기준을 여러 번 조정했습니다.",
+            "Precision imbalance in the industrial data increased variance and required repeated preprocessing adjustments.",
+          ),
         ],
         limitations: [
-          t('산업체 협력 데이터라 공개 저장소와 재현 코드를 모두 제공하지는 못합니다.', 'Because this used industry collaboration data, I cannot publish the full repository or dataset.'),
+          t(
+            "산업체 협력 데이터라 공개 저장소와 재현 코드를 모두 제공하지는 못합니다.",
+            "Because this used industry collaboration data, I cannot publish the full repository or dataset.",
+          ),
         ],
       },
     },
     {
-      id: 'lora-demod',
-      tier: 'supporting',
+      id: "lora-demod",
+      tier: "supporting",
       title: t(
-        'Ultra-Low SNR LoRa 패킷 복원 전초 연구',
-        'Preliminary Study on LoRa Packet Recovery in Ultra-Low SNR'
+        "Ultra-Low SNR LoRa 패킷 복원 전초 연구",
+        "Preliminary Study on LoRa Packet Recovery in Ultra-Low SNR",
       ),
       oneLiner: t(
-        '초저 SNR 복조를 위한 PHY baseline 재구축과 신호 압축 실험을 체계적으로 검증한 연구입니다.',
-        'A structured validation study covering full-cycle work on PHY baseline reconstruction and signal compression under ultra-low SNR.'
+        "초저 SNR 복조를 위한 PHY baseline 재구축과 신호 압축 실험을 체계적으로 검증한 연구입니다.",
+        "A structured validation study covering full-cycle work on PHY baseline reconstruction and signal compression under ultra-low SNR.",
       ),
-      problemType: ['Signal Restoration', 'LoRa PHY', 'Validation Analysis'],
-      period: '2025.11 - 2026.02',
-      teamSize: t('개인 연구', 'Individual project'),
-      role: t('PHY baseline 재구축, 실험 자동화, 검증 분석', 'PHY baseline rebuild, experiment automation, validation analysis'),
+      problemType: ["Signal Restoration", "LoRa PHY", "Validation Analysis"],
+      period: "2025.11 - 2026.02",
+      teamSize: t("개인 연구", "Individual project"),
+      role: t(
+        "PHY baseline 재구축, 실험 자동화, 검증 분석",
+        "PHY baseline rebuild, experiment automation, validation analysis",
+      ),
       highlights: [
-        t('초저 SNR 구간용 STFT 기반 압축 파이프라인 구축', 'Built an STFT-based compression pipeline for ultra-low SNR signals'),
-        t('실험 검증 결과를 문서화해 후속 연구 기준 확보', 'Documented validation outcomes to guide follow-up work'),
+        t(
+          "초저 SNR 구간용 STFT 기반 압축 파이프라인 구축",
+          "Built an STFT-based compression pipeline for ultra-low SNR signals",
+        ),
+        t(
+          "실험 검증 결과를 문서화해 후속 연구 기준 확보",
+          "Documented validation outcomes to guide follow-up work",
+        ),
       ],
-      techStack: ['Python', 'PyTorch', 'NumPy', 'LoRa PHY', 'DSP', 'STFT'],
+      techStack: ["Python", "PyTorch", "NumPy", "LoRa PHY", "DSP", "STFT"],
       icon: Signal,
-      status: t('추가 프로젝트 / 실험 검증', 'Additional project / validation study'),
-      links: [{ github: 'https://github.com/gwon9906/LoRa-bam-reconstruction' }],
+      status: t(
+        "추가 프로젝트 / 실험 검증",
+        "Additional project / validation study",
+      ),
+      links: [
+        { github: "https://github.com/gwon9906/LoRa-bam-reconstruction" },
+      ],
       detail: {
         problem: t(
-          'Ultra-Low SNR에서는 표준 LoRa 복조 성능이 크게 저하되고, 원본 IQ를 그대로 전송하면 Edge-Cloud 협업 복조 비용이 너무 커집니다.',
-          'Standard LoRa demodulation fails in ultra-low SNR, while transmitting raw IQ data makes edge-cloud collaboration too expensive.'
+          "Ultra-Low SNR에서는 표준 LoRa 복조 성능이 크게 저하되고, 원본 IQ를 그대로 전송하면 Edge-Cloud 협업 복조 비용이 너무 커집니다.",
+          "Standard LoRa demodulation fails in ultra-low SNR, while transmitting raw IQ data makes edge-cloud collaboration too expensive.",
         ),
         context: t(
-          'CRC 통과 수준의 패킷 복원을 위해, Edge에서 신호 구조를 최대한 보존하며 압축하는 방법을 우선 검증했습니다.',
-          'The target was packet recovery at CRC-pass quality, and the first step was validating an edge-side compression method that preserves signal structure.'
+          "CRC 통과 수준의 패킷 복원을 위해, Edge에서 신호 구조를 최대한 보존하며 압축하는 방법을 우선 검증했습니다.",
+          "The target was packet recovery at CRC-pass quality, and the first step was validating an edge-side compression method that preserves signal structure.",
         ),
         myRole: [
-          t('LoRa PHY baseline을 재구축하고 STFT 파이프라인과 BAM 압축 구조를 설계했습니다.', 'Rebuilt the LoRa PHY baseline and designed the STFT pipeline and BAM compression structure.'),
-          t('실험 자동화, SNR 조건별 비교, 검증 결과 정리를 직접 수행했습니다.', 'Ran experiment automation, SNR-by-SNR comparisons, and validation analysis myself.'),
+          t(
+            "LoRa PHY baseline을 재구축하고 STFT 파이프라인과 BAM 압축 구조를 설계했습니다.",
+            "Rebuilt the LoRa PHY baseline and designed the STFT pipeline and BAM compression structure.",
+          ),
+          t(
+            "실험 자동화, SNR 조건별 비교, 검증 결과 정리를 직접 수행했습니다.",
+            "Ran experiment automation, SNR-by-SNR comparisons, and validation analysis myself.",
+          ),
         ],
         approach: [
-          t('Dechirp-FFT 기반 복조 체인을 먼저 재현해 비교 기준을 만들었습니다.', 'Reproduced the dechirp-FFT demodulation chain to create a trustworthy baseline.'),
-          t('IQ를 complex spectrogram으로 변환한 뒤 다층 BAM으로 압축했습니다.', 'Converted IQ into complex spectrograms and compressed them with a multi-layer BAM model.'),
-          t('SNR -30 ~ -15 dB에서 baseline과 비교해 구조 보존 여부를 평가했습니다.', 'Compared against the baseline from -30 to -15 dB to evaluate structure preservation.'),
+          t(
+            "Dechirp-FFT 기반 복조 체인을 먼저 재현해 비교 기준을 만들었습니다.",
+            "Reproduced the dechirp-FFT demodulation chain to create a trustworthy baseline.",
+          ),
+          t(
+            "IQ를 complex spectrogram으로 변환한 뒤 다층 BAM으로 압축했습니다.",
+            "Converted IQ into complex spectrograms and compressed them with a multi-layer BAM model.",
+          ),
+          t(
+            "SNR -30 ~ -15 dB에서 baseline과 비교해 구조 보존 여부를 평가했습니다.",
+            "Compared against the baseline from -30 to -15 dB to evaluate structure preservation.",
+          ),
         ],
         result: [
-          t('학습 안정성과 파이프라인 동작을 검증하고, 패킷 복원 성능 고도화를 위한 개선 포인트를 확보했습니다.', 'Validated training stability and end-to-end pipeline behavior, and identified clear directions for packet recovery performance improvement.'),
-          t('대신 저 SNR 일반화 한계와 복조 안정성 문제를 명확하게 문서화했습니다.', 'The project still produced clear documentation of low-SNR generalization limits and demodulation stability issues.'),
+          t(
+            "학습 안정성과 파이프라인 동작을 검증하고, 패킷 복원 성능 고도화를 위한 개선 포인트를 확보했습니다.",
+            "Validated training stability and end-to-end pipeline behavior, and identified clear directions for packet recovery performance improvement.",
+          ),
+          t(
+            "대신 저 SNR 일반화 한계와 복조 안정성 문제를 명확하게 문서화했습니다.",
+            "The project still produced clear documentation of low-SNR generalization limits and demodulation stability issues.",
+          ),
         ],
         challenges: [
-          t('STFT/ISTFT 과정에서 chirp 위상이 무너지는 문제가 있어 주파수축 정렬과 보정 로직을 추가했습니다.', 'Chirp phase collapse in STFT/ISTFT required extra frequency-axis alignment and correction logic.'),
-          t('일부 손실 함수는 바로 collapse를 유발해 업데이트 규칙을 보수적으로 다시 설계했습니다.', 'Some loss-function choices immediately caused collapse, so the update rule had to be redesigned more conservatively.'),
+          t(
+            "STFT/ISTFT 과정에서 chirp 위상이 무너지는 문제가 있어 주파수축 정렬과 보정 로직을 추가했습니다.",
+            "Chirp phase collapse in STFT/ISTFT required extra frequency-axis alignment and correction logic.",
+          ),
+          t(
+            "일부 손실 함수는 바로 collapse를 유발해 업데이트 규칙을 보수적으로 다시 설계했습니다.",
+            "Some loss-function choices immediately caused collapse, so the update rule had to be redesigned more conservatively.",
+          ),
         ],
         limitations: [
-          t('대표 프로젝트로 전면 배치할 정도의 결과는 아니므로 supporting case로만 두는 것이 적절합니다.', 'The result is not strong enough to lead the portfolio and is best presented as a supporting case.'),
+          t(
+            "대표 프로젝트로 전면 배치할 정도의 결과는 아니므로 supporting case로만 두는 것이 적절합니다.",
+            "The result is not strong enough to lead the portfolio and is best presented as a supporting case.",
+          ),
         ],
       },
     },
   ];
 
-  const featuredProjects = projects.filter((project) => project.tier === 'featured');
-  const supportingProjects = projects.filter((project) => project.tier === 'supporting');
+  const featuredProjects = projects.filter(
+    (project) => project.tier === "featured",
+  );
+  const supportingProjects = projects.filter(
+    (project) => project.tier === "supporting",
+  );
 
   const renderDetailList = (items: string[]) => (
     <ul className="space-y-2">
@@ -230,7 +372,7 @@ const Projects = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-80px' }}
+        viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.45 }}
         className="space-y-10"
       >
@@ -283,9 +425,76 @@ const Projects = () => {
                       <p className="max-w-3xl text-base leading-7 text-slate-600">{project.oneLiner}</p>
                     </div>
 
-                    <div className="flex flex-wrap gap-2">
-                      {project.problemType.map((tag) => (
-                        <span
+                      animate={{ opacity: 1, height: "auto" }}
+                            <p className="body-copy-sm mt-2 text-slate-700">
+                              {project.detail.problem}
+                            </p>
+                            <p className="body-copy-sm mt-2 text-slate-700">
+                              {project.detail.context}
+                            </p>
+                            <div className="mt-2">
+                              {renderDetailList(project.detail.myRole)}
+                            </div>
+                            <div className="mt-2">
+                              {renderDetailList(project.detail.approach)}
+                            </div>
+                            <div className="mt-2">
+                              {renderDetailList(project.detail.result)}
+                            </div>
+                              {t("Challenges", "Challenges")}
+                            <div className="mt-2">
+                              {renderDetailList(project.detail.challenges)}
+                            </div>
+                              {t("Limitations", "Limitations")}
+                            <div className="mt-2">
+                              {renderDetailList(project.detail.limitations)}
+                            </div>
+                            <p className="body-copy-sm mt-2 text-slate-700">
+                              {project.techStack.join(", ")}
+                            </p>
+                  {t("추가 프로젝트", "Additional Project")}
+                    "대표 프로젝트를 보완하는 실험 검증 사례입니다. 문제 정의, 실험 과정, 검증 결과를 중심으로 정리했습니다.",
+                    "A validation-focused case that complements featured projects, centered on problem framing, experiment process, and outcomes.",
+                  <div
+                    key={project.id}
+                    className="rounded-3xl border border-slate-200 bg-white p-5"
+                  >
+                          <p className="body-copy-sm mt-2 max-w-3xl">
+                            {project.oneLiner}
+                          </p>
+                          onClick={() =>
+                            setExpandedProject(isOpen ? "" : project.id)
+                          }
+                          {t("상세 보기", "View Details")}
+                          {isOpen ? (
+                            <ChevronUp className="h-4 w-4" />
+                          ) : (
+                            <ChevronDown className="h-4 w-4" />
+                          )}
+                          animate={{ opacity: 1, height: "auto" }}
+                                <p className="body-copy-sm mt-2 text-slate-700">
+                                  {project.detail.problem}
+                                </p>
+                                <div className="mt-2">
+                                  {renderDetailList(project.detail.myRole)}
+                                </div>
+                                <div className="mt-2">
+                                  {renderDetailList(project.detail.approach)}
+                                </div>
+                                <div className="mt-2">
+                                  {renderDetailList(project.detail.result)}
+                                </div>
+                                  {t(
+                                    "Challenges / Limitations",
+                                    "Challenges / Limitations",
+                                  )}
+                                  {renderDetailList([
+                                    ...project.detail.challenges,
+                                    ...project.detail.limitations,
+                                  ])}
+                                <p className="body-copy-sm mt-2 text-slate-700">
+                                  {project.techStack.join(", ")}
+                                </p>
                           key={tag}
                           className="rounded-full border border-slate-200 px-3 py-1 text-xs font-medium text-slate-600"
                         >

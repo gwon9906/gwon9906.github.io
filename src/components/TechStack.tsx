@@ -1,6 +1,6 @@
-import { motion } from 'framer-motion';
-import { Brain, Database, Radio, Wrench, type LucideIcon } from 'lucide-react';
-import { useLanguage } from '../contexts/useLanguage';
+import { motion } from "framer-motion";
+import { Brain, Database, Radio, Wrench, type LucideIcon } from "lucide-react";
+import { useLanguage } from "../contexts/useLanguage";
 
 interface SkillGroup {
   title: string;
@@ -13,22 +13,22 @@ const TechStack = () => {
 
   const groups: SkillGroup[] = [
     {
-      title: t('모델링 도구', 'Modeling Tools'),
+      title: t("모델링 도구", "Modeling Tools"),
       icon: Brain,
       skills: ['Python', 'PyTorch', 'NumPy', 'TensorFlow'],
     },
     {
-      title: t('데이터·실험', 'Data & Experiment'),
+      title: t("데이터·실험", "Data & Experiment"),
       icon: Database,
       skills: ['Time-Series Preprocessing', 'Experiment Design', 'Metric Analysis', 'Baseline Reproduction'],
     },
     {
-      title: t('신호·시계열 기법', 'Signal & Time-Series Techniques'),
+      title: t("신호·시계열 기법", "Signal & Time-Series Techniques"),
       icon: Radio,
       skills: ['Signal Processing', 'Denoising', 'Reconstruction', 'Forecasting', 'STFT', 'DSP'],
     },
     {
-      title: t('도메인·시스템', 'Domain & Systems'),
+      title: t("도메인·시스템", "Domain & Systems"),
       icon: Wrench,
       skills: ['Edge ML', 'Industrial Sensor Data', 'Raspberry Pi', 'Git', 'Linux', 'Docker', 'C/C++'],
     },
@@ -39,7 +39,7 @@ const TechStack = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-80px' }}
+        viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.45 }}
         className="space-y-8"
       >
