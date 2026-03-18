@@ -15,22 +15,42 @@ const TechStack = () => {
     {
       title: t("모델링 도구", "Modeling Tools"),
       icon: Brain,
-      skills: ['Python', 'PyTorch', 'NumPy', 'TensorFlow'],
+      skills: ["Python", "PyTorch", "NumPy", "TensorFlow"],
     },
     {
       title: t("데이터·실험", "Data & Experiment"),
       icon: Database,
-      skills: ['Time-Series Preprocessing', 'Experiment Design', 'Metric Analysis', 'Baseline Reproduction'],
+      skills: [
+        "Time-Series Preprocessing",
+        "Experiment Design",
+        "Metric Analysis",
+        "Baseline Reproduction",
+      ],
     },
     {
       title: t("신호·시계열 기법", "Signal & Time-Series Techniques"),
       icon: Radio,
-      skills: ['Signal Processing', 'Denoising', 'Reconstruction', 'Forecasting', 'STFT', 'DSP'],
+      skills: [
+        "Signal Processing",
+        "Denoising",
+        "Reconstruction",
+        "Forecasting",
+        "STFT",
+        "DSP",
+      ],
     },
     {
       title: t("도메인·시스템", "Domain & Systems"),
       icon: Wrench,
-      skills: ['Edge ML', 'Industrial Sensor Data', 'Raspberry Pi', 'Git', 'Linux', 'Docker', 'C/C++'],
+      skills: [
+        "Edge ML",
+        "Industrial Sensor Data",
+        "Raspberry Pi",
+        "Git",
+        "Linux",
+        "Docker",
+        "C/C++",
+      ],
     },
   ];
 
@@ -44,9 +64,17 @@ const TechStack = () => {
         className="space-y-8"
       >
         <div className="max-w-3xl space-y-3">
+          <p className="section-eyebrow">{t("Skills", "Skills")}</p>
+          <h2 className="section-heading">{t("사용 기술", "Skills Used")}</h2>
+              "프로젝트에서 반복적으로 활용한 기술을 중심으로 정리했습니다.",
+              "Focused on technologies repeatedly used across projects.",
+            <div
+              key={group.title}
+              className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
+            >
               <div className="mt-5">
                 <p className="text-sm font-bold tracking-[-0.015em] text-slate-700">
-                  {t('사용 기술', 'Tech Stack')}
+                  {t("사용 기술", "Tech Stack")}
                 </p>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {group.skills.map((item) => (
@@ -57,15 +85,6 @@ const TechStack = () => {
                       {item}
                     </span>
                   ))}
-                        className="rounded-full bg-slate-950 px-3 py-1.5 text-xs font-medium text-white"
-                      >
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {group.familiar && (
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
                       {t('보조적으로 사용', 'Used Occasionally')}

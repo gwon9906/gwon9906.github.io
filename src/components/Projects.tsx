@@ -378,52 +378,37 @@ const Projects = () => {
       >
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl space-y-3">
+              {t("Selected Projects", "Selected Projects")}
+              {t("대표 프로젝트", "Featured Projects")}
+                "제약이 큰 환경에서 문제를 정의하고, 모델을 설계·검증한 프로젝트를 중심으로 정리했습니다.",
+                "This section focuses on projects where I defined constrained-environment problems and designed and validated models.",
+              "핵심 사례: LoRa 압축·복원 / 산업 시계열 예측 / Ultra-Low SNR 실험 검증",
+              "Key cases: LoRa compression & restoration / industrial forecasting / ultra-low SNR validation study",
                 className="rounded-[30px] border border-slate-200/90 ring-1 ring-slate-100 bg-white shadow-[0_24px_70px_-44px_rgba(15,23,42,0.35)]"
+                        {t("대표 프로젝트", "Featured")}
                       <h3 className="text-2xl font-bold tracking-[-0.02em] leading-[1.22] text-slate-950 sm:text-[1.7rem]">
                         {project.title}
                       </h3>
+                        <p className="meta-label">{t("내 역할", "My Role")}</p>
+                        <p className="body-copy-sm mt-2 text-slate-700">
+                          {project.role}
+                          {t("핵심 성과", "Key Results")}
+                            <li
+                              key={highlight}
+                              className="text-sm font-medium tracking-[-0.01em] leading-7 text-slate-700"
+                            >
                   </div>
                       <p className="text-sm font-bold tracking-[-0.015em] text-slate-700">
-              {t('대표 프로젝트', 'Featured Projects')}
-            </h2>
-            <p className="text-base leading-7 text-slate-600">
-              {t(
-                '제약이 큰 환경에서 문제를 정의하고, 모델을 설계·검증한 프로젝트를 중심으로 정리했습니다.',
-                'This section focuses on projects where I defined constrained-environment problems and designed and validated models.'
-              )}
-            </p>
-          </div>
-          <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-600">
-            {t(
-              '핵심 사례: LoRa 압축·복원 / 산업 시계열 예측 / Ultra-Low SNR 실험 검증',
-              'Key cases: LoRa compression & restoration / industrial forecasting / ultra-low SNR validation study'
-            )}
-          </div>
-        </div>
-
-        <div className="space-y-6">
-          {featuredProjects.map((project) => {
-            const isOpen = expandedProject === project.id;
-            return (
-              <article
-                key={project.id}
-                className="rounded-[30px] border border-slate-200 bg-white shadow-[0_24px_70px_-44px_rgba(15,23,42,0.35)]"
-              >
-                <div className="grid gap-6 border-b border-slate-200 p-6 lg:grid-cols-[minmax(0,1.4fr)_minmax(280px,0.8fr)] lg:p-8">
-                  <div className="space-y-5">
-                    <div className="flex flex-wrap items-center gap-3">
-                      <div className="rounded-2xl bg-slate-950 p-3 text-white">
-                        <project.icon className="h-5 w-5" />
-                      </div>
-                      <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-slate-600">
-                        {t('대표 프로젝트', 'Featured')}
-                      </span>
-                    </div>
-
-                    <div className="space-y-3">
-                      <h3 className="text-2xl font-semibold text-slate-950 sm:text-[1.7rem]">{project.title}</h3>
-                      <p className="max-w-3xl text-base leading-7 text-slate-600">{project.oneLiner}</p>
-                    </div>
+                        {t("사용 기술", "Tech Stack")}
+                        onClick={() =>
+                          setExpandedProject(isOpen ? "" : project.id)
+                        }
+                        {t("상세 보기", "View Details")}
+                        {isOpen ? (
+                          <ChevronUp className="h-4 w-4" />
+                        ) : (
+                          <ChevronDown className="h-4 w-4" />
+                        )}
 
                       animate={{ opacity: 1, height: "auto" }}
                             <p className="body-copy-sm mt-2 text-slate-700">
