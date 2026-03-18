@@ -68,23 +68,25 @@ const TechStack = () => {
           <h2 className="section-heading">{t("사용 기술", "Skills Used")}</h2>
               "프로젝트에서 반복적으로 활용한 기술을 중심으로 정리했습니다.",
               "Focused on technologies repeatedly used across projects.",
-            <div
-              key={group.title}
-              className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
-            >
-              <div className="mt-5">
-                <p className="text-sm font-bold tracking-[-0.015em] text-slate-700">
-                  {t("사용 기술", "Tech Stack")}
-                </p>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {group.skills.map((item) => (
-                    <span
-                      key={item}
-                      className="chip-text rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-slate-700"
-                    >
-                      {item}
-                    </span>
-                  ))}
+          {groups.map((group) => {
+            return (
+              <div
+                key={group.title}
+                className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="rounded-2xl bg-slate-100 p-3">
+                    <group.icon className="h-5 w-5 text-slate-800" />
+                  </div>
+                  <h3 className="card-title">{group.title}</h3>
+                <div className="mt-5">
+                  <p className="text-sm font-bold tracking-[-0.015em] text-slate-700">
+                    {t("사용 기술", "Tech Stack")}
+                    {group.skills.map((item) => (
+                        className="chip-text rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-slate-700"
+            );
+          })}
+                {group.familiar && (
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
                       {t('보조적으로 사용', 'Used Occasionally')}
