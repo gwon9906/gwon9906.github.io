@@ -1,12 +1,11 @@
-import { motion } from 'framer-motion';
-import { Brain, Database, Radio, Wrench, type LucideIcon } from 'lucide-react';
-import { useLanguage } from '../contexts/useLanguage';
+import { motion } from "framer-motion";
+import { Brain, Database, Radio, Wrench, type LucideIcon } from "lucide-react";
+import { useLanguage } from "../contexts/useLanguage";
 
 interface SkillGroup {
   title: string;
   icon: LucideIcon;
-  strong: string[];
-  familiar?: string[];
+  skills: string[];
 }
 
 const TechStack = () => {
@@ -14,27 +13,44 @@ const TechStack = () => {
 
   const groups: SkillGroup[] = [
     {
-      title: t('모델링 도구', 'Modeling Tools'),
+      title: t("모델링 도구", "Modeling Tools"),
       icon: Brain,
-      strong: ['Python', 'PyTorch', 'NumPy', 'scikit-learn'],
-      familiar: ['TensorFlow'],
+      skills: ["Python", "PyTorch", "NumPy", "TensorFlow"],
     },
     {
-      title: t('데이터·실험', 'Data & Experiment'),
+      title: t("데이터·실험", "Data & Experiment"),
       icon: Database,
-      strong: ['Pandas', 'Time-Series Preprocessing', 'Experiment Design', 'Metric Analysis', 'Baseline Reproduction'],
+      skills: [
+        "Time-Series Preprocessing",
+        "Experiment Design",
+        "Metric Analysis",
+        "Baseline Reproduction",
+      ],
     },
     {
-      title: t('신호·시계열 기법', 'Signal & Time-Series Techniques'),
+      title: t("신호·시계열 기법", "Signal & Time-Series Techniques"),
       icon: Radio,
-      strong: ['Signal Processing', 'Denoising', 'Reconstruction', 'Forecasting', 'LoRa PHY'],
-      familiar: ['STFT', 'DSP', 'Encoder-LSTM'],
+      skills: [
+        "Signal Processing",
+        "Denoising",
+        "Reconstruction",
+        "Forecasting",
+        "STFT",
+        "DSP",
+      ],
     },
     {
-      title: t('도메인·시스템', 'Domain & Systems'),
+      title: t("도메인·시스템", "Domain & Systems"),
       icon: Wrench,
-      strong: ['LoRa', 'Edge ML', 'Industrial Sensor Data', 'Raspberry Pi'],
-      familiar: ['Git', 'Linux', 'Docker', 'C/C++'],
+      skills: [
+        "Edge ML",
+        "Industrial Sensor Data",
+        "Raspberry Pi",
+        "Git",
+        "Linux",
+        "Docker",
+        "C/C++",
+      ],
     },
   ];
 
@@ -43,52 +59,33 @@ const TechStack = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-80px' }}
+        viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.45 }}
         className="space-y-8"
       >
         <div className="max-w-3xl space-y-3">
-          <p className="text-sm font-semibold uppercase tracking-[0.24em] text-slate-500">
-            {t('Skills', 'Skills')}
-          </p>
-          <h2 className="text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
-            {t('사용 기술', 'Skills Used')}
-          </h2>
-          <p className="text-base leading-7 text-slate-600">
-            {t(
-              '프로젝트에서 반복적으로 활용한 기술을 중심으로 정리했습니다.',
-              'Focused on technologies repeatedly used across projects.'
-            )}
-          </p>
-        </div>
-
-        <div className="grid gap-4 lg:grid-cols-2">
-          {groups.map((group) => (
-            <div key={group.title} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-              <div className="flex items-center gap-4">
-                <div className="rounded-2xl bg-slate-100 p-3">
-                  <group.icon className="h-5 w-5 text-slate-800" />
-                </div>
-                <h3 className="text-xl font-semibold text-slate-950">{group.title}</h3>
-              </div>
-
-              <div className="mt-5 space-y-4">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-                    {t('많이 사용', 'Used Often')}
-                  </p>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {group.strong.map((item) => (
-                      <span
-                        key={item}
-                        className="rounded-full bg-slate-950 px-3 py-1.5 text-xs font-medium text-white"
-                      >
-                        {item}
-                      </span>
-                    ))}
+          <p className="section-eyebrow">{t("Skills", "Skills")}</p>
+          <h2 className="section-heading">{t("사용 기술", "Skills Used")}</h2>
+              "프로젝트에서 반복적으로 활용한 기술을 중심으로 정리했습니다.",
+              "Focused on technologies repeatedly used across projects.",
+          {groups.map((group) => {
+            return (
+              <div
+                key={group.title}
+                className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="rounded-2xl bg-slate-100 p-3">
+                    <group.icon className="h-5 w-5 text-slate-800" />
                   </div>
-                </div>
-
+                  <h3 className="card-title">{group.title}</h3>
+                <div className="mt-5">
+                  <p className="text-sm font-bold tracking-[-0.015em] text-slate-700">
+                    {t("사용 기술", "Tech Stack")}
+                    {group.skills.map((item) => (
+                        className="chip-text rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-slate-700"
+            );
+          })}
                 {group.familiar && (
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
