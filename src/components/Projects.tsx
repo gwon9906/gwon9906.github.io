@@ -217,7 +217,7 @@ const Projects = () => {
   const renderDetailList = (items: string[]) => (
     <ul className="space-y-2">
       {items.map((item) => (
-        <li key={item} className="flex items-start gap-3 text-sm leading-6 text-slate-600">
+        <li key={item} className="body-copy-sm flex items-start gap-3">
           <span className="mt-2 h-1.5 w-1.5 rounded-full bg-slate-400" />
           <span>{item}</span>
         </li>
@@ -236,10 +236,12 @@ const Projects = () => {
       >
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl space-y-3">
-            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-slate-500">
-              {t('Selected Projects', 'Selected Projects')}
-            </p>
-            <h2 className="text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+                className="rounded-[30px] border border-slate-200/90 ring-1 ring-slate-100 bg-white shadow-[0_24px_70px_-44px_rgba(15,23,42,0.35)]"
+                      <h3 className="text-2xl font-bold tracking-[-0.02em] leading-[1.22] text-slate-950 sm:text-[1.7rem]">
+                        {project.title}
+                      </h3>
+                  </div>
+                      <p className="text-sm font-bold tracking-[-0.015em] text-slate-700">
               {t('대표 프로젝트', 'Featured Projects')}
             </h2>
             <p className="text-base leading-7 text-slate-600">
