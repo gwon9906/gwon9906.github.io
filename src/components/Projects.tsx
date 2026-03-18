@@ -302,7 +302,7 @@ const Projects = () => {
                         <p className="mt-2 text-sm leading-6 text-slate-700">{project.role}</p>
                       </div>
                       <div className="rounded-2xl bg-slate-50 px-4 py-3">
-                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                      <p className="text-sm font-bold tracking-[-0.015em] text-slate-700">
                           {t('핵심 성과', 'Key Results')}
                         </p>
                         <ul className="mt-2 space-y-1.5">
