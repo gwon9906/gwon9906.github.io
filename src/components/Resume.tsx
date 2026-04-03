@@ -207,14 +207,14 @@ const Resume = () => {
           <ul className="resume-list">
             <li>
               {t(
-                '웹 포트폴리오에서는 완료했고 수치로 설명할 수 있는 프로젝트만 앞세웠습니다. 진행 중이거나 예비 성격인 연구는 보조 사례로 두었습니다.',
-                'Only completed projects with defensible metrics are emphasized here. Ongoing or preliminary work is treated as supporting material.'
+                  '웹 포트폴리오에는 완료된 프로젝트 중 공개 가능한 수치로 설명할 수 있는 사례를 중심으로 정리했습니다. 진행 중인 연구는 보조 자료로만 두었습니다.',
+                  'This page emphasizes completed projects with shareable, defensible metrics. Ongoing work is included only as supporting material.'
               )}
             </li>
             <li>
               {t(
-                '공개 자료에 있는 수치만 사용해 내용을 정리했습니다.',
-                'The page is intentionally written using only metrics available in public or shareable materials.'
+                  '공개 자료에 있는 수치만 사용해 내용을 정리했습니다.',
+                  'The page is intentionally written using only metrics available in public or shareable materials.'
               )}
             </li>
           </ul>

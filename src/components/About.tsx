@@ -49,12 +49,12 @@ const About = () => {
             {t('Summary', 'Summary')}
           </p>
           <h2 className="text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
-            {t('제조·센서 데이터 문제에 맞는 방식으로 일합니다', 'I work in a way that matches manufacturing and sensor-data problems')}
+            {t('제조·센서 데이터 문제를 이렇게 다뤄왔습니다', 'How I have worked on manufacturing and sensor-data problems')}
           </h2>
           <p className="text-base leading-7 text-slate-600 sm:text-lg">
             {t(
-              '웹 서비스 전반보다 제조·설비·센서 환경에서의 데이터 처리와 검증형 AI/SW 구현 경험이 더 선명한 편입니다.',
-              'My strongest fit is not generic web development but data handling and validation-oriented AI/SW work in manufacturing, equipment, and sensor environments.'
+                '웹 서비스 전반보다 제조·설비·센서 환경에서의 데이터 처리와 검증형 AI/SW 구현 경험이 더 선명한 편입니다.',
+                'My strongest fit is not generic web development but data handling and validation-oriented AI/SW work in manufacturing, equipment, and sensor environments.'
             )}
           </p>
         </div>

@@ -166,11 +166,11 @@ const Hero = () => {
                   {t('핵심 근거', 'Evidence')}
                 </p>
                 <p className="mt-1 text-lg font-semibold text-slate-900">
-                  {t('지원 직무 관점 요약', 'Role-fit Snapshot')}
+                  {t('직무 적합 요약', 'Role-fit Summary')}
                 </p>
                 <p className="mt-2 text-sm leading-6 text-slate-600">
                   {t(
-                    '제조 데이터, 현장 제약, 검증 기반 문제 해결 경험을 중심으로 정리했습니다.',
+                      '제조 데이터, 현장 제약, 검증 기반 문제 해결 경험을 중심으로 정리했습니다.',
                     'Summarized around manufacturing data, operating constraints, and validation-driven problem solving.'
                   )}
                 </p>

@@ -221,12 +221,12 @@ const Projects = () => {
             {t('Projects', 'Projects')}
           </p>
           <h2 className="text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
-            {t('제출용으로 앞세울 프로젝트', 'Projects to lead with for applications')}
+            {t('대표 프로젝트', 'Featured Projects')}
           </h2>
           <p className="text-base leading-7 text-slate-600 sm:text-lg">
             {t(
-              '완료했고 수치로 설명할 수 있는 프로젝트를 먼저 배치했습니다. 진행 중이거나 예비 성격인 연구는 아래에 두었습니다.',
-              'Completed projects with defensible metrics are shown first. Ongoing or preliminary work is placed later.'
+                '완료된 프로젝트를 먼저 배치했고, 진행 중인 연구나 예비 검증은 아래에 정리했습니다.',
+                'Completed projects are shown first, while ongoing or preliminary work is listed below.'
             )}
           </p>
         </div>
