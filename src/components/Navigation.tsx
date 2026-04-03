@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
-import { Menu, X, Languages, FileDown } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { FileDown, Languages, Menu, X } from 'lucide-react';
 import { useLanguage } from '../contexts/useLanguage';
 
 const Navigation = () => {
@@ -9,10 +9,7 @@ const Navigation = () => {
   const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -20,7 +17,7 @@ const Navigation = () => {
   const navItems = [
     { label: t('요약', 'Summary'), href: '#about' },
     { label: t('프로젝트', 'Projects'), href: '#projects' },
-    { label: t('경험', 'Experience'), href: '#experience' },
+    { label: t('연구 경험', 'Experience'), href: '#experience' },
     { label: t('학력', 'Education'), href: '#education' },
     { label: t('기술', 'Skills'), href: '#tech-stack' },
     { label: t('연락처', 'Contact'), href: '#contact' },
@@ -40,7 +37,7 @@ const Navigation = () => {
       initial={{ y: -60 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.45 }}
-      className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-200 ${
+      className={`fixed left-0 right-0 top-0 z-50 border-b transition-all duration-200 ${
         isScrolled
           ? 'border-slate-200 bg-white/94 backdrop-blur-md'
           : 'border-transparent bg-white/70 backdrop-blur-sm'
@@ -73,10 +70,10 @@ const Navigation = () => {
           <a
             href="#resume"
             className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-sm font-semibold text-slate-900 transition-colors hover:bg-slate-100"
-            title={t('이력서 PDF', 'Resume PDF')}
+            title={t('제출용 요약', 'Submission Summary')}
           >
             <FileDown className="h-4 w-4" />
-            <span>{t('Resume', 'Resume')}</span>
+            <span>{t('제출용 요약', 'Summary')}</span>
           </a>
 
           <button
@@ -124,7 +121,7 @@ const Navigation = () => {
               className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-900"
             >
               <FileDown className="h-4 w-4" />
-              <span>{t('Resume', 'Resume')}</span>
+              <span>{t('제출용 요약', 'Summary')}</span>
             </a>
 
             <button

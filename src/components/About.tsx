@@ -6,31 +6,31 @@ const About = () => {
 
   const blocks = [
     {
-      title: t('다루는 문제', 'Problem Focus'),
+      title: t('핵심 경험', 'Core Experience'),
       description: t(
-        '저전력 통신, 잡음이 큰 센서 데이터, 불연속 산업 시계열처럼 제약이 큰 데이터를 대상으로 문제를 정의하고 해결해왔습니다.',
-        'I define and solve problems on constrained data, including low-power communication, noisy sensor streams, and discontinuous industrial time series.'
+        '실제 밸브 시계열 데이터 예측과 LoRa 통신 개선 프로젝트를 통해 제조·센서 데이터 문제를 다뤘습니다.',
+        'Worked on manufacturing and sensor-data problems through real valve time-series forecasting and LoRa communication improvement projects.'
       ),
     },
     {
-      title: t('접근 방식', 'Approach'),
+      title: t('문제 접근 방식', 'How I Approach Problems'),
       description: t(
-        '모델 성능만 보지 않고 데이터 구조, baseline, 실험 조건, 검증 과정까지 함께 검토해 재현 가능한 결과를 만드는 데 집중합니다.',
-        'Beyond model scores, I review data structure, baselines, experiment conditions, and failure causes to produce reproducible results.'
+        '모델부터 고르기보다 데이터 수집 조건, 비교 기준, 실패 원인을 먼저 정리한 뒤 실험 설계를 맞추는 편입니다.',
+        'I start by clarifying data collection conditions, comparison baselines, and failure causes before locking in a model design.'
       ),
     },
     {
-      title: t('강점', 'Strengths'),
+      title: t('적합 직무', 'Best-fit Roles'),
       description: t(
-        '모델 설계에 그치지 않고 전처리, 지표 해석, 실험 비교, 시스템 제약까지 연결해 현실적인 trade-off를 판단합니다.',
-        'I connect model design with preprocessing, metric interpretation, experiment comparison, and system constraints to make realistic trade-off decisions.'
+        '스마트제조, 생산기술, 제조 데이터 분석, 설비·센서 기반 AI/SW처럼 현장 검증이 중요한 역할과 가장 잘 맞습니다.',
+        'I fit best with roles where field validation matters, such as smart manufacturing, production engineering, manufacturing data analysis, and equipment/sensor-based AI/SW.'
       ),
     },
     {
-      title: t('적합한 역할', 'Best-fit Role'),
+      title: t('작업 방식', 'Working Style'),
       description: t(
-        '신호·센서·시계열 데이터 기반의 Applied ML Engineer 역할에 가장 가깝고, 순수 연구보다 구현과 검증에 무게를 둡니다.',
-        'I am best aligned with Applied ML Engineer roles focused on signal, sensor, and time-series data, with stronger emphasis on implementation and validation.'
+        '전처리, 모델링, 지표 해석, 문서화까지 이어서 수행하며, 과장된 성과보다 재현 가능한 결과를 우선합니다.',
+        'I work across preprocessing, modeling, metric interpretation, and documentation, prioritizing reproducible results over inflated claims.'
       ),
     },
   ];
@@ -49,8 +49,14 @@ const About = () => {
             {t('Summary', 'Summary')}
           </p>
           <h2 className="text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
-            {t('어떤 문제를 다뤄왔고, 어떻게 해결하는지', 'What I work on and how I approach it')}
+            {t('제조·센서 데이터 문제에 맞는 방식으로 일합니다', 'I work in a way that matches manufacturing and sensor-data problems')}
           </h2>
+          <p className="text-base leading-7 text-slate-600 sm:text-lg">
+            {t(
+              '웹 서비스 전반보다 제조·설비·센서 환경에서의 데이터 처리와 검증형 AI/SW 구현 경험이 더 선명한 편입니다.',
+              'My strongest fit is not generic web development but data handling and validation-oriented AI/SW work in manufacturing, equipment, and sensor environments.'
+            )}
+          </p>
         </div>
 
         <div className="grid gap-4 md:grid-cols-2">

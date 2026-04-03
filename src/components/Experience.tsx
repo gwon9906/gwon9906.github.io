@@ -12,9 +12,9 @@ const Experience = () => {
       period: t('2024.06 - 2026.02', 'Jun 2024 - Feb 2026'),
       location: t('부산, 대한민국', 'Busan, South Korea'),
       bullets: [
-        t('LoRa 통신 최적화, 저전력 전송, 신호 복원 관련 프로젝트 수행', 'Worked on LoRa optimization, low-power transmission, and signal restoration projects'),
-        t('산업 시계열 예측과 초저 SNR 복조 문제를 연구·구현·검증까지 직접 연결', 'Connected research, implementation, and validation for industrial forecasting and ultra-low-SNR demodulation'),
-        t('실험 기준선 재현, 실패 원인 분석, 결과 문서화까지 포함한 엔지니어링 방식으로 작업', 'Worked with an engineering mindset that includes reproducing baselines, analyzing failure causes, and documenting outcomes'),
+        t('산업용 밸브 유량 예측과 LoRa 통신 개선 프로젝트를 중심으로 제조·센서 데이터 문제를 수행했습니다.', 'Worked on manufacturing and sensor-data problems centered on industrial valve forecasting and LoRa communication improvement.'),
+        t('데이터 전처리, 모델 설계, 실험 비교, 현장 테스트, 결과 문서화까지 이어지는 방식으로 프로젝트를 진행했습니다.', 'Handled projects end to end across preprocessing, model design, experiment comparison, field testing, and documentation.'),
+        t('좋은 수치만 남기기보다 실패 원인과 한계를 함께 정리해 다음 실험의 기준으로 삼았습니다.', 'Documented failure causes and limitations as well as strong results, using them as the basis for subsequent experiments.'),
       ],
     },
   ];

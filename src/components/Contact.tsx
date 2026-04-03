@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react';
+import { ArrowUpRight, FileText, Github, Mail, Phone } from 'lucide-react';
 import { useLanguage } from '../contexts/useLanguage';
 
 const Contact = () => {
@@ -19,16 +19,16 @@ const Contact = () => {
       icon: Github,
     },
     {
-      label: 'Blog',
-      value: 'latetime.tistory.com',
-      href: 'https://latetime.tistory.com/',
-      icon: ArrowUpRight,
+      label: t('프로젝트 PDF', 'Project PDFs'),
+      value: t('유량 예측 / LoRa 보고서', 'Valve / LoRa Reports'),
+      href: '/files/lora-final-report.pdf',
+      icon: FileText,
     },
     {
-      label: 'LinkedIn',
-      value: 'linkedin.com/in/해권-이-63915a370',
-      href: 'https://www.linkedin.com/in/%ED%95%B4%EA%B6%8C-%EC%9D%B4-63915a370/',
-      icon: Linkedin,
+      label: t('휴대폰', 'Phone'),
+      value: '010-3414-9906',
+      href: 'tel:01034149906',
+      icon: Phone,
     },
   ];
 
@@ -56,8 +56,8 @@ const Contact = () => {
               <a
                 key={contact.label}
                 href={contact.href}
-                target={contact.href.startsWith('http') ? '_blank' : undefined}
-                rel={contact.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                target={contact.href.startsWith('http') || contact.href.startsWith('/files/') ? '_blank' : undefined}
+                rel={contact.href.startsWith('http') || contact.href.startsWith('/files/') ? 'noopener noreferrer' : undefined}
                 className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition-transform hover:-translate-y-0.5"
               >
                 <contact.icon className="h-5 w-5 text-slate-900" />

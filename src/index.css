@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -15,19 +14,17 @@
   }
 
   body {
-    @apply m-0 font-sans antialiased break-keep;
-    @apply bg-slate-50;
-    @apply text-dark-800;
+    @apply m-0 bg-slate-50 font-sans text-slate-900 antialiased break-keep;
+  }
+
+  a {
+    @apply text-inherit;
   }
 }
 
 @layer components {
   .section-container {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14;
-  }
-
-  .gradient-text {
-    @apply text-primary-600;
+    @apply mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14;
   }
 
   .glass-card {
@@ -45,142 +42,25 @@
   }
 }
 
-/* Print Styles */
 @media print {
-  /* 기본 설정 */
+  body {
+    background: white !important;
+  }
+
+  nav,
+  .floating-toc,
+  .no-print {
+    display: none !important;
+  }
+
   * {
+    animation-duration: 0s !important;
+    transition-duration: 0s !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
 
-  body {
-    @apply bg-white;
-    background: white !important;
-  }
-
-  /* 인쇄 시 숨김 */
-  nav,
-  .floating-toc,
-  button,
-  #hero a {
-    display: none !important;
-  }
-
-  /* 섹션 여백 조정 */
-    @apply text-[0.96rem] text-slate-600 sm:text-base;
-    line-height: 1.7;
-    @apply text-[0.95rem] font-medium leading-6;
-  }
-
-  /* 카드 스타일 간소화 */
-  .glass-card {
-    @apply bg-white border border-gray-300 rounded-2xl shadow-none;
-    backdrop-filter: none;
-    page-break-inside: avoid;
-  }
-
-  /* 그라데이션 텍스트를 일반 텍스트로 */
-  .gradient-text {
-    @apply text-primary-700;
-    background: none;
-    -webkit-background-clip: unset;
-    -webkit-text-fill-color: unset;
-  }
-
-  /* 프로젝트 카드 */
-  .project-card {
-    page-break-inside: avoid;
-    margin-bottom: 1rem;
-  }
-
-  /* 프로젝트 상세 내용 모두 표시 */
-  #projects .hidden,
-  #projects [style*="display: none"],
-  #projects [style*="height: 0"] {
-    display: block !important;
-    height: auto !important;
-    opacity: 1 !important;
-    overflow: visible !important;
-  }
-
-  /* 프로젝트 확장 버튼 숨김 */
-  #projects button {
-    display: none !important;
-  }
-
-  /* 링크 스타일 */
-  a:not([class*="bg-gradient"]):not(#hero a) {
-    text-decoration: underline;
-    color: #2563eb;
-  }
-
-  /* 링크 URL 표시 (프로젝트 GitHub 링크만) */
-  #projects a[href^="http"]:after {
-    content: " → " attr(href);
-    font-size: 0.75em;
-    color: #666;
-    display: inline-block;
-    margin-left: 0.25em;
-  }
-
-  /* Contact 섹션 연락처 카드 유지 */
-  #contact a[class*="glass-card"] {
-    display: flex !important;
-    text-decoration: none;
-  }
-
-  #contact a[class*="glass-card"]:after {
-    content: none;
-  }
-
-  /* 애니메이션 비활성화 */
-  * {
-    animation-duration: 0s !important;
-    transition-duration: 0s !important;
-  }
-
-  /* 페이지 여백 */
   @page {
     margin: 1.5cm;
-  }
-
-  /* 제목 앞에서 페이지 나누기 방지 */
-  h1, h2, h3, h4, h5, h6 {
-    page-break-after: avoid;
-    page-break-inside: avoid;
-  }
-
-  /* 테이블, 이미지, 코드 블록 페이지 나누기 방지 */
-  table, img, pre, blockquote {
-    page-break-inside: avoid;
-  }
-
-  /* Hero 섹션 조정 */
-  #hero {
-    min-height: auto !important;
-    height: auto !important;
-    padding: 2rem 0;
-  }
-
-  /* 모든 섹션 높이 자동 */
-  section {
-    min-height: auto !important;
-    height: auto !important;
-  }
-
-  /* 통계 카드 간소화 */
-  .stat-card {
-    border: 1px solid #e5e7eb;
-    background: white;
-  }
-
-  /* overflow 제한 제거 */
-  * {
-    overflow: visible !important;
-  }
-
-  /* max-height 제한 제거 */
-  *[style*="max-height"] {
-    max-height: none !important;
   }
 }

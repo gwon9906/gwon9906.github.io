@@ -1,22 +1,29 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import {
   ArrowUpRight,
   Calendar,
   ChevronDown,
   ChevronUp,
+  FileText,
   Github,
   Radio,
   Signal,
   TrendingUp,
   Users,
   type LucideIcon,
-} from "lucide-react";
-import { useLanguage } from "../contexts/useLanguage";
+} from 'lucide-react';
+import { useLanguage } from '../contexts/useLanguage';
+
+type ProjectLink = {
+  label: string;
+  href: string;
+  type: 'github' | 'evidence' | 'external';
+};
 
 interface Project {
   id: string;
-  tier: "featured" | "supporting";
+  tier: 'featured' | 'supporting';
   title: string;
   oneLiner: string;
   problemType: string[];
@@ -25,12 +32,8 @@ interface Project {
   role: string;
   highlights: string[];
   techStack: string[];
-  status?: string;
-  links?: {
-    github?: string;
-    demo?: string;
-  }[];
   icon: LucideIcon;
+  links?: ProjectLink[];
   detail: {
     problem: string;
     context: string;
@@ -44,715 +47,375 @@ interface Project {
 
 const Projects = () => {
   const { t } = useLanguage();
-  const [expandedProject, setExpandedProject] = useState<string>("lora-bam");
+  const [expandedProject, setExpandedProject] = useState<string>('valve-prediction');
 
   const projects: Project[] = [
     {
-      id: "lora-bam",
-      tier: "featured",
-      title: t(
-        "저전력 IoT 환경용 초경량 데이터 압축·복원",
-        "Ultra-Lightweight Data Compression & Restoration for Low-Power IoT",
-      ),
+      id: 'valve-prediction',
+      tier: 'featured',
+      title: t('산업용 밸브 정상 유량 예측', 'Industrial Valve Normal-Flow Forecasting'),
       oneLiner: t(
-        "LoRa 환경에서 전송량을 줄이면서 복원 품질과 통신 성공률을 함께 개선한 프로젝트입니다.",
-        "Reduced LoRa payload while improving restoration quality and communication success in a resource-constrained setting.",
+        '실제 밸브 시계열 데이터의 불연속성과 이상치를 반영해 예측 성능과 안정성을 개선한 프로젝트입니다.',
+        'A forecasting project that improved stability and performance by reflecting discontinuities and outliers in real valve time-series data.'
       ),
-      problemType: [
-        "Signal Restoration",
-        "Edge ML",
-        "LoRa",
-        "Experimental Validation",
-      ],
-      period: "2024.03 - 2024.06",
-      teamSize: t("3인 팀", "Team of 3"),
-      role: t(
-        "팀 리드, 파이프라인 설계/실험 검증 주도",
-        "Team lead, pipeline design and validation lead",
-      ),
+      problemType: ['Time Series', 'Manufacturing Data', 'Forecasting', 'Validation'],
+      period: '2024.07 - 2024.12',
+      teamSize: t('개인 연구', 'Individual project'),
+      role: t('데이터 분석, 모델 설계, 실험 검증', 'Data analysis, model design, experiment validation'),
       highlights: [
-        t(
-          "Payload 32B → 20B, 전송량 37.5% 감소",
-          "Payload 32B → 20B, 37.5% transmission reduction",
-        ),
-        t(
-          "실환경 필드 테스트에서 PDR +14%p",
-          "+14%p PDR in real-world field tests",
-        ),
+        'MAPE 0.1835',
+        'MAE 0.00394',
+        t('Encoder-LSTM + Huber Loss', 'Encoder-LSTM + Huber Loss'),
       ],
-      techStack: [
-        "Python",
-        "NumPy",
-        "BAM",
-        "LoRa",
-        "Raspberry Pi",
-        "Field Testing",
+      techStack: ['Python', 'TensorFlow/Keras', 'LSTM', 'Time-Series', 'Huber Loss'],
+      icon: TrendingUp,
+      links: [
+        { label: t('프로젝트 PDF', 'Project PDF'), href: '/files/valve-flow-report.pdf', type: 'evidence' },
       ],
+      detail: {
+        problem: t(
+          '정상 상태 밸브의 유량을 안정적으로 예측해 이후 이상 징후 탐지의 기준선을 만들 필요가 있었습니다.',
+          'The project needed a stable normal-flow baseline for later abnormality detection on valves.'
+        ),
+        context: t(
+          '입력은 개도율과 입력/출력 압력 6개였고, 데이터는 실제 사용 중인 밸브에서 수집되었습니다. 측정 정밀도가 제한적이어서 이상치 처리 기준과 입력 표현을 함께 조정해야 했습니다.',
+          'Inputs consisted of valve opening plus six pressure values, collected from real operating valves. Because measurement precision was limited, preprocessing rules and input representation had to be adjusted carefully.'
+        ),
+        myRole: [
+          t('데이터 분포와 이상치를 확인하고 전처리 기준을 정리했습니다.', 'Reviewed distribution and outliers, then defined preprocessing rules.'),
+          t('Encoder-LSTM 구조와 손실 함수를 직접 바꾸며 비교 실험을 진행했습니다.', 'Changed the Encoder-LSTM design and loss function directly through comparative experiments.'),
+        ],
+        approach: [
+          t('정규화를 무조건 적용하지 않고 데이터 정밀도와 해석 가능성을 우선해 원본 값을 최대한 유지했습니다.', 'Avoided unnecessary normalization and preserved original values as much as possible based on data precision and interpretability.'),
+          t('기본 LSTM과 비교하며 인코더 구조를 추가했고, Huber Loss를 적용해 이상치 민감도를 낮췄습니다.', 'Added an encoder structure against a baseline LSTM and applied Huber Loss to reduce sensitivity to outliers.'),
+        ],
+        result: [
+          'Loss 4.0376e-05',
+          'MAE 0.003941',
+          'MAPE 0.183501',
+        ],
+        challenges: [
+          t('시계열의 불연속 구간과 제한된 유효 자릿수 때문에 일반적인 전처리 관행을 그대로 적용하기 어려웠습니다.', 'Discontinuous segments and limited numeric precision made standard preprocessing choices unreliable.'),
+        ],
+        limitations: [
+          t('협력 데이터 특성상 전체 데이터와 코드를 공개하지는 못합니다.', 'The full data and code cannot be published because of collaboration constraints.'),
+        ],
+      },
+    },
+    {
+      id: 'lora-bam',
+      tier: 'featured',
+      title: t('LoRa 저신호 환경 통신 개선', 'LoRa Communication Improvement in Low-Quality Channels'),
+      oneLiner: t(
+        '저전력 장거리 통신 환경에서 payload를 줄이면서 복원 품질과 전송 성공률을 함께 검증한 프로젝트입니다.',
+        'A project that validated both restoration quality and transmission success while reducing payload in low-power long-range communication.'
+      ),
+      problemType: ['LoRa', 'Field Test', 'Compression', 'Sensor Data'],
+      period: '2025.03 - 2025.06',
+      teamSize: t('4인 팀', 'Team of 4'),
+      role: t('BAM 구조 구현, 송수신 파이프라인 구성, 필드 테스트', 'BAM implementation, TX/RX pipeline setup, field testing'),
+      highlights: [
+        '32B → 20B payload',
+        t('100회 기준 29 → 33', '29 → 33 per 100 transmissions'),
+        'MSE 0.003676',
+      ],
+      techStack: ['Python', 'Raspberry Pi', 'Linux', 'LoRa', 'BAM', 'CSV Logging'],
       icon: Radio,
       links: [
-        { github: "https://github.com/4xvgal/ChirpChirp" },
-        { github: "https://github.com/gwon9906/Lightweight-MF-BAM" },
+        { label: 'GitHub', href: 'https://github.com/gwon9906/Lightweight-MF-BAM', type: 'github' },
+        { label: t('최종 보고서', 'Final Report'), href: '/files/lora-final-report.pdf', type: 'evidence' },
       ],
       detail: {
         problem: t(
-          "배터리 기반 LoRa 디바이스에서는 패킷 손실이 잦을수록 재전송으로 에너지 소모가 커집니다. 전송 전력을 높이기보다 전송량 자체를 줄여 성공 확률을 높일 필요가 있었습니다.",
-          "Battery-powered LoRa devices lose lifetime quickly when packet loss triggers retransmission. We needed to reduce transmitted data itself instead of simply increasing transmission power.",
+          'LoRa에서는 페이로드가 커질수록 전송 시간이 길어지고 패킷 손실 가능성이 높아져, 재전송으로 에너지 소모가 커지는 문제가 있었습니다.',
+          'In LoRa, larger payloads increase airtime and packet loss risk, which drives retransmissions and higher energy cost.'
         ),
         context: t(
-          "제한된 페이로드 안에서 GPS/센서 데이터를 보내야 했고, 품질이 너무 낮아지면 복원 데이터가 쓸모없어지는 상황이었습니다. 시뮬레이션이 아니라 N-LOS 약 2.6km 구간의 실제 주행 데이터를 기준으로 검증했습니다.",
-          "GPS and sensor data had to fit into a limited payload budget, but too much compression would make the restored data unusable. Validation was done on repeated real N-LOS driving data over roughly 2.6 km rather than simulation only.",
+          'GPS와 IMU 기반 센서 데이터를 보내야 했고, 단순히 많이 압축하면 복원 품질이 무너질 수 있어 통신 성공률과 데이터 유용성의 균형이 중요했습니다.',
+          'The system had to send GPS and IMU sensor data. Over-compressing could damage restoration quality, so balancing transmission success with data usefulness mattered.'
         ),
         myRole: [
-          t(
-            "전처리 규격과 BAM 기반 압축·복원 파이프라인 설계",
-            "Designed preprocessing specs and the BAM-based compression/restoration pipeline",
-          ),
-          t(
-            "실험 조건 통제와 필드 테스트 지표 분석 수행",
-            "Controlled evaluation conditions and analyzed field-test metrics",
-          ),
+          t('BAM 기반 압축·복원 구조를 구현하고 송수신 장치 파이프라인을 연결했습니다.', 'Implemented the BAM-based compression/restoration structure and connected the transmitter-receiver pipeline.'),
+          t('동일 장비·동일 설정 조건으로 반복 필드 테스트를 수행하고 결과를 로그로 정리했습니다.', 'Ran repeated field tests under the same device/configuration conditions and documented the results.'),
         ],
         approach: [
-          t(
-            "규칙 기반 압축과 AutoEncoder baseline을 재현해 비교 기준을 먼저 만들었습니다.",
-            "Reproduced rule-based compression and AutoEncoder baselines before choosing the final direction.",
-          ),
-          t(
-            "GPS/센서 데이터 특성에 맞춰 정수부/소수부 분리 인코딩으로 정밀도 손실을 줄였습니다.",
-            "Used integer-decimal split encoding to limit precision loss based on the structure of GPS and sensor data.",
-          ),
-          t(
-            "연산량이 낮은 BAM 구조를 선택해 저전력 장치에서의 실행 가능성을 우선했습니다.",
-            "Selected BAM for lower computational burden so the method remains feasible on low-power hardware.",
-          ),
+          t('Raspberry Pi 기반 Linux 환경에서 GPS, 가속도, 자이로 데이터를 수집·압축·전송·복원하는 흐름을 구성했습니다.', 'Built a full flow that collects, compresses, transmits, and restores GPS, acceleration, and gyro data on Raspberry Pi Linux devices.'),
+          t('NLOS 2.0~2.6km 구간에서 RAW 32B와 압축 payload를 비교해 PDR과 복원 오차를 동시에 확인했습니다.', 'Compared RAW 32B and compressed payloads across NLOS 2.0–2.6 km runs, checking both PDR and restoration error.'),
         ],
         result: [
-          t(
-            "전송량 감소와 함께 통신 성공률을 높여 시스템 효율 개선 근거를 만들었습니다.",
-            "Created evidence that system efficiency can improve by lowering payload while increasing communication success.",
-          ),
-          t(
-            "GPS 복원 오차 MSE를 0.0184 → 0.0036으로 낮춰 서비스 가능한 품질을 유지했습니다.",
-            "Reduced GPS restoration MSE from 0.0184 to 0.0036 while keeping the compressed setup usable.",
-          ),
+          t('100회 전송 기준 성공 패킷 수 29건 → 33건', 'Successful packets per 100 transmissions: 29 → 33'),
+          'PDR 33%',
+          'MSE 0.003676',
         ],
         challenges: [
-          t(
-            "압축률을 높이면 복원 품질이 무너질 수 있어 통신 성능과 데이터 품질의 균형이 중요했습니다.",
-            "Pushing compression too far risked breaking restoration quality, so the trade-off between transmission efficiency and data quality mattered.",
-          ),
-          t(
-            "필드 테스트 기반 비교를 위해 동일 경로·동일 조건에서 실험을 반복해 변수 통제를 맞췄습니다.",
-            "To keep the field-test comparison credible, I repeated experiments under the same route and operating conditions.",
-          ),
+          t('현장 실험은 위치, 날씨, 전파 환경에 영향을 크게 받아 동일 조건을 맞추는 것이 중요했습니다.', 'Field tests were highly sensitive to location, weather, and radio conditions, so controlling comparison conditions was critical.'),
         ],
         limitations: [
-          t(
-            "산업 배포 수준의 장기 운영 검증까지는 아직 진행하지 않았습니다.",
-            "This has not yet been validated in a long-term production deployment.",
-          ),
+          t('장기 운영 환경까지 검증한 것은 아니며, 다양한 이동 패턴에 대한 일반화 개선 여지가 있습니다.', 'This is not yet a long-term deployment study, and generalization to broader movement patterns can still improve.'),
         ],
       },
     },
     {
-      id: "valve-prediction",
-      tier: "featured",
-      title: t(
-        "산업용 밸브 유량 시계열 예측",
-        "Industrial Valve Flow Forecasting",
-      ),
+      id: 'lora-demod',
+      tier: 'supporting',
+      title: t('Ultra-Low SNR LoRa 복원 전초 연구', 'Preliminary Study on LoRa Recovery in Ultra-Low SNR'),
       oneLiner: t(
-        "불연속성과 이상치가 있는 산업 데이터를 대상으로 Encoder-LSTM 구조와 손실 설계를 조정해 예측 오차를 개선했습니다.",
-        "Improved forecasting error on industrial time-series data with discontinuities and outliers by redesigning the Encoder-LSTM setup and loss.",
+        '초저 SNR에서 LoRa 신호 복원을 목표로 PHY baseline과 신호 표현 방식을 재검토한 예비 연구입니다.',
+        'A preliminary study that revisited PHY baselines and signal representations for LoRa recovery under ultra-low SNR.'
       ),
-      problemType: [
-        "Time-Series Forecasting",
-        "Lightweight Modeling",
-        "Experimental Validation",
-      ],
-      period: "2024.07 - 2024.12",
-      teamSize: t("개인 연구", "Individual project"),
-      role: t(
-        "데이터 분석, 구조 설계, 실험 주도",
-        "Data analysis, architecture design, experiment lead",
-      ),
+      problemType: ['Signal Processing', 'LoRa PHY', 'Preliminary Study'],
+      period: '2024.09 - 2025.02',
+      teamSize: t('개인 연구', 'Individual research'),
+      role: t('baseline 재구축, 실험 설계, 실패 원인 정리', 'Baseline reconstruction, experiment design, failure analysis'),
       highlights: [
-        t(
-          "MAPE 1.13 → 0.188, 약 83% 개선",
-          "MAPE 1.13 → 0.188, about 83% improvement",
-        ),
-        t(
-          "불연속 구간 reset + Huber Loss로 강건성 확보",
-          "Sequence reset + Huber Loss for robustness",
-        ),
+        t('Dechirp + FFT baseline 재구축', 'Rebuilt Dechirp + FFT baseline'),
+        t('실패 원인 문서화', 'Documented failure causes'),
       ],
-      techStack: ["Python", "PyTorch", "LSTM", "Encoder-LSTM", "Time Series"],
-      icon: TrendingUp,
-      detail: {
-        problem: t(
-          "기존 LSTM은 개도율 0 지점의 불연속성과 센서 이상치 때문에 실제 산업 데이터에서 오차가 크게 흔들렸습니다.",
-          "The baseline LSTM broke down on real industrial data because discontinuities around valve opening 0 and sensor outliers destabilized predictions.",
-        ),
-        context: t(
-          "정확도만이 아니라 실제 적용 가능한 안정성이 중요했고, 시간 순서를 보존한 검증과 누수 방지가 필수였습니다.",
-          "Application stability mattered as much as raw accuracy, and the evaluation had to preserve time order and avoid leakage.",
-        ),
-        myRole: [
-          t(
-            "데이터 특성 분석 후 정규화와 시퀀스 처리 방식을 다시 정의했습니다.",
-            "Redefined normalization and sequence handling after analyzing the data characteristics.",
-          ),
-          t(
-            "Encoder-LSTM 구조, reset logic, 손실 함수를 직접 설계하고 실험했습니다.",
-            "Designed and tested the Encoder-LSTM architecture, reset logic, and loss function directly.",
-          ),
-        ],
-        approach: [
-          t(
-            "Persistence와 vanilla LSTM을 baseline으로 두고 개선 폭을 비교했습니다.",
-            "Compared against persistence and vanilla LSTM baselines.",
-          ),
-          t(
-            "개도율 0 구간에서 시퀀스를 재초기화해 불연속 구간 누적 오차를 줄였습니다.",
-            "Reset sequences around valve opening 0 to reduce accumulated errors from discontinuities.",
-          ),
-          t(
-            "Huber Loss를 적용해 이상치에 덜 민감한 학습 구조를 만들었습니다.",
-            "Used Huber Loss to reduce sensitivity to outliers.",
-          ),
-        ],
-        result: [
-          t(
-            "예측 오차를 큰 폭으로 줄였고, 산업 환경 적용 가능성을 더 설득력 있게 만들었습니다.",
-            "Substantially reduced forecasting error and improved the case for real industrial use.",
-          ),
-          t(
-            "정규화 단순화와 데이터 처리 기준 정비로 실험 일관성도 함께 개선했습니다.",
-            "Improved experiment consistency by simplifying normalization and tightening preprocessing rules.",
-          ),
-        ],
-        challenges: [
-          t(
-            "좋은 성능보다 재현 가능한 검증 설계가 더 중요해 데이터 누수 방지와 split 기준을 엄격하게 잡았습니다.",
-            "Reliable validation mattered more than headline metrics, so I enforced strict split and leakage rules.",
-          ),
-          t(
-            "산업 데이터의 정밀도 불균형이 분산을 키워 전처리 기준을 여러 번 조정했습니다.",
-            "Precision imbalance in the industrial data increased variance and required repeated preprocessing adjustments.",
-          ),
-        ],
-        limitations: [
-          t(
-            "산업체 협력 데이터라 공개 저장소와 재현 코드를 모두 제공하지는 못합니다.",
-            "Because this used industry collaboration data, I cannot publish the full repository or dataset.",
-          ),
-        ],
-      },
-    },
-    {
-      id: "lora-demod",
-      tier: "supporting",
-      title: t(
-        "Ultra-Low SNR LoRa 패킷 복원 전초 연구",
-        "Preliminary Study on LoRa Packet Recovery in Ultra-Low SNR",
-      ),
-      oneLiner: t(
-        "초저 SNR 복조를 위한 PHY baseline 재구축과 신호 압축 실험을 체계적으로 검증한 연구입니다.",
-        "A structured validation study covering full-cycle work on PHY baseline reconstruction and signal compression under ultra-low SNR.",
-      ),
-      problemType: ["Signal Restoration", "LoRa PHY", "Validation Analysis"],
-      period: "2025.11 - 2026.02",
-      teamSize: t("개인 연구", "Individual project"),
-      role: t(
-        "PHY baseline 재구축, 실험 자동화, 검증 분석",
-        "PHY baseline rebuild, experiment automation, validation analysis",
-      ),
-      highlights: [
-        t(
-          "초저 SNR 구간용 STFT 기반 압축 파이프라인 구축",
-          "Built an STFT-based compression pipeline for ultra-low SNR signals",
-        ),
-        t(
-          "실험 검증 결과를 문서화해 후속 연구 기준 확보",
-          "Documented validation outcomes to guide follow-up work",
-        ),
-      ],
-      techStack: ["Python", "PyTorch", "NumPy", "LoRa PHY", "DSP", "STFT"],
+      techStack: ['Python', 'NumPy', 'STFT', 'LoRa PHY', 'PyTorch'],
       icon: Signal,
-      status: t(
-        "추가 프로젝트 / 실험 검증",
-        "Additional project / validation study",
-      ),
-      links: [
-        { github: "https://github.com/gwon9906/LoRa-bam-reconstruction" },
-      ],
       detail: {
         problem: t(
-          "Ultra-Low SNR에서는 표준 LoRa 복조 성능이 크게 저하되고, 원본 IQ를 그대로 전송하면 Edge-Cloud 협업 복조 비용이 너무 커집니다.",
-          "Standard LoRa demodulation fails in ultra-low SNR, while transmitting raw IQ data makes edge-cloud collaboration too expensive.",
+          '표준 복조가 거의 동작하지 않는 초저 SNR 영역에서 무엇이 병목인지 먼저 확인할 필요가 있었습니다.',
+          'It was necessary to identify the true bottlenecks first in ultra-low-SNR regions where standard demodulation nearly fails.'
         ),
         context: t(
-          "CRC 통과 수준의 패킷 복원을 위해, Edge에서 신호 구조를 최대한 보존하며 압축하는 방법을 우선 검증했습니다.",
-          "The target was packet recovery at CRC-pass quality, and the first step was validating an edge-side compression method that preserves signal structure.",
+          '바로 성능 개선을 주장하기보다, 복조 baseline과 입력 표현을 다시 확인하며 실험 체계를 정리하는 데 목적을 두었습니다.',
+          'Rather than claiming immediate gains, the goal was to rebuild the demodulation baseline and organize an experiment framework around input representations.'
         ),
         myRole: [
-          t(
-            "LoRa PHY baseline을 재구축하고 STFT 파이프라인과 BAM 압축 구조를 설계했습니다.",
-            "Rebuilt the LoRa PHY baseline and designed the STFT pipeline and BAM compression structure.",
-          ),
-          t(
-            "실험 자동화, SNR 조건별 비교, 검증 결과 정리를 직접 수행했습니다.",
-            "Ran experiment automation, SNR-by-SNR comparisons, and validation analysis myself.",
-          ),
+          t('LoRa upchirp/downchirp, dechirp, FFT 기반 baseline을 직접 재구성했습니다.', 'Reconstructed LoRa upchirp/downchirp, dechirp, and FFT baselines directly.'),
+          t('입력 표현, 손실 함수, skip connection 등 여러 대안을 비교하며 실패 원인을 정리했습니다.', 'Compared several alternatives such as input representations, loss functions, and skip connections while documenting failure causes.'),
         ],
         approach: [
-          t(
-            "Dechirp-FFT 기반 복조 체인을 먼저 재현해 비교 기준을 만들었습니다.",
-            "Reproduced the dechirp-FFT demodulation chain to create a trustworthy baseline.",
-          ),
-          t(
-            "IQ를 complex spectrogram으로 변환한 뒤 다층 BAM으로 압축했습니다.",
-            "Converted IQ into complex spectrograms and compressed them with a multi-layer BAM model.",
-          ),
-          t(
-            "SNR -30 ~ -15 dB에서 baseline과 비교해 구조 보존 여부를 평가했습니다.",
-            "Compared against the baseline from -30 to -15 dB to evaluate structure preservation.",
-          ),
+          t('스펙트로그램 기반 입력을 만들고 복원 성능보다 baseline 일치 여부를 우선 확인했습니다.', 'Built spectrogram-based inputs and prioritized baseline consistency before pushing restoration scores.'),
         ],
         result: [
-          t(
-            "학습 안정성과 파이프라인 동작을 검증하고, 패킷 복원 성능 고도화를 위한 개선 포인트를 확보했습니다.",
-            "Validated training stability and end-to-end pipeline behavior, and identified clear directions for packet recovery performance improvement.",
-          ),
-          t(
-            "대신 저 SNR 일반화 한계와 복조 안정성 문제를 명확하게 문서화했습니다.",
-            "The project still produced clear documentation of low-SNR generalization limits and demodulation stability issues.",
-          ),
+          t('성능이 포트폴리오 대표 프로젝트가 될 수준은 아니었지만, 후속 연구 방향을 정리하는 데 의미 있는 기준을 남겼습니다.', 'The performance was not strong enough to lead the portfolio, but it provided a meaningful basis for follow-up work.'),
         ],
         challenges: [
-          t(
-            "STFT/ISTFT 과정에서 chirp 위상이 무너지는 문제가 있어 주파수축 정렬과 보정 로직을 추가했습니다.",
-            "Chirp phase collapse in STFT/ISTFT required extra frequency-axis alignment and correction logic.",
-          ),
-          t(
-            "일부 손실 함수는 바로 collapse를 유발해 업데이트 규칙을 보수적으로 다시 설계했습니다.",
-            "Some loss-function choices immediately caused collapse, so the update rule had to be redesigned more conservatively.",
-          ),
+          t('목표 성능 미달 시 중단 기준을 명확히 두고, 무엇이 안 됐는지 남기는 것이 중요했습니다.', 'It was important to define stop criteria clearly and document what did not work when targets were missed.'),
         ],
         limitations: [
-          t(
-            "대표 프로젝트로 전면 배치할 정도의 결과는 아니므로 supporting case로만 두는 것이 적절합니다.",
-            "The result is not strong enough to lead the portfolio and is best presented as a supporting case.",
-          ),
+          t('본 연구는 예비 검증 단계이며, 완료 프로젝트처럼 해석하면 안 됩니다.', 'This was a preliminary validation study and should not be interpreted like a completed production-ready project.'),
         ],
       },
     },
   ];
 
-  const featuredProjects = projects.filter(
-    (project) => project.tier === "featured",
-  );
-  const supportingProjects = projects.filter(
-    (project) => project.tier === "supporting",
-  );
-
-  const renderDetailList = (items: string[]) => (
-    <ul className="space-y-2">
-      {items.map((item) => (
-        <li key={item} className="body-copy-sm flex items-start gap-3">
-          <span className="mt-2 h-1.5 w-1.5 rounded-full bg-slate-400" />
-          <span>{item}</span>
-        </li>
-      ))}
-    </ul>
-  );
+  const linkIcon = (type: ProjectLink['type']) => {
+    if (type === 'github') return <Github className="h-4 w-4" />;
+    return <FileText className="h-4 w-4" />;
+  };
 
   return (
     <section id="projects" className="section-container py-12 lg:py-16">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
+        viewport={{ once: true, margin: '-80px' }}
         transition={{ duration: 0.45 }}
-        className="space-y-10"
+        className="space-y-8"
       >
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-          <div className="max-w-3xl space-y-3">
-              {t("Selected Projects", "Selected Projects")}
-              {t("대표 프로젝트", "Featured Projects")}
-                "제약이 큰 환경에서 문제를 정의하고, 모델을 설계·검증한 프로젝트를 중심으로 정리했습니다.",
-                "This section focuses on projects where I defined constrained-environment problems and designed and validated models.",
-              "핵심 사례: LoRa 압축·복원 / 산업 시계열 예측 / Ultra-Low SNR 실험 검증",
-              "Key cases: LoRa compression & restoration / industrial forecasting / ultra-low SNR validation study",
-                className="rounded-[30px] border border-slate-200/90 ring-1 ring-slate-100 bg-white shadow-[0_24px_70px_-44px_rgba(15,23,42,0.35)]"
-                        {t("대표 프로젝트", "Featured")}
-                      <h3 className="text-2xl font-bold tracking-[-0.02em] leading-[1.22] text-slate-950 sm:text-[1.7rem]">
-                        {project.title}
-                      </h3>
-                        <p className="meta-label">{t("내 역할", "My Role")}</p>
-                        <p className="body-copy-sm mt-2 text-slate-700">
-                          {project.role}
-                          {t("핵심 성과", "Key Results")}
-                            <li
-                              key={highlight}
-                              className="text-sm font-medium tracking-[-0.01em] leading-7 text-slate-700"
-                            >
-                  </div>
-                      <p className="text-sm font-bold tracking-[-0.015em] text-slate-700">
-                        {t("사용 기술", "Tech Stack")}
-                        onClick={() =>
-                          setExpandedProject(isOpen ? "" : project.id)
-                        }
-                        {t("상세 보기", "View Details")}
-                        {isOpen ? (
-                          <ChevronUp className="h-4 w-4" />
-                        ) : (
-                          <ChevronDown className="h-4 w-4" />
-                        )}
+        <div className="max-w-3xl space-y-3">
+          <p className="text-sm font-semibold uppercase tracking-[0.24em] text-slate-500">
+            {t('Projects', 'Projects')}
+          </p>
+          <h2 className="text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+            {t('제출용으로 앞세울 프로젝트', 'Projects to lead with for applications')}
+          </h2>
+          <p className="text-base leading-7 text-slate-600 sm:text-lg">
+            {t(
+              '완료했고 수치로 설명할 수 있는 프로젝트를 먼저 배치했습니다. 진행 중이거나 예비 성격인 연구는 아래에 두었습니다.',
+              'Completed projects with defensible metrics are shown first. Ongoing or preliminary work is placed later.'
+            )}
+          </p>
+        </div>
 
-                      animate={{ opacity: 1, height: "auto" }}
-                            <p className="body-copy-sm mt-2 text-slate-700">
-                              {project.detail.problem}
-                            </p>
-                            <p className="body-copy-sm mt-2 text-slate-700">
-                              {project.detail.context}
-                            </p>
-                            <div className="mt-2">
-                              {renderDetailList(project.detail.myRole)}
-                            </div>
-                            <div className="mt-2">
-                              {renderDetailList(project.detail.approach)}
-                            </div>
-                            <div className="mt-2">
-                              {renderDetailList(project.detail.result)}
-                            </div>
-                              {t("Challenges", "Challenges")}
-                            <div className="mt-2">
-                              {renderDetailList(project.detail.challenges)}
-                            </div>
-                              {t("Limitations", "Limitations")}
-                            <div className="mt-2">
-                              {renderDetailList(project.detail.limitations)}
-                            </div>
-                            <p className="body-copy-sm mt-2 text-slate-700">
-                              {project.techStack.join(", ")}
-                            </p>
-                  {t("추가 프로젝트", "Additional Project")}
-                    "대표 프로젝트를 보완하는 실험 검증 사례입니다. 문제 정의, 실험 과정, 검증 결과를 중심으로 정리했습니다.",
-                    "A validation-focused case that complements featured projects, centered on problem framing, experiment process, and outcomes.",
-                  <div
-                    key={project.id}
-                    className="rounded-3xl border border-slate-200 bg-white p-5"
-                  >
-                          <p className="body-copy-sm mt-2 max-w-3xl">
-                            {project.oneLiner}
-                          </p>
-                          onClick={() =>
-                            setExpandedProject(isOpen ? "" : project.id)
-                          }
-                          {t("상세 보기", "View Details")}
-                          {isOpen ? (
-                            <ChevronUp className="h-4 w-4" />
-                          ) : (
-                            <ChevronDown className="h-4 w-4" />
-                          )}
-                          animate={{ opacity: 1, height: "auto" }}
-                                <p className="body-copy-sm mt-2 text-slate-700">
-                                  {project.detail.problem}
-                                </p>
-                                <div className="mt-2">
-                                  {renderDetailList(project.detail.myRole)}
-                                </div>
-                                <div className="mt-2">
-                                  {renderDetailList(project.detail.approach)}
-                                </div>
-                                <div className="mt-2">
-                                  {renderDetailList(project.detail.result)}
-                                </div>
-                                  {t(
-                                    "Challenges / Limitations",
-                                    "Challenges / Limitations",
-                                  )}
-                                  {renderDetailList([
-                                    ...project.detail.challenges,
-                                    ...project.detail.limitations,
-                                  ])}
-                                <p className="body-copy-sm mt-2 text-slate-700">
-                                  {project.techStack.join(", ")}
-                                </p>
-                          key={tag}
-                          className="rounded-full border border-slate-200 px-3 py-1 text-xs font-medium text-slate-600"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
+        <div className="space-y-4">
+          {projects.map((project) => {
+            const isExpanded = expandedProject === project.id;
 
-                    <div className="grid gap-3 sm:grid-cols-2">
-                      <div className="rounded-2xl bg-slate-50 px-4 py-3">
-                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-                          {t('내 역할', 'My Role')}
-                        </p>
-                        <p className="mt-2 text-sm leading-6 text-slate-700">{project.role}</p>
+            return (
+              <motion.article
+                key={project.id}
+                layout
+                className="overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-sm"
+              >
+                <button
+                  type="button"
+                  onClick={() => setExpandedProject(isExpanded ? '' : project.id)}
+                  className="w-full text-left"
+                >
+                  <div className="flex flex-col gap-5 px-6 py-6 lg:px-8 lg:py-7">
+                    <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+                      <div className="flex items-start gap-4">
+                        <div className="rounded-2xl bg-slate-950 p-3 text-white">
+                          <project.icon className="h-5 w-5" />
+                        </div>
+                        <div className="space-y-2">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <span className={`rounded-full px-3 py-1 text-xs font-semibold ${project.tier === 'featured' ? 'bg-blue-50 text-blue-700' : 'bg-slate-100 text-slate-600'}`}>
+                              {project.tier === 'featured' ? t('핵심', 'Featured') : t('보조', 'Supporting')}
+                            </span>
+                            {project.problemType.map((tag) => (
+                              <span key={tag} className="rounded-full border border-slate-200 px-3 py-1 text-xs font-medium text-slate-600">
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                          <h3 className="text-2xl font-semibold tracking-tight text-slate-950">{project.title}</h3>
+                          <p className="max-w-4xl text-sm leading-7 text-slate-600 sm:text-base">{project.oneLiner}</p>
+                        </div>
                       </div>
-                      <div className="rounded-2xl bg-slate-50 px-4 py-3">
-                      <p className="text-sm font-bold tracking-[-0.015em] text-slate-700">
-                          {t('핵심 성과', 'Key Results')}
-                        </p>
-                        <ul className="mt-2 space-y-1.5">
-                          {project.highlights.map((highlight) => (
-                            <li key={highlight} className="text-sm leading-6 text-slate-700">
-                              {highlight}
-                            </li>
-                          ))}
-                        </ul>
+
+                      <div className="flex items-center gap-3 text-slate-400 lg:pt-1">
+                        {isExpanded ? <ChevronUp className="h-5 w-5" /> : <ChevronDown className="h-5 w-5" />}
                       </div>
                     </div>
-                  </div>
 
-                  <div className="space-y-4 rounded-3xl border border-slate-200 bg-slate-50 p-5">
-                    <div className="flex items-center gap-2 text-sm text-slate-600">
-                      <Calendar className="h-4 w-4" />
-                      <span>{project.period}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm text-slate-600">
-                      <Users className="h-4 w-4" />
-                      <span>{project.teamSize}</span>
-                    </div>
-
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-                        {t('사용 기술', 'Tech Stack')}
-                      </p>
-                      <div className="mt-3 flex flex-wrap gap-2">
-                        {project.techStack.map((tech) => (
+                    <div className="grid gap-3 lg:grid-cols-[1fr_auto] lg:items-end">
+                      <div className="flex flex-wrap gap-2">
+                        {project.highlights.map((item) => (
                           <span
-                            key={tech}
-                            className="rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-700"
+                            key={item}
+                            className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm font-medium text-slate-700"
                           >
-                            {tech}
+                            {item}
                           </span>
                         ))}
                       </div>
-                    </div>
 
-                    <div className="flex flex-wrap gap-3 pt-2">
-                      <button
-                        type="button"
-                        onClick={() => setExpandedProject(isOpen ? '' : project.id)}
-                        className="inline-flex items-center gap-2 rounded-xl bg-slate-950 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
-                      >
-                        {t('상세 보기', 'View Details')}
-                        {isOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
-                      </button>
-                      {project.links?.[0]?.github && (
-                        <a
-                          href={project.links[0].github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 transition-colors hover:bg-slate-100"
-                        >
-                          <Github className="h-4 w-4" />
-                          GitHub
-                        </a>
-                      )}
+                      <div className="flex flex-wrap gap-4 text-sm text-slate-500 lg:justify-end">
+                        <span className="inline-flex items-center gap-2">
+                          <Calendar className="h-4 w-4" />
+                          {project.period}
+                        </span>
+                        <span className="inline-flex items-center gap-2">
+                          <Users className="h-4 w-4" />
+                          {project.teamSize}
+                        </span>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </button>
 
                 <AnimatePresence initial={false}>
-                  {isOpen && (
+                  {isExpanded && (
                     <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.28 }}
-                      className="overflow-hidden"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.22 }}
+                      className="overflow-hidden border-t border-slate-200"
                     >
-                      <div className="grid gap-6 p-6 lg:grid-cols-2 lg:p-8">
-                        <div className="space-y-5">
+                      <div className="grid gap-8 px-6 py-6 lg:grid-cols-[1.15fr_0.85fr] lg:px-8 lg:py-8">
+                        <div className="space-y-6">
                           <div>
-                            <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">Problem</h4>
-                            <p className="mt-2 text-sm leading-7 text-slate-700">{project.detail.problem}</p>
+                            <p className="text-sm font-semibold text-slate-900">{t('문제', 'Problem')}</p>
+                            <p className="mt-2 text-sm leading-7 text-slate-600 sm:text-base">{project.detail.problem}</p>
                           </div>
                           <div>
-                            <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">Context</h4>
-                            <p className="mt-2 text-sm leading-7 text-slate-700">{project.detail.context}</p>
+                            <p className="text-sm font-semibold text-slate-900">{t('배경', 'Context')}</p>
+                            <p className="mt-2 text-sm leading-7 text-slate-600 sm:text-base">{project.detail.context}</p>
                           </div>
                           <div>
-                            <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">My Role</h4>
-                            <div className="mt-2">{renderDetailList(project.detail.myRole)}</div>
+                            <p className="text-sm font-semibold text-slate-900">{t('내 역할', 'My Role')}</p>
+                            <ul className="mt-2 space-y-2">
+                              {project.detail.myRole.map((item) => (
+                                <li key={item} className="flex items-start gap-3 text-sm leading-7 text-slate-600 sm:text-base">
+                                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-slate-400" />
+                                  <span>{item}</span>
+                                </li>
+                              ))}
+                            </ul>
                           </div>
                           <div>
-                            <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">Approach</h4>
-                            <div className="mt-2">{renderDetailList(project.detail.approach)}</div>
+                            <p className="text-sm font-semibold text-slate-900">{t('접근', 'Approach')}</p>
+                            <ul className="mt-2 space-y-2">
+                              {project.detail.approach.map((item) => (
+                                <li key={item} className="flex items-start gap-3 text-sm leading-7 text-slate-600 sm:text-base">
+                                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-slate-400" />
+                                  <span>{item}</span>
+                                </li>
+                              ))}
+                            </ul>
                           </div>
                         </div>
 
-                        <div className="space-y-5">
-                          <div>
-                            <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">Result</h4>
-                            <div className="mt-2">{renderDetailList(project.detail.result)}</div>
+                        <div className="space-y-6">
+                          <div className="rounded-3xl border border-slate-200 bg-slate-50 p-5">
+                            <p className="text-sm font-semibold text-slate-900">{t('결과', 'Results')}</p>
+                            <ul className="mt-3 space-y-2">
+                              {project.detail.result.map((item) => (
+                                <li key={item} className="flex items-start gap-3 text-sm leading-7 text-slate-600">
+                                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-blue-500" />
+                                  <span>{item}</span>
+                                </li>
+                              ))}
+                            </ul>
                           </div>
+
                           <div>
-                            <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
-                              {t('Challenges', 'Challenges')}
-                            </h4>
-                            <div className="mt-2">{renderDetailList(project.detail.challenges)}</div>
+                            <p className="text-sm font-semibold text-slate-900">{t('어려웠던 점', 'Challenges')}</p>
+                            <ul className="mt-2 space-y-2">
+                              {project.detail.challenges.map((item) => (
+                                <li key={item} className="flex items-start gap-3 text-sm leading-7 text-slate-600">
+                                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-slate-400" />
+                                  <span>{item}</span>
+                                </li>
+                              ))}
+                            </ul>
                           </div>
+
                           <div>
-                            <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
-                              {t('Limitations', 'Limitations')}
-                            </h4>
-                            <div className="mt-2">{renderDetailList(project.detail.limitations)}</div>
+                            <p className="text-sm font-semibold text-slate-900">{t('한계 / 메모', 'Limitations / Notes')}</p>
+                            <ul className="mt-2 space-y-2">
+                              {project.detail.limitations.map((item) => (
+                                <li key={item} className="flex items-start gap-3 text-sm leading-7 text-slate-600">
+                                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-slate-400" />
+                                  <span>{item}</span>
+                                </li>
+                              ))}
+                            </ul>
                           </div>
+
                           <div>
-                            <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">Tech Stack</h4>
-                            <p className="mt-2 text-sm leading-7 text-slate-700">{project.techStack.join(', ')}</p>
+                            <p className="text-sm font-semibold text-slate-900">{t('기술 스택', 'Tech Stack')}</p>
+                            <div className="mt-3 flex flex-wrap gap-2">
+                              {project.techStack.map((stack) => (
+                                <span key={stack} className="rounded-full border border-slate-200 px-3 py-1.5 text-xs font-medium text-slate-600">
+                                  {stack}
+                                </span>
+                              ))}
+                            </div>
                           </div>
+
+                          {project.links && project.links.length > 0 && (
+                            <div className="flex flex-wrap gap-3">
+                              {project.links.map((link) => (
+                                <a
+                                  key={link.href}
+                                  href={link.href}
+                                  target={link.href.startsWith('http') ? '_blank' : undefined}
+                                  rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                                  className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 transition-colors hover:bg-slate-50"
+                                >
+                                  {linkIcon(link.type)}
+                                  {link.label}
+                                  <ArrowUpRight className="h-4 w-4" />
+                                </a>
+                              ))}
+                            </div>
+                          )}
                         </div>
                       </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </article>
+              </motion.article>
             );
           })}
         </div>
-
-        {supportingProjects.length > 0 && (
-          <div className="space-y-4 rounded-[28px] border border-dashed border-slate-300 bg-slate-50/80 p-6">
-            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-              <div>
-                <h3 className="text-xl font-semibold text-slate-900">
-                  {t('추가 프로젝트', 'Additional Project')}
-                </h3>
-                <p className="mt-1 text-sm leading-6 text-slate-600">
-                  {t(
-                    '대표 프로젝트를 보완하는 실험 검증 사례입니다. 문제 정의, 실험 과정, 검증 결과를 중심으로 정리했습니다.',
-                    'A validation-focused case that complements featured projects, centered on problem framing, experiment process, and outcomes.'
-                  )}
-                </p>
-              </div>
-            </div>
-
-            <div className="grid gap-4">
-              {supportingProjects.map((project) => {
-                const isOpen = expandedProject === project.id;
-                return (
-                  <div key={project.id} className="rounded-3xl border border-slate-200 bg-white p-5">
-                    <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-                      <div className="space-y-3">
-                        <div className="flex flex-wrap items-center gap-3">
-                          <div className="rounded-2xl bg-slate-900 p-3 text-white">
-                            <project.icon className="h-5 w-5" />
-                          </div>
-                          {project.status && (
-                            <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-800">
-                              {project.status}
-                            </span>
-                          )}
-                        </div>
-                        <div>
-                          <h4 className="text-xl font-semibold text-slate-950">{project.title}</h4>
-                          <p className="mt-2 max-w-3xl text-sm leading-7 text-slate-600">{project.oneLiner}</p>
-                        </div>
-                        <div className="flex flex-wrap gap-2">
-                          {project.problemType.map((tag) => (
-                            <span
-                              key={tag}
-                              className="rounded-full border border-slate-200 px-3 py-1 text-xs font-medium text-slate-600"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                        <div className="grid gap-2 text-sm text-slate-600 sm:grid-cols-2">
-                          <p>{project.period}</p>
-                          <p>{project.role}</p>
-                        </div>
-                        <ul className="space-y-1 text-sm leading-6 text-slate-700">
-                          {project.highlights.map((highlight) => (
-                            <li key={highlight}>{highlight}</li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      <div className="flex flex-wrap gap-3">
-                        <button
-                          type="button"
-                          onClick={() => setExpandedProject(isOpen ? '' : project.id)}
-                          className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 transition-colors hover:bg-slate-100"
-                        >
-                          {t('상세 보기', 'View Details')}
-                          {isOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
-                        </button>
-                        {project.links?.[0]?.github && (
-                          <a
-                            href={project.links[0].github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 transition-colors hover:bg-slate-100"
-                          >
-                            <ArrowUpRight className="h-4 w-4" />
-                            GitHub
-                          </a>
-                        )}
-                      </div>
-                    </div>
-
-                    <AnimatePresence initial={false}>
-                      {isOpen && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: 'auto' }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.24 }}
-                          className="overflow-hidden"
-                        >
-                          <div className="mt-5 grid gap-5 border-t border-slate-200 pt-5 lg:grid-cols-2">
-                            <div className="space-y-4">
-                              <div>
-                                <h5 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">Problem</h5>
-                                <p className="mt-2 text-sm leading-7 text-slate-700">{project.detail.problem}</p>
-                              </div>
-                              <div>
-                                <h5 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">My Role</h5>
-                                <div className="mt-2">{renderDetailList(project.detail.myRole)}</div>
-                              </div>
-                              <div>
-                                <h5 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">Approach</h5>
-                                <div className="mt-2">{renderDetailList(project.detail.approach)}</div>
-                              </div>
-                            </div>
-                            <div className="space-y-4">
-                              <div>
-                                <h5 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">Result</h5>
-                                <div className="mt-2">{renderDetailList(project.detail.result)}</div>
-                              </div>
-                              <div>
-                                <h5 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
-                                  {t('Challenges / Limitations', 'Challenges / Limitations')}
-                                </h5>
-                                <div className="mt-2">
-                                  {renderDetailList([...project.detail.challenges, ...project.detail.limitations])}
-                                </div>
-                              </div>
-                              <div>
-                                <h5 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">Tech Stack</h5>
-                                <p className="mt-2 text-sm leading-7 text-slate-700">{project.techStack.join(', ')}</p>
-                              </div>
-                            </div>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        )}
       </motion.div>
     </section>
   );
