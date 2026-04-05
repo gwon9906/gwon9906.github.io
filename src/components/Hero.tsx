@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Download, FileText, Github, Mail } from 'lucide-react';
+import { ArrowRight, BriefcaseBusiness, FileText, Github, Mail } from 'lucide-react';
 import { useLanguage } from '../contexts/useLanguage';
 
 const Hero = () => {
@@ -110,8 +110,15 @@ const Hero = () => {
 
             <div className="flex flex-wrap gap-3">
               <a
-                href="#resume"
+                href="#portfolio"
                 className="inline-flex items-center gap-2 rounded-xl bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
+              >
+                <BriefcaseBusiness className="h-4 w-4" />
+                {t('포트폴리오', 'Portfolio')}
+              </a>
+              <a
+                href="#resume"
+                className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 transition-colors hover:border-slate-400 hover:bg-slate-50"
               >
                 <FileText className="h-4 w-4" />
                 {t('제출용 요약', 'Submission Summary')}
@@ -122,15 +129,6 @@ const Hero = () => {
               >
                 {t('핵심 프로젝트', 'Selected Projects')}
                 <ArrowRight className="h-4 w-4" />
-              </a>
-              <a
-                href="/files/lora-final-report.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 transition-colors hover:border-slate-400 hover:bg-slate-50"
-              >
-                <Download className="h-4 w-4" />
-                {t('근거 PDF', 'Evidence PDF')}
               </a>
             </div>
 
@@ -166,11 +164,11 @@ const Hero = () => {
                   {t('핵심 근거', 'Evidence')}
                 </p>
                 <p className="mt-1 text-lg font-semibold text-slate-900">
-                  {t('직무 적합 요약', 'Role-fit Summary')}
+                  {t('지원 직무 관점 요약', 'Role-fit Snapshot')}
                 </p>
                 <p className="mt-2 text-sm leading-6 text-slate-600">
                   {t(
-                      '제조 데이터, 현장 제약, 검증 기반 문제 해결 경험을 중심으로 정리했습니다.',
+                    '제조 데이터, 현장 제약, 검증 기반 문제 해결 경험을 중심으로 정리했습니다.',
                     'Summarized around manufacturing data, operating constraints, and validation-driven problem solving.'
                   )}
                 </p>
