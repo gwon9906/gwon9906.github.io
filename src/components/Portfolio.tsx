@@ -199,10 +199,10 @@ const Portfolio = () => {
         <section className="portfolio-hero-card">
           <div className="portfolio-hero-copy">
             <p className="portfolio-eyebrow">{t('포트폴리오 요약', 'Portfolio Brief')}</p>
-            <h1 className="portfolio-title">{t('제출용 포트폴리오', 'Submission Portfolio')}</h1>
+            <h1 className="portfolio-title">{t('포트폴리오', 'Portfolio')}</h1>
             <p className="portfolio-subtitle">
               {t(
-                '제조·센서 데이터와 제약 환경에서의 실험 검증 경험을 중심으로, 대표 프로젝트 2개만 간결하게 정리했습니다. 이 페이지는 파일 제출과 PDF 저장을 함께 고려해 웹과 문서의 중간 형태로 구성했습니다.',
+                '제조·센서 데이터와 제약 환경에서의 실험 검증 경험을 중심으로, 대표 프로젝트 2개  만 간결하게 정리했습니다. 이 페이지는 파일 제출과 PDF 저장을 함께 고려해 웹과 문서의 중간 형태로 구성했습니다.',
                 'This page highlights only two representative projects around manufacturing/sensor data and constrained-environment validation. It is designed as a hybrid of a web portfolio and a file-friendly document for PDF submission.'
               )}
             </p>
