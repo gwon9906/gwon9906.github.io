@@ -10,7 +10,7 @@ import {
   Radio,
   Wrench,
 } from 'lucide-react';
-import { useLanguage } from '../../../gwon9906.github.io-portfolio-brief-clean (1)/src/contexts/useLanguage.ts';
+import { useLanguage } from '../contexts/useLanguage';
 import './Portfolio.css';
 
 const Portfolio = () => {
