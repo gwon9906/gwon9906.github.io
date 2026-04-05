@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, BriefcaseBusiness, FileText, Github, Mail } from 'lucide-react';
+import { ArrowRight, FileText, Github, Mail } from 'lucide-react';
 import { useLanguage } from '../contexts/useLanguage';
 
 const Hero = () => {
@@ -110,18 +110,11 @@ const Hero = () => {
 
             <div className="flex flex-wrap gap-3">
               <a
-                href="#portfolio"
+                href="#resume"
                 className="inline-flex items-center gap-2 rounded-xl bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
               >
-                <BriefcaseBusiness className="h-4 w-4" />
-                {t('포트폴리오', 'Portfolio')}
-              </a>
-              <a
-                href="#resume"
-                className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 transition-colors hover:border-slate-400 hover:bg-slate-50"
-              >
                 <FileText className="h-4 w-4" />
-                {t('제출용 요약', 'Submission Summary')}
+                {t('포트폴리오 PDF', 'Portfolio PDF')}
               </a>
               <a
                 href="#projects"
@@ -164,7 +157,7 @@ const Hero = () => {
                   {t('핵심 근거', 'Evidence')}
                 </p>
                 <p className="mt-1 text-lg font-semibold text-slate-900">
-                  {t('지원 직무 관점 요약', 'Role-fit Snapshot')}
+                  {t('프로젝트 관점 요약', 'Project Snapshot')}
                 </p>
                 <p className="mt-2 text-sm leading-6 text-slate-600">
                   {t(

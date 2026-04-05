@@ -1,4 +1,4 @@
-/* Resume Page Styles */
+/* Resume / Portfolio PDF page styles */
 .resume-container {
   background: white;
   color: #1a1a1a;
@@ -6,7 +6,6 @@
   line-height: 1.6;
 }
 
-/* Control Buttons - Screen Only */
 .resume-controls {
   position: fixed;
   top: 20px;
@@ -52,7 +51,6 @@
   box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
 }
 
-/* Page layout - A4 size */
 .resume-page {
   width: 210mm;
   min-height: 297mm;
@@ -68,7 +66,6 @@
   page-break-after: auto;
 }
 
-/* Header */
 .resume-header {
   text-align: center;
   margin-bottom: 15px;
@@ -90,7 +87,6 @@
   margin: 0;
 }
 
-/* Contact Info */
 .resume-contact {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -111,14 +107,12 @@
   margin-right: 6px;
 }
 
-/* Divider */
 .resume-divider {
   height: 2px;
   background: linear-gradient(to right, #e2e8f0, #cbd5e1, #e2e8f0);
   margin: 15px 0;
 }
 
-/* Section */
 .resume-section {
   margin-bottom: 18px;
 }
@@ -137,33 +131,25 @@
   margin: 8px 0;
   color: #334155;
   text-align: justify;
+  line-height: 1.6;
 }
 
-/* Lists */
 .resume-list {
   margin: 8px 0;
   padding-left: 20px;
   font-size: 11px;
   color: #334155;
+  line-height: 1.55;
 }
 
 .resume-list li {
   margin: 4px 0;
 }
 
-/* Strengths */
-.strength-item {
-  margin-bottom: 12px;
+.compact-list {
+  margin-top: 6px;
 }
 
-.strength-title {
-  font-size: 13px;
-  font-weight: 600;
-  color: #1e40af;
-  margin: 0 0 5px 0;
-}
-
-/* Tech Stack */
 .tech-category {
   font-size: 11px;
   margin: 5px 0;
@@ -174,73 +160,18 @@
   color: #1e293b;
 }
 
-/* Education */
-.education-item {
-  margin-bottom: 10px;
-}
-
-.education-header {
-  font-size: 12px;
-  margin-bottom: 5px;
-  color: #1e293b;
-}
-
-/* Research */
-.research-item {
-  margin-bottom: 10px;
-}
-
-.research-header {
-  font-size: 12px;
-  margin-bottom: 3px;
-  color: #1e293b;
-}
-
-.research-period {
-  font-size: 11px;
-  color: #64748b;
-  margin-bottom: 3px;
-}
-
-.research-topic {
-  font-size: 11px;
-  font-weight: 600;
-  color: #334155;
-  margin: 5px 0 3px 0;
-}
-
-/* Project Sections */
-.project-section {
-  margin-bottom: 15px;
-}
-
-.project-title {
-  font-size: 16px;
-  font-weight: 700;
-  color: #1e40af;
-  margin: 0 0 5px 0;
-  padding-bottom: 5px;
-  border-bottom: 2px solid #3b82f6;
-}
-
-.project-subtitle {
-  font-size: 12px;
-  color: #475569;
-  margin: 0 0 10px 0;
-  font-style: italic;
-}
-
 .project-meta {
   background: #f8fafc;
   padding: 10px;
   border-radius: 6px;
   margin-bottom: 12px;
-  font-size: 10px;
+  font-size: 10.5px;
 }
 
 .meta-item {
-  margin: 3px 0;
+  margin: 4px 0;
   color: #334155;
+  line-height: 1.5;
 }
 
 .meta-item strong {
@@ -260,7 +191,7 @@
   margin: 6px 0;
   color: #334155;
   text-align: justify;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 .project-list {
@@ -275,191 +206,47 @@
   margin: 5px 0;
 }
 
-.project-list li strong {
-  color: #1e293b;
+.metric-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
 }
 
-.tech-stack-footer {
-  margin-top: 15px;
-  padding-top: 10px;
-  border-top: 1px solid #e2e8f0;
-  font-size: 11px;
+.metric-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #f8fafc;
+  border: 1px solid #dbe3ef;
+  font-size: 10px;
+  font-weight: 700;
   color: #334155;
 }
 
-.tech-stack-footer strong {
-  color: #1e293b;
+.project-figure {
+  margin: 12px 0 10px;
+  padding: 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #fcfdff;
 }
 
-/* Print Styles */
-@media print {
-  * {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-    color-adjust: exact !important;
-  }
-
-  body {
-    margin: 0;
-    padding: 0;
-  }
-
-  .resume-container {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-  }
-
-  /* Hide control buttons when printing */
-  .no-print {
-    display: none !important;
-  }
-
-  .resume-page {
-    width: 100%;
-    min-height: 0;
-    margin: 0;
-    padding: 15mm;
-    box-shadow: none;
-    page-break-after: always;
-    page-break-inside: auto;
-  }
-
-  .resume-page:last-child {
-    page-break-after: auto;
-  }
-
-  /* Ensure colors print correctly */
-  .resume-header {
-    border-bottom-color: #2563eb !important;
-  }
-
-  .resume-name {
-    color: #1e40af !important;
-  }
-
-  .section-title,
-  .project-title,
-  .subsection-title,
-  .strength-title {
-    color: #1e40af !important;
-  }
-
-  .section-title,
-  .project-title {
-    border-bottom-color: #3b82f6 !important;
-  }
-
-  .resume-contact,
-  .project-meta {
-    background-color: #f8fafc !important;
-  }
-
-  /* Prevent page breaks inside critical elements */
-  .resume-section,
-  .strength-item,
-  .education-item,
-  .research-item,
-  .resume-contact,
-  .project-meta {
-    page-break-inside: avoid;
-    break-inside: avoid;
-  }
-
-  /* Project sections can break, but subsections should stay together */
-  .project-section {
-    page-break-inside: auto;
-    orphans: 3;
-    widows: 3;
-  }
-
-  /* Keep subsections together */
-  .subsection-title {
-    page-break-after: avoid;
-    break-after: avoid;
-    orphans: 2;
-  }
-
-  /* Keep content with its header */
-  .project-content {
-    page-break-before: avoid;
-    break-before: avoid;
-    orphans: 2;
-    widows: 2;
-  }
-
-  /* Keep lists together with their headers */
-  .project-list {
-    page-break-before: avoid;
-    break-before: avoid;
-    page-break-inside: avoid;
-    break-inside: avoid;
-  }
-
-  .resume-list {
-    page-break-before: avoid;
-    break-before: avoid;
-    page-break-inside: avoid;
-    break-inside: avoid;
-  }
-
-  /* Headers should never be alone at the bottom */
-  h2, h3 {
-    page-break-after: avoid;
-    break-after: avoid;
-    orphans: 2;
-  }
-
-  h2 {
-    page-break-before: auto;
-  }
-
-  /* List items should stay together */
-  ul, ol {
-    page-break-inside: avoid;
-    break-inside: avoid;
-  }
-
-  li {
-    page-break-inside: avoid;
-    break-inside: avoid;
-  }
-
-  /* Approach/Results sections */
-  .project-list li {
-    orphans: 2;
-    widows: 2;
-  }
-
-  /* Tech stack footer should stay with content */
-  .tech-stack-footer {
-    page-break-before: avoid;
-    break-before: avoid;
-    orphans: 2;
-  }
-
-  /* Divider shouldn't be orphaned */
-  .resume-divider {
-    page-break-after: avoid;
-    break-after: avoid;
-  }
+.project-figure img {
+  display: block;
+  width: 100%;
+  max-height: 250px;
+  object-fit: contain;
+  margin: 0 auto;
 }
 
-/* Screen-only styles */
-@media screen {
-  .resume-container {
-    padding: 20px;
-    background: #f1f5f9;
-    min-height: 100vh;
-  }
-
-  .resume-page {
-    margin-bottom: 20px;
-  }
-
-  .resume-page:last-child {
-    margin-bottom: 40px;
-  }
+.figure-caption {
+  margin-top: 8px;
+  font-size: 10px;
+  line-height: 1.45;
+  color: #475569;
+  text-align: justify;
 }
 
 .resume-link-row {
@@ -485,4 +272,110 @@
 
 .resume-link-btn:hover {
   background: #f8fafc;
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 12mm;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .resume-container {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .resume-page {
+    width: 100%;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+    page-break-after: always;
+    page-break-inside: auto;
+  }
+
+  .resume-page:last-child {
+    page-break-after: auto;
+  }
+
+  .resume-header {
+    border-bottom-color: #2563eb !important;
+  }
+
+  .resume-name,
+  .section-title,
+  .subsection-title {
+    color: #1e40af !important;
+  }
+
+  .section-title {
+    border-bottom-color: #3b82f6 !important;
+  }
+
+  .resume-contact,
+  .project-meta,
+  .metric-chip,
+  .project-figure {
+    background-color: #f8fafc !important;
+  }
+
+  .resume-section,
+  .resume-contact,
+  .project-meta,
+  .project-figure {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .subsection-title,
+  h2,
+  h3 {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  .project-content,
+  .project-list,
+  .resume-list,
+  .figure-caption {
+    page-break-before: avoid;
+    break-before: avoid;
+  }
+
+  .project-figure img {
+    max-height: 200px;
+  }
+}
+
+@media screen {
+  .resume-container {
+    padding: 20px;
+    background: #f1f5f9;
+    min-height: 100vh;
+  }
+
+  .resume-page {
+    margin-bottom: 20px;
+  }
+
+  .resume-page:last-child {
+    margin-bottom: 40px;
+  }
 }
