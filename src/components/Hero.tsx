@@ -111,8 +111,8 @@ const Hero = () => {
             <div className="flex flex-wrap gap-3">
               <a
                 href="#resume"
-                className="inline-flex items-center gap-2 rounded-xl bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
-              >
+                className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 transition-colors hover:border-slate-400 hover:bg-slate-50"
+                >
                 <FileText className="h-4 w-4" />
                 {t('포트폴리오 PDF', 'Portfolio PDF')}
               </a>

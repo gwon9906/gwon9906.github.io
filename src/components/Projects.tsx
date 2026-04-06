@@ -21,6 +21,12 @@ type ProjectLink = {
   type: 'github' | 'evidence' | 'external';
 };
 
+type ProjectVisual = {
+  src: string;
+  alt: string;
+  caption: string;
+};
+
 interface Project {
   id: string;
   tier: 'featured' | 'supporting';
@@ -34,6 +40,7 @@ interface Project {
   techStack: string[];
   icon: LucideIcon;
   links?: ProjectLink[];
+  visual?: ProjectVisual;
   detail: {
     problem: string;
     context: string;
@@ -70,8 +77,16 @@ const Projects = () => {
       techStack: ['Python', 'TensorFlow/Keras', 'LSTM', 'Time-Series', 'Huber Loss'],
       icon: TrendingUp,
       links: [
-        { label: t('프로젝트 PDF', 'Project PDF'), href: '/files/valve-flow-report.pdf', type: 'evidence' },
+        { label: t('유량 예측 보고서', 'Valve Forecasting Report'), href: '/files/valve-flow-report.pdf', type: 'evidence' },
       ],
+      visual: {
+        src: '/files/valve-forecast-chart.png',
+        alt: t('유량 예측 결과 그래프', 'Valve forecasting result chart'),
+        caption: t(
+          '실제값과 예측값이 전반적으로 유사한 추세를 보이며, 정상 상태 기준선으로 활용 가능한 수준의 예측 안정성을 확인했습니다.',
+          'The predicted and observed values follow a similar overall trend, supporting use as a stable normal-state baseline.'
+        ),
+      },
       detail: {
         problem: t(
           '정상 상태 밸브의 유량을 안정적으로 예측해 이후 이상 징후 탐지의 기준선을 만들 필요가 있었습니다.',
@@ -82,23 +97,37 @@ const Projects = () => {
           'Inputs consisted of valve opening plus six pressure values, collected from real operating valves. Because measurement precision was limited, preprocessing rules and input representation had to be adjusted carefully.'
         ),
         myRole: [
-          t('데이터 분포와 이상치를 확인하고 전처리 기준을 정리했습니다.', 'Reviewed distribution and outliers, then defined preprocessing rules.'),
-          t('Encoder-LSTM 구조와 손실 함수를 직접 바꾸며 비교 실험을 진행했습니다.', 'Changed the Encoder-LSTM design and loss function directly through comparative experiments.'),
+          t(
+            '데이터 분포와 이상치를 확인하고 전처리 기준을 정리했습니다.',
+            'Reviewed distribution and outliers, then defined preprocessing rules.'
+          ),
+          t(
+            'Encoder-LSTM 구조와 손실 함수를 직접 바꾸며 비교 실험을 진행했습니다.',
+            'Changed the Encoder-LSTM design and loss function directly through comparative experiments.'
+          ),
         ],
         approach: [
-          t('정규화를 무조건 적용하지 않고 데이터 정밀도와 해석 가능성을 우선해 원본 값을 최대한 유지했습니다.', 'Avoided unnecessary normalization and preserved original values as much as possible based on data precision and interpretability.'),
-          t('기본 LSTM과 비교하며 인코더 구조를 추가했고, Huber Loss를 적용해 이상치 민감도를 낮췄습니다.', 'Added an encoder structure against a baseline LSTM and applied Huber Loss to reduce sensitivity to outliers.'),
+          t(
+            '정규화를 무조건 적용하지 않고 데이터 정밀도와 해석 가능성을 우선해 원본 값을 최대한 유지했습니다.',
+            'Avoided unnecessary normalization and preserved original values as much as possible based on data precision and interpretability.'
+          ),
+          t(
+            '기본 LSTM과 비교하며 인코더 구조를 추가했고, Huber Loss를 적용해 이상치 민감도를 낮췄습니다.',
+            'Added an encoder structure against a baseline LSTM and applied Huber Loss to reduce sensitivity to outliers.'
+          ),
         ],
-        result: [
-          'Loss 4.0376e-05',
-          'MAE 0.003941',
-          'MAPE 0.183501',
-        ],
+        result: ['Loss 4.0376e-05', 'MAE 0.003941', 'MAPE 0.183501'],
         challenges: [
-          t('시계열의 불연속 구간과 제한된 유효 자릿수 때문에 일반적인 전처리 관행을 그대로 적용하기 어려웠습니다.', 'Discontinuous segments and limited numeric precision made standard preprocessing choices unreliable.'),
+          t(
+            '시계열의 불연속 구간과 제한된 유효 자릿수 때문에 일반적인 전처리 관행을 그대로 적용하기 어려웠습니다.',
+            'Discontinuous segments and limited numeric precision made standard preprocessing choices unreliable.'
+          ),
         ],
         limitations: [
-          t('협력 데이터 특성상 전체 데이터와 코드를 공개하지는 못합니다.', 'The full data and code cannot be published because of collaboration constraints.'),
+          t(
+            '협력 데이터 특성상 전체 데이터와 코드를 공개하지는 못합니다.',
+            'The full data and code cannot be published because of collaboration constraints.'
+          ),
         ],
       },
     },
@@ -125,6 +154,14 @@ const Projects = () => {
         { label: 'GitHub', href: 'https://github.com/gwon9906/Lightweight-MF-BAM', type: 'github' },
         { label: t('최종 보고서', 'Final Report'), href: '/files/lora-final-report.pdf', type: 'evidence' },
       ],
+      visual: {
+        src: '/files/lora-success-chart.png',
+        alt: t('LoRa 누적 성공 패킷 비교 그래프', 'LoRa cumulative success comparison chart'),
+        caption: t(
+          '동일 조건 반복 전송에서 압축 payload가 원본 방식보다 더 높은 누적 성공 패킷 수를 유지했습니다.',
+          'Under repeated transmissions in the same conditions, the compressed payload maintained a higher cumulative success count than the raw approach.'
+        ),
+      },
       detail: {
         problem: t(
           'LoRa에서는 페이로드가 커질수록 전송 시간이 길어지고 패킷 손실 가능성이 높아져, 재전송으로 에너지 소모가 커지는 문제가 있었습니다.',
@@ -135,12 +172,24 @@ const Projects = () => {
           'The system had to send GPS and IMU sensor data. Over-compressing could damage restoration quality, so balancing transmission success with data usefulness mattered.'
         ),
         myRole: [
-          t('BAM 기반 압축·복원 구조를 구현하고 송수신 장치 파이프라인을 연결했습니다.', 'Implemented the BAM-based compression/restoration structure and connected the transmitter-receiver pipeline.'),
-          t('동일 장비·동일 설정 조건으로 반복 필드 테스트를 수행하고 결과를 로그로 정리했습니다.', 'Ran repeated field tests under the same device/configuration conditions and documented the results.'),
+          t(
+            'BAM 기반 압축·복원 구조를 구현하고 송수신 장치 파이프라인을 연결했습니다.',
+            'Implemented the BAM-based compression/restoration structure and connected the transmitter-receiver pipeline.'
+          ),
+          t(
+            '동일 장비·동일 설정 조건으로 반복 필드 테스트를 수행하고 결과를 로그로 정리했습니다.',
+            'Ran repeated field tests under the same device/configuration conditions and documented the results.'
+          ),
         ],
         approach: [
-          t('Raspberry Pi 기반 Linux 환경에서 GPS, 가속도, 자이로 데이터를 수집·압축·전송·복원하는 흐름을 구성했습니다.', 'Built a full flow that collects, compresses, transmits, and restores GPS, acceleration, and gyro data on Raspberry Pi Linux devices.'),
-          t('NLOS 2.0~2.6km 구간에서 RAW 32B와 압축 payload를 비교해 PDR과 복원 오차를 동시에 확인했습니다.', 'Compared RAW 32B and compressed payloads across NLOS 2.0–2.6 km runs, checking both PDR and restoration error.'),
+          t(
+            'Raspberry Pi 기반 Linux 환경에서 GPS, 가속도, 자이로 데이터를 수집·압축·전송·복원하는 흐름을 구성했습니다.',
+            'Built a full flow that collects, compresses, transmits, and restores GPS, acceleration, and gyro data on Raspberry Pi Linux devices.'
+          ),
+          t(
+            'NLOS 2.0~2.6km 구간에서 RAW 32B와 압축 payload를 비교해 PDR과 복원 오차를 동시에 확인했습니다.',
+            'Compared RAW 32B and compressed payloads across NLOS 2.0–2.6 km runs, checking both PDR and restoration error.'
+          ),
         ],
         result: [
           t('100회 전송 기준 성공 패킷 수 29건 → 33건', 'Successful packets per 100 transmissions: 29 → 33'),
@@ -148,10 +197,16 @@ const Projects = () => {
           'MSE 0.003676',
         ],
         challenges: [
-          t('현장 실험은 위치, 날씨, 전파 환경에 영향을 크게 받아 동일 조건을 맞추는 것이 중요했습니다.', 'Field tests were highly sensitive to location, weather, and radio conditions, so controlling comparison conditions was critical.'),
+          t(
+            '현장 실험은 위치, 날씨, 전파 환경에 영향을 크게 받아 동일 조건을 맞추는 것이 중요했습니다.',
+            'Field tests were highly sensitive to location, weather, and radio conditions, so controlling comparison conditions was critical.'
+          ),
         ],
         limitations: [
-          t('장기 운영 환경까지 검증한 것은 아니며, 다양한 이동 패턴에 대한 일반화 개선 여지가 있습니다.', 'This is not yet a long-term deployment study, and generalization to broader movement patterns can still improve.'),
+          t(
+            '장기 운영 환경까지 검증한 것은 아니며, 다양한 이동 패턴에 대한 일반화 개선 여지가 있습니다.',
+            'This is not yet a long-term deployment study, and generalization to broader movement patterns can still improve.'
+          ),
         ],
       },
     },
@@ -164,7 +219,7 @@ const Projects = () => {
         'A preliminary study that revisited PHY baselines and signal representations for LoRa recovery under ultra-low SNR.'
       ),
       problemType: ['Signal Processing', 'LoRa PHY', 'Preliminary Study'],
-      period: '2024.09 - 2025.02',
+      period: '2025.09 - 2026.02',
       teamSize: t('개인 연구', 'Individual research'),
       role: t('baseline 재구축, 실험 설계, 실패 원인 정리', 'Baseline reconstruction, experiment design, failure analysis'),
       highlights: [
@@ -183,20 +238,38 @@ const Projects = () => {
           'Rather than claiming immediate gains, the goal was to rebuild the demodulation baseline and organize an experiment framework around input representations.'
         ),
         myRole: [
-          t('LoRa upchirp/downchirp, dechirp, FFT 기반 baseline을 직접 재구성했습니다.', 'Reconstructed LoRa upchirp/downchirp, dechirp, and FFT baselines directly.'),
-          t('입력 표현, 손실 함수, skip connection 등 여러 대안을 비교하며 실패 원인을 정리했습니다.', 'Compared several alternatives such as input representations, loss functions, and skip connections while documenting failure causes.'),
+          t(
+            'LoRa upchirp/downchirp, dechirp, FFT 기반 baseline을 직접 재구성했습니다.',
+            'Reconstructed LoRa upchirp/downchirp, dechirp, and FFT baselines directly.'
+          ),
+          t(
+            '입력 표현, 손실 함수, skip connection 등 여러 대안을 비교하며 실패 원인을 정리했습니다.',
+            'Compared several alternatives such as input representations, loss functions, and skip connections while documenting failure causes.'
+          ),
         ],
         approach: [
-          t('스펙트로그램 기반 입력을 만들고 복원 성능보다 baseline 일치 여부를 우선 확인했습니다.', 'Built spectrogram-based inputs and prioritized baseline consistency before pushing restoration scores.'),
+          t(
+            '스펙트로그램 기반 입력을 만들고 복원 성능보다 baseline 일치 여부를 우선 확인했습니다.',
+            'Built spectrogram-based inputs and prioritized baseline consistency before pushing restoration scores.'
+          ),
         ],
         result: [
-          t('성능이 포트폴리오 대표 프로젝트가 될 수준은 아니었지만, 후속 연구 방향을 정리하는 데 의미 있는 기준을 남겼습니다.', 'The performance was not strong enough to lead the portfolio, but it provided a meaningful basis for follow-up work.'),
+          t(
+            '성능이 포트폴리오 대표 프로젝트가 될 수준은 아니었지만, 후속 연구 방향을 정리하는 데 의미 있는 기준을 남겼습니다.',
+            'The performance was not strong enough to lead the portfolio, but it provided a meaningful basis for follow-up work.'
+          ),
         ],
         challenges: [
-          t('목표 성능 미달 시 중단 기준을 명확히 두고, 무엇이 안 됐는지 남기는 것이 중요했습니다.', 'It was important to define stop criteria clearly and document what did not work when targets were missed.'),
+          t(
+            '목표 성능 미달 시 중단 기준을 명확히 두고, 무엇이 안 됐는지 남기는 것이 중요했습니다.',
+            'It was important to define stop criteria clearly and document what did not work when targets were missed.'
+          ),
         ],
         limitations: [
-          t('본 연구는 예비 검증 단계이며, 완료 프로젝트처럼 해석하면 안 됩니다.', 'This was a preliminary validation study and should not be interpreted like a completed production-ready project.'),
+          t(
+            '본 연구는 예비 검증 단계이며, 완료 프로젝트처럼 해석하면 안 됩니다.',
+            'This was a preliminary validation study and should not be interpreted like a completed production-ready project.'
+          ),
         ],
       },
     },
@@ -225,8 +298,8 @@ const Projects = () => {
           </h2>
           <p className="text-base leading-7 text-slate-600 sm:text-lg">
             {t(
-                '완료된 프로젝트를 먼저 배치했고, 진행 중인 연구나 예비 검증은 아래에 정리했습니다.',
-                'Completed projects are shown first, while ongoing or preliminary work is listed below.'
+              '완료된 프로젝트를 먼저 배치했고, 진행 중인 연구나 예비 검증은 아래에 정리했습니다.',
+              'Completed projects are shown first, while ongoing or preliminary work is listed below.'
             )}
           </p>
         </div>
@@ -244,6 +317,7 @@ const Projects = () => {
                 <button
                   type="button"
                   onClick={() => setExpandedProject(isExpanded ? '' : project.id)}
+                  aria-expanded={isExpanded}
                   className="w-full text-left"
                 >
                   <div className="flex flex-col gap-5 px-6 py-6 lg:px-8 lg:py-7">
@@ -254,17 +328,30 @@ const Projects = () => {
                         </div>
                         <div className="space-y-2">
                           <div className="flex flex-wrap items-center gap-2">
-                            <span className={`rounded-full px-3 py-1 text-xs font-semibold ${project.tier === 'featured' ? 'bg-blue-50 text-blue-700' : 'bg-slate-100 text-slate-600'}`}>
+                            <span
+                              className={`rounded-full px-3 py-1 text-xs font-semibold ${
+                                project.tier === 'featured'
+                                  ? 'bg-blue-50 text-blue-700'
+                                  : 'bg-slate-100 text-slate-600'
+                              }`}
+                            >
                               {project.tier === 'featured' ? t('핵심', 'Featured') : t('보조', 'Supporting')}
                             </span>
                             {project.problemType.map((tag) => (
-                              <span key={tag} className="rounded-full border border-slate-200 px-3 py-1 text-xs font-medium text-slate-600">
+                              <span
+                                key={tag}
+                                className="rounded-full border border-slate-200 px-3 py-1 text-xs font-medium text-slate-600"
+                              >
                                 {tag}
                               </span>
                             ))}
                           </div>
-                          <h3 className="text-2xl font-semibold tracking-tight text-slate-950">{project.title}</h3>
-                          <p className="max-w-4xl text-sm leading-7 text-slate-600 sm:text-base">{project.oneLiner}</p>
+                          <h3 className="text-2xl font-semibold tracking-tight text-slate-950">
+                            {project.title}
+                          </h3>
+                          <p className="max-w-4xl text-sm leading-7 text-slate-600 sm:text-base">
+                            {project.oneLiner}
+                          </p>
                         </div>
                       </div>
 
@@ -308,32 +395,45 @@ const Projects = () => {
                       transition={{ duration: 0.22 }}
                       className="overflow-hidden border-t border-slate-200"
                     >
-                      <div className="grid gap-8 px-6 py-6 lg:grid-cols-[1.15fr_0.85fr] lg:px-8 lg:py-8">
+                      <div className="grid gap-8 px-6 py-6 lg:grid-cols-[1.08fr_0.92fr] lg:px-8 lg:py-8">
                         <div className="space-y-6">
                           <div>
                             <p className="text-sm font-semibold text-slate-900">{t('문제', 'Problem')}</p>
-                            <p className="mt-2 text-sm leading-7 text-slate-600 sm:text-base">{project.detail.problem}</p>
+                            <p className="mt-2 text-sm leading-7 text-slate-600 sm:text-base">
+                              {project.detail.problem}
+                            </p>
                           </div>
+
                           <div>
                             <p className="text-sm font-semibold text-slate-900">{t('배경', 'Context')}</p>
-                            <p className="mt-2 text-sm leading-7 text-slate-600 sm:text-base">{project.detail.context}</p>
+                            <p className="mt-2 text-sm leading-7 text-slate-600 sm:text-base">
+                              {project.detail.context}
+                            </p>
                           </div>
+
                           <div>
                             <p className="text-sm font-semibold text-slate-900">{t('내 역할', 'My Role')}</p>
                             <ul className="mt-2 space-y-2">
                               {project.detail.myRole.map((item) => (
-                                <li key={item} className="flex items-start gap-3 text-sm leading-7 text-slate-600 sm:text-base">
+                                <li
+                                  key={item}
+                                  className="flex items-start gap-3 text-sm leading-7 text-slate-600 sm:text-base"
+                                >
                                   <span className="mt-2 h-1.5 w-1.5 rounded-full bg-slate-400" />
                                   <span>{item}</span>
                                 </li>
                               ))}
                             </ul>
                           </div>
+
                           <div>
                             <p className="text-sm font-semibold text-slate-900">{t('접근', 'Approach')}</p>
                             <ul className="mt-2 space-y-2">
                               {project.detail.approach.map((item) => (
-                                <li key={item} className="flex items-start gap-3 text-sm leading-7 text-slate-600 sm:text-base">
+                                <li
+                                  key={item}
+                                  className="flex items-start gap-3 text-sm leading-7 text-slate-600 sm:text-base"
+                                >
                                   <span className="mt-2 h-1.5 w-1.5 rounded-full bg-slate-400" />
                                   <span>{item}</span>
                                 </li>
@@ -353,6 +453,23 @@ const Projects = () => {
                                 </li>
                               ))}
                             </ul>
+
+                            {project.visual && (
+                              <div className="mt-5 overflow-hidden rounded-2xl border border-slate-200 bg-white">
+                                <div className="aspect-[16/10] w-full bg-white">
+                                  <img
+                                    src={project.visual.src}
+                                    alt={project.visual.alt}
+                                    loading="lazy"
+                                    decoding="async"
+                                    className="h-full w-full object-contain"
+                                  />
+                                </div>
+                                <div className="border-t border-slate-200 px-4 py-3">
+                                  <p className="text-xs leading-6 text-slate-500">{project.visual.caption}</p>
+                                </div>
+                              </div>
+                            )}
                           </div>
 
                           <div>
@@ -368,7 +485,9 @@ const Projects = () => {
                           </div>
 
                           <div>
-                            <p className="text-sm font-semibold text-slate-900">{t('한계 / 메모', 'Limitations / Notes')}</p>
+                            <p className="text-sm font-semibold text-slate-900">
+                              {t('한계 / 메모', 'Limitations / Notes')}
+                            </p>
                             <ul className="mt-2 space-y-2">
                               {project.detail.limitations.map((item) => (
                                 <li key={item} className="flex items-start gap-3 text-sm leading-7 text-slate-600">
@@ -383,7 +502,10 @@ const Projects = () => {
                             <p className="text-sm font-semibold text-slate-900">{t('기술 스택', 'Tech Stack')}</p>
                             <div className="mt-3 flex flex-wrap gap-2">
                               {project.techStack.map((stack) => (
-                                <span key={stack} className="rounded-full border border-slate-200 px-3 py-1.5 text-xs font-medium text-slate-600">
+                                <span
+                                  key={stack}
+                                  className="rounded-full border border-slate-200 px-3 py-1.5 text-xs font-medium text-slate-600"
+                                >
                                   {stack}
                                 </span>
                               ))}
@@ -392,19 +514,24 @@ const Projects = () => {
 
                           {project.links && project.links.length > 0 && (
                             <div className="flex flex-wrap gap-3">
-                              {project.links.map((link) => (
-                                <a
-                                  key={link.href}
-                                  href={link.href}
-                                  target={link.href.startsWith('http') ? '_blank' : undefined}
-                                  rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                                  className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 transition-colors hover:bg-slate-50"
-                                >
-                                  {linkIcon(link.type)}
-                                  {link.label}
-                                  <ArrowUpRight className="h-4 w-4" />
-                                </a>
-                              ))}
+                              {project.links.map((link) => {
+                                const openInNewTab =
+                                  link.href.startsWith('http') || link.href.startsWith('/');
+
+                                return (
+                                  <a
+                                    key={link.href}
+                                    href={link.href}
+                                    target={openInNewTab ? '_blank' : undefined}
+                                    rel={openInNewTab ? 'noopener noreferrer' : undefined}
+                                    className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 transition-colors hover:bg-slate-50"
+                                  >
+                                    {linkIcon(link.type)}
+                                    {link.label}
+                                    <ArrowUpRight className="h-4 w-4" />
+                                  </a>
+                                );
+                              })}
                             </div>
                           )}
                         </div>

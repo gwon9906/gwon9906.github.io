@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { BriefcaseBusiness, FileDown, Languages, Menu, X } from 'lucide-react';
+import { FileDown, Languages, Menu, X } from 'lucide-react';
 import { useLanguage } from '../contexts/useLanguage';
 
 const Navigation = () => {
@@ -68,15 +68,6 @@ const Navigation = () => {
           ))}
 
           <a
-            href="#portfolio"
-            className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-sm font-semibold text-slate-900 transition-colors hover:bg-slate-100"
-            title={t('제출용 포트폴리오', 'Submission Portfolio')}
-          >
-            <BriefcaseBusiness className="h-4 w-4" />
-            <span>{t('포트폴리오', 'Portfolio')}</span>
-          </a>
-
-          <a
             href="#resume"
             className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-sm font-semibold text-slate-900 transition-colors hover:bg-slate-100"
             title={t('제출용 요약', 'Submission Summary')}
@@ -125,21 +116,12 @@ const Navigation = () => {
             ))}
 
             <a
-              href="#portfolio"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-900"
-            >
-              <BriefcaseBusiness className="h-4 w-4" />
-              <span>{t('포트폴리오', 'Portfolio')}</span>
-            </a>
-
-            <a
               href="#resume"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-900"
+              className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-sm font-semibold text-slate-900 transition-colors hover:bg-slate-100"
+              title={t('프로젝트 포트폴리오 PDF', 'Project Portfolio PDF')}
             >
               <FileDown className="h-4 w-4" />
-              <span>{t('제출용 요약', 'Summary')}</span>
+              <span>{t('포트폴리오 PDF', 'Portfolio PDF')}</span>
             </a>
 
             <button

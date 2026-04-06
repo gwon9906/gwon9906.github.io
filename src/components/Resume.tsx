@@ -9,6 +9,7 @@ const loraReportUrl = 'https://gwon9906.github.io/files/lora-final-report.pdf';
 const loraGithubUrl = 'https://github.com/gwon9906/Lightweight-MF-BAM';
 const valveChartUrl = '/files/valve-forecast-chart.png';
 const loraChartUrl = '/files/lora-success-chart.png';
+const blogUrl = 'https://latetime.tistory.com/';
 
 const Resume = () => {
   const { t } = useLanguage();
@@ -246,16 +247,11 @@ const Resume = () => {
         </section>
 
         <section className="resume-section">
-          <h2 className="section-title">{t('사용 기술 및 링크', 'Technical Stack & Links')}</h2>
-          <div className="tech-category"><strong>Programming:</strong> Python</div>
-          <div className="tech-category"><strong>Frameworks:</strong> TensorFlow/Keras, PyTorch, NumPy</div>
-          <div className="tech-category"><strong>Systems:</strong> Linux, Git/GitHub, Raspberry Pi, CSV logging</div>
-          <div className="tech-category"><strong>Domain:</strong> Industrial sensor data, LoRa, Signal processing, Forecasting</div>
-          <ul className="resume-list compact-list">
+          <h2 className="section-title">{t('링크 및 추가 자료', 'Links & Additional Materials')}</h2>
+          <ul className="resume-list">
             <li><strong>GitHub:</strong> {githubUrl}</li>
             <li><strong>Portfolio:</strong> {portfolioUrl}</li>
-            <li><strong>{t('유량 예측 요약 보고서', 'Valve Forecasting Summary Report')}:</strong> {valveReportUrl}</li>
-            <li><strong>{t('LoRa 최종 보고서', 'LoRa Final Report')}:</strong> {loraReportUrl}</li>
+            <li><strong>Blog:</strong> {blogUrl}</li>
             <li><strong>LoRa GitHub:</strong> {loraGithubUrl}</li>
           </ul>
         </section>
