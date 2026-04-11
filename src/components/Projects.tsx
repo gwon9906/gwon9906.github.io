@@ -5,6 +5,7 @@ import {
   Calendar,
   ChevronDown,
   ChevronUp,
+  Cpu,
   FileText,
   Github,
   Radio,
@@ -54,7 +55,7 @@ interface Project {
 
 const Projects = () => {
   const { t } = useLanguage();
-  const [expandedProject, setExpandedProject] = useState<string>('valve-prediction');
+  const [expandedProject, setExpandedProject] = useState<string>('lora-bam');
 
   const projects: Project[] = [
     {
@@ -136,13 +137,16 @@ const Projects = () => {
       tier: 'featured',
       title: t('LoRa 저신호 환경 통신 개선', 'LoRa Communication Improvement in Low-Quality Channels'),
       oneLiner: t(
-        '저전력 장거리 통신 환경에서 payload를 줄이면서 복원 품질과 전송 성공률을 함께 검증한 프로젝트입니다.',
-        'A project that validated both restoration quality and transmission success while reducing payload in low-power long-range communication.'
+        'LPWAN 특성상 손실이 빈번한 LoRa 환경에서 재전송 및 대기 전력으로 기대 배터리 수명이 줄어드는 문제를 줄이기 위해, payload를 경량화하면서 복원 품질과 전송 성공률을 함께 검증한 프로젝트입니다.',
+        'A project that addressed LPWAN-style LoRa links where frequent losses increase retransmission and waiting energy, reducing expected battery life, by validating payload reduction together with restoration quality and transmission success.'
       ),
-      problemType: ['LoRa', 'Field Test', 'Compression', 'Sensor Data'],
+      problemType: ['LoRa', 'LPWAN', 'Field Test', 'Baseline Validation'],
       period: '2025.03 - 2025.06',
       teamSize: t('4인 팀', 'Team of 4'),
-      role: t('BAM 구조 구현, 송수신 파이프라인 구성, 필드 테스트', 'BAM implementation, TX/RX pipeline setup, field testing'),
+      role: t(
+        'BAM 구조 구현, baseline 비교, 송수신 파이프라인 구성, 필드 테스트',
+        'BAM implementation, baseline comparison, TX/RX pipeline setup, field testing'
+      ),
       highlights: [
         '32B → 20B payload',
         t('100회 기준 29 → 33', '29 → 33 per 100 transmissions'),
@@ -158,18 +162,18 @@ const Projects = () => {
         src: '/files/lora-success-chart.png',
         alt: t('LoRa 누적 성공 패킷 비교 그래프', 'LoRa cumulative success comparison chart'),
         caption: t(
-          '동일 조건 반복 전송에서 압축 payload가 원본 방식보다 더 높은 누적 성공 패킷 수를 유지했습니다.',
-          'Under repeated transmissions in the same conditions, the compressed payload maintained a higher cumulative success count than the raw approach.'
+          '손실이 반복되는 동일 조건 전송에서 압축 payload가 원본 방식보다 더 높은 누적 성공 패킷 수를 유지해 재전송 부담을 줄일 가능성을 확인했습니다.',
+          'Under repeated lossy transmissions in the same conditions, the compressed payload maintained a higher cumulative success count than the raw approach, indicating lower retransmission burden.'
         ),
       },
       detail: {
         problem: t(
-          'LoRa에서는 페이로드가 커질수록 전송 시간이 길어지고 패킷 손실 가능성이 높아져, 재전송으로 에너지 소모가 커지는 문제가 있었습니다.',
-          'In LoRa, larger payloads increase airtime and packet loss risk, which drives retransmissions and higher energy cost.'
+          'LoRa는 LPWAN 환경 특성상 전송 손실이 빈번하게 발생할 수 있고, 이때 재전송과 ACK 대기로 추가 전력이 소모되어 기대한 배터리 수명이 확보되지 않을 수 있었습니다. 그래서 단순히 데이터를 보내는 것이 아니라, 손실 가능성이 큰 환경에서 전송 부담 자체를 줄이는 방향이 필요했습니다.',
+          'In LPWAN-style LoRa environments, packet loss can occur frequently. Retransmissions and ACK waiting then consume extra energy, making the expected battery life hard to achieve. The goal was therefore not only to send data, but to reduce the transmission burden itself under lossy conditions.'
         ),
         context: t(
-          'GPS와 IMU 기반 센서 데이터를 보내야 했고, 단순히 많이 압축하면 복원 품질이 무너질 수 있어 통신 성공률과 데이터 유용성의 균형이 중요했습니다.',
-          'The system had to send GPS and IMU sensor data. Over-compressing could damage restoration quality, so balancing transmission success with data usefulness mattered.'
+          'GPS와 IMU 기반 센서 데이터를 주기적으로 보내야 했고, payload가 길어질수록 airtime이 늘어나 손실과 재전송 가능성이 커질 수 있었습니다. 다만 압축률만 높이면 복원 품질이 무너질 수 있어, 전송 성공률과 데이터 유용성의 균형을 맞추는 방식이 필요했습니다. 이 관점은 LPWAN 환경에서 재전송 대기 전력이 배터리 수명에 영향을 준다는 문제의식과도 맞닿아 있습니다.',
+          'The system had to transmit GPS and IMU sensor data periodically. Longer payloads increase airtime, which can raise both loss probability and retransmission risk. However, maximizing compression alone can damage restoration quality, so the method had to balance transmission success with data usefulness. This framing is aligned with the LPWAN perspective that retransmission and waiting energy directly affect battery lifetime.'
         ),
         myRole: [
           t(
@@ -177,35 +181,113 @@ const Projects = () => {
             'Implemented the BAM-based compression/restoration structure and connected the transmitter-receiver pipeline.'
           ),
           t(
-            '동일 장비·동일 설정 조건으로 반복 필드 테스트를 수행하고 결과를 로그로 정리했습니다.',
-            'Ran repeated field tests under the same device/configuration conditions and documented the results.'
+            '동일 장비·동일 설정 기준으로 baseline 비교와 반복 필드 테스트를 수행하고 결과를 로그로 정리했습니다.',
+            'Conducted baseline comparisons and repeated field tests under matched device/configuration conditions, then organized the logs.'
           ),
         ],
         approach: [
           t(
-            'Raspberry Pi 기반 Linux 환경에서 GPS, 가속도, 자이로 데이터를 수집·압축·전송·복원하는 흐름을 구성했습니다.',
+            'Raspberry Pi 기반 Linux 환경에서 GPS, 가속도, 자이로 데이터를 수집·압축·전송·복원하는 전체 흐름을 구성했습니다.',
             'Built a full flow that collects, compresses, transmits, and restores GPS, acceleration, and gyro data on Raspberry Pi Linux devices.'
           ),
           t(
-            'NLOS 2.0~2.6km 구간에서 RAW 32B와 압축 payload를 비교해 PDR과 복원 오차를 동시에 확인했습니다.',
-            'Compared RAW 32B and compressed payloads across NLOS 2.0–2.6 km runs, checking both PDR and restoration error.'
+            'RAW 전송, 단순 축소 방식, BAM 기반 압축 방식을 비교하면서 payload 감소 폭과 복원 오차를 함께 확인했습니다.',
+            'Compared raw transmission, simpler reduction approaches, and BAM-based compression while checking both payload reduction and restoration error.'
+          ),
+          t(
+            '단순히 가장 많이 줄어드는 방식을 고르기보다, 손실이 잦은 LPWAN 환경에서 재전송 부담을 줄일 가능성이 있고 동시에 복원 가능성도 유지되는 방식을 선택했습니다.',
+            'Rather than selecting the method that compressed the most, the chosen approach was the one that could reduce retransmission burden in lossy LPWAN conditions while still preserving recoverability.'
+          ),
+          t(
+            'NLOS 2.0~2.6km 구간에서 RAW 32B와 압축 payload를 비교해 전송 성공률과 복원 오차를 동시에 검증했습니다.',
+            'Compared RAW 32B and compressed payloads across NLOS 2.0–2.6 km runs, validating both transmission success and restoration error.'
           ),
         ],
         result: [
           t('100회 전송 기준 성공 패킷 수 29건 → 33건', 'Successful packets per 100 transmissions: 29 → 33'),
           'PDR 33%',
           'MSE 0.003676',
+          t('baseline 비교를 통해 BAM 선택 근거를 정리', 'Established a clear rationale for choosing BAM through baseline validation'),
         ],
         challenges: [
           t(
-            '현장 실험은 위치, 날씨, 전파 환경에 영향을 크게 받아 동일 조건을 맞추는 것이 중요했습니다.',
-            'Field tests were highly sensitive to location, weather, and radio conditions, so controlling comparison conditions was critical.'
+            'LPWAN 환경에서는 위치, 날씨, 전파 상태 변화에 따라 손실률이 흔들려 동일 조건 비교를 맞추는 것이 중요했습니다.',
+            'In LPWAN conditions, loss rates vary with location, weather, and radio status, so keeping a fair comparison setup was critical.'
+          ),
+          t(
+            '압축률만 강조하면 실제 활용 가능한 데이터 품질이 무너질 수 있어, “얼마나 줄였는가”보다 “줄인 뒤에도 다시 쓸 수 있는가”를 더 중요하게 봤습니다.',
+            'Focusing only on compression ratio could destroy usable data quality, so the more important question was whether the reduced payload remained reusable after restoration.'
           ),
         ],
         limitations: [
           t(
-            '장기 운영 환경까지 검증한 것은 아니며, 다양한 이동 패턴에 대한 일반화 개선 여지가 있습니다.',
-            'This is not yet a long-term deployment study, and generalization to broader movement patterns can still improve.'
+            '배터리 수명을 직접 계측한 실험은 아니며, 재전송 부담 감소와 airtime 축소를 통해 전력 소모를 줄일 가능성을 간접적으로 해석한 결과입니다.',
+            'This was not a direct battery-life measurement study. The energy benefit is interpreted indirectly through reduced retransmission burden and shorter airtime.'
+          ),
+        ],
+      },
+    },
+    {
+      id: 'onnx-sensor-compression',
+      tier: 'supporting',
+      title: t('ONNX 변환 기반 경량 추론 검증', 'ONNX-based Lightweight Inference Validation'),
+      oneLiner: t(
+        '센서 데이터 압축 모델을 ONNX로 변환해 추론 경량화 가능성과 배포 활용성을 보강한 보조 프로젝트입니다.',
+        'A supporting project that converted sensor-compression models to ONNX to reinforce lightweight inference and deployment readiness.'
+      ),
+      problemType: ['ONNX', 'Model Conversion', 'Inference', 'Edge AI'],
+      period: '2026.03 - 2026.04',
+      teamSize: t('개인 프로젝트', 'Individual project'),
+      role: t('모델 변환, 호환성 점검, 추론 경량화 검증', 'Model conversion, compatibility check, lightweight inference validation'),
+      highlights: [
+        t('PyTorch/TensorFlow 모델 변환 검토', 'Reviewed conversion from PyTorch/TensorFlow models'),
+        t('배포 활용성 보강', 'Strengthened deployment usability'),
+      ],
+      techStack: ['Python', 'ONNX', 'ONNX Runtime', 'PyTorch', 'TensorFlow'],
+      icon: Cpu,
+      detail: {
+        problem: t(
+          '모델 성능만 보여주는 것에서 끝나면 실제 활용 가능성이 약해 보일 수 있어, 학습된 모델을 더 가볍고 이식성 있게 사용할 수 있는 방법을 함께 보여줄 필요가 있었습니다.',
+          'Showing only model performance can make practical usability look weak, so it was necessary to demonstrate a more portable and lightweight inference path as well.'
+        ),
+        context: t(
+          '기존 센서 데이터 압축·복원 프로젝트를 포트폴리오에서 더 설득력 있게 만들기 위해, 학습 모델을 ONNX 형태로 변환해 다른 환경에서도 사용할 수 있는지 확인했습니다.',
+          'To make the existing sensor compression/restoration work more convincing in the portfolio, the project checked whether trained models could be converted into ONNX and reused across environments.'
+        ),
+        myRole: [
+          t(
+            '학습 모델을 ONNX 형식으로 변환 가능한 구조로 정리하고 추론 흐름을 점검했습니다.',
+            'Restructured trained models for ONNX export and checked the inference flow.'
+          ),
+          t(
+            '변환 이후 입력/출력 형태와 실행 가능성을 확인하며 배포 활용성을 정리했습니다.',
+            'Verified input-output compatibility and execution viability after conversion, then organized the deployment implications.'
+          ),
+        ],
+        approach: [
+          t(
+            '압축 또는 복원 모델을 ONNX로 변환하고, 학습 프레임워크 의존성을 줄인 추론 경로를 확인했습니다.',
+            'Converted compression or restoration models to ONNX and checked an inference path with reduced framework dependency.'
+          ),
+          t(
+            '단순 변환 성공 여부만이 아니라, 다른 언어·런타임 환경에서도 활용 가능한 구조인지 관점에서 정리했습니다.',
+            'The focus was not only whether conversion succeeded, but whether the result was practical across other languages and runtimes.'
+          ),
+        ],
+        result: [
+          t('모델 이식성과 경량 추론 관점의 보강 포인트 확보', 'Added a clear portability and lightweight-inference angle to the project'),
+          t('기존 프로젝트를 Edge/배포 관점으로 확장', 'Extended the existing project toward an edge/deployment perspective'),
+        ],
+        challenges: [
+          t(
+            '모든 연산이 ONNX 변환에 자연스럽게 대응하지는 않아 모델 구조와 연산 호환성을 함께 점검해야 했습니다.',
+            'Not every operation maps cleanly to ONNX, so model structure and operator compatibility had to be reviewed together.'
+          ),
+        ],
+        limitations: [
+          t(
+            '현재는 배포 가능성을 확인하는 보강 단계이며, 실제 저사양 디바이스 실측 벤치마크는 추가 과제로 남아 있습니다.',
+            'This is currently a reinforcement step focused on deployability; real low-spec device benchmarking remains future work.'
           ),
         ],
       },
