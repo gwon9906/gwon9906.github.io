@@ -135,12 +135,12 @@ const Projects = () => {
     {
       id: 'lora-bam',
       tier: 'featured',
-      title: t('LoRa 저신호 환경 통신 개선', 'LoRa Communication Improvement in Low-Quality Channels'),
+      title: t('LoRa 손실 환경 전송 최적화', 'LoRa Transmission Optimization in Lossy LPWAN Environments'),
       oneLiner: t(
-        'LPWAN 특성상 손실이 빈번한 LoRa 환경에서 재전송 및 대기 전력으로 기대 배터리 수명이 줄어드는 문제를 줄이기 위해, payload를 경량화하면서 복원 품질과 전송 성공률을 함께 검증한 프로젝트입니다.',
-        'A project that addressed LPWAN-style LoRa links where frequent losses increase retransmission and waiting energy, reducing expected battery life, by validating payload reduction together with restoration quality and transmission success.'
+        'LPWAN 환경에서 손실로 인한 재전송·대기 전력을 줄이기 위해, LoRa payload를 경량화하고 전송 성공률과 복원 품질을 함께 검증한 프로젝트입니다.',
+        'A project that lightened the LoRa payload to reduce retransmission and waiting energy in lossy LPWAN conditions, while validating both transmission success and restoration quality.'
       ),
-      problemType: ['LoRa', 'LPWAN', 'Field Test', 'Baseline Validation'],
+      problemType: ['LoRa', 'LPWAN', 'Payload Compression', 'Field Validation'],
       period: '2025.03 - 2025.06',
       teamSize: t('4인 팀', 'Team of 4'),
       role: t(
@@ -162,18 +162,18 @@ const Projects = () => {
         src: '/files/lora-success-chart.png',
         alt: t('LoRa 누적 성공 패킷 비교 그래프', 'LoRa cumulative success comparison chart'),
         caption: t(
-          '손실이 반복되는 동일 조건 전송에서 압축 payload가 원본 방식보다 더 높은 누적 성공 패킷 수를 유지해 재전송 부담을 줄일 가능성을 확인했습니다.',
-          'Under repeated lossy transmissions in the same conditions, the compressed payload maintained a higher cumulative success count than the raw approach, indicating lower retransmission burden.'
+          '동일 조건 반복 전송에서 압축 payload가 더 높은 누적 성공 패킷 수를 보여 전송 부담 완화 가능성을 확인했습니다.',
+          'Under repeated transmissions in the same conditions, the compressed payload produced more cumulative successful packets, indicating lower transmission burden.'
         ),
       },
       detail: {
         problem: t(
-          'LoRa는 LPWAN 환경 특성상 전송 손실이 빈번하게 발생할 수 있고, 이때 재전송과 ACK 대기로 추가 전력이 소모되어 기대한 배터리 수명이 확보되지 않을 수 있었습니다. 그래서 단순히 데이터를 보내는 것이 아니라, 손실 가능성이 큰 환경에서 전송 부담 자체를 줄이는 방향이 필요했습니다.',
-          'In LPWAN-style LoRa environments, packet loss can occur frequently. Retransmissions and ACK waiting then consume extra energy, making the expected battery life hard to achieve. The goal was therefore not only to send data, but to reduce the transmission burden itself under lossy conditions.'
+          'LoRa는 LPWAN 특성상 손실이 잦아 재전송과 ACK 대기로 전력이 더 들 수 있습니다. 그래서 기대 배터리 수명을 유지하려면 payload와 airtime을 함께 줄이는 접근이 필요했습니다.',
+          'Because LoRa operates in lossy LPWAN conditions, retransmissions and ACK waiting can increase power use. Preserving the expected battery life therefore required an approach that reduces both payload and airtime.'
         ),
         context: t(
-          'GPS와 IMU 기반 센서 데이터를 주기적으로 보내야 했고, payload가 길어질수록 airtime이 늘어나 손실과 재전송 가능성이 커질 수 있었습니다. 다만 압축률만 높이면 복원 품질이 무너질 수 있어, 전송 성공률과 데이터 유용성의 균형을 맞추는 방식이 필요했습니다. 이 관점은 LPWAN 환경에서 재전송 대기 전력이 배터리 수명에 영향을 준다는 문제의식과도 맞닿아 있습니다.',
-          'The system had to transmit GPS and IMU sensor data periodically. Longer payloads increase airtime, which can raise both loss probability and retransmission risk. However, maximizing compression alone can damage restoration quality, so the method had to balance transmission success with data usefulness. This framing is aligned with the LPWAN perspective that retransmission and waiting energy directly affect battery lifetime.'
+          'GPS·IMU 데이터를 주기적으로 보내는 구조라 payload 길이가 airtime과 손실 위험에 직접 연결됐습니다. 하지만 과하게 줄이면 복원 품질이 떨어질 수 있어, 전송 성공률과 데이터 유용성을 함께 봤습니다.',
+          'The system sent GPS and IMU data periodically, so payload length directly affected airtime and loss risk. But over-reduction could damage restoration quality, so the work evaluated transmission success together with data usefulness.'
         ),
         myRole: [
           t(
@@ -187,20 +187,16 @@ const Projects = () => {
         ],
         approach: [
           t(
-            'Raspberry Pi 기반 Linux 환경에서 GPS, 가속도, 자이로 데이터를 수집·압축·전송·복원하는 전체 흐름을 구성했습니다.',
-            'Built a full flow that collects, compresses, transmits, and restores GPS, acceleration, and gyro data on Raspberry Pi Linux devices.'
+            'Raspberry Pi 기반 Linux 환경에서 GPS·가속도·자이로 데이터를 수집·압축·전송·복원하는 파이프라인을 구성했습니다.',
+            'Built a pipeline that collects, compresses, transmits, and restores GPS, acceleration, and gyro data on Raspberry Pi Linux devices.'
           ),
           t(
             'RAW 전송, 단순 축소 방식, BAM 기반 압축 방식을 비교하면서 payload 감소 폭과 복원 오차를 함께 확인했습니다.',
             'Compared raw transmission, simpler reduction approaches, and BAM-based compression while checking both payload reduction and restoration error.'
           ),
           t(
-            '단순히 가장 많이 줄어드는 방식을 고르기보다, 손실이 잦은 LPWAN 환경에서 재전송 부담을 줄일 가능성이 있고 동시에 복원 가능성도 유지되는 방식을 선택했습니다.',
-            'Rather than selecting the method that compressed the most, the chosen approach was the one that could reduce retransmission burden in lossy LPWAN conditions while still preserving recoverability.'
-          ),
-          t(
-            'NLOS 2.0~2.6km 구간에서 RAW 32B와 압축 payload를 비교해 전송 성공률과 복원 오차를 동시에 검증했습니다.',
-            'Compared RAW 32B and compressed payloads across NLOS 2.0–2.6 km runs, validating both transmission success and restoration error.'
+            'NLOS 2.0~2.6km 구간 반복 테스트로 성공 패킷 수, PDR, MSE를 함께 보고 최종 방식을 정리했습니다.',
+            'Across repeated NLOS 2.0–2.6 km tests, evaluated successful packets, PDR, and MSE together to determine the final approach.'
           ),
         ],
         result: [
@@ -215,8 +211,8 @@ const Projects = () => {
             'In LPWAN conditions, loss rates vary with location, weather, and radio status, so keeping a fair comparison setup was critical.'
           ),
           t(
-            '압축률만 강조하면 실제 활용 가능한 데이터 품질이 무너질 수 있어, “얼마나 줄였는가”보다 “줄인 뒤에도 다시 쓸 수 있는가”를 더 중요하게 봤습니다.',
-            'Focusing only on compression ratio could destroy usable data quality, so the more important question was whether the reduced payload remained reusable after restoration.'
+            'payload를 줄이는 것과 복원 후에도 실제로 사용할 수 있는 데이터 품질을 유지하는 것 사이의 균형이 핵심이었습니다.',
+            'The key trade-off was reducing payload while still preserving data quality that remained usable after restoration.'
           ),
         ],
         limitations: [
@@ -230,64 +226,64 @@ const Projects = () => {
     {
       id: 'onnx-sensor-compression',
       tier: 'supporting',
-      title: t('ONNX 변환 기반 경량 추론 검증', 'ONNX-based Lightweight Inference Validation'),
+      title: t('ONNX 변환 기반 추가 검증', 'Additional Validation via ONNX Conversion'),
       oneLiner: t(
-        '센서 데이터 압축 모델을 ONNX로 변환해 추론 경량화 가능성과 배포 활용성을 보강한 보조 프로젝트입니다.',
-        'A supporting project that converted sensor-compression models to ONNX to reinforce lightweight inference and deployment readiness.'
+        '기존 압축·복원 모델을 ONNX로 변환해 실행 경로와 입출력 호환성을 추가 검증하고, 모델 이식성을 보강한 보조 프로젝트입니다.',
+        'A supporting project that converted the existing compression and restoration model to ONNX to add runtime and I/O validation, reinforcing model portability.'
       ),
-      problemType: ['ONNX', 'Model Conversion', 'Inference', 'Edge AI'],
+      problemType: ['ONNX', 'Additional Validation', 'Model Portability', 'Inference'],
       period: '2026.03 - 2026.04',
-      teamSize: t('개인 프로젝트', 'Individual project'),
-      role: t('모델 변환, 호환성 점검, 추론 경량화 검증', 'Model conversion, compatibility check, lightweight inference validation'),
+      teamSize: t('개인 검증', 'Individual validation'),
+      role: t('모델 변환, 입출력 검증, ONNX Runtime 실행 확인', 'Model conversion, I/O validation, ONNX Runtime verification'),
       highlights: [
-        t('PyTorch/TensorFlow 모델 변환 검토', 'Reviewed conversion from PyTorch/TensorFlow models'),
-        t('배포 활용성 보강', 'Strengthened deployment usability'),
+        t('ONNX Runtime 실행 확인', 'Verified ONNX Runtime execution'),
+        t('모델 이식성 추가 검증', 'Added portability validation'),
       ],
       techStack: ['Python', 'ONNX', 'ONNX Runtime', 'PyTorch', 'TensorFlow'],
       icon: Cpu,
       detail: {
         problem: t(
-          '모델 성능만 보여주는 것에서 끝나면 실제 활용 가능성이 약해 보일 수 있어, 학습된 모델을 더 가볍고 이식성 있게 사용할 수 있는 방법을 함께 보여줄 필요가 있었습니다.',
-          'Showing only model performance can make practical usability look weak, so it was necessary to demonstrate a more portable and lightweight inference path as well.'
+          '압축·복원 성능을 확인한 뒤에는, 같은 모델이 학습 환경 밖에서도 안정적으로 실행되는지 추가로 확인할 필요가 있었습니다.',
+          'After confirming compression and restoration performance, it was necessary to verify whether the same model could also run reliably outside the training environment.'
         ),
         context: t(
-          '기존 센서 데이터 압축·복원 프로젝트를 포트폴리오에서 더 설득력 있게 만들기 위해, 학습 모델을 ONNX 형태로 변환해 다른 환경에서도 사용할 수 있는지 확인했습니다.',
-          'To make the existing sensor compression/restoration work more convincing in the portfolio, the project checked whether trained models could be converted into ONNX and reused across environments.'
+          '기존 모델을 ONNX로 변환해 실행 경로를 점검하면서, 결과를 한 번 더 검증하고 모델 이식성까지 함께 확인했습니다.',
+          'By converting the existing model to ONNX and checking the runtime path, the work added another layer of validation while also confirming model portability.'
         ),
         myRole: [
           t(
-            '학습 모델을 ONNX 형식으로 변환 가능한 구조로 정리하고 추론 흐름을 점검했습니다.',
-            'Restructured trained models for ONNX export and checked the inference flow.'
+            '학습 모델을 ONNX로 내보낼 수 있도록 구조를 정리하고 export 경로를 점검했습니다.',
+            'Restructured the trained model for ONNX export and checked the export path.'
           ),
           t(
-            '변환 이후 입력/출력 형태와 실행 가능성을 확인하며 배포 활용성을 정리했습니다.',
-            'Verified input-output compatibility and execution viability after conversion, then organized the deployment implications.'
+            '변환 이후 입력/출력 호환성과 실행 결과를 확인해 실제 사용 시 제약을 정리했습니다.',
+            'Verified input-output compatibility and runtime outputs after conversion, then organized the practical constraints for use.'
           ),
         ],
         approach: [
           t(
-            '압축 또는 복원 모델을 ONNX로 변환하고, 학습 프레임워크 의존성을 줄인 추론 경로를 확인했습니다.',
-            'Converted compression or restoration models to ONNX and checked an inference path with reduced framework dependency.'
+            '학습된 모델을 ONNX로 변환하고 ONNX Runtime 기준 실행 여부를 확인했습니다.',
+            'Converted the trained model to ONNX and verified whether it could run on ONNX Runtime.'
           ),
           t(
-            '단순 변환 성공 여부만이 아니라, 다른 언어·런타임 환경에서도 활용 가능한 구조인지 관점에서 정리했습니다.',
-            'The focus was not only whether conversion succeeded, but whether the result was practical across other languages and runtimes.'
+            '입력 shape, dtype, 지원 연산을 점검해 단순 변환이 아니라 실제 추론 가능한 상태인지 확인했습니다.',
+            'Checked input shapes, dtypes, and supported operators so the work verified an actually runnable inference state rather than a file conversion alone.'
           ),
         ],
         result: [
-          t('모델 이식성과 경량 추론 관점의 보강 포인트 확보', 'Added a clear portability and lightweight-inference angle to the project'),
-          t('기존 프로젝트를 Edge/배포 관점으로 확장', 'Extended the existing project toward an edge/deployment perspective'),
+          t('기존 프로젝트에 모델 이식성과 실행 가능성 검증을 추가', 'Added portability and runtime validation to the existing project'),
+          t('학습 프레임워크 의존도를 낮춘 실행 경로를 정리', 'Organized a runtime path with lower dependence on the training framework'),
         ],
         challenges: [
           t(
-            '모든 연산이 ONNX 변환에 자연스럽게 대응하지는 않아 모델 구조와 연산 호환성을 함께 점검해야 했습니다.',
-            'Not every operation maps cleanly to ONNX, so model structure and operator compatibility had to be reviewed together.'
+            '변환 자체보다도 입력 shape, dtype, 지원 연산 차이 때문에 학습 환경과 같은 추론 흐름을 유지하는 것이 더 까다로웠습니다.',
+            'More difficult than the conversion itself was preserving the same inference flow across differences in input shapes, dtypes, and supported operators.'
           ),
         ],
         limitations: [
           t(
-            '현재는 배포 가능성을 확인하는 보강 단계이며, 실제 저사양 디바이스 실측 벤치마크는 추가 과제로 남아 있습니다.',
-            'This is currently a reinforcement step focused on deployability; real low-spec device benchmarking remains future work.'
+            '실제 저사양 디바이스에서의 지연 시간과 메모리 사용량 벤치마크는 후속 과제로 남아 있습니다.',
+            'Latency and memory benchmarks on actual low-spec devices remain future work.'
           ),
         ],
       },
@@ -380,8 +376,8 @@ const Projects = () => {
           </h2>
           <p className="text-base leading-7 text-slate-600 sm:text-lg">
             {t(
-              '완료된 프로젝트를 먼저 배치했고, 진행 중인 연구나 예비 검증은 아래에 정리했습니다.',
-              'Completed projects are shown first, while ongoing or preliminary work is listed below.'
+              '대표 프로젝트와 이를 보강한 추가 검증 작업을 함께 정리했습니다.',
+              'Featured projects are shown together with the additional validation work that strengthened them.'
             )}
           </p>
         </div>

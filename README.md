@@ -1,50 +1,48 @@
 # Haegwon Lee - AI/ML Engineering Portfolio
 
-Modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS.
+AI/ML portfolio focused on smart-manufacturing data, production-technology problems, and field validation.
 
-## 🚀 Features
+## Portfolio Highlights
 
-- **Modern Tech Stack**: React 18 + TypeScript + Vite
-- **Responsive Design**: Mobile-first design that works on all devices
-- **Smooth Animations**: Powered by Framer Motion
-- **Clean UI**: Built with Tailwind CSS
-- **SEO Optimized**: Meta tags and semantic HTML
-- **Fast Performance**: Optimized build with Vite
+- LoRa transmission optimization in lossy LPWAN environments  
+  `32B → 20B payload · 100회 전송 기준 29 → 33 · MSE 0.003676`
+- Industrial valve normal-flow forecasting  
+  `MAPE 0.1835 · MAE 0.00394 · Encoder-LSTM + Huber Loss`
+- Ultra-Low SNR LoRa preliminary study  
+  `Dechirp + FFT baseline 재구축 · 실패 원인 문서화`
 
-## 🛠️ Tech Stack
+## Features
 
-- **Frontend**: React 18, TypeScript
-- **Styling**: Tailwind CSS
-- **Animations**: Framer Motion
-- **Icons**: Lucide React
-- **Build Tool**: Vite
-- **Deployment**: GitHub Pages
+- React 18 + TypeScript + Vite 기반 포트폴리오
+- Tailwind CSS 기반 반응형 UI
+- Framer Motion 기반 인터랙션
+- 프로젝트별 문제 정의, 접근, 검증 결과 정리
 
-## 📦 Installation
+## Tech Stack
+
+- Frontend: React 18, TypeScript
+- Styling: Tailwind CSS
+- Animation: Framer Motion
+- Icons: Lucide React
+- Build Tool: Vite
+- Deployment: GitHub Pages
+
+## Installation
 
 ```bash
 npm install
 ```
 
-## 🏃 Development
+## Development
 
 ```bash
 npm run dev
 ```
 
-## 🔨 Build
+## Build
 
 ```bash
 npm run build
 ```
 
-## 📄 License
-
-© 2025 Haegwon Lee. All rights reserved.
-
----
-
-**Portfolio Highlights:**
-- 🔬 BAM-based LoRa Communication Optimization (62.5% compression, +14% PDR)
-- 📡 Industrial Valve Flow Prediction (98% MAPE improvement)
-- 💻 Ultra-Low SNR Signal Restoration & Classification (in progress)
+© 2026 Haegwon Lee. All rights reserved.

@@ -10,32 +10,32 @@ const Hero = () => {
       label: t('산업 시계열 예측', 'Industrial Time-Series Forecasting'),
       value: 'MAPE 0.1835',
       detail: t(
-        '실제 밸브 데이터에서 Encoder-LSTM과 Huber Loss를 적용해 정상 유량 예측 성능을 검증했습니다.',
-        'Validated a normal-flow forecasting model on real valve data using Encoder-LSTM and Huber Loss.'
+        '실제 밸브 데이터에서 Encoder-LSTM과 Huber Loss를 적용해 정상 유량 예측 기준선을 검증했습니다.',
+        'Validated a normal-flow forecasting baseline on real valve data using Encoder-LSTM and Huber Loss.'
       ),
     },
     {
-      label: t('현장 검증', 'Field Validation'),
+      label: t('LPWAN 전송 검증', 'LPWAN Transmission Validation'),
       value: t('100회 기준 29 → 33', '29 → 33 per 100 transmissions'),
       detail: t(
-        'NLOS 환경 필드 테스트에서 압축 payload 적용 후 성공 패킷 수를 개선했습니다.',
-        'Improved successful packet count after applying compressed payloads in NLOS field tests.'
+        '손실이 잦은 LoRa 환경에서 payload를 줄여 전송 부담을 낮추는 접근을 필드 테스트로 검증했습니다.',
+        'Validated through field tests that reducing payload can lower transmission burden in lossy LoRa environments.'
       ),
     },
     {
-      label: t('구현 환경', 'Implementation Environment'),
+      label: t('구현 및 검증 환경', 'Implementation & Validation'),
       value: 'Python · Linux · Raspberry Pi',
       detail: t(
-        '모델링뿐 아니라 데이터 처리, 장치 환경 실행, 실험 조건 통제와 문서화까지 직접 수행했습니다.',
-        'Worked end to end from modeling to data handling, device-side execution, controlled experiments, and documentation.'
+        '데이터 처리, 모델 구현, 장치 환경 실행, 로그 정리와 비교 실험까지 직접 연결해 수행했습니다.',
+        'Handled the full workflow from data processing and model implementation to device-side execution, logging, and comparative experiments.'
       ),
     },
   ];
 
   const chips = [
     t('제조·센서 데이터', 'Manufacturing & Sensor Data'),
-    t('스마트제조 / 생산기술 적합', 'Smart Manufacturing Fit'),
-    t('모델 설계 + 검증 중심', 'Modeling + Validation Focus'),
+    t('스마트제조 / 생산기술', 'Smart Manufacturing / Production Technology'),
+    t('실험 설계 · 검증 중심', 'Experiment Design · Validation Focus'),
   ];
 
   return (
@@ -61,22 +61,22 @@ const Hero = () => {
                 </h1>
                 <h2 className="max-w-4xl text-2xl font-semibold leading-tight text-slate-800 sm:text-3xl lg:text-[2rem]">
                   {t(
-                    '제조·센서 데이터에서 예측 모델과 현장 검증 파이프라인을 구현해 온 AI/SW 엔지니어',
-                    'AI/SW engineer focused on predictive models and validation pipelines for manufacturing and sensor data'
+                    '제조·센서 데이터에서 예측 모델, 전송 최적화, 검증 파이프라인을 구현해 온 AI/SW 엔지니어',
+                    'AI/SW engineer focused on predictive models, transmission optimization, and validation pipelines for manufacturing and sensor data'
                   )}
                 </h2>
               </div>
               <div className="max-w-3xl space-y-3 text-base leading-7 text-slate-600 sm:text-lg">
                 <p>
                   {t(
-                    '산업용 밸브 시계열 예측과 LoRa 통신 개선 프로젝트를 수행하며, 데이터 구조와 운영 제약을 반영한 모델 설계·실험·검증 경험을 쌓았습니다.',
-                    'Through industrial valve forecasting and LoRa communication projects, I built experience in model design, experimentation, and validation under real data and operating constraints.'
+                    '산업용 밸브 시계열 예측과 LoRa 기반 LPWAN 전송 최적화 프로젝트를 수행하며, 데이터 구조와 운영 제약을 반영한 모델 설계·실험·검증 경험을 쌓았습니다.',
+                    'Through industrial valve forecasting and LoRa-based LPWAN transmission optimization projects, I built experience in model design, experimentation, and validation under real data and operating constraints.'
                   )}
                 </p>
                 <p>
                   {t(
-                    '성능 수치만이 아니라 실험 조건, 비교 기준, 현장 적용 가능성을 함께 보는 방식을 중요하게 생각합니다.',
-                    'I focus not only on headline metrics but also on experiment conditions, fair comparisons, and practical applicability.'
+                    '수치만 제시하기보다 비교 기준, 실험 조건, 복원 가능성, 현장 적용성을 함께 검토하며 결과를 정리하는 방식을 중요하게 생각합니다.',
+                    'Rather than presenting metrics alone, I focus on organizing results around comparison baselines, experiment conditions, recoverability, and practical applicability.'
                   )}
                 </p>
               </div>
@@ -94,25 +94,23 @@ const Hero = () => {
             </div>
 
             <div className="grid gap-3 sm:grid-cols-3">
-              {[
-                'MAPE 0.1835',
-                t('32B → 20B Payload', '32B → 20B Payload'),
-                t('MSE 0.003676', 'MSE 0.003676'),
-              ].map((item) => (
-                <div
-                  key={item}
-                  className="rounded-2xl border border-slate-200 bg-white/85 px-4 py-3 text-sm font-medium text-slate-700 shadow-sm"
-                >
-                  {item}
-                </div>
-              ))}
+              {['MAPE 0.1835', t('Payload 32B → 20B', 'Payload 32B → 20B'), 'MSE 0.003676'].map(
+                (item) => (
+                  <div
+                    key={item}
+                    className="rounded-2xl border border-slate-200 bg-white/85 px-4 py-3 text-sm font-medium text-slate-700 shadow-sm"
+                  >
+                    {item}
+                  </div>
+                )
+              )}
             </div>
 
             <div className="flex flex-wrap gap-3">
               <a
                 href="#resume"
                 className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 transition-colors hover:border-slate-400 hover:bg-slate-50"
-                >
+              >
                 <FileText className="h-4 w-4" />
                 {t('포트폴리오 PDF', 'Portfolio PDF')}
               </a>
