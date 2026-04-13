@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta
+      name="description"
+      content="Haegwon Lee AI/SW resume focused on manufacturing and sensor-data validation projects."
+    />
+    <title>Haegwon Lee | AI/SW Resume</title>
+    <link rel="stylesheet" href="./lg-ax-resume.css" />
+  </head>
+  <body>
+    <div class="resume-controls no-print">
+      <button type="button" class="control-btn print-btn" onclick="window.print()">
+        페이지 저장 / PDF 출력
+      </button>
+    </div>
+
+    <main class="resume-page">
+      <header class="resume-header">
+        <div>
+          <h1 class="resume-name">이해권</h1>
+          <p class="resume-title">Manufacturing · Sensor Data AI/SW Resume</p>
+        </div>
+        <div class="resume-contact">
+          <div><strong>Email</strong> gwon99065@naver.com</div>
+          <div><strong>Phone</strong> 010-3414-9906</div>
+          <div><strong>GitHub</strong> github.com/gwon9906</div>
+          <div><strong>Portfolio</strong> gwon9906.github.io/#resume</div>
+        </div>
+      </header>
+
+      <section class="resume-section">
+        <h2 class="section-title">핵심 요약</h2>
+        <p class="summary-text">
+          제조·센서 데이터와 제약 환경에서 문제를 정의하고, 전처리 기준 수립·모델 설계·비교 실험·필드 검증까지 연결해 온 AI/SW 지원자입니다.
+          성능 수치만 제시하기보다 데이터 구조, 실험 조건, 오차 해석, 실제 적용 가능성을 함께 검토하는 방식으로 프로젝트를 수행했습니다.
+        </p>
+        <div class="metric-chip-row">
+          <span class="metric-chip">MAPE 0.1835</span>
+          <span class="metric-chip">Payload 32B → 20B</span>
+          <span class="metric-chip">29 → 33 / 100 tx</span>
+          <span class="metric-chip">Python · Linux · Raspberry Pi</span>
+        </div>
+      </section>
+
+      <section class="resume-section two-col">
+        <div>
+          <h2 class="section-title">학력</h2>
+          <div class="item-block">
+            <div class="item-head">
+              <strong>동의대학교</strong>
+              <span>졸업: 2026.02</span>
+            </div>
+            <div class="item-sub">컴퓨터공학과 학사</div>
+          </div>
+        </div>
+        <div>
+          <h2 class="section-title">자격</h2>
+          <div class="item-block">
+            <div class="item-head">
+              <strong>정보처리기사</strong>
+              <span>2025.06.13</span>
+            </div>
+            <div class="item-sub">한국산업인력공단</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="resume-section">
+        <h2 class="section-title">연구 경험</h2>
+        <div class="item-block">
+          <div class="item-head">
+            <strong>학부 연구생 · Wireless AIoT System Lab, 동의대학교</strong>
+            <span>2024.06 - 2026.02</span>
+          </div>
+          <ul class="bullet-list compact">
+            <li>산업용 밸브 유량 예측, LoRa 통신 개선 프로젝트를 중심으로 제조·센서 데이터 문제 수행</li>
+            <li>데이터 전처리, 모델 설계, 비교 실험, 필드 테스트, 결과 문서화까지 end-to-end로 진행</li>
+            <li>좋은 결과만 남기기보다 실패 원인과 한계를 함께 정리해 다음 실험 기준으로 활용</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="resume-section">
+        <h2 class="section-title">기술</h2>
+        <div class="skill-grid">
+          <div class="skill-card">
+            <div class="skill-title">언어 · 프레임워크</div>
+            <div class="skill-items">Python, TensorFlow/Keras, PyTorch, NumPy, Pandas</div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-title">데이터 · 검증</div>
+            <div class="skill-items">Time-Series Preprocessing, Outlier Handling, Experiment Design, Metric Analysis</div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-title">시스템 · 실행 환경</div>
+            <div class="skill-items">Linux, Git/GitHub, Raspberry Pi, CSV Logging, Field Testing</div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-title">도메인 경험</div>
+            <div class="skill-items">Industrial Sensor Data, LoRa, Signal Processing, Forecasting</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="resume-section">
+        <h2 class="section-title">주요 프로젝트</h2>
+
+        <article class="project-card">
+          <div class="project-head">
+            <div>
+              <h3>산업용 밸브 정상 유량 예측</h3>
+              <p>개인 연구 · 2024.07 - 2024.12</p>
+            </div>
+            <div class="project-role">역할: 데이터 분석, 전처리 기준 정리, Encoder-LSTM 설계, 실험 검증</div>
+          </div>
+          <ul class="bullet-list">
+            <li>정상 상태 기준선을 만들기 위해 실제 운용 밸브 시계열 데이터를 사용해 예측 문제 정의</li>
+            <li>개도율 변화에 따른 불연속성, 제한된 측정 정밀도, 이상치 특성을 반영해 전처리 기준 재설정</li>
+            <li>기본 LSTM과 Encoder-LSTM을 비교하고 Huber Loss를 적용해 이상치 민감도를 낮춘 구조 검증</li>
+            <li><strong>결과:</strong> Loss 4.0376e-05 / MAE 0.003941 / MAPE 0.183501</li>
+          </ul>
+        </article>
+
+        <article class="project-card">
+          <div class="project-head">
+            <div>
+              <h3>LoRa 저신호 환경 통신 개선</h3>
+              <p>4인 팀 프로젝트 · 2025.03 - 2025.06</p>
+            </div>
+            <div class="project-role">역할: BAM 기반 압축 구조 구현, 송수신 파이프라인 구성, 필드 테스트</div>
+          </div>
+          <ul class="bullet-list">
+            <li>payload 증가가 전송 성공률 저하로 이어지는지 검증하기 위해 GPS·IMU 센서 데이터 기반 압축 파이프라인 구성</li>
+            <li>Raspberry Pi 기반 Linux 환경에서 RAW 32B와 압축 20B payload를 동일 장비·동일 설정으로 반복 비교</li>
+            <li>약 2.0 - 2.6km NLOS 구간에서 100회 전송 실험을 수행해 실제 제약 환경의 개선 여부 확인</li>
+            <li><strong>결과:</strong> 성공 패킷 수 29 → 33 / 100 tx, PDR 33%, MSE 0.003676</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="resume-section two-col">
+        <div>
+          <h2 class="section-title">직무 강점</h2>
+          <ul class="bullet-list compact">
+            <li>데이터 구조와 운영 제약을 먼저 정리한 뒤 모델과 실험 조건을 설계</li>
+            <li>비교 가능한 기준선을 세우고 결과를 수치와 조건으로 함께 설명</li>
+            <li>실험실 성능보다 현장 적용 가능성과 검증 가능성을 우선</li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="section-title">링크</h2>
+          <ul class="link-list">
+            <li><a href="https://github.com/gwon9906" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li><a href="https://gwon9906.github.io/#resume" target="_blank" rel="noopener noreferrer">Portfolio PDF Page</a></li>
+            <li><a href="https://gwon9906.github.io/files/valve-flow-report-summary.pdf" target="_blank" rel="noopener noreferrer">Valve Forecasting Report</a></li>
+            <li><a href="https://gwon9906.github.io/files/lora-final-report.pdf" target="_blank" rel="noopener noreferrer">LoRa Final Report</a></li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
