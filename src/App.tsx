@@ -10,27 +10,35 @@ import Education from './components/Education';
 import TableOfContents from './components/TableOfContents';
 import Resume from './components/Resume';
 import CoverLetter from './components/CoverLetter';
+import NaverLabsDataPlatform from './components/NaverLabsDataPlatform';
 import { LanguageProvider } from './contexts/LanguageContext';
 
 function App() {
   const [showResume, setShowResume] = useState(false);
   const [showCoverLetter, setShowCoverLetter] = useState(false);
+  const [showNaverLabsDataPlatform, setShowNaverLabsDataPlatform] = useState(false);
 
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash;
       setShowResume(hash === '#resume');
       setShowCoverLetter(hash.startsWith('#cover-letter-'));
+      setShowNaverLabsDataPlatform(hash === '#naverlabs-data-platform' || hash === '#naverlabs');
     };
 
     handleHashChange();
     window.addEventListener('hashchange', handleHashChange);
+
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
   return (
     <LanguageProvider>
-      {showCoverLetter ? (
+      {showNaverLabsDataPlatform ? (
+        <div className="min-h-screen">
+          <NaverLabsDataPlatform />
+        </div>
+      ) : showCoverLetter ? (
         <div className="min-h-screen">
           <CoverLetter />
         </div>

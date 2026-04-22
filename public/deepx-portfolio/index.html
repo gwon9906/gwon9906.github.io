@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta
+      name="description"
+      content="DEEPX 지원용 프로젝트 포트폴리오 - On-device AI, Edge Runtime Validation, Constraint-driven Optimization"
+    />
+    <title>Haegwon Lee | DEEPX Portfolio</title>
+    <link rel="stylesheet" href="./deepx-portfolio.css" />
+  </head>
+  <body>
+    <div class="portfolio-controls no-print">
+      <button type="button" class="control-btn" onclick="window.print()">페이지 저장 / PDF 출력</button>
+    </div>
+
+    <main class="portfolio-doc">
+      <section class="page cover-page">
+        <header class="hero-header">
+          <div>
+            <p class="eyebrow">DEEPX Application Portfolio</p>
+            <h1>온디바이스 AI를 위한<br />경량화·런타임 검증 중심 포트폴리오</h1>
+            <p class="hero-subtitle">On-device AI · Edge Runtime Validation · Constraint-driven Optimization</p>
+          </div>
+          <div class="contact-card">
+            <strong>이해권</strong>
+            <span>Computer Engineering, Dong-eui University</span>
+            <span>Email: gwon99065@naver.com</span>
+            <span>GitHub: github.com/gwon9906</span>
+            <span>Portfolio: gwon9906.github.io/#resume</span>
+          </div>
+        </header>
+
+        <section class="fit-summary">
+          <h2>채용 담당자 관점 핵심 요약</h2>
+          <p>
+            제 강점은 모델 성능만 높이는 데서 끝나지 않고, <strong>제약이 있는 실행 환경에서 동작 가능한 형태로 모델과 파이프라인을 검증</strong>해 본 경험입니다.
+            DeepX의 Application Technology / DNN Model Optimization 계열 직무에서 요구하는 온디바이스 AI, 모델 최적화, PoC, SDK·개발도구 이해와 직접 맞닿는 경험을 아래 3개 프로젝트로 정리했습니다.
+          </p>
+        </section>
+
+        <section class="strength-grid">
+          <article class="strength-card">
+            <h3>01. Runtime 검증</h3>
+            <p>PyTorch 모델을 ONNX로 변환하고 ONNX Runtime에서 추론 결과 일치 여부를 확인해, 학습 모델을 배포 가능한 형태로 점검했습니다.</p>
+          </article>
+          <article class="strength-card">
+            <h3>02. Edge·PoC 관점</h3>
+            <p>Raspberry Pi 기반 Linux 환경에서 센서 수집-압축-전송-복원-로깅 파이프라인을 구성하고 필드 테스트까지 수행했습니다.</p>
+          </article>
+          <article class="strength-card">
+            <h3>03. 제약 기반 경량화</h3>
+            <p>저전력·고손실 LoRa 환경에서 payload를 줄이고, 전송 성공률과 복원 오차의 균형을 동일 조건 비교로 검증했습니다.</p>
+          </article>
+        </section>
+
+        <section class="translation-section">
+          <h2>내 경험을 DeepX 직무 언어로 번역하면</h2>
+          <table class="translation-table">
+            <thead>
+              <tr>
+                <th>DeepX 직무 키워드</th>
+                <th>나의 연결 경험</th>
+                <th>담당자에게 전달할 메시지</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>AI Application / PoC</td>
+                <td>센서 데이터 기반 압축·복원 파이프라인, LoRa 필드 테스트</td>
+                <td>모델을 실제 사용 흐름에 연결해 검증할 수 있음</td>
+              </tr>
+              <tr>
+                <td>Model Optimization / Compression</td>
+                <td>Autoencoder, BAM 기반 경량 표현 및 payload 축소</td>
+                <td>정확도만이 아니라 크기·전송 효율·복원 오차를 함께 봄</td>
+              </tr>
+              <tr>
+                <td>SDK / Runtime Validation</td>
+                <td>ONNX export, ONNX Runtime 추론 일치성 검증</td>
+                <td>학습 모델을 타깃 런타임에서 검증하는 습관이 있음</td>
+              </tr>
+              <tr>
+                <td>Technical Support / Reporting</td>
+                <td>비교 기준, 실험 조건, 실패 원인, 한계를 문서화</td>
+                <td>기술 내용을 상대방이 이해 가능한 기준으로 정리 가능</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </section>
+
+      <section class="page project-page">
+        <div class="page-title-row">
+          <div>
+            <p class="eyebrow">Project 1</p>
+            <h2>센서 데이터 경량 압축 및 ONNX 추론 검증</h2>
+          </div>
+          <span class="project-tag">Model Export · Runtime Validation · Edge-ready Pipeline</span>
+        </div>
+
+        <div class="project-meta">
+          <span>형태: 개인 프로젝트</span>
+          <span>역할: Autoencoder 학습, ONNX 변환, Runtime 검증</span>
+          <span>기술: Python, PyTorch, ONNX, ONNX Runtime, NumPy</span>
+        </div>
+
+        <section class="story-block">
+          <h3>문제 정의</h3>
+          <p>
+            온디바이스 AI에서는 모델 성능뿐 아니라 모델이 실제 추론 환경에서 안정적으로 동작하는지가 중요합니다. 따라서 단순히 학습 모델의 복원 성능을 확인하는 데서 끝내지 않고,
+            경량 표현을 만든 뒤 ONNX로 변환하고, ONNX Runtime에서 원 모델과 추론 결과가 일치하는지 검증하는 흐름으로 프로젝트를 구성했습니다.
+          </p>
+        </section>
+
+        <section class="pipeline-box">
+          <div class="pipe-node">Sensor Features</div>
+          <div class="pipe-arrow">→</div>
+          <div class="pipe-node">Autoencoder</div>
+          <div class="pipe-arrow">→</div>
+          <div class="pipe-node">Latent Vector</div>
+          <div class="pipe-arrow">→</div>
+          <div class="pipe-node">ONNX Export</div>
+          <div class="pipe-arrow">→</div>
+          <div class="pipe-node">ONNX Runtime Check</div>
+        </section>
+
+        <section class="two-panel">
+          <article>
+            <h3>접근</h3>
+            <ul>
+              <li>센서 피처를 압축·복원하는 Autoencoder 구조를 구성하고, 복원 결과를 기준으로 모델 동작을 확인했습니다.</li>
+              <li>학습된 PyTorch 모델을 ONNX로 export해 모델을 특정 프레임워크 안에만 묶어두지 않도록 했습니다.</li>
+              <li>ONNX Runtime에서 동일 입력에 대한 추론 결과를 비교해, 배포 전 수치 일치성 검증 흐름을 만들었습니다.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>DeepX 직무 연결</h3>
+            <ul>
+              <li>NPU SDK와 직접 동일한 환경은 아니지만, 모델을 타깃 런타임에 올리기 전 변환·검증하는 사고방식이 있습니다.</li>
+              <li>Application Technology 직무에서 필요한 PoC-ready 모델 검증, 예제화, 재현 가능한 실험 정리에 연결됩니다.</li>
+              <li>DNN Optimization 직무에서 필요한 모델 경량화·런타임 호환성 관점의 기초 경험으로 설명할 수 있습니다.</li>
+            </ul>
+          </article>
+        </section>
+
+        <section class="takeaway-box">
+          <strong>담당자에게 전달할 핵심 문장</strong>
+          <p>“저는 모델을 학습시키는 데서 끝내지 않고, 타깃 런타임에서 같은 결과가 재현되는지 확인하는 검증 흐름까지 만들 수 있습니다.”</p>
+        </section>
+      </section>
+
+      <section class="page project-page">
+        <div class="page-title-row">
+          <div>
+            <p class="eyebrow">Project 2</p>
+            <h2>저전력·고손실 LoRa 환경에서의 BAM 기반 경량 압축 검증</h2>
+          </div>
+          <span class="project-tag">Edge Constraint · Field Test · Compression</span>
+        </div>
+
+        <div class="project-meta">
+          <span>기간: 2025.03 - 2025.06</span>
+          <span>형태: 4인 팀 프로젝트</span>
+          <span>역할: BAM 기반 압축 구조 구현, 송수신 파이프라인 구성, 필드 테스트</span>
+        </div>
+
+        <section class="story-block">
+          <h3>문제 정의</h3>
+          <p>
+            LoRa 환경에서는 payload가 커질수록 전송 시간이 늘어나고, 간섭·충돌·재전송에 의해 전송 성공률이 떨어질 수 있습니다. 이 프로젝트에서는 모델 정확도만 보는 것이 아니라,
+            <strong>payload 경량화가 실제 고손실 무선 환경에서 데이터 도달성 개선으로 이어지는지</strong>를 검증하는 데 초점을 맞췄습니다.
+          </p>
+        </section>
+
+        <section class="metric-grid">
+          <div class="metric-card">
+            <span class="metric-label">Payload</span>
+            <strong>32B → 20B</strong>
+            <p>전송 단위 경량화</p>
+          </div>
+          <div class="metric-card">
+            <span class="metric-label">Success Packets</span>
+            <strong>29 → 33 / 100 tx</strong>
+            <p>동일 조건 반복 비교</p>
+          </div>
+          <div class="metric-card">
+            <span class="metric-label">Reconstruction Error</span>
+            <strong>MSE 0.003676</strong>
+            <p>복원 품질 유지</p>
+          </div>
+        </section>
+
+        <section class="two-panel">
+          <article>
+            <h3>접근</h3>
+            <ul>
+              <li>GPS·IMU 센서 데이터를 수집하고, BAM 기반 손실 압축 구조로 payload를 줄이는 파이프라인을 구성했습니다.</li>
+              <li>Raspberry Pi 기반 Linux 환경에서 수집-압축-전송-복원-로깅 흐름을 연결했습니다.</li>
+              <li>RAW 32B와 압축 payload를 동일 장비·동일 설정에서 반복 비교했습니다.</li>
+              <li>약 2.0 - 2.6km NLOS 구간에서 100회 전송 실험을 수행했습니다.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>DeepX 직무 연결</h3>
+            <ul>
+              <li>저전력·제약 환경에서 모델 또는 알고리즘이 실제 시스템 성능에 어떤 영향을 주는지 검증했습니다.</li>
+              <li>온디바이스 AI에서도 중요한 전력·대역폭·추론 비용·결과 품질의 균형 관점으로 설명할 수 있습니다.</li>
+              <li>고객 PoC나 레퍼런스 애플리케이션에서 필요한 “동일 조건 비교”와 “결과 재현성”을 강조할 수 있습니다.</li>
+            </ul>
+          </article>
+        </section>
+
+        <section class="takeaway-box">
+          <strong>담당자에게 전달할 핵심 문장</strong>
+          <p>“저는 경량화가 실제 제약 환경에서 의미 있는 개선인지, 전송 성공률과 복원 오차를 함께 놓고 검증해 본 경험이 있습니다.”</p>
+        </section>
+      </section>
+
+      <section class="page project-page final-page">
+        <div class="page-title-row">
+          <div>
+            <p class="eyebrow">Project 3</p>
+            <h2>산업용 밸브 정상 유량 예측</h2>
+          </div>
+          <span class="project-tag">Sensor Time-series · Error Analysis · Model Validation</span>
+        </div>
+
+        <div class="project-meta">
+          <span>기간: 2024.07 - 2024.12</span>
+          <span>형태: 개인 연구</span>
+          <span>역할: 데이터 분석, 전처리 기준 정리, Encoder-LSTM 설계, 실험 검증</span>
+        </div>
+
+        <section class="story-block">
+          <h3>문제 정의</h3>
+          <p>
+            정상 상태 밸브의 유량을 안정적으로 예측해두면 이후 고장 상태와의 차이를 기준선 형태로 비교할 수 있습니다. 실제 운용 데이터에는 개도율 변화에 따른 불연속성,
+            제한된 측정 정밀도, 이상치가 함께 존재했기 때문에 먼저 데이터 구조와 전처리 기준을 정리했습니다.
+          </p>
+        </section>
+
+        <section class="metric-grid three">
+          <div class="metric-card">
+            <span class="metric-label">Loss</span>
+            <strong>4.0376e-05</strong>
+            <p>최종 평가 지표</p>
+          </div>
+          <div class="metric-card">
+            <span class="metric-label">MAE</span>
+            <strong>0.003941</strong>
+            <p>평균 절대 오차</p>
+          </div>
+          <div class="metric-card">
+            <span class="metric-label">MAPE</span>
+            <strong>0.183501</strong>
+            <p>예측 오차율</p>
+          </div>
+        </section>
+
+        <section class="two-panel">
+          <article>
+            <h3>접근</h3>
+            <ul>
+              <li>개도율이 0이 되는 구간의 불연속성과 측정값의 유효 자릿수를 확인해 전처리 기준을 재설정했습니다.</li>
+              <li>기본 LSTM과 Encoder-LSTM을 비교하고, 이상치에 덜 민감한 Huber Loss를 적용했습니다.</li>
+              <li>결과를 단순 수치로만 보지 않고, 예측값과 실제값의 추세 일치 및 오차 구간을 함께 해석했습니다.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>DeepX 직무 연결</h3>
+            <ul>
+              <li>센서 시계열 데이터의 특성과 수집 조건을 먼저 이해한 뒤 모델을 설계했습니다.</li>
+              <li>Application PoC에서도 중요한 데이터 조건, 기준선, 평가 지표를 정리하는 역량을 보여줍니다.</li>
+              <li>AI 모델을 실제 산업 데이터에 적용할 때 필요한 검증 중심 사고를 강조할 수 있습니다.</li>
+            </ul>
+          </article>
+        </section>
+
+        <section class="final-summary">
+          <h3>포트폴리오 결론</h3>
+          <p>
+            이 포트폴리오는 “모델을 만들 수 있다”보다 “제약 환경에서 모델을 어떻게 동작 가능한 형태로 만들고 검증할 수 있는가”를 보여주기 위한 자료입니다.
+            DeepX 지원 시에는 ONNX Runtime 검증 경험, LoRa 필드 테스트, 산업 센서 예측 경험을 각각 <strong>런타임 검증, Edge PoC, 데이터 기반 모델 검증</strong>으로 설명하는 것이 가장 설득력 있습니다.
+          </p>
+        </section>
+
+        <section class="links-box">
+          <h3>관련 링크</h3>
+          <ul>
+            <li>GitHub: https://github.com/gwon9906</li>
+            <li>Sensor Compression ONNX: https://github.com/gwon9906/sensor-compression-onnx</li>
+            <li>Lightweight MF-BAM: https://github.com/gwon9906/Lightweight-MF-BAM</li>
+            <li>LoRa Final Report: https://gwon9906.github.io/files/lora-final-report.pdf</li>
+            <li>Valve Forecasting Report: https://gwon9906.github.io/files/valve-flow-report-summary.pdf</li>
+          </ul>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>
