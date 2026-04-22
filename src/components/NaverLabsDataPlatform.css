@@ -1,0 +1,206 @@
+/* NAVER LABS 맞춤 페이지 전용 보완 스타일
+   기존 포트폴리오의 전역 Manrope/font-sans 설정을 그대로 상속합니다. */
+
+.naverlabs-page {
+  font: inherit;
+}
+
+.naverlabs-hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.naverlabs-hero::after {
+  content: '';
+  position: absolute;
+  inset: auto -80px -120px auto;
+  width: 280px;
+  height: 280px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.13), transparent 68%);
+  pointer-events: none;
+}
+
+.naverlabs-result-strip {
+  background:
+    radial-gradient(circle at top right, rgba(37, 99, 235, 0.08), transparent 34%),
+    linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+}
+
+.naverlabs-metric-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.naverlabs-metric-card {
+  padding: 16px 18px;
+  border-radius: 18px;
+  border: 1px solid #dbe3ef;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.naverlabs-metric-card span {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.naverlabs-metric-card strong {
+  display: block;
+  font-size: clamp(1.25rem, 2vw, 1.7rem);
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+  color: #0f172a;
+}
+
+.naverlabs-metric-card p {
+  margin: 8px 0 0;
+  color: #475569;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.naverlabs-result-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+  gap: 18px;
+  align-items: stretch;
+  margin-top: 18px;
+}
+
+.naverlabs-result-figure,
+.naverlabs-table-card {
+  margin: 0;
+  padding: 16px;
+  border-radius: 20px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+}
+
+.naverlabs-result-figure {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.naverlabs-result-figure img {
+  width: 100%;
+  min-height: 220px;
+  max-height: 340px;
+  object-fit: contain;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+}
+
+.naverlabs-result-figure figcaption {
+  color: #475569;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.naverlabs-table-card {
+  overflow: hidden;
+}
+
+.naverlabs-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.naverlabs-result-table {
+  width: 100%;
+  min-width: 440px;
+  border-collapse: collapse;
+  font-size: 13px;
+  color: #334155;
+}
+
+.naverlabs-result-table th,
+.naverlabs-result-table td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #e2e8f0;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.6;
+}
+
+.naverlabs-result-table th {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #475569;
+  background: #f8fafc;
+}
+
+.naverlabs-result-table td:first-child {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.naverlabs-result-table tr:last-child td {
+  border-bottom: 0;
+}
+
+@media (max-width: 960px) {
+  .naverlabs-metric-grid,
+  .naverlabs-result-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .naverlabs-result-figure img {
+    min-height: 180px;
+  }
+}
+
+@media print {
+  .naverlabs-hero::after {
+    display: none;
+  }
+
+  .naverlabs-metric-grid,
+  .naverlabs-result-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .naverlabs-metric-card,
+  .naverlabs-result-figure,
+  .naverlabs-table-card {
+    box-shadow: none;
+    background: #ffffff !important;
+    border-color: #d7dee9 !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .naverlabs-metric-card {
+    padding: 10px 12px;
+  }
+
+  .naverlabs-result-figure {
+    padding: 10px;
+  }
+
+  .naverlabs-result-figure img {
+    min-height: auto;
+    max-height: 78mm;
+  }
+
+  .naverlabs-result-table {
+    min-width: 0;
+    font-size: 9.5pt;
+  }
+
+  .naverlabs-result-table th,
+  .naverlabs-result-table td {
+    padding: 7px 8px;
+  }
+}
