@@ -3,7 +3,7 @@ import { useLanguage } from '../contexts/useLanguage';
 import './Resume.css';
 
 const githubUrl = 'https://github.com/gwon9906';
-const portfolioUrl = 'https://gwon9906.github.io/#naverlabs-resume';
+const portfolioUrl = 'https://gwon9906.github.io';
 const valveReportUrl = 'https://gwon9906.github.io/files/valve-flow-report-summary.pdf';
 const loraReportUrl = 'https://gwon9906.github.io/files/lora-final-report.pdf';
 const loraGithubUrl = 'https://github.com/gwon9906/Lightweight-MF-BAM';
