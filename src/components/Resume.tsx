@@ -130,11 +130,12 @@ const Resume = () => {
             </figcaption>
           </figure>
 
-          <div className="subsection-title">{t('의미와 증빙', 'Why It Matters & Evidence')}</div>
+          <div className="subsection-title">{t('성과와 근거', 'Why It Matters & Evidence')}</div>
           <p className="project-content">
             {t(
-              '이 사례는 단순히 회귀 성능을 높인 프로젝트보다, 실제 산업 데이터에서 어떤 전처리와 검증 기준이 설득력 있는지를 정리한 프로젝트에 가깝습니다. 설비 데이터 이해와 검증 중심 접근을 보여줄 수 있다는 점에서 스마트제조·생산기술 직무와 관련성이 높습니다.',
-              'This case is valuable not only for the final metric, but for showing which preprocessing and validation rules are convincing on real industrial data. It demonstrates a validation-first approach relevant to smart-manufacturing and production-technology roles.'
+                '이 프로젝트는 실제 설비 데이터에서 정상 상태의 기준선을 어떻게 만들고 검증했는지를 보여주는 사례입니다. 개도율, 입·출력 압력, 이상치처럼 예측 결과를 흔들 수 있는 요소를 먼저 정리한 뒤, 기본 LSTM과 Encoder-LSTM을 비교해 정상 유량 예측 오차를 낮췄습니다. 최종 결과는 Loss 4.0376e-05, MAE 0.003941, MAPE 0.183501로 정리했고, 예측값과 실제값의 비교 그래프를 함께 남겨 단순 수치가 아니라 추세 일치 여부까지 확인할 수 있도록 했습니다.',
+                'This project shows how I built and validated a normal-state baseline from real equipment data. I first organized factors that could affect prediction quality, such as valve opening, inlet/outlet pressure, outliers, and limited measurement precision, then compared a baseline LSTM with an Encoder-LSTM to reduce normal-flow forecasting error. The final result was summarized as Loss 4.0376e-05, MAE 0.003941, and MAPE 0.183501, with prediction-vs-actual charts included to show not only the metric but also the trend alignment.'
+
             )}
           </p>
           <div className="project-content">
@@ -195,13 +196,11 @@ const Resume = () => {
             </figcaption>
           </figure>
 
-          <div className="subsection-title">{t('의미와 증빙', 'Why It Matters & Evidence')}</div>
-          <p className="project-content">
-            {t(
-              '이 프로젝트는 모델 구현 자체보다, 제약이 큰 환경에서 전송 효율과 데이터 품질 사이의 균형을 어떻게 실험적으로 검증했는지를 보여줍니다. 제조 현장의 설비·센서 데이터 처리와도 닿아 있는 강점입니다.',
-              'More than the model itself, this project shows how I experimentally validated the trade-off between transmission efficiency and data quality under tight constraints. That mindset is also relevant to equipment and sensor-data handling in manufacturing.'
-            )}
-          </p>
+          <div className="subsection-title">{t('성과와 근거', 'Why It Matters & Evidence')}</div>
+          {t(
+            '이 프로젝트는 통신 품질이 불안정한 환경에서 payload 경량화가 실제 전송 성공률 개선으로 이어지는지 확인한 사례입니다. 단순히 압축 모델을 구현하는 데서 끝내지 않고, 동일 장비·동일 설정에서 RAW 32B payload와 BAM 압축 20B payload를 반복 비교했습니다. 대표 실험에서 100회 전송 기준 성공 패킷 수가 29건에서 33건으로 증가했고, 복원 오차도 MSE 0.003676 수준으로 유지되어 전송량 감소와 데이터 복원 품질을 함께 확인할 수 있었습니다.',
+            'This project validates whether reducing payload size can improve real transmission success in unstable LoRa conditions. Rather than stopping at model implementation, I repeatedly compared RAW 32B payloads with BAM-compressed 20B payloads under the same hardware and configuration. In the representative trial, successful packets increased from 29 to 33 out of 100 transmissions, while reconstruction error remained at MSE 0.003676, confirming both transmission efficiency and data reconstruction quality.'
+          )}
           <div className="project-content">
             <strong>{t('관련 자료', 'Related material')}:</strong><br />
             {loraReportUrl}
@@ -223,12 +222,12 @@ const Resume = () => {
         </section>
 
         <section className="resume-section">
-          <h2 className="section-title">{t('프로젝트 관점 정리', 'Project View Summary')}</h2>
+          <h2 className="section-title">{t('프로젝트를 통해 보여주고 싶은 점', 'What These Projects Show')}</h2>
           <ul className="resume-list">
             <li>
               {t(
-                '두 프로젝트 모두 모델 선택 자체보다 데이터 구조와 실험 조건을 먼저 정리하고, 비교 가능한 기준선을 만든 뒤 검증했다는 공통점이 있습니다.',
-                'Both projects share the same pattern: clarify data structure and experiment conditions first, establish a fair baseline, then validate the outcome.'
+                '두 프로젝트는 도메인은 다르지만, 제가 문제를 다루는 방식이 일관되어 있습니다. 먼저 데이터가 수집된 조건과 제약을 확인하고, 비교 가능한 기준선을 만든 뒤, 성능 수치와 그래프로 결과를 검증했습니다. 유량 예측에서는 실제 산업 시계열 데이터의 전처리와 오차 해석을 다뤘고, LoRa 프로젝트에서는 제약 환경에서 직접 구현한 압축 구조를 필드 테스트로 확인했습니다. 그래서 이 포트폴리오는 특정 모델을 사용했다는 나열보다, 데이터를 해석하고 실험 조건을 맞춘 뒤 결과를 근거로 설명할 수 있습니다.',
+                'Both projects demonstrate a consistent approach to problem-solving: first, I clarify the data conditions and constraints, then establish a fair baseline, and finally validate the results with performance metrics and graphs. The valve project involved preprocessing and error interpretation of real industrial time-series data, while the LoRa project involved implementing a compression scheme under constraint conditions and validating it through field tests. Thus, this portfolio showcases my ability to interpret data and explain results based on experimental conditions rather than simply listing models used.'
               )}
             </li>
             <li>
