@@ -66,7 +66,7 @@ const NaverLabsResume = () => {
           <h2 className="section-title">{t('Profile', 'Profile')}</h2>
           <p className="section-content">
             {t(
-              '센서 데이터 처리와 제약 환경 검증을 중심으로 프로젝트를 수행해 왔습니다. 산업용 밸브 유량 예측에서는 시계열 데이터의 불연속 구간과 측정 정밀도를 반영해 전처리 기준과 모델 구조를 조정했고, LoRa 프로젝트에서는 payload 경량화가 실제 전송 성공률에 미치는 영향을 Raspberry Pi 기반 Linux 환경과 NLOS 필드 테스트로 확인했습니다. 공고의 핵심인 데이터 처리 자동화, 품질 검증, 실험 결과의 지표화·시각화 관점에서 바로 읽히도록 두 프로젝트를 정리했습니다.',
+              '센서 데이터 처리와 제약 환경 검증을 중심으로 프로젝트를 수행해 왔습니다. 산업용 밸브 유량 예측에서는 시계열 데이터의 불연속 구간과 측정 정밀도를 반영해 전처리 기준과 모델 구조를 조정했고, LoRa 프로젝트에서는 payload 경량화가 실제 전송 성공률에 미치는 영향을 Raspberry Pi 기반 Linux 환경과 NLOS 필드 테스트로 확인했습니다. 공고의 핵심인 데이터 처리 자동화, 품질 검증, 실험 결과의 지표화·시각화 읽히도록 두 프로젝트를 정리했습니다.',
               'My work has focused on sensor-data handling and validation under constrained environments. In industrial valve forecasting, I adjusted preprocessing rules and model structure by reflecting sequence discontinuities and limited measurement precision. In the LoRa project, I validated how payload reduction affects real transmission success through Raspberry Pi based Linux experiments and NLOS field tests. The two projects below are organized so their relevance to data processing, quality validation, and metric-driven analysis is immediately visible.'
             )}
           </p>
