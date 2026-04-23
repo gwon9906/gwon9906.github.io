@@ -204,3 +204,137 @@
     padding: 7px 8px;
   }
 }
+
+
+/* Print density tuning for the NAVER LABS page:
+   the default portfolio print layout can look too enlarged in browser PDF output.
+   These overrides tighten the printable canvas and typography only for this page. */
+@media print {
+  .naverlabs-page .portfolio-shell {
+    width: 176mm !important;
+    max-width: none !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+  }
+
+  .naverlabs-page .portfolio-section,
+  .naverlabs-page .portfolio-footer-grid {
+    margin-top: 12px !important;
+  }
+
+  .naverlabs-page .portfolio-hero {
+    padding: 11mm 10mm 9mm !important;
+    border-radius: 16px !important;
+  }
+
+  .naverlabs-page .portfolio-title {
+    font-size: 22pt !important;
+  }
+
+  .naverlabs-page .portfolio-section-header h2,
+  .naverlabs-page .portfolio-footer-card h2 {
+    font-size: 15.5pt !important;
+    line-height: 1.15 !important;
+  }
+
+  .naverlabs-page .portfolio-project-heading h3,
+  .naverlabs-page .portfolio-strength-item h3 {
+    font-size: 12.8pt !important;
+    line-height: 1.2 !important;
+  }
+
+  .naverlabs-page .portfolio-description,
+  .naverlabs-page .portfolio-project-subtitle,
+  .naverlabs-page .portfolio-body-block p,
+  .naverlabs-page .portfolio-body-block li,
+  .naverlabs-page .portfolio-result-header p:last-child,
+  .naverlabs-page .portfolio-proof-url-item span,
+  .naverlabs-page .portfolio-strength-item p,
+  .naverlabs-page .portfolio-info-group p,
+  .naverlabs-page .naverlabs-result-figure figcaption {
+    font-size: 9.2pt !important;
+    line-height: 1.52 !important;
+  }
+
+  .naverlabs-page .portfolio-eyebrow,
+  .naverlabs-page .portfolio-project-order,
+  .naverlabs-page .portfolio-block-label,
+  .naverlabs-page .portfolio-meta-line span,
+  .naverlabs-page .portfolio-intro-panel span,
+  .naverlabs-page .naverlabs-metric-card span,
+  .naverlabs-page .naverlabs-result-table th {
+    font-size: 8.2pt !important;
+    letter-spacing: 0.08em !important;
+  }
+
+  .naverlabs-page .portfolio-badge,
+  .naverlabs-page .portfolio-metric-chip,
+  .naverlabs-page .portfolio-proof-link {
+    min-height: 0 !important;
+    padding: 5px 9px !important;
+    font-size: 8.5pt !important;
+  }
+
+  .naverlabs-page .portfolio-intro-panel,
+  .naverlabs-page .portfolio-body-block,
+  .naverlabs-page .portfolio-result-strip,
+  .naverlabs-page .portfolio-proof-box,
+  .naverlabs-page .portfolio-info-group,
+  .naverlabs-page .naverlabs-metric-card,
+  .naverlabs-page .naverlabs-result-figure,
+  .naverlabs-page .naverlabs-table-card {
+    padding: 9px 11px !important;
+    border-radius: 12px !important;
+  }
+
+  .naverlabs-page .portfolio-project-card,
+  .naverlabs-page .portfolio-footer-card {
+    padding: 13px !important;
+    border-radius: 16px !important;
+  }
+
+  .naverlabs-page .portfolio-intro-grid,
+  .naverlabs-page .naverlabs-metric-grid,
+  .naverlabs-page .naverlabs-result-grid,
+  .naverlabs-page .portfolio-body-grid,
+  .naverlabs-page .portfolio-footer-grid,
+  .naverlabs-page .portfolio-result-header {
+    gap: 8px !important;
+  }
+
+  .naverlabs-page .portfolio-meta-bar {
+    margin-top: 10px !important;
+    padding: 8px 0 !important;
+  }
+
+  .naverlabs-page .portfolio-meta-line strong,
+  .naverlabs-page .portfolio-intro-panel strong {
+    font-size: 10pt !important;
+    line-height: 1.45 !important;
+  }
+
+  .naverlabs-page .naverlabs-metric-card strong {
+    font-size: 13pt !important;
+    line-height: 1.15 !important;
+  }
+
+  .naverlabs-page .naverlabs-metric-card p {
+    margin-top: 5px !important;
+    font-size: 8.9pt !important;
+    line-height: 1.45 !important;
+  }
+
+  .naverlabs-page .naverlabs-result-figure img {
+    max-height: 60mm !important;
+  }
+
+  .naverlabs-page .naverlabs-result-table {
+    font-size: 8.5pt !important;
+  }
+
+  .naverlabs-page .naverlabs-result-table th,
+  .naverlabs-page .naverlabs-result-table td {
+    padding: 5px 6px !important;
+    line-height: 1.45 !important;
+  }
+}
