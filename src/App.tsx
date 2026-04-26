@@ -12,6 +12,8 @@ import Resume from './components/Resume';
 import CoverLetter from './components/CoverLetter';
 import NaverLabsDataPlatform from './components/NaverLabsDataPlatform';
 import NaverLabsResume from './components/NaverLabsResume';
+import AckertonResume from './components/AckertonResume';
+import AckertonPortfolio from './components/AckertonPortfolio';
 import { LanguageProvider } from './contexts/LanguageContext';
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
   const [showCoverLetter, setShowCoverLetter] = useState(false);
   const [showNaverLabsDataPlatform, setShowNaverLabsDataPlatform] = useState(false);
   const [showNaverLabsResume, setShowNaverLabsResume] = useState(false);
+  const [showAckertonResume, setShowAckertonResume] = useState(false);
+  const [showAckertonPortfolio, setShowAckertonPortfolio] = useState(false);
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -27,17 +31,26 @@ function App() {
       setShowCoverLetter(hash.startsWith('#cover-letter-'));
       setShowNaverLabsDataPlatform(hash === '#naverlabs-data-platform' || hash === '#naverlabs');
       setShowNaverLabsResume(hash === '#naverlabs-resume' || hash === '#naverlabs-pdf');
+      setShowAckertonResume(hash === '#ackerton-resume');
+      setShowAckertonPortfolio(hash === '#ackerton-portfolio' || hash === '#ackerton');
     };
 
     handleHashChange();
     window.addEventListener('hashchange', handleHashChange);
-
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
   return (
     <LanguageProvider>
-      {showNaverLabsResume ? (
+      {showAckertonResume ? (
+        <div className="min-h-screen">
+          <AckertonResume />
+        </div>
+      ) : showAckertonPortfolio ? (
+        <div className="min-h-screen">
+          <AckertonPortfolio />
+        </div>
+      ) : showNaverLabsResume ? (
         <div className="min-h-screen">
           <NaverLabsResume />
         </div>
