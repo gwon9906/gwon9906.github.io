@@ -55,11 +55,11 @@ const AckertonResume = () => {
         </section>
 
         <section className="resume-section">
-          <h2 className="section-title">지원 직무 요약</h2>
+          <h2 className="section-title">지원 방향</h2>
           <p className="section-content">
-            제조·센서 데이터의 조건을 해석하고, AI 적용 가능성을 정량 지표로 검증해온 지원자입니다.
-            산업용 밸브 유량 예측과 LoRa 필드 테스트 경험을 바탕으로, 제조 현장의 문제를 데이터로
-            구조화하고 실제 개선 과제로 연결하는 역할에 기여하고자 합니다.
+            제조·센서 데이터가 어떤 조건에서 만들어졌는지 확인하고, 실험 기준을 맞춰 결과를 검증해온 경험이 있습니다.
+            산업용 밸브 유량 예측과 LoRa 필드 테스트를 수행하며, 모델 성능뿐 아니라 데이터의 배경과 현장 제약을 함께
+            보아야 결과를 설명할 수 있다는 점을 배웠습니다.
           </p>
           <div className="metric-chip-row">
             <span className="metric-chip">제조 데이터 분석</span>
@@ -70,7 +70,7 @@ const AckertonResume = () => {
         </section>
 
         <section className="resume-section">
-          <h2 className="section-title">핵심 역량</h2>
+          <h2 className="section-title">다룰 수 있는 영역</h2>
           <p className="tech-category">
             <strong>AI / Data</strong> Python, TensorFlow, PyTorch, Scikit-learn, LSTM, 회귀 모델링,
             시계열 전처리, 이상치 기준 정리
@@ -80,7 +80,7 @@ const AckertonResume = () => {
             센서 데이터 로깅, 실험 조건 관리
           </p>
           <p className="tech-category">
-            <strong>Consulting Fit</strong> 제조 데이터 조건 해석, 복잡한 이슈 구조화, 동일 조건 비교,
+            <strong>문제 접근</strong> 제조 데이터 조건 해석, 복잡한 이슈 구조화, 동일 조건 비교,
             리서치, 현황 분석, 검증 근거 정리
           </p>
         </section>
@@ -152,11 +152,11 @@ const AckertonResume = () => {
         </section>
 
         <section className="resume-section">
-          <h2 className="section-title">직무 연결성</h2>
+          <h2 className="section-title">프로젝트를 통해 확인한 점</h2>
           <p className="section-content">
-            두 프로젝트 모두 모델 구현보다 데이터가 만들어진 조건, 비교 기준, 현장 제약을 먼저 확인한 뒤
-            정량 지표로 결과를 검증했다는 공통점이 있습니다. 이 경험은 제조 현장의 데이터를 분석해 개선
-            기회를 찾고, AI 적용 가능성을 검토해야 하는 AI 제조혁신 컨설팅 업무와 맞닿아 있습니다.
+            두 프로젝트에서 제가 반복해서 신경 쓴 부분은 모델 자체보다 결과를 비교할 수 있는 조건을 먼저 정리하는 일이었습니다.
+            데이터가 어떤 상황에서 수집됐는지, 어떤 기준으로 개선 여부를 볼 수 있는지 확인한 뒤 정량 지표로 검증했습니다.
+            이 과정에서 현장 데이터는 성능 수치만으로 판단하기 어렵고, 수집 조건과 운영 제약까지 함께 보아야 한다는 점을 배웠습니다.
           </p>
         </section>
 

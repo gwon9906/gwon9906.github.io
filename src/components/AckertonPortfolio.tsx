@@ -46,7 +46,7 @@ const AckertonPortfolio = () => {
             <strong>지원 포지션</strong> AI 제조혁신 컨설턴트 인턴
           </div>
           <div className="contact-item">
-            <strong>Portfolio Focus</strong> 문제 정의 · 구현 · 정량 검증
+            <strong>Portfolio Focus</strong> 문제 이해 · 구현 · 정량 검증
           </div>
           <div className="contact-item">
             <strong>Resume</strong> {resumeUrl}
@@ -59,9 +59,8 @@ const AckertonPortfolio = () => {
         <section className="resume-section">
           <h2 className="section-title">포트폴리오 개요</h2>
           <p className="section-content">
-            이 포트폴리오는 제조·센서 데이터와 제약 환경에서의 실험 검증 경험을 보여주는 프로젝트 2개를
-            중심으로 구성했습니다. 각 프로젝트는 문제, 접근, 검증 결과, 직무 연결성 순서로 정리해 담당자가
-            빠르게 판단할 수 있도록 했습니다.
+            이 포트폴리오는 제조·센서 데이터와 제약 환경에서의 실험 검증 경험을 정리한 자료입니다.
+            각 프로젝트는 어떤 문제를 다뤘는지, 어떻게 접근했는지, 어떤 기준으로 결과를 확인했는지를 중심으로 구성했습니다.
           </p>
           <div className="metric-chip-row">
             <span className="metric-chip">산업용 밸브 유량 예측</span>
@@ -106,8 +105,8 @@ const AckertonPortfolio = () => {
           </div>
           <p className="project-content">
             예측값과 실제값이 대부분 구간에서 안정적으로 일치했고, 정상 상태 기준선으로 활용 가능한 수준의
-            추세 일치를 확인했습니다. 이 프로젝트는 실제 설비 데이터에서 데이터 조건 해석과 검증 기준 설정이
-            모델 성능만큼 중요하다는 점을 보여주는 사례입니다.
+            추세 일치를 확인했습니다. 이 프로젝트를 통해 실제 설비 데이터에서는 모델 구조뿐 아니라 데이터 조건과
+            검증 기준을 함께 정리해야 결과를 설명할 수 있다는 점을 배웠습니다.
           </p>
 
           <figure className="project-figure">
@@ -178,22 +177,23 @@ const AckertonPortfolio = () => {
             <img src={loraChartUrl} alt="LoRa RAW와 BAM 누적 성공 패킷 비교 그래프" />
             <figcaption className="figure-caption">
               RAW 전송 방식과 BAM 압축 전송 방식의 누적 성공 패킷 수 비교입니다. 동일 조건에서 payload 경량화가
-              전송 성공률 개선에 기여하는지 확인하기 위해 사용했습니다.
+              실제 전송 결과에 어떤 차이를 만드는지 확인하기 위해 사용했습니다.
             </figcaption>
           </figure>
         </section>
 
         <section className="resume-section">
-          <h2 className="section-title">AI 제조혁신 직무와의 연결성</h2>
+          <h2 className="section-title">프로젝트를 통해 보여주고 싶은 점</h2>
           <p className="section-content">
-            두 프로젝트는 도메인은 다르지만 접근 방식이 같습니다. 먼저 데이터가 만들어진 조건과 제약을 확인하고,
-            비교 가능한 기준선을 만든 뒤, 성능 수치와 실험 결과로 개선 여부를 검증했습니다. 유량 예측 프로젝트는
-            실제 산업 시계열 데이터의 전처리와 오차 해석 경험을 보여주고, LoRa 프로젝트는 제약 환경에서의 구현과
-            필드 테스트 역량을 보여줍니다.
+            두 프로젝트는 다루는 대상은 다르지만 접근 방식은 비슷했습니다. 먼저 데이터가 만들어진 조건과 제약을 확인하고,
+            비교 가능한 기준을 만든 뒤, 성능 수치와 실험 결과로 개선 여부를 확인했습니다. 유량 예측 프로젝트에서는
+            산업 시계열 데이터의 전처리와 오차 해석을 경험했고, LoRa 프로젝트에서는 제한된 환경에서 구현 결과를
+            실제 장비로 검증해보았습니다.
           </p>
           <p className="section-content">
-            따라서 이 포트폴리오는 특정 모델을 사용했다는 나열보다, 제조·센서 데이터를 해석하고 현장 조건을 반영해
-            AI 적용 가능성을 판단할 수 있는 역량을 보여주기 위한 자료입니다.
+            그래서 이 포트폴리오는 특정 모델을 사용했다는 나열보다, 데이터를 어떤 기준으로 보고 결과를 어떻게 확인했는지를
+            보여주는 데 초점을 두었습니다. 앞으로도 AI를 적용할 때 성능 수치만 보지 않고, 데이터의 조건과 실제 적용 가능성을
+            함께 확인하는 방식으로 문제를 다루고 싶습니다.
           </p>
         </section>
 
