@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, FileText, Github, Mail } from 'lucide-react';
 import { useLanguage } from '../contexts/useLanguage';
+import { trackEvent } from '../analytics';
 
 const Hero = () => {
   const { t } = useLanguage();
@@ -109,6 +110,7 @@ const Hero = () => {
             <div className="flex flex-wrap gap-3">
               <a
                 href="#resume"
+                onClick={() => trackEvent('click_hero_btn', { btn: 'portfolio_pdf' })}
                 className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 transition-colors hover:border-slate-400 hover:bg-slate-50"
               >
                 <FileText className="h-4 w-4" />
@@ -116,6 +118,7 @@ const Hero = () => {
               </a>
               <a
                 href="#projects"
+                onClick={() => trackEvent('click_hero_btn', { btn: 'selected_projects' })}
                 className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 transition-colors hover:border-slate-400 hover:bg-slate-50"
               >
                 {t('핵심 프로젝트', 'Selected Projects')}
@@ -128,6 +131,7 @@ const Hero = () => {
                 href="https://github.com/gwon9906"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackEvent('click_hero_btn', { btn: 'github' })}
                 className="inline-flex items-center gap-2 transition-colors hover:text-slate-950"
               >
                 <Github className="h-4 w-4" />
@@ -135,6 +139,7 @@ const Hero = () => {
               </a>
               <a
                 href="mailto:gwon99065@naver.com"
+                onClick={() => trackEvent('click_hero_btn', { btn: 'email' })}
                 className="inline-flex items-center gap-2 transition-colors hover:text-slate-950"
               >
                 <Mail className="h-4 w-4" />

@@ -1,5 +1,6 @@
 import { ArrowLeft, Download, ExternalLink, FileText } from 'lucide-react';
 import { useLanguage } from '../contexts/useLanguage';
+import { trackEvent } from '../analytics';
 import './Resume.css';
 
 const githubUrl = 'https://github.com/gwon9906';
@@ -15,6 +16,7 @@ const Resume = () => {
   const { t } = useLanguage();
 
   const handlePrint = () => {
+    trackEvent('click_resume_print');
     window.print();
   };
 
@@ -142,7 +144,13 @@ const Resume = () => {
             <strong>{t('관련 자료', 'Related material')}:</strong> {valveReportUrl}
           </div>
           <div className="resume-link-row no-print">
-            <a href={valveReportUrl} target="_blank" rel="noopener noreferrer" className="resume-link-btn">
+            <a
+              href={valveReportUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackEvent('click_resume_link', { link_label: 'valve_report', link_href: valveReportUrl })}
+              className="resume-link-btn"
+            >
               <FileText className="w-4 h-4" />
               {t('유량 예측 요약 보고서', 'Valve Forecasting Summary Report')}
               <ExternalLink className="w-4 h-4" />
@@ -208,12 +216,24 @@ const Resume = () => {
             {loraGithubUrl}
           </div>
           <div className="resume-link-row no-print">
-            <a href={loraReportUrl} target="_blank" rel="noopener noreferrer" className="resume-link-btn">
+            <a
+              href={loraReportUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackEvent('click_resume_link', { link_label: 'lora_report', link_href: loraReportUrl })}
+              className="resume-link-btn"
+            >
               <FileText className="w-4 h-4" />
               {t('LoRa 최종 보고서', 'LoRa Final Report')}
               <ExternalLink className="w-4 h-4" />
             </a>
-            <a href={loraGithubUrl} target="_blank" rel="noopener noreferrer" className="resume-link-btn">
+            <a
+              href={loraGithubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackEvent('click_resume_link', { link_label: 'lora_github', link_href: loraGithubUrl })}
+              className="resume-link-btn"
+            >
               <FileText className="w-4 h-4" />
               GitHub
               <ExternalLink className="w-4 h-4" />

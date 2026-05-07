@@ -11,12 +11,14 @@ import {
   Wrench,
 } from 'lucide-react';
 import { useLanguage } from '../contexts/useLanguage';
+import { trackEvent } from '../analytics';
 import './Portfolio.css';
 
 const Portfolio = () => {
   const { t } = useLanguage();
 
   const handlePrint = () => {
+    trackEvent('click_portfolio_print');
     window.print();
   };
 
@@ -300,7 +302,21 @@ const Portfolio = () => {
                     <p className="portfolio-block-title">{t('증빙 링크', 'Evidence links')}</p>
                     <div className="portfolio-proof-links no-print">
                       {project.links.map((link) => (
-                        <a key={link.url} href={link.url} target="_blank" rel="noopener noreferrer" className="portfolio-proof-link">
+                        <a
+                          key={link.url}
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() =>
+                            trackEvent('click_portfolio_link', {
+                              project_id: project.id,
+                              link_label: link.label,
+                              link_kind: link.kind,
+                              link_href: link.url,
+                            })
+                          }
+                          className="portfolio-proof-link"
+                        >
                           {link.kind === 'github' ? <Github className="w-4 h-4" /> : <FileText className="w-4 h-4" />}
                           <span>{link.label}</span>
                           <ExternalLink className="w-4 h-4" />

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowUpRight, FileText, Github, Mail, Phone } from 'lucide-react';
 import { useLanguage } from '../contexts/useLanguage';
+import { trackEvent } from '../analytics';
 
 const Contact = () => {
   const { t } = useLanguage();
@@ -58,6 +59,12 @@ const Contact = () => {
                 href={contact.href}
                 target={contact.href.startsWith('http') || contact.href.startsWith('/files/') ? '_blank' : undefined}
                 rel={contact.href.startsWith('http') || contact.href.startsWith('/files/') ? 'noopener noreferrer' : undefined}
+                onClick={() =>
+                  trackEvent('click_contact_link', {
+                    contact_label: contact.label,
+                    contact_href: contact.href,
+                  })
+                }
                 className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition-transform hover:-translate-y-0.5"
               >
                 <contact.icon className="h-5 w-5 text-slate-900" />

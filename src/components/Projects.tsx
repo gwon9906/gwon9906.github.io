@@ -15,6 +15,7 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 import { useLanguage } from '../contexts/useLanguage';
+import { trackEvent } from '../analytics';
 
 type ProjectLink = {
   label: string;
@@ -394,7 +395,13 @@ const Projects = () => {
               >
                 <button
                   type="button"
-                  onClick={() => setExpandedProject(isExpanded ? '' : project.id)}
+                  onClick={() => {
+                    setExpandedProject(isExpanded ? '' : project.id);
+                    trackEvent('click_project_card', {
+                      project_id: project.id,
+                      project_title: project.title,
+                    });
+                  }}
                   aria-expanded={isExpanded}
                   className="w-full text-left"
                 >
@@ -602,6 +609,15 @@ const Projects = () => {
                                     href={link.href}
                                     target={openInNewTab ? '_blank' : undefined}
                                     rel={openInNewTab ? 'noopener noreferrer' : undefined}
+                                    onClick={() =>
+                                      trackEvent('click_project_link', {
+                                        project_id: project.id,
+                                        project_title: project.title,
+                                        link_label: link.label,
+                                        link_type: link.type,
+                                        link_href: link.href,
+                                      })
+                                    }
                                     className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 transition-colors hover:bg-slate-50"
                                   >
                                     {linkIcon(link.type)}
