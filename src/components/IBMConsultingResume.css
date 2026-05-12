@@ -1,0 +1,345 @@
+/* IBM Consulting English Resume - screenshot-inspired layout */
+.ibm-resume-container {
+  background: #f4f6f8;
+  color: #1f2933;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.55;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.ibm-resume-controls {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 12px;
+  z-index: 1000;
+}
+
+.ibm-control-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(15, 23, 42, 0.16);
+}
+
+.ibm-back-btn {
+  background: #ffffff;
+  border: 2px solid #2f6fa7;
+  color: #2f6fa7;
+}
+
+.ibm-print-btn {
+  border: none;
+  background: #2f6fa7;
+  color: #ffffff;
+}
+
+.ibm-resume-page {
+  width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto 18px;
+  padding: 18mm 16mm;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
+  box-sizing: border-box;
+  page-break-after: always;
+}
+
+.ibm-resume-page:last-child {
+  page-break-after: auto;
+}
+
+.ibm-top-title {
+  margin: 0 0 28px;
+  font-size: 28px;
+  line-height: 1.25;
+  color: #111827;
+  font-weight: 800;
+}
+
+.ibm-intro-layout {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 44px;
+  align-items: start;
+  margin-bottom: 28px;
+}
+
+.ibm-photo-box {
+  width: 150px;
+  height: 180px;
+  margin-top: 42px;
+  border: 2px solid #777;
+  border-radius: 18px;
+  background: #eef0f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.ibm-photo-text {
+  font-size: 12px;
+  color: #4b5563;
+  line-height: 1.45;
+}
+
+.ibm-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.ibm-section-title {
+  color: #2f6fa7;
+  font-size: 26px;
+  font-weight: 800;
+  margin: 0 0 14px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #edf1f5;
+}
+
+.ibm-intro-section {
+  min-width: 0;
+}
+
+.ibm-block {
+  margin-bottom: 18px;
+}
+
+.ibm-block h3,
+.ibm-skill-grid h3,
+.ibm-project h3,
+.ibm-activity h3 {
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: 800;
+  color: #1f2937;
+}
+
+.ibm-block p,
+.ibm-project-body p,
+.ibm-activity p {
+  margin: 0 0 10px;
+  font-size: 13px;
+  color: #303841;
+}
+
+.ibm-blog-line {
+  margin: 26px 0 28px;
+  font-size: 13px;
+}
+
+.ibm-blog-line a {
+  color: #4b5563;
+  text-decoration: underline;
+}
+
+.ibm-section {
+  margin-bottom: 28px;
+}
+
+.ibm-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 28px;
+  font-size: 13px;
+}
+
+.ibm-info-grid div {
+  display: grid;
+  grid-template-columns: 145px 1fr;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.ibm-info-grid strong {
+  color: #111827;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.ibm-info-grid span {
+  color: #374151;
+}
+
+.ibm-skill-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 18px;
+}
+
+.ibm-skill-grid > div {
+  border: 1px solid #e4e8ee;
+  border-radius: 10px;
+  padding: 13px 14px;
+  background: #fbfcfe;
+}
+
+.ibm-skill-grid p {
+  margin: 0;
+  font-size: 13px;
+  color: #374151;
+}
+
+.ibm-project,
+.ibm-activity {
+  margin-bottom: 28px;
+}
+
+.ibm-project h3,
+.ibm-activity h3 {
+  font-size: 17px;
+}
+
+.ibm-project-meta {
+  display: grid;
+  gap: 5px;
+  margin: 10px 0 12px;
+  padding: 12px 14px;
+  border-left: 4px solid #2f6fa7;
+  background: #f8fafc;
+  font-size: 12.5px;
+  color: #374151;
+}
+
+.ibm-project-body ul,
+.ibm-activity ul,
+.ibm-links-list {
+  margin: 10px 0 0;
+  padding-left: 20px;
+  font-size: 13px;
+  color: #303841;
+}
+
+.ibm-project-body li,
+.ibm-activity li,
+.ibm-links-list li {
+  margin: 7px 0;
+}
+
+.ibm-project-limit {
+  margin-top: 12px !important;
+  padding: 11px 13px;
+  background: #fffaf0;
+  border: 1px solid #f4d99b;
+  border-radius: 8px;
+}
+
+.ibm-link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.ibm-link-row a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 8px 12px;
+  text-decoration: none;
+  color: #0f172a;
+  font-size: 12px;
+  font-weight: 700;
+  background: #ffffff;
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 10mm;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .ibm-resume-container {
+    padding: 0;
+    background: #ffffff;
+  }
+
+  .ibm-resume-page {
+    width: 100%;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+    page-break-after: always;
+  }
+
+  .ibm-resume-page:last-child {
+    page-break-after: auto;
+  }
+
+  .ibm-section,
+  .ibm-project,
+  .ibm-activity,
+  .ibm-skill-grid > div {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .ibm-top-title {
+    font-size: 24px;
+  }
+
+  .ibm-section-title {
+    font-size: 23px;
+  }
+
+  .ibm-intro-layout {
+    grid-template-columns: 160px 1fr;
+    gap: 34px;
+  }
+
+  .ibm-photo-box {
+    width: 135px;
+    height: 165px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .ibm-resume-page {
+    width: 100%;
+    padding: 28px;
+  }
+
+  .ibm-intro-layout,
+  .ibm-info-grid,
+  .ibm-skill-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ibm-photo-box {
+    margin-top: 0;
+  }
+
+  .ibm-info-grid div {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+}
