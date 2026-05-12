@@ -88,28 +88,6 @@ const IBMConsultingResume = () => {
           </div>
         </section>
 
-        <section className="ibm-section">
-          <h2 className="ibm-section-title">Core Competencies</h2>
-
-          <div className="ibm-skill-grid">
-            <div>
-              <h3>AI / Data Analysis</h3>
-              <p>Python, TensorFlow/Keras, NumPy, Pandas, Matplotlib, time-series forecasting, regression metrics, baseline comparison</p>
-            </div>
-            <div>
-              <h3>Modeling</h3>
-              <p>LSTM, Encoder-LSTM, Huber Loss, BAM-based lossy compression, SOM/BAM research notes, anomaly-detection baseline design</p>
-            </div>
-            <div>
-              <h3>IoT / Field Validation</h3>
-              <p>LoRa, Raspberry Pi, Linux, UART, payload design, CSV logging, NLOS field testing, PDR/RSSI/SNR analysis</p>
-            </div>
-            <div>
-              <h3>Consulting Deliverables</h3>
-              <p>Problem framing, technical documentation, trend and literature review, metric summary, chart-based result explanation</p>
-            </div>
-          </div>
-        </section>
       </div>
 
       <div className="ibm-resume-page">
