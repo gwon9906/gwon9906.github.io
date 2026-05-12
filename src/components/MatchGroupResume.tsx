@@ -90,28 +90,6 @@ const MatchGroupResume = () => {
             <div><strong>Official English Score</strong><span>TOEIC Speaking IM1</span></div>
           </div>
         </section>
-
-        <section className="ibm-section">
-          <h2 className="ibm-section-title">Core Technical Fit</h2>
-          <div className="ibm-skill-grid">
-            <div>
-              <h3>ML / Deep Learning</h3>
-              <p>Python, TensorFlow/Keras, PyTorch, LSTM, Encoder-LSTM, Autoencoder, Huber Loss, model comparison, metric-based validation</p>
-            </div>
-            <div>
-              <h3>Data Analysis</h3>
-              <p>EDA, sensor/time-series preprocessing, outlier handling, sequence segmentation, baseline design, error interpretation</p>
-            </div>
-            <div>
-              <h3>Engineering / Deployment Orientation</h3>
-              <p>Linux, Raspberry Pi, UART, Git, field-test logging, ONNX-oriented model validation, reproducible experiment documentation</p>
-            </div>
-            <div>
-              <h3>Product ML Relevance</h3>
-              <p>Problem definition, evaluation metric selection, noisy data handling, model feasibility analysis, limitation-aware reporting</p>
-            </div>
-          </div>
-        </section>
       </div>
 
       <div className="ibm-resume-page">
