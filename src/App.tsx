@@ -15,6 +15,7 @@ import NaverLabsResume from './components/NaverLabsResume';
 import AckertonResume from './components/AckertonResume';
 import AckertonPortfolio from './components/AckertonPortfolio';
 import IBMConsultingResume from './components/IBMConsultingResume';
+import MatchGroupResume from './components/MatchGroupResume';
 import { LanguageProvider } from './contexts/LanguageContext';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
   const [showAckertonResume, setShowAckertonResume] = useState(false);
   const [showAckertonPortfolio, setShowAckertonPortfolio] = useState(false);
   const [showIBMConsultingResume, setShowIBMConsultingResume] = useState(false);
+  const [showMatchGroupResume, setShowMatchGroupResume] = useState(false);
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -36,6 +38,7 @@ function App() {
       setShowAckertonResume(hash === '#ackerton-resume');
       setShowAckertonPortfolio(hash === '#ackerton-portfolio' || hash === '#ackerton');
       setShowIBMConsultingResume(hash === '#ibm-consulting-resume' || hash === '#ibm');
+      setShowMatchGroupResume(hash === '#matchgroup-resume' || hash === '#matchgroup');
     };
 
     handleHashChange();
@@ -45,7 +48,11 @@ function App() {
 
   return (
     <LanguageProvider>
-      {showIBMConsultingResume ? (
+      {showMatchGroupResume ? (
+        <div className="min-h-screen">
+          <MatchGroupResume />
+        </div>
+      ) : showIBMConsultingResume ? (
         <div className="min-h-screen">
           <IBMConsultingResume />
         </div>
